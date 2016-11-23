@@ -17829,6 +17829,7 @@ HomeController.Listing = (function ($) {
                             $('.ajaxArticles').append(article);
                         }
 
+
                         $(".card p, .card h1").dotdotdot();
                         
                         bindSocialShareArticle();
