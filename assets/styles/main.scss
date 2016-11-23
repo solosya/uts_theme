@@ -1,0 +1,30 @@
+//Bootstrap
+@import "utsVariables";
+@import "bootstrap";
+@import "font-awesome-4.7.0/scss/font-awesome";
+@import "mixins";
+@import "login";
+
+
+//Partials
+@import "placeholder";
+@import "common";
+@import "topBar";
+@import "header";
+@import "menu";
+@import "card";
+@import "card-sm";
+@import "card-md";
+@import "card-lg";
+@import "hero";
+@import "swiper";
+@import "aap-news";
+@import "top-stories";
+@import "subscribe";
+@import "ser";
+@import "page-hero";
+@import "page-article";
+@import "related-posts";
+@import "blog-page-hero";
+@import "blog-page";
+@import "footer";

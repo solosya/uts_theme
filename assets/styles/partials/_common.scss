@@ -1,0 +1,179 @@
+.hide {
+    display:none !important;
+}
+
+.icon{
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.share-icon{
+	background-image: url(../icons/share-icon.svg);
+	width: 28.6px;
+    height: 32.7px;
+}
+
+.icon-search{
+	background-image: url(../icons/search.svg);
+	width: 15px;
+    height: 15px;
+}
+
+.icon-search-blk{
+    background-image: url(../icons/search-blk.svg);
+    width: 20px;
+    height: 20px;
+}
+
+.icon-submit{
+    background-image: url(../icons/arrow-btn.svg);
+    width: 42px;
+    height: 42px;
+}
+
+.icon-submit-blk{
+    background-image: url(../icons/arrow-btn-blk.svg);
+}
+
+.left-border{
+    border-left: 1px solid #d0d2d3;
+
+    @media screen and (max-width: $mmd-break){
+        border-left: 0;
+    }
+}
+
+.content-block{
+    margin-bottom: $section-margin-bottom;
+    @media screen and (max-width: $mmd-break){
+        margin-bottom: 106px;
+    }
+
+    aside{
+        overflow: hidden;
+    }
+}
+
+.hidden-xxs{
+    @media screen and (max-width: $mobile-break){
+        display: none;
+    }
+}
+.show-xxs{
+    @media screen and (max-width: $mobile-break){
+        display: block;
+        float: right;
+    }
+    @media screen and (min-width: $mobile-break){
+        display: none;
+    }
+}
+
+.col-xxs-2{
+    @media screen and (max-width: $mobile-break){
+        width: 20%;
+    }
+}
+
+.col-xxs-8{
+    width: 80%;
+}
+
+.social-links .facebook{
+    background-image: url(../icons/facebook.svg);
+}
+
+.social-links .twitter{
+    background-image: url(../icons/twitter.svg);
+}
+
+.social-links .tumblr{
+    background-image: url(../icons/tumblr.svg);
+}
+
+.social-links .instagram{
+    background-image: url(../icons/instagram.svg);
+}
+
+.facebook-blk{
+    background-image: url(../icons/facebook-blk.svg);
+    width: 37.2px;
+    height: 37.2px;
+}
+
+.twitter-blk{
+    background-image: url(../icons/twitter-blk.svg);
+    width: 37.2px;
+    height: 37.2px;
+}
+
+.instagram-blk{
+    background-image: url(../icons/instagram-blk.svg);
+    width: 37.2px;
+    height: 37.2px;
+}
+
+.tumblr-blk{
+    background-image: url(../icons/tumblr-blk.svg);
+    width: 37.2px;
+    height: 37.2px;
+}
+
+.mail-blk{
+    background-image: url(../icons/email.svg);
+    width: 37.2px;
+    height: 37.2px;
+}
+
+.icon-add{
+    background-image: url(../icons/add.svg);
+    width: 34px;
+    height: 33px;
+}
+
+.icon-heart{
+    background-image: url(../icons/heart.svg);
+    width: 34px;
+    height: 33px;
+}
+
+.icon-tag{
+    background-image: url(../icons/tag.svg);
+    width: 34px;
+    height: 33px;
+}
+
+.btn-black{
+    color: #fefefe;
+    background-color: #000;
+    border-color: #000;
+    border-radius: 0;
+
+    &:hover{
+        color: #FFF;
+    }
+}
+
+.lead{
+    font-size: ((18px / $font-size-base) + $font-unit);
+    line-height: 1.56;
+    font-weight: 900;
+}
+
+figcaption{
+    font-size: ((14px / $font-size-base) + $font-unit);
+    color: #808285;
+    line-height: 1;
+    font-style: italic;
+    margin-bottom: 38px;
+}
+
+h5{
+    color: #464648;
+}
+
+time{
+    color: #808285;
+    font-size: ((16px / $font-size-base) + $font-unit);
+}

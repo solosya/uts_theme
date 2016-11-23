@@ -1,0 +1,20 @@
+{% set placeholder = 'https://placeholdit.imgix.net/~text?txtsize=33&txt=Loading&w=450&h=250' %}
+
+{% set articleImg = '' %}
+{% if article.featuredMedia | length > 0 %}
+    {% set imgWidth = 85 %}
+    {% set imgHeight = 90 %}
+    {% set articleImg = _Media.getMediaUrl(article.featuredMedia,imgWidth, imgHeight, {'crop': 'fill', 'gravity': 'faces'} ) %}
+{% endif %}
+{% set placeholder = 'https://placeholdit.imgix.net/~text?txtsize=33&txt=Loading&w='~imgWidth~'&h='~imgHeight~'' %}
+{% set publishDate = _AppHelper.getDefaultTimezoneDateTime(article.publishDate) %}
+{% set articleTitle =  titleTruncateLength is defined ? article.title | truncate(titleTruncateLength) : article.title  %}
+
+
+<article>
+    <figure>
+        <img src="{{articleImg}}">
+    </figure>
+    <h3>{{ articleTitle | raw }}</h3>
+    <time datetime="2016-11-16">{{_AppHelper.getDateTimeBasedOnTimezone(publishDate,'SHORT')}}</time>
+</article>

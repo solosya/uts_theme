@@ -1,0 +1,48 @@
+    <header id="masthead" class="site-header container-fluid">
+        <div class="site-branding col-md-3 col-sm-2">
+            <div class="logo pull-left">
+                    <a class="navbar-brand" href="http://tengu.aapp.io/" rel="Home" tabindex="-1" title="Home">
+                        <img src="{{networkData.templatePath}}/static/images/uts-logo.png" alt="UTL Logo">
+                        <span class="logo-name">Reportage</span>
+                        <span class="logo-caption">Direct from the uts jounalism lab</span>
+                    </a>
+            </div>
+        </div><!-- .site-branding -->
+
+        <nav class="sb-custom-menu">
+
+            <ul id="menu-primary-menu" class="menu">
+                {% set menuItems = blog.blogHeaderMenu %}
+                    {% for parentItem in menuItems %}
+                        {% set activeClass = (parentItem.link == _AppHelper.getServerUrl()) ? 'active' : ''%}
+                        {% set externalClass = (parentItem.isExternal) ? 'external-link' : '' %}
+
+                        <li class="menu-item">
+                            <a href="{{parentItem.link |raw}}" class="{{activeClass}} {{externalClass}}" {% if parentItem.target != "" %}target="{{parentItem.target}}"{% endif %}>
+                                {{ ((parentItem.label is empty) ? ((parentItem.pageTitle is empty)? parentItem.blogTitle : parentItem.pageTitle) : parentItem.label )}}
+                            </a>
+                        </li>
+
+                    {% endfor %}
+
+                <li id="menu-item-search" class="menu-item menu-item-search">
+                    <a href="#" class="search-icon"><span class="icon-search icon"></span><span class="sr-only">Expand search</span></a>
+
+                    <ul class="sub-menu normal-sub search-sub-menu">
+                        <li class="search-container">
+                            <fieldset>
+                                <form method="get" id="searchform" action="#">
+                                    <label for="header-search" class="assistive-text sr-only">Search</label>
+                                    <input type="text" class="field" name="s" id="header-search" placeholder="Search" required="">
+                                    <button class="btn btn-default" type="submit" id="searchsubmit">
+                                        <span class="icon icon-search-blk"></span>
+                                        <span class="screen-reader-text"></span>
+                                    </button>
+                                </form>
+                            </fieldset>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>  
+    </header>

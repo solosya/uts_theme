@@ -1,0 +1,40 @@
+{% if not  _User.isGuest() %}
+
+    {% set user = _User.getUser() %}
+
+    <div class="content">
+
+      <div class="menu">
+          <ul>
+              <li><a href="{{_AppHelper.getLogoffUrl()}}">Logout</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Contact</a></li>
+          </ul>
+      </div><!--menu-->
+      <div class="social-links">
+          <a href="#" class="icon facebook"><span class="sr-only">Facebook</span></a>
+          <a href="#" class="icon twitter"><span class="sr-only">Twitter</span></a>
+          <a href="#" class="icon tumblr"><span class="sr-only">Tumblr</span></a>
+          <a href="#" class="icon instagram"><span class="sr-only">Instagram</span></a>
+        </div>
+      </div>
+
+{% else %}      
+
+      <div class="content">
+
+        <div class="menu">
+            <ul>
+                <li><a href="{{_AppHelper.getLoginUrl()}}">Login</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div><!--menu-->
+        <div class="social-links">
+            <a href="#" class="icon facebook"><span class="sr-only">Facebook</span></a>
+            <a href="#" class="icon twitter"><span class="sr-only">Twitter</span></a>
+            <a href="#" class="icon tumblr"><span class="sr-only">Tumblr</span></a>
+            <a href="#" class="icon instagram"><span class="sr-only">Instagram</span></a>
+          </div>
+        </div>
+{% endif %}      

@@ -1,0 +1,9 @@
+{
+  "name": "UTS Reportage",
+  "description": "UTS Reportage HTML",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "jquery": "~3.1.1"
+  }
+}

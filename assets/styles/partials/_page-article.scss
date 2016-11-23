@@ -1,0 +1,109 @@
+.page-content{
+    article{
+        header{
+            text-align: center;
+            padding-bottom: 25px;
+            border-bottom: solid 1px #d0d2d3;
+            margin-bottom: 15px;
+
+            h1{
+                margin-bottom: 15px;
+            }
+        }
+
+        .author-info{
+            text-align: center;
+            border-bottom: solid 1px #d0d2d3;
+            padding-bottom: 31.5px;
+            margin-bottom: 22.5px;
+
+
+            img{
+                display: block;
+                margin: 0 auto 15px auto;
+                width: auto;
+                max-width: 100px;
+                height: auto;
+                max-height: 100px;
+                border-radius: 50%;
+                border: 2px solid white;
+                background:pink;
+                -webkit-box-shadow: 1px 1px 1px 2px #ccc;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+                -moz-box-shadow:    1px 1px 1px 2px #ccc;  /* Firefox 3.5 - 3.6 */
+                box-shadow:         1px 1px 1px 2px #ccc;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+
+            }
+
+            .name{
+                background-color: #ffff00;
+                color: #1a1818;
+                font-weight: 900;
+                font-size: ((10.8px / $font-size-base) + $font-unit);
+                text-transform: uppercase;
+                padding: 4px 5px;
+                margin-bottom: 26px;
+                display: inline-block;
+            }
+
+            p{
+                color: #595b5d;
+                font-size: ((14px / $font-size-base) + $font-unit);
+                margin-bottom: 21px;
+            }
+        }
+
+        .content{
+            font-size: ((18px / $font-size-base) + $font-unit);
+            line-height: ((28px / $font-size-base) + $font-unit);
+            margin-bottom: 26px;
+        }
+
+        img{
+            max-width: 100%;
+        }
+    }
+
+    .social-link-sidebar{
+        list-style: none;
+        margin-top:290%;
+        text-align: right;
+        padding-right: 26.5px;
+        
+        @media screen and (max-width: $mmd-break){
+            margin-top: 0;
+            text-align: center;
+        }
+        li{
+            margin-bottom: 18px;
+            @media screen and (max-width: $mmd-break){
+                display: inline-block;
+                margin-right: 22px;
+            }
+            @media screen and (max-width: $sm-mobile-break){
+                margin-right: 10px;
+            }
+        }
+    }
+
+    .article-icons{
+        text-align: center;
+        margin-bottom: 130px;
+
+        a{
+            margin-right: 22px;
+            position: relative;
+            z-index: 1;
+        }
+
+        &:after{
+            content: '';
+            width: 100%;
+            height: 1px;
+            background-color: #d0d2d3;
+            position: relative;
+            top: -20px;
+            display: block;
+            z-index: 0;
+        }
+    }
+}

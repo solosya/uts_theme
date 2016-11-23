@@ -1,0 +1,143 @@
+.site-header{
+    padding-left: 42px;
+    padding-right: 42px;
+    position: absolute;
+    width: 100%;
+    margin-top: 27px;
+    z-index: 100;
+    height: 97.5px;
+
+    @media screen and (max-width: $sm-break){
+        padding-left: 23px;
+        padding-right: 23px;
+    }
+    @media screen and (max-width: $mobile-break){
+        margin-top: 23px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    &.stick{
+        position: fixed;
+        top: 0;
+        background-color: #231f20;
+        margin-top: 0;
+        height: 70px;
+
+        @media screen and (max-width: $mobile-break){
+            padding-top: 8px;
+        }
+        .logo-caption{
+            display: none;
+        }
+
+        .navbar-brand{
+            @media screen and (min-width: $mobile-break){
+                height: 70px;
+            }
+        }
+    }
+
+    &.night-fall:before{
+        content: '';
+        background: rgba(35, 31, 32, 0.6);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 115px;
+        z-index: 1;
+    }
+
+    .site-branding{
+        width: auto;        
+        max-width: 485px;
+
+        @media screen and (min-width: $menu-break) {
+            max-width: 30%;
+        }
+        @media screen and (max-width: $mobile-break){
+            padding-left: 0;
+        }
+    }
+
+    .navbar-brand{
+        font-size: inherit;
+        padding: 0;
+        -webkit-transition-timing-function: ease-in;
+        transition-timing-function: ease-in;
+        -webkit-transition-duration: 0.5s;
+        transition-duration: 0.5s;
+        transition: height 0.5s ease;
+
+        img{
+            max-height: 100%;
+            width: auto;
+            display: inline-block;
+            float: left;
+        }
+
+        .logo-name{
+            font-size: ((48px / $font-size-base) + $font-unit);
+            color: #fefefe;
+            font-weight: 900;
+            position: relative;
+            margin-left: 19.5px;
+            margin-bottom: 10px;
+            float: left;
+            line-height: 1;
+            @extend %transition;
+
+            &:after{
+                content: '';
+                float: left;
+                background: #fefefe;
+                width: 56px;
+                height: 6px;
+                position: absolute;
+                left: 3px;
+                bottom: -5px;
+
+                @media screen and (max-width: $sm-mobile-break){
+                    width: 32px;
+                    height: 4px;
+                    left: 1px;
+                    bottom: -4px;
+                }
+            }
+
+            // @media screen and (max-width: $logo-break) and (min-width: $menu-break) {
+            //     display: none;
+            // }
+            @media screen and (max-width: $sm-mobile-break){
+                margin-left: 10px;
+                font-size: ((32px / $font-size-base) + $font-unit);
+            }
+        }
+
+        .logo-caption{
+            float: left;
+            font-size: ((12px / $font-size-base) + $font-unit);
+            font-weight: 700;
+            color: #fefefe;
+            margin-left: 19.5px;
+            text-transform: uppercase;
+            width: 40%;
+
+            @media screen and (max-width: $logo-break) and (min-width: $menu-break) {
+                display: none;
+            }
+
+            @media screen and (max-width: $mobile-break){
+                display: none;
+            }
+        }
+
+        @media screen and (max-width: $mobile-break){
+            height: 55px;
+            display: block;
+        }
+
+    }
+
+}

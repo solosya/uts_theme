@@ -1,0 +1,148 @@
+{{ set(this, 'title', article.title) }}
+
+{{this.registerJs("ArticleController.view();")}}
+
+{% set status = 'follow' %}
+{% set text = 'Follow +' %}
+{% if not _User.isGuset() and _User.isUserFollowing('blog', article.blog['id'])%}
+    {% set status = 'unfollow' %}
+    {% set text = 'Following -' %}
+{% endif %}
+{% set placeholder = 'https://placeholdit.imgix.net/~text?txtsize=33&txt=Loading&w=1160&h=538' %}
+{% set imgWidth = 1000 %}
+{% set imgHeight = 400 %}
+
+{% set articleImg = _Media.getMediaUrl(article.media[0]['path'],imgWidth, imgHeight, {'crop': 'fill', 'gravity': 'faces'} ) %}
+
+
+
+    <section class="page-hero">
+        {% for media in article.media %}
+            <div itemprop="image" itemscope itemtype="https://schema.org/ImageObject" 
+                 class="image-wrapper news__slide slide lazyload-remove" 
+                 data-thumbnail="{{media.path}}" 
+                 data-original="{{media.path}}" 
+                 style="background-image: url({{media.path}})">
+
+                <meta itemprop="url" content="{{media.path}}">
+                <meta itemprop="height" content="{{media.height}}">
+                <meta itemprop="width" content="{{media.width}}">
+                {% if media.type == 'video' %} 
+                    {% set mediaUrl = "" %}
+                    {% if media.isSystemVideo == 'TRUE'%}
+                        {% set mediaUrl = _Media.getMediaVideoUrl(media, 0, 0,{resource_type: 'video', format: 'mp4'})  %}
+                    {% endif %}
+                    <a href="javascript:void(0)" itemprop="video" class="video-overlay video-player" data-source="{{media.source}}" data-video-id="{{media.videoId}}" data-url="{{mediaUrl}}" data-poster="{{media.path}}" data-caption="{{article.title | raw}}">
+                       <div class="icons">
+                           <div class="icon"><i class="fa fa-play"></i></div>
+                       </div>
+                    </a>
+              
+                   {% if media.caption | length %}
+                        <div class="news__slide-caption">{{media.caption | raw}}</div>
+                   {% endif %}                                    
+                {% endif %}
+            </div>
+        {% endfor %}
+        {# <div class="image-wrapper" style="background-image: url({{ articleImg }});"> #}
+            
+        </div>
+        <span class="category">{{ article.label}}</span>
+   </section><!--page-hero-->
+
+   <div class="container page-content">
+        <aside class="col-md-2 col-sm-12">
+           <ul class="social-link-sidebar">
+                <li><a href="#"><span class="sr-only">Facebook</span><span class="facebook-blk icon"></span></a></li>
+                <li><a href="#"><span class="sr-only">Twitter</span><span class="twitter-blk icon"></span></a></li>
+                <li><a href="#"><span class="sr-only">Tumblr</span><span class="tumblr-blk icon"></span></a></li>
+                <li><a href="#"><span class="sr-only">Instagram</span><span class="instagram-blk icon"></span></a></li>
+                <li><a href="#"><span class="sr-only">Mail</span><span class="mail-blk icon"></span></a></li>
+           </ul>
+        </aside>
+        <article class="col-md-8 col-sm-12">
+            <header>
+                <h1>{{article.title | raw}}</h1>
+                <time datetime="2016-11-16">{{article.publishedDate}}</time>
+            </header>
+
+            <div class="author-info">
+                <img src="{{ article.createdBy['media']['path'] }}" alt="Author name">
+                <span class="name">{{article.createdBy['displayName']}}</span>
+                <p>Ecerum qui que repudae doluptam qui conserum haruptati omnimillest, omnis exqueeum rerferro quo dus sus asiosimp ptam qui conserum haruptati omniurit aut.</p>
+                <a href="#" class="btn btn-black">FOLLOW + </a>
+            </div>
+
+            <div class="content">
+                <p>{{ article.content | preg_replace('/^<p>/', '<p class="lead">') | raw }}</p>
+            </div>
+
+            <div class="article-icons">
+                <a href="#"><span class="icon icon-add"></span></a>
+                <a href="#"><span class="icon icon-heart"></span></a>
+                <a href="#"><span class="icon icon-tag"></span></a>
+            </div><!--article-icons-->
+       </article>
+    </div><!--page-content-->
+
+    <section class="related-posts">
+        <div class="container">
+            <div class="col-sm-12 text-center">
+                <h2>YOU MIGHT ALSO LIKE...</h2>
+            </div>
+            <div class="col-sm-4 card-sm">
+                <article class="card other">
+                    <figure>
+                        <div class="image-wrapper" style="background-image: url(images/main-image.jpg);"></div>
+                    </figure>
+                    <div class="content">
+                        <span class="category">Wire</span>
+                        <span class="article-icon"></span>
+                        <time datetime="2016-11-16">16 Sep 2016</time>
+                        <h2>Meet the aeroplane of the future</h2>
+                        <span class="author">SOPHIE MCKAILERO</span>
+                        <p>FLIGHT MODE: The quest to make flying safer, faster, and comfier Sam, teculparum excepre coriat voles porestrum atur susapicat</p>
+                        <div class="share">
+                            <a href="#"><span class="sr-only">Share</span><span class="share-icon icon"></span></a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            <div class="col-sm-4 card-sm">
+                <article class="card other">
+                    <figure>
+                        <div class="image-wrapper" style="background-image: url(images/main-image.jpg);"></div>
+                    </figure>
+                    <div class="content">
+                        <span class="category">Wire</span>
+                        <span class="article-icon"></span>
+                        <time datetime="2016-11-16">16 Sep 2016</time>
+                        <h2>Meet the aeroplane of the future</h2>
+                        <span class="author">SOPHIE MCKAILERO</span>
+                        <p>FLIGHT MODE: The quest to make flying safer, faster, and comfier Sam, teculparum excepre coriat voles porestrum atur susapicat</p>
+                        <div class="share">
+                            <a href="#"><span class="sr-only">Share</span><span class="share-icon icon"></span></a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            <div class="col-sm-4 card-sm">
+                <article class="card other">
+                    <figure>
+                        <div class="image-wrapper" style="background-image: url(images/main-image.jpg);"></div>
+                    </figure>
+                    <div class="content">
+                        <span class="category">Wire</span>
+                        <span class="article-icon"></span>
+                        <time datetime="2016-11-16">16 Sep 2016</time>
+                        <h2>Meet the aeroplane of the future</h2>
+                        <span class="author">SOPHIE MCKAILERO</span>
+                        <p>FLIGHT MODE: The quest to make flying safer, faster, and comfier Sam, teculparum excepre coriat voles porestrum atur susapicat</p>
+                        <div class="share">
+                            <a href="#"><span class="sr-only">Share</span><span class="share-icon icon"></span></a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div><!--container-->
+    </section><!--related-posts-->

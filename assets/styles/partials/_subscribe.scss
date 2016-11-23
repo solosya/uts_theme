@@ -1,0 +1,30 @@
+.subscribe{
+    padding-left: 30px;
+    border-top: solid 1px #939597;
+    @media screen and (max-width: $mmd-break){
+        padding-left: 0;
+    }
+    input{
+        border: 2px solid #231f20;
+        border-radius: 0;
+        width: 80%;
+        display: inline-block;
+        height: 42px;
+        @media screen and (max-width: $md-break){
+            width: 75%;
+        }
+        @media screen and (max-width: $mmd-break){
+            width: 93.5%;
+        }
+        @media screen and (max-width: $sm-break){
+            width: 75%;
+        }
+    }
+
+    .btn{
+        padding: 0;
+        border: 0;
+        position: relative;
+        left: -5px;
+    }
+}

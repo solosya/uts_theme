@@ -1,0 +1,37 @@
+.author-bio{
+    text-align: center;
+    margin-top: -50px;
+    position: relative;
+    z-index: 20;
+    margin-bottom: 65px;
+
+    img{
+        margin-bottom: 20px;
+    }
+
+    p{
+        width: 50%;
+        margin: 0 auto;
+        font-size: ((18px / $font-size-base) + $font-unit);
+        font-weight: 300;
+        line-height: 1.56;
+        margin-bottom: 65.5px;
+
+        @media screen and (max-width: $sm-mobile-break){
+            width: 70%;
+        }
+    }
+    .social-links{
+        list-style-type: none;
+        padding: 0;
+
+        li{
+            display: inline-block;
+            margin-right: 18px;
+        }
+    }
+}
+
+.blog-posts{
+    margin-bottom: 130px;
+}
