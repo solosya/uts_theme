@@ -19,7 +19,7 @@ gulp.task('scripts', function(){
 		'./bower_components/jquery/dist/jquery.js',
 		'./bower_components/bootstrap-sass/assets/javascripts/bootstrap.js',
 		'./bower_components/swiper/dist/js/swiper.jquery.js',
-		'./assets/scripts/*.js',
+
 		'./assets/scripts/plugins/slick.js',
         './assets/scripts/plugins/jquery-ui/jquery-ui-1.10.1.custom.min.js',
         './assets/scripts/plugins/bootstrap-modalmanager.js',
@@ -31,6 +31,9 @@ gulp.task('scripts', function(){
         './assets/scripts/plugins/waypoint/lib/jquery.waypoints.min.js',
         './assets/scripts/plugins/handlebars-v4.0.5.js',
         './assets/scripts/plugins/jquery.lazyload.min.js',
+        './assets/scripts/plugins/jquery.dotdotdot.min.js',
+        './assets/scripts/plugins/owl.carousel.min.js',
+
         '../../static/sdk/js/cloudinary/jquery.cloudinary.js',
         '../../static/sdk/js/common.js',
         '../../static/sdk/js/blog.js',
@@ -47,6 +50,8 @@ gulp.task('scripts', function(){
         '../../static/sdk/js/yii/yii.captcha.js',
         '../../static/sdk/js/uploadfile.js',
         '../../static/sdk/js/media-player/mediaelement-and-player.min.js',
+
+		'./assets/scripts/*.js',
 
 		])
 		.pipe(concat('concat.js'))
