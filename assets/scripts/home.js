@@ -130,7 +130,7 @@ HomeController.Listing = (function ($) {
                         data: postData,
                         dataType: 'json',
                         success: function(data){
-                            console.log(data);
+
                             if(data.success) {
                                 $.fn.General_ShowNotification({message: "Articles swapped successfully"});
                             }
