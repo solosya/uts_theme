@@ -10,7 +10,11 @@
         <!-- Swiper -->
         <div class="swiper-container">
             <div class="swiper-wrapper">
-                {% for i in 0..2 %}
+                {% if articles|length > 0 %}
+                    {{this.render('partials/_single-article.twig', {article: articles[0], 'position': 1, containerClass: 'swiper-slide', cardClass : 'other'}) | raw}}
+                {% endif %}
+
+                {% for i in 1..2 %}
                     {% if articles[i] %}
                         {{this.render('partials/_single-article.twig', {article: articles[i], 'position': (i+1), containerClass: 'swiper-slide', cardClass : 'other'}) | raw}}
                     {% endif %}
@@ -19,30 +23,22 @@
             <!-- Add Pagination -->
             <div class="container">
                 <div class="custom-pagination">
-             
-                    {% if articles[0] %}
-                        <div class="slide-1 pagination-item" data-slide="0">
-                            <span class="slide-no">01</span>
-                            <time datetime="{{ articles[0].metaPublishDate }}">{{_AppHelper.getDateTimeBasedOnTimezone(articles[0].publishDate, 'SHORT')}}</time>
-                            <h2>{{ articles[0].title }}</h2>
-                        </div>
-                    {% endif %}
-    
-                    {% if articles[1] %}
-                        <div class="slide-1 pagination-item" data-slide="1">
-                            <span class="slide-no">02</span>
-                            <time datetime="{{ articles[1].metaPublishDate }}">{{_AppHelper.getDateTimeBasedOnTimezone(articles[1].publishDate, 'SHORT')}}</time>
-                            <h2>{{ articles[1].title }}</h2>
-                        </div>
-                    {% endif %}
 
-                    {% if articles[2] %}
-                        <div class="slide-1 pagination-item" data-slide="2">
-                            <span class="slide-no">03</span>
-                            <time datetime="{{ articles[2].metaPublishDate }}">{{_AppHelper.getDateTimeBasedOnTimezone(articles[2].publishDate, 'SHORT')}}</time>
-                            <h2>{{ articles[2].title }}</h2>
-                        </div>
-                    {% endif %}
+                    <div class="slide-1 pagination-item" data-slide="0">
+                        <span class="slide-no">01</span>
+                        <time datetime="2016-11-16">16 Sep 2016</time>
+                        <h2>Meet the aeroplane of the future</h2>
+                    </div>
+                    <div class="slide-1 pagination-item" data-slide="1">
+                        <span class="slide-no">02</span>
+                        <time datetime="2016-11-16">16 Sep 2016</time>
+                        <h2>Underwater wonderland</h2>
+                    </div>
+                    <div class="slide-1 pagination-item" data-slide="2">
+                        <span class="slide-no">03</span>
+                        <time datetime="2016-11-16">16 Sep 2016</time>
+                        <h2>The dangerous limits of innovation</h2>
+                    </div>
                 </div><!--custom-pagination-->
             </div><!--container-->
 

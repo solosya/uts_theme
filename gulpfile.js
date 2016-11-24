@@ -63,7 +63,7 @@ gulp.task('scripts', function(){
 
 gulp.task('watch', function (){
 	gulp.watch('./assets/styles/**/*.scss', ['styles']);
-	gulp.watch('./assets/scripts/**/*.js', ['scripts']);
+	// gulp.watch('./assets/scripts/**/*.js', ['scripts']);
 });
 
 gulp.task('default', ['scripts','styles']);

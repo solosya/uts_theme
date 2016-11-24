@@ -956,24 +956,24 @@ input[type="reset"].btn-block,
 input[type="button"].btn-block {
   width: 100%; }
 
-.container, .login-page .container {
+.container, .login-page .container, .profile__container {
   margin-right: auto;
   margin-left: auto;
   padding-left: 15px;
   padding-right: 15px; }
-  .container:before, .login-page .container:before, .container:after, .login-page .container:after {
+  .container:before, .login-page .container:before, .profile__container:before, .container:after, .login-page .container:after, .profile__container:after {
     content: " ";
     display: table; }
-  .container:after, .login-page .container:after {
+  .container:after, .login-page .container:after, .profile__container:after {
     clear: both; }
   @media (min-width: 768px) {
-    .container, .login-page .container {
+    .container, .login-page .container, .profile__container {
       width: 750px; } }
   @media (min-width: 992px) {
-    .container, .login-page .container {
+    .container, .login-page .container, .profile__container {
       width: 970px; } }
   @media (min-width: 1200px) {
-    .container, .login-page .container {
+    .container, .login-page .container, .profile__container {
       width: 1170px; } }
 
 .container-fluid {
@@ -2283,15 +2283,15 @@ select[multiple].input-lg {
     .navbar-fixed-bottom .navbar-collapse {
       max-height: 200px; } }
 
-.container > .navbar-header, .login-page .container > .navbar-header,
-.container > .navbar-collapse, .login-page .container > .navbar-collapse,
+.container > .navbar-header, .login-page .container > .navbar-header, .profile__container > .navbar-header,
+.container > .navbar-collapse, .login-page .container > .navbar-collapse, .profile__container > .navbar-collapse,
 .container-fluid > .navbar-header,
 .container-fluid > .navbar-collapse {
   margin-right: -15px;
   margin-left: -15px; }
   @media (min-width: 768px) {
-    .container > .navbar-header, .login-page .container > .navbar-header,
-    .container > .navbar-collapse, .login-page .container > .navbar-collapse,
+    .container > .navbar-header, .login-page .container > .navbar-header, .profile__container > .navbar-header,
+    .container > .navbar-collapse, .login-page .container > .navbar-collapse, .profile__container > .navbar-collapse,
     .container-fluid > .navbar-header,
     .container-fluid > .navbar-collapse {
       margin-right: 0;
@@ -2335,7 +2335,7 @@ select[multiple].input-lg {
   .navbar-brand > img {
     display: block; }
   @media (min-width: 768px) {
-    .navbar > .container .navbar-brand, .login-page .navbar > .container .navbar-brand,
+    .navbar > .container .navbar-brand, .login-page .navbar > .container .navbar-brand, .navbar > .profile__container .navbar-brand,
     .navbar > .container-fluid .navbar-brand {
       margin-left: -15px; } }
 
@@ -4966,7 +4966,7 @@ select[multiple].input-lg {
 .login-page {
   margin: 40px 0 50px;
   /* Forms */ }
-  .login-page .container {
+  .login-page .container, .login-page .profile__container {
     /* background-color:#fff;
         border:1px solid rgba(0,0,0, 0.1); */ }
   .login-page .nav-tabs {
@@ -5245,6 +5245,108 @@ select[multiple].input-lg {
     box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.1); }
     .social-buttons button.disconnect .fa {
       color: #e73d4a; }
+
+.header,
+.header__heading-container {
+  position: relative !important; }
+
+#header__menu {
+  display: none; }
+
+#header__menu.Profile_Open {
+  display: block !important; }
+
+a.user__login {
+  color: #c6c7c9;
+  display: block;
+  padding-top: 2px;
+  padding-bottom: 0; }
+
+.profile__menu {
+  background-color: #ffffff;
+  box-shadow: 0px 0px 25px 0px rgba(33, 36, 39, 0.2);
+  float: right;
+  padding: 30px 20px;
+  width: 300px;
+  position: absolute;
+  top: 50px;
+  right: 40px;
+  z-index: 90; }
+  @media screen and (min-width: 200px) and (max-width: 480px), screen and (min-width: 668px) and (max-width: 767px), screen and (min-width: 481px) and (max-width: 667px) {
+    .profile__menu {
+      right: 20px;
+      width: 250px; } }
+  @media (min-width: 768px) and (max-width: 991px) {
+    .profile__menu {
+      right: 19px; } }
+  .profile__menu-image {
+    background-repeat: no-repeat;
+    background-size: 100%;
+    -webkit-border-radius: 100%;
+    border-radius: 100%;
+    float: left;
+    margin: 0px 15px 20px 0px;
+    height: 80px;
+    width: 80px; }
+    @media screen and (min-width: 200px) and (max-width: 480px), screen and (min-width: 668px) and (max-width: 767px), screen and (min-width: 481px) and (max-width: 667px) {
+      .profile__menu-image {
+        height: 50px;
+        width: 50px; } }
+  .profile__menu-content {
+    float: left;
+    margin-bottom: 30px;
+    width: calc(100% - 115px); }
+    @media screen and (min-width: 200px) and (max-width: 480px), screen and (min-width: 668px) and (max-width: 767px), screen and (min-width: 481px) and (max-width: 667px) {
+      .profile__menu-content {
+        width: calc(100% - 70px); } }
+  .profile__menu-name {
+    font-style: 15px;
+    font-weight: bold;
+    line-height: 25px;
+    width: 85%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; }
+  .profile__menu-email {
+    font-style: 11px;
+    line-height: 20px;
+    margin-bottom: 20px;
+    width: 85%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; }
+  .profile__menu-button, .profile__menu-button:link, .profile__menu-button:visited, .profile__menu-button:active {
+    background-color: #212427;
+    color: #ffffff;
+    text-align: center;
+    display: block;
+    padding: 10px; }
+  .profile__menu-navigation {
+    clear: both;
+    list-style: none;
+    margin-bottom: 0px;
+    padding: 0px; }
+    .profile__menu-navigation-link, .profile__menu-navigation-link:link, .profile__menu-navigation-link:visited, .profile__menu-navigation-link:active {
+      display: block;
+      line-height: 32px;
+      text-transform: uppercase; }
+
+.Profile_Open #header__menu {
+  display: block !important; }
+
+.profile_overlay {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9;
+  content: '';
+  display: none;
+  position: fixed;
+  background: rgba(33, 36, 39, 0.01) none repeat scroll 0 0; }
+
+body.no_profile .profile_overlay {
+  display: block; }
 
 .top-bar .content {
   display: -webkit-box;
@@ -5816,10 +5918,10 @@ ul.menu > li > ul.sub-menu.breaking-news-menu > li > ul.sub-sub-menu > li {
     width: 100%; }
   .sb-custom-menu li.menu-item-search .search-icon {
     display: none; }
-  .search-sub-menu .container {
+  .search-sub-menu .container, .search-sub-menu .profile__container {
     width: 100%;
     padding: 0; }
-  .breaking-news-menu .container {
+  .breaking-news-menu .container, .breaking-news-menu .profile__container {
     width: 100%;
     padding: 25px; }
   .search-sub-menu form {
@@ -6561,9 +6663,9 @@ a.card:hover {
         padding-right: 15px;
         padding-top: 307px; } }
 
-.featured-carousel .container {
+.featured-carousel .container, .featured-carousel .profile__container {
   position: relative; }
-  .featured-carousel .container .custom-pagination {
+  .featured-carousel .container .custom-pagination, .featured-carousel .profile__container .custom-pagination {
     color: #fefefe;
     padding: 38px 35px;
     position: absolute;
@@ -6574,21 +6676,21 @@ a.card:hover {
     background-color: #000000;
     z-index: 10; }
     @media screen and (max-width: 769px) {
-      .featured-carousel .container .custom-pagination {
+      .featured-carousel .container .custom-pagination, .featured-carousel .profile__container .custom-pagination {
         display: none; } }
-    .featured-carousel .container .custom-pagination .pagination-item {
+    .featured-carousel .container .custom-pagination .pagination-item, .featured-carousel .profile__container .custom-pagination .pagination-item {
       margin-bottom: 27px;
       cursor: pointer; }
-      .featured-carousel .container .custom-pagination .pagination-item time {
+      .featured-carousel .container .custom-pagination .pagination-item time, .featured-carousel .profile__container .custom-pagination .pagination-item time {
         font-size: 0.84615em;
         color: #fefefe; }
-    .featured-carousel .container .custom-pagination .slide-no {
+    .featured-carousel .container .custom-pagination .slide-no, .featured-carousel .profile__container .custom-pagination .slide-no {
       display: block;
       float: left;
       font-size: 2em;
       border-bottom: solid 4px #fefefe;
       margin-right: 24px; }
-    .featured-carousel .container .custom-pagination h2 {
+    .featured-carousel .container .custom-pagination h2, .featured-carousel .profile__container .custom-pagination h2 {
       font-size: 1.38462em;
       margin-top: 5px;
       margin-bottom: 5px;

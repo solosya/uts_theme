@@ -81,6 +81,14 @@ $('document').ready(function() {
         }
     });
 
+      $('#profile').on('click', function(e) {
+        
+        $('#header__menu').toggleClass('Profile_Open');
+        $('body').toggleClass('no_profile');
+        e.preventDefault();
+      });
+
+
 	var swiper = new Swiper('.swiper-container', {
 	        spaceBetween: 30,
 	        effect: 'fade',
