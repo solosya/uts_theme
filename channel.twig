@@ -3,18 +3,38 @@
 
 {{this.registerJs("HomeController.listing();")}}
 {% set limit = 20 %}
+
 {% set articlesArr = _Blog.getBlogFeed({'limit': limit, 'offset': 0}) %}
 {% set articles = articlesArr.articles %}
+
+
+
+{% set sidePanel =  "Breaking News" %}
+{% set sidePanelfeed = [] %}
+{% for blog in networkData.networkBlogs %}
+    {% if blog.title == sidePanel %}
+        {% set sidePanelfeed = _Blog.getBlogFeed({'limit': 5, 'offset': 0, 'blogid':blog.guid}) %}
+    {% endif %}
+{% endfor %}
+
+
+{% set sidePanel2 =  "New section" %}
+{% set sidePanel2feed = [] %}
+{% for blog in networkData.networkBlogs %}
+    {% if blog.title == sidePanel2 %}
+
+        {% set sidePanel2feed = _Blog.getBlogFeed({'limit': 8, 'offset': 0, 'blogid':blog.guid}) %}
+    {% endif %}
+{% endfor %}
+
+
+
     <!--placeholder temp -->
     <section class="featured-carousel">
         <!-- Swiper -->
         <div class="swiper-container">
             <div class="swiper-wrapper">
-                {% if articles|length > 0 %}
-                    {{this.render('partials/_single-article.twig', {article: articles[0], 'position': 1, containerClass: 'swiper-slide', cardClass : 'other'}) | raw}}
-                {% endif %}
-
-                {% for i in 1..2 %}
+                {% for i in 0..2 %}
                     {% if articles[i] %}
                         {{this.render('partials/_single-article.twig', {article: articles[i], 'position': (i+1), containerClass: 'swiper-slide', cardClass : 'other'}) | raw}}
                     {% endif %}
@@ -23,22 +43,30 @@
             <!-- Add Pagination -->
             <div class="container">
                 <div class="custom-pagination">
+             
+                    {% if articles[0] %}
+                        <div class="slide-1 pagination-item" data-slide="0">
+                            <span class="slide-no">01</span>
+                            <time datetime="{{ articles[0].metaPublishDate }}">{{_AppHelper.getDateTimeBasedOnTimezone(articles[0].publishDate, 'SHORT')}}</time>
+                            <h2>{{ articles[0].title }}</h2>
+                        </div>
+                    {% endif %}
+    
+                    {% if articles[1] %}
+                        <div class="slide-1 pagination-item" data-slide="1">
+                            <span class="slide-no">02</span>
+                            <time datetime="{{ articles[1].metaPublishDate }}">{{_AppHelper.getDateTimeBasedOnTimezone(articles[1].publishDate, 'SHORT')}}</time>
+                            <h2>{{ articles[1].title }}</h2>
+                        </div>
+                    {% endif %}
 
-                    <div class="slide-1 pagination-item" data-slide="0">
-                        <span class="slide-no">01</span>
-                        <time datetime="2016-11-16">16 Sep 2016</time>
-                        <h2>Meet the aeroplane of the future</h2>
-                    </div>
-                    <div class="slide-1 pagination-item" data-slide="1">
-                        <span class="slide-no">02</span>
-                        <time datetime="2016-11-16">16 Sep 2016</time>
-                        <h2>Underwater wonderland</h2>
-                    </div>
-                    <div class="slide-1 pagination-item" data-slide="2">
-                        <span class="slide-no">03</span>
-                        <time datetime="2016-11-16">16 Sep 2016</time>
-                        <h2>The dangerous limits of innovation</h2>
-                    </div>
+                    {% if articles[2] %}
+                        <div class="slide-1 pagination-item" data-slide="2">
+                            <span class="slide-no">03</span>
+                            <time datetime="{{ articles[2].metaPublishDate }}">{{_AppHelper.getDateTimeBasedOnTimezone(articles[2].publishDate, 'SHORT')}}</time>
+                            <h2>{{ articles[2].title }}</h2>
+                        </div>
+                    {% endif %}
                 </div><!--custom-pagination-->
             </div><!--container-->
 
@@ -71,8 +99,8 @@
                 <aside class="left-border">
                     <section class="aap-news">
                         <h2>AAP BREAKING NEWS</h2>
-                        {% for i in 1..5 %}
-                            {{this.render('partials/_sidebar-article.twig', {article: articles[i-1]}) | raw}}
+                        {% for i in 0..4 %}
+                            {{this.render('partials/_sidebar-article.twig', {article: sidePanelfeed.articles[i]}) | raw}}
                         {% endfor %}
 
                         <a href="#" class="viewmore">View more</a>
@@ -141,7 +169,7 @@
                     <section class="top-stories">
                         <h2>TOP STORIES</h2>
                         {% for i in 1..8 %}
-                            {{this.render('partials/_sidebar-article.twig', {article: articles[i-1]}) | raw}}
+                            {{this.render('partials/_sidebar-article.twig', {article: sidePanel2feed.articles[i]}) | raw}}
                         {% endfor %}
                     </section>
                 </aside>
