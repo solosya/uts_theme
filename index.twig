@@ -3,8 +3,32 @@
 
 {{this.registerJs("HomeController.listing();")}}
 {% set limit = 20 %}
+
 {% set articlesArr = _Blog.getBlogFeed({'limit': limit, 'offset': 0}) %}
 {% set articles = articlesArr.articles %}
+
+
+
+{% set sidePanel =  "Breaking News" %}
+{% set sidePanelfeed = [] %}
+{% for blog in networkData.networkBlogs %}
+    {% if blog.title == sidePanel %}
+        {% set sidePanelfeed = _Blog.getBlogFeed({'limit': 5, 'offset': 0, 'blogid':blog.guid}) %}
+    {% endif %}
+{% endfor %}
+
+
+{% set sidePanel2 =  "New section" %}
+{% set sidePanel2feed = [] %}
+{% for blog in networkData.networkBlogs %}
+    {% if blog.title == sidePanel2 %}
+
+        {% set sidePanel2feed = _Blog.getBlogFeed({'limit': 8, 'offset': 0, 'blogid':blog.guid}) %}
+    {% endif %}
+{% endfor %}
+
+
+
     <!--placeholder temp -->
     <section class="featured-carousel">
         <!-- Swiper -->
@@ -75,8 +99,8 @@
                 <aside class="left-border">
                     <section class="aap-news">
                         <h2>AAP BREAKING NEWS</h2>
-                        {% for i in 1..5 %}
-                            {{this.render('partials/_sidebar-article.twig', {article: articles[i-1]}) | raw}}
+                        {% for i in 0..4 %}
+                            {{this.render('partials/_sidebar-article.twig', {article: sidePanelfeed.articles[i]}) | raw}}
                         {% endfor %}
 
                         <a href="#" class="viewmore">View more</a>
@@ -145,7 +169,7 @@
                     <section class="top-stories">
                         <h2>TOP STORIES</h2>
                         {% for i in 1..8 %}
-                            {{this.render('partials/_sidebar-article.twig', {article: articles[i-1]}) | raw}}
+                            {{this.render('partials/_sidebar-article.twig', {article: sidePanel2feed.articles[i]}) | raw}}
                         {% endfor %}
                     </section>
                 </aside>
