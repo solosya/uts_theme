@@ -1,4 +1,5 @@
 var HomeController = (function ($) {
+    console.log("HELLO FROM OUTER SPACE!!");
     return {
         listing: function () {
             HomeController.Listing.init();
