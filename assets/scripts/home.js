@@ -72,10 +72,9 @@ HomeController.Listing = (function ($) {
                     ui.helper.attr('class', '');
                     var postImage = $(ui.helper).data('article-image');
                     var postText = $(ui.helper).data('article-text');
-                    console.log($('div.SwappingHelper'));
+
                     if(postImage !== "") {
                         $('div.SwappingHelper img.article-image').attr('src', postImage);
-
                     }
                     else {
                         $('div.SwappingHelper img.article-image').attr('src', 'http://www.placehold.it/100x100/EFEFEF/AAAAAA&amp;text=no+image');
@@ -87,30 +86,78 @@ HomeController.Listing = (function ($) {
         }
 
         function initDroppable() {
-            console.log('adding droppable');
+
             $('.swap').droppable({
                 hoverClass: "ui-state-hover",
                 drop: function(event, ui) {
-                    var sourceObj = $(ui.draggable);
-                    var $this = $(this);
-                    //get positions
-                    var sourcePosition = $(sourceObj).data('position');
-                    var sourcePostId = parseInt($(sourceObj).data('id'));
-                    var sourceIsSocial = parseInt($(sourceObj).data('social'));
-                    var destinationPosition = $($this).data('position');
-                    var destinationPostId = parseInt($($this).data('id'));
-                    var destinationIsSocial = parseInt($($this).data('social'));
+                    
+                    function isInt(pos) {
+                      if (isNaN(pos)) { return false; }
+                      var x = parseFloat(pos);
+                      return (x | 0) === x;
+                    }   
 
-                    $(this).after(ui.draggable.clone().removeAttr('style'));
-                    $(ui.draggable).after($(this).clone());
+                    function getElementAtPosition(elem, pos) {
+                        return elem.find('a.card').eq(pos);
+                    }
+
+                    var sourceObj       = $(ui.draggable);
+                    var destObject      = $(this);
+                    var sourceProxy     = null;
+                    var destProxy       = null;
+
+
+                    if (typeof sourceObj.data('proxyfor') !== 'undefined') {
+                        sourceProxy = sourceObj;
+                        sourceObj   = getElementAtPosition($( '.' + sourceProxy.data('proxyfor')), sourceProxy.data('position') -1);
+                        sourceObj.data('position', sourceProxy.data('position'));
+                    }
+                    if (typeof destObject.data('proxyfor') !== 'undefined') {
+                        destProxy = destObject;
+                        destObject = getElementAtPosition($( '.' + destProxy.data('proxyfor')), destProxy.data('position') -1);
+                        destObject.data('position', destProxy.data('position'));
+                    }
+
+
+
+                    //get positions
+                    var sourcePosition      = sourceObj.data('position');
+                    var sourcePostId        = parseInt(sourceObj.data('id'));
+                    var sourceIsSocial      = parseInt(sourceObj.data('social'));
+                    var destinationPosition = destObject.data('position');
+                    var destinationPostId   = parseInt(destObject.data('id'));
+                    var destinationIsSocial = parseInt(destObject.data('social'));
+
+
+                    var newDest = sourceObj.clone().removeAttr('style').insertAfter( destObject );
+                    var newSrc = destObject.clone().insertAfter( sourceObj );
+                    
+
+                    if (sourceProxy) {
+                        sourceProxy.find('h2').text(destObject.find('h2').text());
+                        newDest.addClass('swap');
+                        newSrc.removeClass('swap');
+                        sourceProxy.attr('data-article-text', destObject.data('article-text'));
+                        sourceProxy.attr('data-article-image', destObject.data('article-image'));
+                    }
+
+                    if (destProxy) {
+                        destProxy.find('h2').text( sourceObj.find('h2').text() );
+                        newDest.removeClass('swap');
+                        newSrc.addClass('swap');
+                        destProxy.attr('data-article-text', sourceObj.data('article-text'));
+                        destProxy.attr('data-article-image', sourceObj.data('article-image'));
+                    }
+                    
                     $(ui.helper).remove(); //destroy clone
-                    $(ui.draggable).remove();
-                    $(this).remove();
+                    sourceObj.remove();
+                    destObject.remove();
                     
                     //swap positions
-                    $(sourceObj).data('position', destinationPosition);
-                    $(this).data('position', sourcePosition);
-                    
+                    sourceObj.data('position', destinationPosition);
+                    destObject.data('position', sourcePosition);
+
+
                     var csrfToken = $('meta[name="csrf-token"]').attr("content");
                     var postData = {
                         sourcePosition: sourcePosition,
@@ -123,7 +170,7 @@ HomeController.Listing = (function ($) {
                         
                         _csrf: csrfToken
                     };
-                    console.log(postData);
+
                     $.ajax({
                         url: _appJsConfig.baseHttpPath + '/home/swap-article',
                         type: 'post',
@@ -135,7 +182,7 @@ HomeController.Listing = (function ($) {
                                 $.fn.General_ShowNotification({message: "Articles swapped successfully"});
                             }
                             
-                            $(".card p, .card h1").dotdotdot();
+                            $(".card p, .card h2").dotdotdot();
                             initSwap();
                         },
                         error: function(jqXHR, textStatus, errorThrown){
@@ -271,7 +318,6 @@ HomeController.Listing = (function ($) {
     };
     return {
         init: function () {
-            console.log('attaching events');
             attachEvents();
         }
     };

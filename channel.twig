@@ -34,7 +34,7 @@
         <!-- Swiper -->
         <div class="swiper-container">
             <div class="swiper-wrapper">
-                {% for i in 0..2 %}
+                {% for i in 0..3 %}
                     {% if articles[i] %}
                         {{this.render('partials/_single-article.twig', {article: articles[i], 'position': (i+1), containerClass: 'swiper-slide', cardClass : 'other'}) | raw}}
                     {% endif %}
@@ -65,6 +65,14 @@
                             <span class="slide-no">03</span>
                             <time datetime="{{ articles[2].metaPublishDate }}">{{_AppHelper.getDateTimeBasedOnTimezone(articles[2].publishDate, 'SHORT')}}</time>
                             <h2>{{ articles[2].title }}</h2>
+                        </div>
+                    {% endif %}
+
+                    {% if articles[3] %}
+                        <div class="slide-1 pagination-item" data-slide="3">
+                            <span class="slide-no">03</span>
+                            <time datetime="{{ articles[3].metaPublishDate }}">{{_AppHelper.getDateTimeBasedOnTimezone(articles[3].publishDate, 'SHORT')}}</time>
+                            <h2>{{ articles[3].title }}</h2>
                         </div>
                     {% endif %}
                 </div><!--custom-pagination-->

@@ -34,8 +34,8 @@
         <div class="swiper-container">
             <div class="swiper-wrapper">
                 {% for i in 0..2 %}
-                    {% if articles[i] %}
-                        {{this.render('partials/_single-article.twig', {article: articles[i], 'position': (i+1), containerClass: 'swiper-slide'}) | raw}}
+                    {% if articles[i] %}                                                                
+                        {{this.render('partials/_single-article.twig', {article: articles[i], position: 'swiper-wrapper', containerClass: 'swiper-slide', swap: 'false'}) | raw}}
                     {% endif %}
                 {% endfor %}
             </div>
@@ -44,7 +44,13 @@
                 <div class="custom-pagination">
              
                     {% if articles[0] %}
-                        <div class="slide-1 pagination-item" data-slide="0">
+                        <div class="slide-1 pagination-item swap" 
+                             data-proxyfor="swiper-wrapper" 
+                             data-position="1" 
+                             data-slide="0"
+                             data-article-image="{{ _Media.getMediaUrl(articles[0].featuredMedia, 50, 50, {'crop': 'fill', 'gravity': 'faces'} ) }}" 
+                             data-article-text="{{Helper.htmlToText(articles[0].title, -1) | raw | escape('html')}}">
+
                             <span class="slide-no">01</span>
                             <time datetime="{{ articles[0].metaPublishDate }}">{{_AppHelper.getDateTimeBasedOnTimezone(articles[0].publishDate, 'SHORT')}}</time>
                             <h2>{{ articles[0].title }}</h2>
@@ -52,7 +58,12 @@
                     {% endif %}
     
                     {% if articles[1] %}
-                        <div class="slide-1 pagination-item" data-slide="1">
+                        <div class="slide-1 pagination-item swap" 
+                             data-proxyfor="swiper-wrapper" 
+                             data-position="2" 
+                             data-slide="1"
+                             data-article-image="{{ _Media.getMediaUrl(articles[1].featuredMedia, 50, 50, {'crop': 'fill', 'gravity': 'faces'} ) }}" 
+                             data-article-text="{{Helper.htmlToText(articles[1].title, -1) | raw | escape('html')}}">
                             <span class="slide-no">02</span>
                             <time datetime="{{ articles[1].metaPublishDate }}">{{_AppHelper.getDateTimeBasedOnTimezone(articles[1].publishDate, 'SHORT')}}</time>
                             <h2>{{ articles[1].title }}</h2>
@@ -60,7 +71,12 @@
                     {% endif %}
 
                     {% if articles[2] %}
-                        <div class="slide-1 pagination-item" data-slide="2">
+                        <div class="slide-1 pagination-item swap" 
+                             data-proxyfor="swiper-wrapper" 
+                             data-position="3" 
+                             data-slide="2"
+                             data-article-image="{{ _Media.getMediaUrl(articles[2].featuredMedia, 50, 50, {'crop': 'fill', 'gravity': 'faces'} ) }}" 
+                             data-article-text="{{Helper.htmlToText(articles[2].title, -1) | raw | escape('html')}}">
                             <span class="slide-no">03</span>
                             <time datetime="{{ articles[2].metaPublishDate }}">{{_AppHelper.getDateTimeBasedOnTimezone(articles[2].publishDate, 'SHORT')}}</time>
                             <h2>{{ articles[2].title }}</h2>

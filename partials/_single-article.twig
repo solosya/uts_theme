@@ -14,11 +14,12 @@
     {% set blogClass = 'card--blog_'~article.blog['id'] %}
     {% set publishDate = _AppHelper.getDefaultTimezoneDateTime(article.publishDate) %}
     {% set articleTitle =  titleTruncateLength is defined ? article.title | truncate(titleTruncateLength) : article.title  %}
+    {% set swap = swap is defined and swap == 'false' ? '' : 'swap'  %}
 
 
     <div class="{{containerClass}}">
         <a  href="{{article.url}}" 
-            class="swap card other" 
+            class="{{swap}} card other" 
             data-id="{{article.articleId}}" 
             data-position="{{position}}" 
             data-social="0" 
