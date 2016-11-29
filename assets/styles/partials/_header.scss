@@ -50,18 +50,21 @@
     }
 
     .site-branding{
-        width: auto;        
+        width: auto;   
         max-width: 485px;
 
-        @media screen and (min-width: $menu-break) {
-            max-width: 30%;
-        }
+
+        // @media screen and (min-width: $menu-break) {
+        //     // max-width: 30%;
+        //     max-width: 485px;
+        // }
         @media screen and (max-width: $mobile-break){
             padding-left: 0;
         }
     }
 
     .navbar-brand{
+        
         font-size: inherit;
         padding: 0;
         -webkit-transition-timing-function: ease-in;
@@ -124,9 +127,9 @@
             text-transform: uppercase;
             width: 40%;
 
-            @media screen and (max-width: $logo-break) and (min-width: $menu-break) {
-                display: none;
-            }
+            // @media screen and (max-width: $logo-break) and (min-width: $menu-break) {
+            //     display: none;
+            // }
 
             @media screen and (max-width: $mobile-break){
                 display: none;

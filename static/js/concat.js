@@ -32053,7 +32053,7 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
                 url: _appJsConfig.baseHttpPath + '/auth/login',
                 logout: _appJsConfig.baseHttpPath + '/auth/logoff'
             };
-            this.callbacks.onNewComment = [function (comment) {  alert();
+            this.callbacks.onNewComment = [function (comment) {  //alert();
                     var text = comment.text;
                     var post_url = currentUrl;
                     var authorId = userId;

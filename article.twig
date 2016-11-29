@@ -90,59 +90,19 @@
             <div class="col-sm-12 text-center">
                 <h2>YOU MIGHT ALSO LIKE...</h2>
             </div>
-            <div class="col-sm-4 card-sm">
-                <article class="card other">
-                    <figure>
-                        <div class="image-wrapper" style="background-image: url(images/main-image.jpg);"></div>
-                    </figure>
-                    <div class="content">
-                        <span class="category">Wire</span>
-                        <span class="article-icon"></span>
-                        <time datetime="2016-11-16">16 Sep 2016</time>
-                        <h2>Meet the aeroplane of the future</h2>
-                        <span class="author">SOPHIE MCKAILERO</span>
-                        <p>FLIGHT MODE: The quest to make flying safer, faster, and comfier Sam, teculparum excepre coriat voles porestrum atur susapicat</p>
-                        <div class="share">
-                            <a href="#"><span class="sr-only">Share</span><span class="share-icon icon"></span></a>
-                        </div>
-                    </div>
-                </article>
-            </div>
-            <div class="col-sm-4 card-sm">
-                <article class="card other">
-                    <figure>
-                        <div class="image-wrapper" style="background-image: url(images/main-image.jpg);"></div>
-                    </figure>
-                    <div class="content">
-                        <span class="category">Wire</span>
-                        <span class="article-icon"></span>
-                        <time datetime="2016-11-16">16 Sep 2016</time>
-                        <h2>Meet the aeroplane of the future</h2>
-                        <span class="author">SOPHIE MCKAILERO</span>
-                        <p>FLIGHT MODE: The quest to make flying safer, faster, and comfier Sam, teculparum excepre coriat voles porestrum atur susapicat</p>
-                        <div class="share">
-                            <a href="#"><span class="sr-only">Share</span><span class="share-icon icon"></span></a>
-                        </div>
-                    </div>
-                </article>
-            </div>
-            <div class="col-sm-4 card-sm">
-                <article class="card other">
-                    <figure>
-                        <div class="image-wrapper" style="background-image: url(images/main-image.jpg);"></div>
-                    </figure>
-                    <div class="content">
-                        <span class="category">Wire</span>
-                        <span class="article-icon"></span>
-                        <time datetime="2016-11-16">16 Sep 2016</time>
-                        <h2>Meet the aeroplane of the future</h2>
-                        <span class="author">SOPHIE MCKAILERO</span>
-                        <p>FLIGHT MODE: The quest to make flying safer, faster, and comfier Sam, teculparum excepre coriat voles porestrum atur susapicat</p>
-                        <div class="share">
-                            <a href="#"><span class="sr-only">Share</span><span class="share-icon icon"></span></a>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </div><!--container-->
+
+
+            {% set popularArticles = _Article.getPopularArticles({ limit: 5, excludeArticleId : article.id }) %}
+            {% if popularArticles|length > 0 %}
+                {% for article in popularArticles %}
+                    {{this.render('partials/_single-article.twig', {article: article, containerClass: 'col-sm-4 card-sm', cardClass : 'card__news'}) | raw}}
+                {% endfor %}
+            {% else %}
+                <p class="nodata text-center">No data found.</p>
+            {% endif %}
+
+
+
+
+                    </div><!--container-->
     </section><!--related-posts-->

@@ -6733,9 +6733,6 @@ time {
   .site-header .site-branding {
     width: auto;
     max-width: 485px; }
-    @media screen and (min-width: 1260px) {
-      .site-header .site-branding {
-        max-width: 30%; } }
     @media screen and (max-width: 620px) {
       .site-header .site-branding {
         padding-left: 0; } }
@@ -6788,9 +6785,6 @@ time {
       margin-left: 19.5px;
       text-transform: uppercase;
       width: 40%; }
-      @media screen and (max-width: 1580px) and (min-width: 1260px) {
-        .site-header .navbar-brand .logo-caption {
-          display: none; } }
       @media screen and (max-width: 620px) {
         .site-header .navbar-brand .logo-caption {
           display: none; } }
