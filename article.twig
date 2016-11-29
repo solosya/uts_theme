@@ -92,6 +92,7 @@
             </div>
 
 
+
             {% set popularArticles = _Article.getPopularArticles({ limit: 5, excludeArticleId : article.id }) %}
             {% if popularArticles|length > 0 %}
                 {% for article in popularArticles %}
