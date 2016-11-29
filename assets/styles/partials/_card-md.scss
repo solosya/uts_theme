@@ -1,6 +1,7 @@
 .card-md{
 
     .card{
+        max-height:392px;
         height: 392px;
         overflow: hidden;
         margin-bottom: 30px;
@@ -87,6 +88,7 @@
         }
 
         &.twitter{
+
 
             .content{
                 padding-top: 90px;

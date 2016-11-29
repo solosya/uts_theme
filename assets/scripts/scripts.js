@@ -88,6 +88,15 @@ $('document').ready(function() {
         e.preventDefault();
       });
 
+    cardHolder = '';
+
+    clearTimeout(cardHolder);
+    cardHolder = setTimeout((function() {
+        $('.card p, .card h2').dotdotdot({
+            watch: true
+        });
+    }), 750);
+
 
 	var swiper = new Swiper('.swiper-container', {
 	        spaceBetween: 30,

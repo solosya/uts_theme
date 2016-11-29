@@ -41,8 +41,10 @@
 
         h2{
           font-size: ((48px / $font-size-base) + $font-unit);
-          width: 470px;
+          width: 550px;
           margin-bottom: 25px;
+          height:110px;
+          overflow:hidden;
 
           @media screen and (max-width: $sm-mobile-break){
             width: 100%;
@@ -64,6 +66,9 @@
           font-weight: 900;
           margin-bottom: 29px;
           width: 470px;
+          height: 80px;
+          overflow: hidden;
+
           @media screen and (max-width: $sm-mobile-break){
             width: 100%;
           }
@@ -126,7 +131,9 @@
         margin-top: 5px;
         margin-bottom: 5px;
         font-weight: 700;
-        padding-left: 53px;
+        // padding-left: 53px;
+        height:60px;
+        overflow:hidden;
       }
 
     }

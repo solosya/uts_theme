@@ -32164,6 +32164,11 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
                     autoSize: opts.autoSize,
                     maxWidth: opts.maxWidth,
                     aspectRatio: opts.aspectRatio,
+                    helpers: {
+                        overlay: {
+                            locked: false
+                        }
+                    },
                     beforeLoad: function () {
                         this.content = content; //"<video class ='videoPlayer' src='" + url + "' poster='" + poster + "' width='" + opts.width + "' height='" + opts.height + "' controls='controls' preload='none' ></video>";
                         this.title = caption;
@@ -33269,33 +33274,56 @@ jQuery(document).ready(function () {
             $(elem).click(function (e) {
                 e.preventDefault();
                 e.stopPropagation();
-                
+
                 var obj = $(this);
-                
-                // upload a script
-                $.getScript('//api.filepicker.io/v2/filepicker.js');
-                
-                 var tabs = $.extend([], ['COMPUTER'], opts.tabs);
-                 console.log(tabs);
-                
-                //Set file picker api key
-                filepicker.setKey(_appJsConfig.filepickerKey);
-                
-                filepicker.pick({
-                    mimetype: 'image/*',
-                    services: tabs
-                },
-                function (Blob) {
-                    var resultJson = {url: Blob.url, filename: Blob.filename, type: Blob.mimetype, size: Blob.size, mediaType: "image"};
-                    if (opts.onSuccess && typeof opts.onSuccess === 'function') {
-                        opts.onSuccess(resultJson, obj);
-                    }
-                },
-                function (FPError) {
-                  //  $().General_ShowErrorMessage({message: FPError.toString()});
-                });   
+
+                //initialization code
+                $.loadScript("//api.filepicker.io/v2/filepicker.js", function () {
+                    
+                    var tabs = $.extend([], ['COMPUTER'], opts.tabs);
+
+                    //Set file picker api key
+                    filepicker.setKey(_appJsConfig.filepickerKey);
+
+                    filepicker.pick({
+                        mimetype: 'image/*',
+                        services: tabs
+                    },
+                    function (Blob) {
+                        var resultJson = {url: Blob.url, filename: Blob.filename, type: Blob.mimetype, size: Blob.size, mediaType: "image"};
+                        if (opts.onSuccess && typeof opts.onSuccess === 'function') {
+                            opts.onSuccess(resultJson, obj);
+                        }
+                    },
+                    function (FPError) {
+                        //  $().General_ShowErrorMessage({message: FPError.toString()});
+                    });
+                });
             });
         });
+    };
+
+    $.loadScript = function (url, callback) {
+
+        var script = document.createElement("script")
+        script.type = "text/javascript";
+
+        if (script.readyState) {  //IE
+            script.onreadystatechange = function () {
+                if (script.readyState == "loaded" ||
+                        script.readyState == "complete") {
+                    script.onreadystatechange = null;
+                    callback();
+                }
+            };
+        } else {  //Others
+            script.onload = function () {
+                callback();
+            };
+        }
+
+        script.src = url;
+        document.getElementsByTagName("head")[0].appendChild(script);
     };
 
 }(jQuery));
@@ -34150,11 +34178,20 @@ $('document').ready(function() {
     });
 
       $('#profile').on('click', function(e) {
-        console.log('clicked');
+        
         $('#header__menu').toggleClass('Profile_Open');
-        // $('body').toggleClass('no_profile');
+        $('body').toggleClass('no_profile');
         e.preventDefault();
       });
+
+    cardHolder = '';
+
+    clearTimeout(cardHolder);
+    cardHolder = setTimeout((function() {
+        $('.card p, .card h2').dotdotdot({
+            watch: true
+        });
+    }), 750);
 
 
 	var swiper = new Swiper('.swiper-container', {

@@ -7361,6 +7361,7 @@ a.card:hover {
 
 .card-sm .card {
   min-height: 392px;
+  max-height: 392px;
   overflow: hidden;
   background-color: #e5e6e7;
   padding-left: 12px;
@@ -7397,6 +7398,9 @@ a.card:hover {
     padding-right: 0;
     background-color: transparent;
     color: black; }
+    .card-sm .card.other h2 {
+      height: 42px;
+      overflow: hidden; }
     .card-sm .card.other p {
       max-height: 55px; }
     .card-sm .card.other figure {
@@ -7551,6 +7555,7 @@ a.card:hover {
       margin-top: 5px; }
 
 .card-md .card {
+  max-height: 392px;
   height: 392px;
   overflow: hidden;
   margin-bottom: 30px;
@@ -7662,6 +7667,8 @@ a.card:hover {
   overflow: hidden;
   margin-bottom: 30px;
   color: #fefefe; }
+  .card-lg .card h2 {
+    height: 50px; }
   .card-lg .card .article-icon {
     width: 38px;
     height: 37px; }
@@ -7715,7 +7722,7 @@ a.card:hover {
       font-size: 1.23077em;
       font-weight: 900;
       margin-bottom: 29px;
-      width: 470px; }
+      width: 600px; }
       @media screen and (max-width: 769px) {
         .card-lg .card .content p {
           width: 100%; } }
@@ -7788,8 +7795,10 @@ a.card:hover {
     z-index: 20; }
     .featured-carousel .card .content h2 {
       font-size: 3.69231em;
-      width: 470px;
-      margin-bottom: 25px; }
+      width: 550px;
+      margin-bottom: 25px;
+      height: 110px;
+      overflow: hidden; }
       @media screen and (max-width: 490px) {
         .featured-carousel .card .content h2 {
           width: 100%; } }
@@ -7803,7 +7812,9 @@ a.card:hover {
       font-size: 1.23077em;
       font-weight: 900;
       margin-bottom: 29px;
-      width: 470px; }
+      width: 470px;
+      height: 80px;
+      overflow: hidden; }
       @media screen and (max-width: 490px) {
         .featured-carousel .card .content p {
           width: 100%; } }
@@ -7852,7 +7863,8 @@ a.card:hover {
       margin-top: 5px;
       margin-bottom: 5px;
       font-weight: 700;
-      padding-left: 53px; }
+      height: 60px;
+      overflow: hidden; }
 
 .swiper-container {
   margin-left: auto;
