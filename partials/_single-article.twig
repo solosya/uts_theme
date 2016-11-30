@@ -90,11 +90,11 @@
     <div class="{{containerClass}}">
         <a  href="{{article.url}}" 
             class="swap card {{ social.source }}" 
-            data-id="{{article.articleId}}" 
+            data-id="{{article.socialId}}" 
             data-position="{{position}}" 
-            data-social="0" 
-            data-article-image="{{articleImg}}" 
-            data-article-text="{{Helper.htmlToText(article.title, -1) | raw | escape('html')}}">
+            data-social="1" 
+            data-article-image="{{social.media['path']}}" 
+            data-article-text="{{Helper.htmlToText(social.content, -1) | raw | escape('html')}}">
 
             <article class="">
                 {% if social.hasMedia == 'TRUE' %}  

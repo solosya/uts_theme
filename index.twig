@@ -44,12 +44,17 @@
                 <div class="custom-pagination">
              
                     {% if articles[0] %}
+                        {% set articleImg = articles[0].articleId > 0 ? _Media.getMediaUrl(articles[0].featuredMedia,50, 50, {'crop': 'fill', 'gravity': 'faces'} ) : articles[0].social.media['path'] %}
+                        {% set articleText = articles[0].articleId > 0 ? Helper.htmlToText(articles[0].title, -1) | raw | escape('html') : Helper.htmlToText(articles[0].social.content, -1) | raw | escape('html') %}
+
                         <div class="slide-1 pagination-item swap" 
                              data-proxyfor="swiper-wrapper" 
                              data-position="1" 
                              data-slide="0"
-                             data-article-image="{{ _Media.getMediaUrl(articles[0].featuredMedia, 50, 50, {'crop': 'fill', 'gravity': 'faces'} ) }}" 
-                             data-article-text="{{Helper.htmlToText(articles[0].title, -1) | raw | escape('html')}}">
+                             data-id="{{ article.articleId > 0 ? article.articleId : article.socialId }}" 
+                             data-social="{{ article.socialId > 0 ? '1' : '0' }}"
+                             data-article-image="{{ articleImg }}" 
+                             data-article-text="{{ articleText }}">
 
                             <span class="slide-no">01</span>
                             <time datetime="{{ articles[0].metaPublishDate }}">{{_AppHelper.getDateTimeBasedOnTimezone(articles[0].publishDate, 'SHORT')}}</time>
@@ -58,12 +63,17 @@
                     {% endif %}
     
                     {% if articles[1] %}
+                            
+                        {% set articleImg = articles[1].articleId > 0 ? _Media.getMediaUrl(articles[1].featuredMedia,50, 50, {'crop': 'fill', 'gravity': 'faces'} ) : articles[1].social.media['path'] %}
+                        {% set articleText = articles[1].articleId > 0 ? Helper.htmlToText(articles[1].title, -1) | raw | escape('html') : Helper.htmlToText(articles[1].social.content, -1) | raw | escape('html') %}
                         <div class="slide-1 pagination-item swap" 
                              data-proxyfor="swiper-wrapper" 
                              data-position="2" 
                              data-slide="1"
-                             data-article-image="{{ _Media.getMediaUrl(articles[1].featuredMedia, 50, 50, {'crop': 'fill', 'gravity': 'faces'} ) }}" 
-                             data-article-text="{{Helper.htmlToText(articles[1].title, -1) | raw | escape('html')}}">
+                             data-id="{{ article.articleId > 0 ? article.articleId : article.socialId }}" 
+                             data-social="{{ article.socialId > 0 ? '1' : '0' }}"
+                             data-article-image="{{ articleImg }}" 
+                             data-article-text="{{articleText}}">
                             <span class="slide-no">02</span>
                             <time datetime="{{ articles[1].metaPublishDate }}">{{_AppHelper.getDateTimeBasedOnTimezone(articles[1].publishDate, 'SHORT')}}</time>
                             <h2>{{ articles[1].title }}</h2>
@@ -71,12 +81,16 @@
                     {% endif %}
 
                     {% if articles[2] %}
+                        {% set articleImg = articles[2].articleId > 0 ? _Media.getMediaUrl(articles[2].featuredMedia,50, 50, {'crop': 'fill', 'gravity': 'faces'} ) : articles[2].social.media['path'] %}
+                        {% set articleText = articles[2].articleId > 0 ? Helper.htmlToText(articles[2].title, -1) | raw | escape('html') : Helper.htmlToText(articles[2].social.content, -1) | raw | escape('html') %}
                         <div class="slide-1 pagination-item swap" 
                              data-proxyfor="swiper-wrapper" 
                              data-position="3" 
                              data-slide="2"
-                             data-article-image="{{ _Media.getMediaUrl(articles[2].featuredMedia, 50, 50, {'crop': 'fill', 'gravity': 'faces'} ) }}" 
-                             data-article-text="{{Helper.htmlToText(articles[2].title, -1) | raw | escape('html')}}">
+                             data-id="{{ article.articleId > 0 ? article.articleId : article.socialId }}" 
+                             data-social="{{ article.socialId > 0 ? '1' : '0' }}"
+                             data-article-image="{{ articleImg }}" 
+                             data-article-text="{{articleText}}">
                             <span class="slide-no">03</span>
                             <time datetime="{{ articles[2].metaPublishDate }}">{{_AppHelper.getDateTimeBasedOnTimezone(articles[2].publishDate, 'SHORT')}}</time>
                             <h2>{{ articles[2].title }}</h2>
