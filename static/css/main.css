@@ -6707,6 +6707,9 @@ time {
       margin-top: 23px;
       padding-left: 15px;
       padding-right: 15px; } }
+  .site-header.channel-page {
+    background: #000000;
+    margin-top: 0; }
   .site-header.stick {
     position: fixed;
     top: 0;

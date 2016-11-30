@@ -1,4 +1,9 @@
-    <header id="masthead" class="site-header container-fluid">
+{% set headerClass = '' %}
+{% if blog.type == 'channel' %}
+    {% set headerClass = 'channel-page' %}
+{% endif %}
+
+    <header id="masthead" class="site-header container-fluid {{headerClass}}">
         <div class="site-branding col-md-3 col-sm-2">
             <div class="logo pull-left">
                     <a class="navbar-brand" href="http://tengu.aapp.io/" rel="Home" tabindex="-1" title="Home">

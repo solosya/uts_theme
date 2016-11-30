@@ -17,6 +17,12 @@
         padding-right: 15px;
     }
 
+    &.channel-page {
+        background:$black;
+        margin-top: 0;
+    }
+
+
     &.stick{
         position: fixed;
         top: 0;
