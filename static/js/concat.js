@@ -33774,9 +33774,10 @@ AuthController.ResetPassword = (function ($) {
 
 
 var HomeController = (function ($) {
-    console.log("HELLO FROM OUTER SPACE!!");
+    console.log("HELLO FROM OUTER SPACE yo!!");
     return {
         listing: function () {
+            console.log('homecontroller initing');
             HomeController.Listing.init();
         },
         blog: function() {
@@ -33818,6 +33819,7 @@ HomeController.Listing = (function ($) {
     };
     
     var attachEvents = function () {
+        console.log('attaching events');
         if(_appJsConfig.isUserLoggedIn === 1 && _appJsConfig.userHasBlogAccess === 1) {
             //Bind pin/unpin article event
             bindPinUnpinArticle();
@@ -33827,6 +33829,7 @@ HomeController.Listing = (function ($) {
         }
         
         function initSwap() {
+            console.log('initing swap');
             initDroppable();
             initDraggable();
             
@@ -33835,6 +33838,7 @@ HomeController.Listing = (function ($) {
         }
         
         function initDraggable() {
+            console.log('draggable');
             $('.swap').draggable({
                 helper: 'clone',
                 revert: true,
@@ -33862,6 +33866,7 @@ HomeController.Listing = (function ($) {
         }
 
         function initDroppable() {
+            console.log('droppable');
 
             $('.swap').droppable({
                 hoverClass: "ui-state-hover",

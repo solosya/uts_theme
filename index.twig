@@ -17,14 +17,10 @@
     {% endif %}
 {% endfor %}
 
+{% set popularArticles = _Article.getPopularArticles({ limit: 10, sortBy: 'VIEWS' }) %}
 
-{% set sidePanel2 =  "New section" %}
-{% set sidePanel2feed = [] %}
-{% for blog in networkData.networkBlogs %}
-    {% if blog.title == sidePanel2 %}
-        {% set sidePanel2feed = _Blog.getBlogFeed({'limit': 8, 'offset': 0, 'blogid':blog.guid}) %}
-    {% endif %}
-{% endfor %}
+
+
 
 
 
@@ -129,7 +125,9 @@
                     <section class="aap-news">
                         <h2>AAP BREAKING NEWS</h2>
                         {% for i in 0..4 %}
-                            {{this.render('partials/_sidebar-article.twig', {article: sidePanelfeed.articles[i]}) | raw}}
+                            {% if articles[i] %}
+                                {{this.render('partials/_sidebar-article.twig', {article: sidePanelfeed.articles[i]}) | raw}}
+                            {% endif %}
                         {% endfor %}
 
                         <a href="#" class="viewmore">View more</a>
@@ -197,9 +195,13 @@
                 <aside class="right-border">
                     <section class="top-stories">
                         <h2>TOP STORIES</h2>
-                        {% for i in 1..8 %}
-                            {{this.render('partials/_sidebar-article.twig', {article: sidePanel2feed.articles[i]}) | raw}}
-                        {% endfor %}
+
+                        {% if popularArticles|length > 0 %}
+                            {% for article in popularArticles %}
+                                {{this.render('partials/_sidebar-article.twig', {article: article}) | raw}}
+                            {% endfor %}
+                        {% endif %}
+
                     </section>
                 </aside>
             </div>

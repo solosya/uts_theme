@@ -7,6 +7,8 @@
 {% set articlesArr = _Blog.getBlogFeed({'limit': limit, 'offset': 0}) %}
 {% set articles = articlesArr.articles %}
 
+<!-- used to index each article as we loop over throughout the template -->
+{% set articleCount = 0 %}
 
 
 {% set sidePanel =  "Breaking News" %}
@@ -18,117 +20,61 @@
 {% endfor %}
 
 
-{% set sidePanel2 =  "New section" %}
-{% set sidePanel2feed = [] %}
-{% for blog in networkData.networkBlogs %}
-    {% if blog.title == sidePanel2 %}
-
-        {% set sidePanel2feed = _Blog.getBlogFeed({'limit': 8, 'offset': 0, 'blogid':blog.guid}) %}
-    {% endif %}
-{% endfor %}
 
 
 
     <!--placeholder temp -->
-    <section class="featured-carousel">
-        <!-- Swiper -->
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
-                {% for i in 0..3 %}
-                    {% if articles[i] %}
-                        {{this.render('partials/_single-article.twig', {article: articles[i], 'position': (i+1), containerClass: 'swiper-slide', cardClass : 'other'}) | raw}}
-                    {% endif %}
-                {% endfor %}
+    <section class="channel container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="row">
+                    {% for i in 0..1 %}
+                        {% if articles[articleCount] %}
+                            {{this.render('partials/_single-article.twig', {article: articles[articleCount], 'position': (articleCount + 1 ), containerClass: 'col-sm-6 card-section-feature'}) | raw}}
+                            {% set articleCount = articleCount + 1 %}
+                        {% endif %}
+                    {% endfor %}
+                </div><!--row-->
             </div>
-            <!-- Add Pagination -->
-            <div class="container">
-                <div class="custom-pagination">
-             
-                    {% if articles[0] %}
-                        <div class="slide-1 pagination-item" data-slide="0">
-                            <span class="slide-no">01</span>
-                            <time datetime="{{ articles[0].metaPublishDate }}">{{_AppHelper.getDateTimeBasedOnTimezone(articles[0].publishDate, 'SHORT')}}</time>
-                            <h2>{{ articles[0].title }}</h2>
-                        </div>
-                    {% endif %}
-    
-                    {% if articles[1] %}
-                        <div class="slide-1 pagination-item" data-slide="1">
-                            <span class="slide-no">02</span>
-                            <time datetime="{{ articles[1].metaPublishDate }}">{{_AppHelper.getDateTimeBasedOnTimezone(articles[1].publishDate, 'SHORT')}}</time>
-                            <h2>{{ articles[1].title }}</h2>
-                        </div>
-                    {% endif %}
-
-                    {% if articles[2] %}
-                        <div class="slide-1 pagination-item" data-slide="2">
-                            <span class="slide-no">03</span>
-                            <time datetime="{{ articles[2].metaPublishDate }}">{{_AppHelper.getDateTimeBasedOnTimezone(articles[2].publishDate, 'SHORT')}}</time>
-                            <h2>{{ articles[2].title }}</h2>
-                        </div>
-                    {% endif %}
-
-                    {% if articles[3] %}
-                        <div class="slide-1 pagination-item" data-slide="3">
-                            <span class="slide-no">03</span>
-                            <time datetime="{{ articles[3].metaPublishDate }}">{{_AppHelper.getDateTimeBasedOnTimezone(articles[3].publishDate, 'SHORT')}}</time>
-                            <h2>{{ articles[3].title }}</h2>
-                        </div>
-                    {% endif %}
-                </div><!--custom-pagination-->
-            </div><!--container-->
-
-            <!-- Add Pagination -->
-            <div class="swiper-pagination swiper-pagination-white"></div>
-
         </div>
+
     </section><!--featured-carousel-->
 
     <section class="content-block container">
         <div class="row">
-            <div class="col-md-9 col-sm-12">
+            <div class="col-sm-12">
                 <div class="row">
-                    {% if articles[3] %}
-                        {{this.render('partials/_single-article.twig', {article: articles[3], 'position': (4), containerClass: 'col-sm-8 card-md', cardClass : 'other'}) | raw}}
+                    {% if articles[articleCount] %}
+                        {{this.render('partials/_single-article.twig', {article: articles[articleCount], 'position': (articleCount + 1 ), containerClass: 'col-sm-6 card-md'}) | raw}}
+                        {% set articleCount = articleCount + 1 %}
                     {% endif %}
-                    {% if articles[4] %}
-                        {{this.render('partials/_single-article.twig', {article: articles[4], 'position': (5), containerClass: 'col-sm-4 card-sm', cardClass : 'facebook'}) | raw}}
+
+                    {% if articles[articleCount] %}
+                        {{this.render('partials/_single-article.twig', {article: articles[articleCount], 'position': (articleCount + 1 ), containerClass: 'col-sm-3 card-sm'}) | raw}}
+                        {% set articleCount = articleCount + 1 %}
                     {% endif %}
-                    {% if articles[5] %}
-                        {{this.render('partials/_single-article.twig', {article: articles[5], 'position': (6), containerClass: 'col-sm-4 card-sm', cardClass : 'twitter'}) | raw}}
+
+                    {% if articles[articleCount] %}
+                        {{this.render('partials/_single-article.twig', {article: articles[articleCount], 'position': (articleCount + 1 ), containerClass: 'col-sm-3 card-sm'}) | raw}}
+                        {% set articleCount = articleCount + 1 %}
                     {% endif %}
-                    {% if articles[6] %}
-                        {{this.render('partials/_single-article.twig', {article: articles[6], 'position': (7), containerClass: 'col-sm-8 card-md', cardClass : 'other'}) | raw}}
+
+                    {% if articles[articleCount] %}
+                        {{this.render('partials/_single-article.twig', {article: articles[articleCount], 'position': (articleCount + 1 ), containerClass: 'col-sm-3 card-sm'}) | raw}}
+                        {% set articleCount = articleCount + 1 %}
                     {% endif %}
+
+                    {% if articles[articleCount] %}
+                        {{this.render('partials/_single-article.twig', {article: articles[articleCount], 'position': (articleCount + 1 ), containerClass: 'col-sm-3 card-sm'}) | raw}}
+                        {% set articleCount = articleCount + 1 %}
+                    {% endif %}
+
+                    {% if articles[articleCount] %}
+                        {{this.render('partials/_single-article.twig', {article: articles[articleCount], 'position': (articleCount + 1 ), containerClass: 'col-sm-6 card-md'}) | raw}}
+                        {% set articleCount = articleCount + 1 %}
+                    {% endif %}
+
                 </div><!--row-->
-            </div>
-
-            <div class="col-md-3 col-sm-12">
-                <aside class="left-border">
-                    <section class="aap-news">
-                        <h2>AAP BREAKING NEWS</h2>
-                        {% for i in 0..4 %}
-                            {{this.render('partials/_sidebar-article.twig', {article: sidePanelfeed.articles[i]}) | raw}}
-                        {% endfor %}
-
-                        <a href="#" class="viewmore">View more</a>
-                    </section>
-
-                    <section class="subscribe">
-                        <h3>Get Reportage direct to your inbox</h3>
-                        <form method="get" id="subscribe-form" action="#">
-                            <label for="header-search" class="assistive-text sr-only">Search</label>
-                            <div class="input-group">
-                                <input type="email" class="field form-control" name="email" placeholder="Email" required="">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default" type="submit" id="searchsubmit">
-                                        <span class="icon-submit icon"></span>
-                                    </button>
-                                </span>
-                            </div>
-                        </form>
-                    </section>
-                </aside>
             </div>
         </div>
     </section>
@@ -172,18 +118,8 @@
 
     <section class="content-block container">
         <div class="row">
-            <div class="col-md-3 col-sm-12">
-                <aside class="right-border">
-                    <section class="top-stories">
-                        <h2>TOP STORIES</h2>
-                        {% for i in 1..8 %}
-                            {{this.render('partials/_sidebar-article.twig', {article: sidePanel2feed.articles[i]}) | raw}}
-                        {% endfor %}
-                    </section>
-                </aside>
-            </div>
 
-            <div class="col-md-9 col-sm-12">
+            <div class="col-sm-12">
                 <div class="row">
 
                     {% if articles[8] %}
