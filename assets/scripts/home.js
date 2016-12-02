@@ -44,7 +44,7 @@ HomeController.Listing = (function ($) {
     };
     
     var attachEvents = function () {
-        console.log('attaching events');
+
         if(_appJsConfig.isUserLoggedIn === 1 && _appJsConfig.userHasBlogAccess === 1) {
             //Bind pin/unpin article event
             bindPinUnpinArticle();
@@ -54,7 +54,7 @@ HomeController.Listing = (function ($) {
         }
         
         function initSwap() {
-            console.log('initing swap');
+
             initDroppable();
             initDraggable();
             
@@ -63,7 +63,7 @@ HomeController.Listing = (function ($) {
         }
         
         function initDraggable() {
-            console.log('draggable');
+
             $('.swap').draggable({
                 helper: 'clone',
                 revert: true,
@@ -91,7 +91,6 @@ HomeController.Listing = (function ($) {
         }
 
         function initDroppable() {
-            console.log('droppable');
 
             $('.swap').droppable({
                 hoverClass: "ui-state-hover",
@@ -116,12 +115,13 @@ HomeController.Listing = (function ($) {
                     if (typeof sourceObj.data('proxyfor') !== 'undefined') {
                         sourceProxy = sourceObj;
                         sourceObj   = getElementAtPosition($( '.' + sourceProxy.data('proxyfor')), sourceProxy.data('position') -1);
-                        sourceObj.data('position', sourceProxy.data('position'));
+                        sourceObj.attr('data-position', destObject.data('position'));
+
                     }
                     if (typeof destObject.data('proxyfor') !== 'undefined') {
                         destProxy = destObject;
-                        destObject = getElementAtPosition($( '.' + destProxy.data('proxyfor')), destProxy.data('position') -1);
-                        destObject.data('position', destProxy.data('position'));
+                        destObject = getElementAtPosition($( '.' + destObject.data('proxyfor')), destObject.data('position') -1);
+                        destObject.attr('data-position', sourceObj.data('position'));
                     }
 
 
