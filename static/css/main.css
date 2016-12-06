@@ -8629,7 +8629,7 @@ button.swiper-pagination-bullet {
     font-weight: 900;
     font-size: 0.92308em;
     text-transform: uppercase;
-    padding: 4px 5px;
+    padding: 10px;
     margin-bottom: 17px;
     position: relative;
     top: -10px; }
@@ -8653,16 +8653,7 @@ button.swiper-pagination-bullet {
     width: auto;
     max-width: 100px;
     height: auto;
-    max-height: 100px;
-    border-radius: 50%;
-    border: 2px solid white;
-    background: pink;
-    -webkit-box-shadow: 1px 1px 1px 2px #ccc;
-    /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
-    -moz-box-shadow: 1px 1px 1px 2px #ccc;
-    /* Firefox 3.5 - 3.6 */
-    box-shadow: 1px 1px 1px 2px #ccc;
-    /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */ }
+    max-height: 100px; }
   .page-content article .author-info .name {
     background-color: #ffff00;
     color: #1a1818;
@@ -8676,6 +8667,9 @@ button.swiper-pagination-bullet {
     color: #595b5d;
     font-size: 1.07692em;
     margin-bottom: 21px; }
+  .page-content article .author-info .follow {
+    height: 40px;
+    width: 180px; }
 
 .page-content article .content {
   font-size: 1.38462em;
@@ -8824,6 +8818,8 @@ button.swiper-pagination-bullet {
         @media screen and (max-width: 769px) {
           .site-footer .footer-content .navbar-brand img {
             max-width: 60px; } }
+    .site-footer .footer-content .footer-links {
+      margin-top: 35px; }
     .site-footer .footer-content .social-links {
       margin-top: 148px; }
       @media screen and (max-width: 620px) {
@@ -8834,7 +8830,7 @@ button.swiper-pagination-bullet {
       display: inline-block;
       width: 39px;
       height: 39px;
-      margin-left: 5px; }
+      margin-left: 15px; }
   .site-footer .footer-signup {
     background-color: #ffff00;
     padding-top: 11px;

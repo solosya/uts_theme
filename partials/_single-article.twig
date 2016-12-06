@@ -42,7 +42,7 @@
 
                 <div class="content">
                     <span class="category">{{article.label}}</span>
-                    <time datetime="2016-11-16">{{_AppHelper.getDateTimeBasedOnTimezone(publishDate,'SHORT')}}</time>
+                    <time datetime="2016-11-16">{{_AppHelper.getDateTimeBasedOnTimezone(publishDate,'SHORT_d_M_Y')}}</time>
                     <h2>{{ articleTitle | raw }}</h2>
                     <span class="author">{{ article.createdBy['displayName'] | upper }}</span>
                     
@@ -107,17 +107,15 @@
                     </div>
                 {% endif %}
 
-
                 <div class="content">
                     <span class="category">{{social.source}}</span>
                     <span class="article-icon"></span>
-                    <time datetime="2016-11-16">{{_AppHelper.getDateTimeBasedOnTimezone(social.publishDate,'SHORT')}}</time>
+                    <time datetime="2016-11-16">{{_AppHelper.getDateTimeBasedOnTimezone(social.publishDate,'SHORT_d_M_Y')}}</time>
 {#                     <h2>{{ articleTitle | raw }}</h2>
  #}                    <span class="author">{{ (social.source == _Article.socialArticleSourceTwitter()) ? '@' : ''}}{{ social.user['name'] | lower }}</span>
                     
                     {% if cardClass != 'instagram no-caption' %}  
                         <p>{{ social.content | preg_replace('/(@.+?) /', '<span style="color:#0099cc">$1</span> ') 
-                                             | preg_replace('/(http.+?) /', '<div>$1</div> ') 
                                              | raw }}</p>
                     {% endif %}
 
