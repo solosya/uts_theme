@@ -6535,8 +6535,8 @@ body.no_profile .profile_overlay {
 
 .icon-search {
   background-image: url(../icons/search.svg);
-  width: 15px;
-  height: 15px; }
+  width: 20px;
+  height: 20px; }
 
 .icon-search-blk {
   background-image: url(../icons/search-blk.svg);
@@ -6753,10 +6753,11 @@ time {
       display: inline-block;
       float: left; }
     .site-header .navbar-brand .logo-name {
-      font-size: 3.69231em;
+      font-size: 3.38462em;
       color: #fefefe;
       font-weight: 900;
       position: relative;
+      margin-top: 5px;
       margin-left: 19.5px;
       margin-bottom: 10px;
       float: left;
@@ -6765,7 +6766,7 @@ time {
         content: '';
         float: left;
         background: #fefefe;
-        width: 56px;
+        width: 52px;
         height: 6px;
         position: absolute;
         left: 3px;
@@ -6782,7 +6783,7 @@ time {
           font-size: 2.46154em; } }
     .site-header .navbar-brand .logo-caption {
       float: left;
-      font-size: 0.92308em;
+      font-size: 0.84615em;
       font-weight: 700;
       color: #fefefe;
       margin-left: 19.5px;
@@ -7171,8 +7172,8 @@ a.card:hover {
   .card .article-icon {
     background-size: cover;
     display: inline-block;
-    width: 30px;
-    height: 30px;
+    width: 36px;
+    height: 36px;
     margin-bottom: 17px; }
   .card .category {
     background-color: #231f20;
@@ -7604,9 +7605,11 @@ a.card:hover {
       display: block;
       margin-left: auto;
       margin-right: auto; }
-    @media screen and (max-width: 490px) {
-      .card-md .card .content p {
-        display: none; } }
+    .card-md .card .content p {
+      height: 50px; }
+      @media screen and (max-width: 490px) {
+        .card-md .card .content p {
+          display: none; } }
   .card-md .card .share {
     display: none; }
   .card-md .card.facebook .content {
@@ -7733,7 +7736,7 @@ a.card:hover {
     display: none; }
 
 .featured-carousel {
-  height: 902px;
+  height: 702px;
   margin-bottom: 130px; }
   .featured-carousel .swiper-container {
     width: 100%;
@@ -7787,7 +7790,7 @@ a.card:hover {
   .featured-carousel .card .content {
     width: 1140px;
     margin: 0 auto;
-    padding-top: 507px;
+    padding-top: 345px;
     position: relative;
     z-index: 20; }
     .featured-carousel .card .content h2 {
@@ -7831,7 +7834,7 @@ a.card:hover {
 .featured-carousel .container, .featured-carousel .profile__container {
   position: relative; }
   .featured-carousel .container .custom-pagination, .featured-carousel .profile__container .custom-pagination {
-    color: #fefefe;
+    color: #939597;
     padding: 38px 35px;
     position: absolute;
     right: 0;
@@ -7847,21 +7850,27 @@ a.card:hover {
       margin-bottom: 27px;
       cursor: pointer; }
       .featured-carousel .container .custom-pagination .pagination-item time, .featured-carousel .profile__container .custom-pagination .pagination-item time {
-        font-size: 0.84615em;
+        font-size: 0.84615em; }
+      .featured-carousel .container .custom-pagination .pagination-item.active, .featured-carousel .profile__container .custom-pagination .pagination-item.active {
         color: #fefefe; }
-    .featured-carousel .container .custom-pagination .slide-no, .featured-carousel .profile__container .custom-pagination .slide-no {
-      display: block;
-      float: left;
-      font-size: 2em;
-      border-bottom: solid 4px #fefefe;
-      margin-right: 24px; }
-    .featured-carousel .container .custom-pagination h2, .featured-carousel .profile__container .custom-pagination h2 {
-      font-size: 1.38462em;
-      margin-top: 5px;
-      margin-bottom: 5px;
-      font-weight: 700;
-      height: 60px;
-      overflow: hidden; }
+        .featured-carousel .container .custom-pagination .pagination-item.active time, .featured-carousel .profile__container .custom-pagination .pagination-item.active time {
+          color: #fefefe; }
+        .featured-carousel .container .custom-pagination .pagination-item.active .slide-no, .featured-carousel .profile__container .custom-pagination .pagination-item.active .slide-no {
+          border-bottom: solid 4px #fefefe; }
+      .featured-carousel .container .custom-pagination .pagination-item .slide-no, .featured-carousel .profile__container .custom-pagination .pagination-item .slide-no {
+        display: block;
+        float: left;
+        font-size: 2em;
+        border-bottom: solid 4px #939597;
+        margin-right: 24px; }
+      .featured-carousel .container .custom-pagination .pagination-item h2, .featured-carousel .profile__container .custom-pagination .pagination-item h2 {
+        font-size: 1.38462em;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        font-weight: 700;
+        line-height: 1.3em;
+        height: 65px;
+        overflow: hidden; }
 
 .swiper-container {
   margin-left: auto;

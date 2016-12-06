@@ -87,10 +87,11 @@
         }
 
         .logo-name{
-            font-size: ((48px / $font-size-base) + $font-unit);
+            font-size: ((44px / $font-size-base) + $font-unit);
             color: #fefefe;
             font-weight: 900;
             position: relative;
+            margin-top:5px;
             margin-left: 19.5px;
             margin-bottom: 10px;
             float: left;
@@ -101,7 +102,7 @@
                 content: '';
                 float: left;
                 background: #fefefe;
-                width: 56px;
+                width: 52px;
                 height: 6px;
                 position: absolute;
                 left: 3px;
@@ -126,7 +127,7 @@
 
         .logo-caption{
             float: left;
-            font-size: ((12px / $font-size-base) + $font-unit);
+            font-size: ((11px / $font-size-base) + $font-unit);
             font-weight: 700;
             color: #fefefe;
             margin-left: 19.5px;

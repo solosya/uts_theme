@@ -106,7 +106,13 @@ $('document').ready(function() {
 	    });
 
     $(".pagination-item").click(function(){
-        var slideToSlide = $(this).data("slide");
+        var elem = $(this);
+        var slideToSlide = elem.data("slide");
+        elem.siblings().each(function(i,e) {
+            $(e).removeClass('active');
+        });
+
+        elem.addClass('active');
         swiper.slideTo(slideToSlide);
     });
 

@@ -35,7 +35,7 @@
     .content{
       width: 1140px;
       margin: 0 auto;
-      padding-top: 507px;
+      padding-top: 345px;
       position: relative;
       z-index: 20;
 
@@ -91,51 +91,61 @@
   }
 
   .container{
-    position: relative;
+      position: relative;
 
-    .custom-pagination{
-      color: #fefefe;
-      padding: 38px 35px;
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      width: 277px;
-      height: 376px;
-      background-color: #000000;
-      z-index: 10;
+      .custom-pagination {
+        color: #939597;
+        padding: 38px 35px;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 277px;
+        height: 376px;
+        background-color: #000000;
+        z-index: 10;
 
-      @media screen and (max-width: $sm-break){
-        display: none;
-      }
+        @media screen and (max-width: $sm-break){
+          display: none;
+        }
 
-      .pagination-item{
-        margin-bottom: 27px;
-        cursor: pointer;
+        .pagination-item {
 
-        time{
-          font-size:  ((11px / $font-size-base) + $font-unit);
-          color: #fefefe;
+          margin-bottom: 27px;
+          cursor: pointer;
+          time{
+            font-size:  ((11px / $font-size-base) + $font-unit);
+          }
+
+          &.active {
+            color:#fefefe;
+            time {
+              color:#fefefe;
+            }
+            .slide-no {
+              border-bottom: solid 4px #fefefe;
+            }
+
+          }
+
+
+        .slide-no{
+          display: block;
+          float: left;
+          font-size:  ((26px / $font-size-base) + $font-unit);
+          border-bottom: solid 4px #939597;
+          margin-right: 24px;
+        }
+
+        h2{
+          font-size:  ((18px / $font-size-base) + $font-unit);
+          margin-top: 5px;
+          margin-bottom: 5px;
+          font-weight: 700;
+          line-height:1.3em;
+          height:65px;
+          overflow:hidden;
         }
       }
-
-      .slide-no{
-        display: block;
-        float: left;
-        font-size:  ((26px / $font-size-base) + $font-unit);
-        border-bottom: solid 4px #fefefe;
-        margin-right: 24px;
-      }
-
-      h2{
-        font-size:  ((18px / $font-size-base) + $font-unit);
-        margin-top: 5px;
-        margin-bottom: 5px;
-        font-weight: 700;
-        // padding-left: 53px;
-        height:60px;
-        overflow:hidden;
-      }
-
     }
   }
 }

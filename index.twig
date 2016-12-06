@@ -43,7 +43,7 @@
                         {% set articleImg = articles[0].articleId > 0 ? _Media.getMediaUrl(articles[0].featuredMedia,50, 50, {'crop': 'fill', 'gravity': 'faces'} ) : articles[0].social.media['path'] %}
                         {% set articleText = articles[0].articleId > 0 ? Helper.htmlToText(articles[0].title, -1) | raw | escape('html') : Helper.htmlToText(articles[0].social.content, -1) | raw | escape('html') %}
 
-                        <div class="slide-1 pagination-item swap" 
+                        <div class="slide-1 pagination-item swap active" 
                              data-proxyfor="swiper-wrapper" 
                              data-position="1" 
                              data-slide="0"

@@ -42,19 +42,18 @@
 
                 <div class="content">
                     <span class="category">{{article.label}}</span>
-                    <span class="article-icon"></span>
                     <time datetime="2016-11-16">{{_AppHelper.getDateTimeBasedOnTimezone(publishDate,'SHORT')}}</time>
                     <h2>{{ articleTitle | raw }}</h2>
-                    <span class="author">{{article.createdBy['displayName']}}</span>
+                    <span class="author">{{ article.createdBy['displayName'] | upper }}</span>
                     
                     {% if cardClass != 'instagram no-caption' %}  
                         <p>{{ article.excerpt | raw }}</p>
                     {% endif %}
 
-                    <div class="share">
+{#                     <div class="share">
                         <span class="sr-only">Share</span><span class="share-icon icon"></span>
                     </div>
-                </div>
+ #}                </div>
             </article>
 
             {% if article.userHasBlogAccess == '1' %}
@@ -88,8 +87,7 @@
     {% set videoClass = (social.media['type'] == 'video') ? 'video_card' : '' %}
 
     <div class="{{containerClass}}">
-        <a  href="{{article.url}}" 
-            class="swap card {{ social.source }}" 
+        <a  class="swap card {{ social.source }}" 
             data-id="{{article.socialId}}" 
             data-position="{{position}}" 
             data-social="1" 
@@ -114,17 +112,19 @@
                     <span class="category">{{social.source}}</span>
                     <span class="article-icon"></span>
                     <time datetime="2016-11-16">{{_AppHelper.getDateTimeBasedOnTimezone(social.publishDate,'SHORT')}}</time>
-                    <h2>{{ articleTitle | raw }}</h2>
-                    <span class="author">{{ (social.source == _Article.socialArticleSourceTwitter()) ? '@' : ''}}{{ social.user['name'] | lower }}</span>
+{#                     <h2>{{ articleTitle | raw }}</h2>
+ #}                    <span class="author">{{ (social.source == _Article.socialArticleSourceTwitter()) ? '@' : ''}}{{ social.user['name'] | lower }}</span>
                     
                     {% if cardClass != 'instagram no-caption' %}  
-                        <p>{{ social.content | raw }}</p>
+                        <p>{{ social.content | preg_replace('/(@.+?) /', '<span style="color:#0099cc">$1</span> ') 
+                                             | preg_replace('/(http.+?) /', '<div>$1</div> ') 
+                                             | raw }}</p>
                     {% endif %}
 
-                    <div class="share">
+{#                     <div class="share">
                         <span class="sr-only">Share</span><span class="share-icon icon"></span>
                     </div>
-                </div>
+ #}                </div>
             </article>
 
             {% if article.userHasBlogAccess == '1' %}
