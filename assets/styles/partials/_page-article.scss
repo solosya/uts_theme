@@ -8,6 +8,7 @@
 
             h1{
                 margin-bottom: 15px;
+                font-size: ((40px / $font-size-base) + $font-unit);
             }
         }
 
@@ -43,9 +44,11 @@
                 color: #595b5d;
                 font-size: ((14px / $font-size-base) + $font-unit);
                 margin-bottom: 21px;
+                font-weight:300;
             }
 
             .follow {
+                padding-top: 10px;
                 height:40px;
                 width:180px;
             }
@@ -54,8 +57,9 @@
 
         .content{
             font-size: ((18px / $font-size-base) + $font-unit);
-            line-height: ((28px / $font-size-base) + $font-unit);
+            line-height: ((20px / $font-size-base) + $font-unit);
             margin-bottom: 26px;
+            padding:0;
         }
 
         img{
@@ -63,11 +67,17 @@
         }
     }
 
+
+    .article-content-icons-wrapper {
+        padding:0;
+    }
     .social-link-sidebar{
         list-style: none;
-        margin-top:290%;
+        margin-top:20px;
+        margin-right:10px;
         text-align: right;
         padding-right: 26.5px;
+        border-right: solid 1px #d1d2d4;
         
         @media screen and (max-width: $mmd-break){
             margin-top: 0;
@@ -88,6 +98,7 @@
     .article-icons{
         text-align: center;
         margin-bottom: 130px;
+        padding:0;
 
         a{
             margin-right: 22px;

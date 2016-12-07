@@ -149,8 +149,8 @@ HomeController.Listing = (function ($) {
 
                     if (destProxy) {
                         destProxy.find('h2').text( sourceObj.find('h2').text() );
-                        newDest.removeClass('swap');
                         newSrc.addClass('swap');
+                        newDest.removeClass('swap');
                         destProxy.attr('data-article-text', sourceObj.data('article-text'));
                         destProxy.attr('data-article-image', sourceObj.data('article-image'));
                     }

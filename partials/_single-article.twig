@@ -87,7 +87,8 @@
     {% set videoClass = (social.media['type'] == 'video') ? 'video_card' : '' %}
 
     <div class="{{containerClass}}">
-        <a  class="swap card {{ social.source }}" 
+        <a  href="{{article.url}}"
+            class="swap card {{ social.source }}" 
             data-id="{{article.socialId}}" 
             data-position="{{position}}" 
             data-social="1" 

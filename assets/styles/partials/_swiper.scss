@@ -2,7 +2,7 @@
 
   .card{
     position: relative;
-    background-color: #646262;
+    // background-color: #646262;
     color:#fefefe;
 
     a:hover {
@@ -22,28 +22,38 @@
       }
     }
 
+
+
+
+
     &:before{
       content: '';
       position: absolute;
       top: 0;
       bottom: 0;
       width: 100%;
-      background-color: rgba(35, 31, 32, 0.25);
+      /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0.65+0,0.19+65 */
+      background: -moz-linear-gradient(top,  rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.19) 65%, rgba(0,0,0,0.19) 100%); /* FF3.6-15 */
+      background: -webkit-linear-gradient(top,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.19) 65%,rgba(0,0,0,0.19) 100%); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(to bottom,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.19) 65%,rgba(0,0,0,0.19) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#30000000',GradientType=0 ); /* IE6-9 */
+      // background-color: rgba(35, 31, 32, 0.25);
+      // background-color: rgba(200, 31, 32, 0.5);
       z-index: 1;
     }
 
     .content{
       width: 1140px;
       margin: 0 auto;
-      padding-top: 345px;
+      padding-top: 145px;
       position: relative;
       z-index: 20;
 
         h2{
-          font-size: ((48px / $font-size-base) + $font-unit);
+          font-size: ((40px / $font-size-base) + $font-unit);
           width: 550px;
           margin-bottom: 25px;
-          height:110px;
+          height:90px;
           overflow:hidden;
 
           @media screen and (max-width: $sm-mobile-break){
@@ -62,7 +72,7 @@
         }
 
         p{
-          font-size:  ((16px / $font-size-base) + $font-unit);
+          font-size:  ((14px / $font-size-base) + $font-unit);
           font-weight: 900;
           margin-bottom: 29px;
           width: 470px;
@@ -137,7 +147,7 @@
         }
 
         h2{
-          font-size:  ((18px / $font-size-base) + $font-unit);
+          font-size:  ((17px / $font-size-base) + $font-unit);
           margin-top: 5px;
           margin-bottom: 5px;
           font-weight: 700;

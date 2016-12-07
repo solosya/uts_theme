@@ -46,62 +46,74 @@
         {% endfor %}
         {# <div class="image-wrapper" style="background-image: url({{ articleImg }});"> #}
             
-        </div>
         <span class="category">{{ article.label}}</span>
    </section><!--page-hero-->
 
    <div class="container page-content">
-        <aside class="col-md-2 col-sm-12">
-           <ul class="social-link-sidebar">
-                <li><a href="#"><span class="sr-only">Facebook</span><span class="facebook-blk icon"></span></a></li>
-                <li><a href="#"><span class="sr-only">Twitter</span><span class="twitter-blk icon"></span></a></li>
-                <li><a href="#"><span class="sr-only">Tumblr</span><span class="tumblr-blk icon"></span></a></li>
-                <li><a href="#"><span class="sr-only">Instagram</span><span class="instagram-blk icon"></span></a></li>
-                <li><a href="#"><span class="sr-only">Mail</span><span class="mail-blk icon"></span></a></li>
-           </ul>
-        </aside>
-        <article class="col-md-8 col-sm-12">
-            <header>
+        
+        
+        <article class="col-sm-12">
+            
+            <header class="col-sm-8 col-sm-offset-2">
                 <h1>{{article.title | raw}}</h1>
-                <time datetime="2016-11-16">{{article.publishedDate}}</time>
+
+                <time datetime="2016-11-16">{{_AppHelper.getDateTimeBasedOnTimezone(article.publishedDate,'SHORT_d_M_Y')}}</time>
             </header>
 
-            <div class="author-info">
+            <div class="author-info col-sm-8 col-sm-offset-2">
                 <img src="{{ article.createdBy['media']['path'] }}" alt="Author name">
                 <span class="name">{{article.createdBy['displayName']}}</span>
                 <p>Ecerum qui que repudae doluptam qui conserum haruptati omnimillest, omnis exqueeum rerferro quo dus sus asiosimp ptam qui conserum haruptati omniurit aut.</p>
-                <a href="#" class="btn btn-black follow">FOLLOW + </a>
+                
+                {% if _User.isGuest() %}
+                <a href="javascript:void(0)" class="btn btn-black follow forceLoginModal">Follow +</a>
+                {% else %}
+                    <a href="javascript:void(0)" class="btn btn-black follow followArticleBtn" data-guid="{{article.blog['guid']}}" data-status="{{status}}">{{text}}</a>
+                {% endif%}
+
             </div>
 
-            <div class="content">
-                <p>{{ article.content | preg_replace('/^<p>/', '<p class="lead">') | raw }}</p>
+            <div class="article-content-icons-wrapper col-sm-12">
+                <aside class="col-sm-2">
+                   <ul class="social-link-sidebar">
+                        <li><a href="#"><span class="sr-only">Facebook</span><span class="facebook-blk icon"></span></a></li>
+                        <li><a href="#"><span class="sr-only">Twitter</span><span class="twitter-blk icon"></span></a></li>
+                        <li><a href="#"><span class="sr-only">Mail</span><span class="mail-blk icon"></span></a></li>
+                   </ul>
+                </aside>
+
+                <div class="content col-sm-8">
+                    <p>{{ article.content | preg_replace('/^<p>/', '<p class="lead">') | raw }}</p>
+                </div>
+
             </div>
 
-            <div class="article-icons">
+            <div class="article-icons col-sm-12">
                 <a href="#"><span class="icon icon-add"></span></a>
                 <a href="#"><span class="icon icon-heart"></span></a>
                 <a href="#"><span class="icon icon-tag"></span></a>
             </div><!--article-icons-->
+       
        </article>
     </div><!--page-content-->
 
     <section class="related-posts">
-        <div class="container">
+        <div class="container" style="width:950px">
             <div class="col-sm-12 text-center">
                 <h2>YOU MIGHT ALSO LIKE...</h2>
             </div>
 
 
-
-            {% set popularArticles = _Article.getPopularArticles({ limit: 5, excludeArticleId : article.id }) %}
-            {% if popularArticles|length > 0 %}
-                {% for article in popularArticles %}
-                    {{this.render('partials/_single-article.twig', {article: article, containerClass: 'col-sm-4 card-sm', cardClass : 'card__news'}) | raw}}
-                {% endfor %}
-            {% else %}
-                <p class="nodata text-center">No data found.</p>
-            {% endif %}
-
+            <div class="col-sm-12">
+                {% set popularArticles = _Article.getPopularArticles({ limit: 3, excludeArticleId : article.id }) %}
+                {% if popularArticles|length > 0 %}
+                    {% for article in popularArticles %}
+                        {{this.render('partials/_single-article.twig', {article: article, containerClass: 'col-sm-4 card-sm', cardClass : 'card__news'}) | raw}}
+                    {% endfor %}
+                {% else %}
+                    <p class="nodata text-center">No data found.</p>
+                {% endif %}
+            </div>
 
 
 

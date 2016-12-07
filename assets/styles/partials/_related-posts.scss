@@ -1,10 +1,24 @@
 .related-posts{
     margin-bottom: 133px;
     
-    h2{
-        margin-bottom: 64px;
-          font-size: ((32px / $font-size-base) + $font-unit);
-          font-weight: 900;
-          color: #1a1818;
+    h2 {
+		margin-bottom: 64px;
+		font-size: ((32px / $font-size-base) + $font-unit);
+		font-weight: 900;
+		color: #1a1818;
     }
+
+	.card h2 {
+		font-size: ((20px / $font-size-base) + $font-unit);
+		line-height: ((19px / $font-size-base) + $font-unit);
+		// font-weight: 900;
+		text-transform: uppercase;
+		height:58px !important;
+		// color: #1a1818;
+	}
+
+	.card p {
+		line-height: ((22px / $font-size-base) + $font-unit);
+	}
+
 }
