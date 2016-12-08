@@ -2,8 +2,8 @@
 
     .card{
         position:relative;
-        max-height:500px;
-        height: 500px;
+        max-height:550px;
+        height: 550px;
         // overflow: hidden;
         margin-bottom: 30px;
         color:$black;
@@ -50,13 +50,7 @@
             }
 
             .author{
-                vertical-align:top;
-                display:block;
-                margin-right:17px;
-                background-color: $brand-yellow;
-                color: #1a1818;
-                padding:4px;
-                float:left;
+                padding:2px 6px;
             }
 
             // &:after{
@@ -71,7 +65,7 @@
             // }
 
             p {
-                height:54px;
+                height:60px;
                 @media screen and (max-width: $sm-mobile-break){
                     display: none;
                 }

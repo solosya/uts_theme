@@ -335,6 +335,7 @@ HomeController.Blog = (function ($) {
     var attachEvents = function () {
        
         //attach follow blog
+        console.log('attaching follow blog');
         $('a.followBlog').followBlog({
             'onSuccess': function(data, obj){
                 var message = ($(obj).data('status') === 'follow') ? 'Unfollow' : 'Follow';

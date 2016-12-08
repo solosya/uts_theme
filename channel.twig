@@ -1,11 +1,26 @@
-{{ set(this, 'title', _Blog.getBlogTitle()) }}
 {% set networkData = _Network.getNetworkData() %}
 
+{% set blogInfo = _Blog.getBlog() %}
+
+
 {{this.registerJs("HomeController.listing();")}}
+{{this.registerJs("HomeController.blog();")}}
+
 {% set limit = 20 %}
 
 {% set articlesArr = _Blog.getBlogFeed({'limit': limit, 'offset': 0}) %}
 {% set articles = articlesArr.articles %}
+
+
+{% set status = 'follow' %}
+{% set text = 'Follow +' %}
+{% if not _User.isGuset() and _User.isUserFollowing('blog', article.blog['id'])%}
+    {% set status = 'unfollow' %}
+    {% set text = 'Following -' %}
+{% endif %}
+
+
+
 
 <!-- used to index each article as we loop over throughout the template -->
 {% set articleCount = 0 %}
@@ -27,6 +42,29 @@
     <section class="channel container">
         <div class="row">
             <div class="col-sm-12">
+                <div class="row">
+
+                    <div class="col-sm-6">
+                        <h1>{{blogInfo.title}}</h1>
+                    </div>
+
+                    <div class="col-sm-6 follow-box">
+
+                        {% if not _User.isGuest %}
+                            {% set isUserFollowingBlog = _User.isUserFollowing('blog', blogInfo.id) %}
+                            {% if isUserFollowingBlog %}
+                                <a href="javascript:void(0)" class="btn btn-black follow followBlog" data-status="unfollow" data-guid="{{blogInfo.guid}}">Following -</a>
+                            {% else %}
+                                <a href="javascript:void(0)" class="btn btn-black follow followBlog" data-status="follow"  data-guid="{{blogInfo.guid}}">Follow +</a>
+                            {% endif %}
+                        {% else %}
+                            <a href="javascript:void(0)" class="btn btn-black follow forceLoginModal">Follow +</a>
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
                 <div class="row">
                     {% for i in 0..1 %}
                         {% if articles[articleCount] %}

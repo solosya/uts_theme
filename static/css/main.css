@@ -6847,20 +6847,6 @@ time {
   .site-header.channel-page {
     background: #000000;
     margin-top: 0; }
-  .site-header.stick {
-    position: fixed;
-    top: 0;
-    background-color: #231f20;
-    margin-top: 0;
-    height: 70px; }
-    @media screen and (max-width: 620px) {
-      .site-header.stick {
-        padding-top: 8px; } }
-    .site-header.stick .logo-caption {
-      display: none; }
-    @media screen and (min-width: 620px) {
-      .site-header.stick .navbar-brand {
-        height: 70px; } }
   .site-header.night-fall:before {
     content: '';
     background: rgba(35, 31, 32, 0.6);
@@ -6886,9 +6872,18 @@ time {
     transition: height 0.5s ease; }
     .site-header .navbar-brand img {
       max-height: 100%;
+      height: 80px;
       width: auto;
       display: inline-block;
       float: left; }
+    .site-header .navbar-brand div.reportage {
+      margin-top: 10px;
+      height: 60px;
+      width: 300px;
+      margin-left: 95px;
+      background-size: contain;
+      background-image: url(../images/Desktopsite_1.svg);
+      background-repeat: no-repeat; }
     .site-header .navbar-brand .logo-name {
       font-size: 3.38462em;
       color: #fefefe;
@@ -6933,6 +6928,28 @@ time {
       .site-header .navbar-brand {
         height: 55px;
         display: block; } }
+  .site-header.stick {
+    position: fixed;
+    top: 0;
+    background-color: #231f20;
+    margin-top: 0;
+    height: 70px; }
+    @media screen and (max-width: 620px) {
+      .site-header.stick {
+        padding-top: 8px; } }
+    .site-header.stick .logo-caption {
+      display: none; }
+    @media screen and (min-width: 620px) {
+      .site-header.stick .navbar-brand {
+        height: 70px; } }
+    .site-header.stick div.reportage {
+      margin-top: 20px;
+      height: 40px;
+      width: 150px;
+      margin-left: 85px;
+      background-size: contain;
+      background-image: url(../images/Desktopsite_2.svg);
+      background-repeat: no-repeat; }
 
 .site-header,
 .sb-custom-menu > ul > li > a,
@@ -7940,7 +7957,8 @@ a.card:hover {
     background-color: #231f20;
     color: #fefefe;
     display: inline-block;
-    padding: 3px; }
+    padding: 3px;
+    text-transform: uppercase; }
     .card .author.yellow {
       background-color: #ffff00;
       color: #1a1818; }
@@ -8510,8 +8528,205 @@ a.card:hover {
   .card-lg .card.soundcloud .other-content {
     display: none; }
 
+.card-strip .card {
+  min-height: 178px;
+  max-height: 178px;
+  overflow: hidden;
+  background-color: #e5e6e7;
+  padding-left: 12px;
+  padding-right: 12px;
+  margin-bottom: 30px;
+  color: #fefefe; }
+  .card-strip .card p {
+    max-height: 65px;
+    overflow: hidden;
+    font-weight: 500;
+    line-height: 1.5em; }
+  .card-strip .card article > .other-content:first-child {
+    margin-bottom: 26px; }
+  .card-strip .card time {
+    font-weight: 300;
+    margin-top: 15px; }
+  .card-strip .card .other-content {
+    margin-bottom: 5px; }
+  .card-strip .card .author {
+    padding: 0;
+    background: none;
+    color: #808285;
+    font-weight: 300;
+    margin-bottom: 10px;
+    text-transform: none; }
+  .card-strip .card figure {
+    disply: none; }
+  .card-strip .card .category {
+    display: none; }
+  .card-strip .card h2 {
+    margin-top: 5px;
+    margin-bottom: 9px;
+    line-height: 1.2em; }
+  .card-strip .card .share-icon {
+    display: none; }
+  .card-strip .card.other {
+    padding-left: 0;
+    padding-right: 0;
+    background-color: transparent;
+    color: black; }
+    .card-strip .card.other h2 {
+      height: 48px;
+      overflow: hidden; }
+    .card-strip .card.other figure {
+      margin-left: 0;
+      margin-right: 0; }
+    .card-strip .card.other article > .content:first-child {
+      padding-top: 87px; }
+  .card-strip .card.facebook {
+    color: black; }
+    .card-strip .card.facebook time {
+      margin-bottom: 5px; }
+    .card-strip .card.facebook figure {
+      border-bottom: 7.4px solid #FFF;
+      max-height: 172px;
+      overflow: hidden; }
+    .card-strip .card.facebook h2 {
+      display: none; }
+    .card-strip .card.facebook .article-icon {
+      background-image: url(../icons/facebook-blk.svg); }
+    .card-strip .card.facebook article > .content:nth-child(2) {
+      padding-top: 71px;
+      margin-top: 0; }
+    .card-strip .card.facebook article > .content {
+      margin-top: -50px; }
+  .card-strip .card.twitter {
+    color: black;
+    background-color: #ffff00; }
+    .card-strip .card.twitter h2 {
+      display: none; }
+    .card-strip .card.twitter time {
+      margin-bottom: 5px;
+      color: #808285; }
+    .card-strip .card.twitter figure {
+      border-bottom: 7.4px solid #FFF;
+      max-height: 172px;
+      overflow: hidden; }
+    .card-strip .card.twitter .article-icon {
+      background-image: url(../icons/twitter-blk.svg); }
+    .card-strip .card.twitter article > .content:nth-child(2) {
+      padding-top: 71px;
+      margin-top: 0; }
+    .card-strip .card.twitter article > .content {
+      margin-top: -50px; }
+      .card-strip .card.twitter article > .content p {
+        font-size: 16px;
+        font-weight: bold;
+        color: #1a1818; }
+        .card-strip .card.twitter article > .content p a {
+          color: #0099cc; }
+  .card-strip .card.instagram {
+    background-color: #4a494a; }
+    .card-strip .card.instagram time {
+      margin-bottom: 5px;
+      color: #bdbebf; }
+    .card-strip .card.instagram figure {
+      border-bottom: 7.4px solid #FFF;
+      max-height: 172px;
+      overflow: hidden; }
+    .card-strip .card.instagram.no-caption figure {
+      max-height: 280px;
+      height: 294px; }
+    .card-strip .card.instagram .article-icon {
+      background-image: url(../icons/instagram-blk.svg); }
+    .card-strip .card.instagram article > .content:first-child {
+      padding-top: 71px;
+      margin-top: 0; }
+    .card-strip .card.instagram article > .content {
+      margin-top: -50px; }
+      .card-strip .card.instagram article > .content p {
+        font-size: 14px;
+        font-weight: 500;
+        color: #ffffff; }
+        .card-strip .card.instagram article > .content p a {
+          color: #ffffff; }
+  .card-strip .card.youtube {
+    padding-left: 0;
+    padding-right: 0;
+    background-color: transparent; }
+    .card-strip .card.youtube figure {
+      border-bottom: 7.4px solid #FFF;
+      max-height: 172px;
+      overflow: hidden; }
+      .card-strip .card.youtube figure:after {
+        content: '';
+        background-image: url(../icons/youtube-play.svg);
+        width: 48px;
+        height: 48px;
+        position: relative;
+        display: block;
+        bottom: 105px;
+        margin: 0 auto;
+        background-size: cover; }
+    .card-strip .card.youtube .article-icon {
+      margin-left: 13px;
+      background-image: url(../icons/youtube-blk.svg); }
+    .card-strip .card.youtube article > .content:first-child {
+      padding-top: 71px;
+      margin-top: 0; }
+    .card-strip .card.youtube article > .content {
+      margin-top: -50px; }
+  .card-strip .card.vimeo {
+    padding-left: 0;
+    padding-right: 0;
+    background-color: transparent; }
+    .card-strip .card.vimeo figure {
+      border-bottom: 7.4px solid #FFF;
+      max-height: 172px;
+      overflow: hidden; }
+      .card-strip .card.vimeo figure:after {
+        content: '';
+        background-image: url(../icons/youtube-play.svg);
+        width: 48px;
+        height: 48px;
+        position: relative;
+        display: block;
+        bottom: 105px;
+        margin: 0 auto;
+        background-size: cover; }
+    .card-strip .card.vimeo .article-icon {
+      margin-left: 13px;
+      background-image: url(../icons/vimeo-blk.svg); }
+    .card-strip .card.vimeo article > .content:first-child {
+      padding-top: 71px;
+      margin-top: 0; }
+    .card-strip .card.vimeo article > .content {
+      margin-top: -50px; }
+  .card-strip .card.soundcloud {
+    padding-left: 0;
+    padding-right: 0;
+    background-color: transparent;
+    color: black; }
+    .card-strip .card.soundcloud p {
+      max-height: 75px;
+      overflow: hidden;
+      text-overflow: ellipsis; }
+    .card-strip .card.soundcloud h2 {
+      display: none; }
+    .card-strip .card.soundcloud .author {
+      margin-bottom: 5px; }
+    .card-strip .card.soundcloud figure {
+      max-height: 172px;
+      margin-bottom: 0;
+      border: 0; }
+    .card-strip .card.soundcloud time {
+      margin-bottom: 5px; }
+    .card-strip .card.soundcloud .other-content {
+      height: 88.5px;
+      overflow: hidden; }
+    .card-strip .card.soundcloud .article-icon {
+      display: none; }
+    .card-strip .card.soundcloud h2 {
+      margin-top: 5px; }
+
 .featured-carousel {
-  height: 502px;
+  height: 650px;
   margin-bottom: 130px; }
   .featured-carousel .swiper-container {
     width: 100%;
@@ -8572,7 +8787,7 @@ a.card:hover {
   .featured-carousel .card .content {
     width: 1140px;
     margin: 0 auto;
-    padding-top: 145px;
+    padding-top: 280px;
     position: relative;
     z-index: 20; }
     .featured-carousel .card .content h2 {
@@ -8617,19 +8832,23 @@ a.card:hover {
   position: relative; }
   .featured-carousel .container .custom-pagination, .featured-carousel .profile__container .custom-pagination {
     color: #939597;
-    padding: 38px 35px;
+    padding: 20px 28px;
     position: absolute;
     right: 0;
     bottom: 0;
     width: 277px;
-    height: 376px;
+    height: 340px;
     background-color: #000000;
     z-index: 10; }
     @media screen and (max-width: 769px) {
       .featured-carousel .container .custom-pagination, .featured-carousel .profile__container .custom-pagination {
         display: none; } }
+    .featured-carousel .container .custom-pagination h2.top-stories, .featured-carousel .profile__container .custom-pagination h2.top-stories {
+      margin: 0 0 26px 0;
+      color: white;
+      font-size: 1.38462em; }
     .featured-carousel .container .custom-pagination .pagination-item, .featured-carousel .profile__container .custom-pagination .pagination-item {
-      margin-bottom: 27px;
+      margin-bottom: 18px;
       cursor: pointer; }
       .featured-carousel .container .custom-pagination .pagination-item time, .featured-carousel .profile__container .custom-pagination .pagination-item time {
         font-size: 0.84615em; }
@@ -8641,17 +8860,19 @@ a.card:hover {
           border-bottom: solid 4px #fefefe; }
       .featured-carousel .container .custom-pagination .pagination-item .slide-no, .featured-carousel .profile__container .custom-pagination .pagination-item .slide-no {
         display: block;
+        position: relative;
+        top: -4px;
         float: left;
         font-size: 2em;
         border-bottom: solid 4px #939597;
         margin-right: 24px; }
       .featured-carousel .container .custom-pagination .pagination-item h2, .featured-carousel .profile__container .custom-pagination .pagination-item h2 {
-        font-size: 1.30769em;
+        font-size: 1.23077em;
         margin-top: 5px;
-        margin-bottom: 5px;
+        margin-bottom: 8px;
         font-weight: 700;
         line-height: 1.3em;
-        height: 65px;
+        height: 44px;
         overflow: hidden; }
 
 .swiper-container {
@@ -9614,8 +9835,21 @@ button.swiper-pagination-bullet {
 .channel {
   margin-top: 150px;
   margin-bottom: 90px;
-  position: relative;
-  border-bottom: 1px solid #000000; }
+  position: relative; }
+  .channel h1 {
+    color: #000000;
+    font-size: 3.69231em;
+    font-weight: 600;
+    margin-bottom: 30px; }
+  .channel .follow-box {
+    position: relative;
+    text-align: right; }
+  .channel .follow {
+    font-size: 1.07692em;
+    margin-top: 30px;
+    padding-top: 10px;
+    height: 40px;
+    width: 180px; }
 
 .site-footer {
   background-color: #000000;
@@ -9690,8 +9924,8 @@ button.swiper-pagination-bullet {
 
 .card-section-feature .card {
   position: relative;
-  max-height: 500px;
-  height: 500px;
+  max-height: 550px;
+  height: 550px;
   margin-bottom: 30px;
   color: #000000;
   background: #ffffff; }
@@ -9724,15 +9958,9 @@ button.swiper-pagination-bullet {
       margin-top: 5px;
       margin-bottom: 10px; }
     .card-section-feature .card .content .author {
-      vertical-align: top;
-      display: block;
-      margin-right: 17px;
-      background-color: #ffff00;
-      color: #1a1818;
-      padding: 4px;
-      float: left; }
+      padding: 2px 6px; }
     .card-section-feature .card .content p {
-      height: 54px; }
+      height: 60px; }
       @media screen and (max-width: 490px) {
         .card-section-feature .card .content p {
           display: none; } }

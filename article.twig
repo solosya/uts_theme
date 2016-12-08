@@ -1,10 +1,14 @@
 {{ set(this, 'title', article.title) }}
 
 {{this.registerJs("ArticleController.view();")}}
+{{this.registerJs("HomeController.blog();")}}
 
 {% set status = 'follow' %}
 {% set text = 'Follow +' %}
-{% if not _User.isGuset() and _User.isUserFollowing('blog', article.blog['id'])%}
+{% set authorId = article.createdBy['id'] %}
+{% set authorGUID = article.createdBy['guid'] %}
+
+{% if not _User.isGuset() and _User.isUserFollowing('user', authorId)%}
     {% set status = 'unfollow' %}
     {% set text = 'Following -' %}
 {% endif %}
@@ -68,7 +72,7 @@
                 {% if _User.isGuest() %}
                 <a href="javascript:void(0)" class="btn btn-black follow forceLoginModal">Follow +</a>
                 {% else %}
-                    <a href="javascript:void(0)" class="btn btn-black follow followArticleBtn" data-guid="{{article.blog['guid']}}" data-status="{{status}}">{{text}}</a>
+                    <a href="javascript:void(0)" class="btn btn-black follow followUser" data-guid="{{article.createdBy['guid']}}" data-status="{{status}}">{{text}}</a>
                 {% endif%}
 
             </div>
@@ -88,11 +92,6 @@
 
             </div>
 
-            <div class="article-icons col-sm-12">
-                <a href="#"><span class="icon icon-add"></span></a>
-                <a href="#"><span class="icon icon-heart"></span></a>
-                <a href="#"><span class="icon icon-tag"></span></a>
-            </div><!--article-icons-->
        
        </article>
     </div><!--page-content-->

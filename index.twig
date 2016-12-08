@@ -37,8 +37,10 @@
             </div>
             <!-- Add Pagination -->
             <div class="container">
+
                 <div class="custom-pagination">
-             
+                    <h2 class="top-stories">TOP STORIES</h2>
+
                     {% if articles[0] %}
                         {% set articleImg = articles[0].articleId > 0 ? _Media.getMediaUrl(articles[0].featuredMedia,50, 50, {'crop': 'fill', 'gravity': 'faces'} ) : articles[0].social.media['path'] %}
                         {% set articleText = articles[0].articleId > 0 ? Helper.htmlToText(articles[0].title, -1) | raw | escape('html') : Helper.htmlToText(articles[0].social.content, -1) | raw | escape('html') %}
@@ -123,7 +125,7 @@
             <div class="col-md-3 col-sm-12">
                 <aside class="left-border">
                     <section class="aap-news">
-                        <h2>AAP BREAKING NEWS</h2>
+                        <h2>AAP<br />BREAKING<br />NEWS</h2>
                         {% for i in 0..4 %}
                             {% if articles[i] %}
                                 {{this.render('partials/_sidebar-article.twig', {article: sidePanelfeed.articles[i]}) | raw}}
@@ -159,7 +161,15 @@
                 <div class="col-sm-4">
                     <img src="{{networkData.templatePath}}/static/images/ser.png" alt="ALT">
                 </div><!--col-sm-4-->
-                <div class="col-sm-4">
+                
+                {% if popularArticles|length > 0 %}
+                    {% for i in 0..1 %}
+                        {{this.render('partials/_single-article.twig', {article: popularArticles[i], 'position': (i+1), containerClass: 'col-sm-4 card-strip'}) | raw}}
+                    {% endfor %}
+                {% endif %}
+
+
+{#                 <div class="col-sm-4">
                     <article class="card other">
                         <div class="content">
                             <span class="author">Sophie Mckailero  - </span>
@@ -178,7 +188,7 @@
                             <p>Ribus eosanim exero omnit, asnis masioel oto a tempum esciis am aditate et vent latis volorpo renimpo resequi que praernam nred es demquis solorum sequatem incilic ipsaesc imiliasped magnate</p>
                         </div>
                     </article>
-                </div><!--col-sm-4-->
+                </div><!--col-sm-4--> #}
             </div><!--row-->
         </section><!--ser-->
     </div>

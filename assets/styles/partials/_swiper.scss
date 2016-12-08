@@ -45,7 +45,7 @@
     .content{
       width: 1140px;
       margin: 0 auto;
-      padding-top: 145px;
+      padding-top: 280px;
       position: relative;
       z-index: 20;
 
@@ -101,58 +101,66 @@
   }
 
   .container{
-      position: relative;
+    position: relative;
 
-      .custom-pagination {
-        color: #939597;
-        padding: 38px 35px;
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        width: 277px;
-        height: 376px;
-        background-color: #000000;
-        z-index: 10;
+    .custom-pagination {
+      color: #939597;
+      padding: 20px 28px;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 277px;
+      height: 340px;
+      background-color: #000000;
+      z-index: 10;
 
-        @media screen and (max-width: $sm-break){
-          display: none;
+      @media screen and (max-width: $sm-break){
+        display: none;
+      }
+      
+      h2.top-stories {
+          margin:0 0 26px 0;
+          color:white;
+          font-size:  ((18px / $font-size-base) + $font-unit);
+      }
+
+      .pagination-item {
+
+        margin-bottom: 18px;
+        cursor: pointer;
+        time{
+          font-size:  ((11px / $font-size-base) + $font-unit);
         }
 
-        .pagination-item {
-
-          margin-bottom: 27px;
-          cursor: pointer;
-          time{
-            font-size:  ((11px / $font-size-base) + $font-unit);
-          }
-
-          &.active {
+        &.active {
+          color:#fefefe;
+          time {
             color:#fefefe;
-            time {
-              color:#fefefe;
-            }
-            .slide-no {
-              border-bottom: solid 4px #fefefe;
-            }
-
           }
+          .slide-no {
+            border-bottom: solid 4px #fefefe;
+          }
+
+        }
 
 
         .slide-no{
           display: block;
+          position:relative;
+          top:-4px;
           float: left;
           font-size:  ((26px / $font-size-base) + $font-unit);
           border-bottom: solid 4px #939597;
           margin-right: 24px;
         }
 
-        h2{
-          font-size:  ((17px / $font-size-base) + $font-unit);
+        h2 {
+          font-size:  ((16px / $font-size-base) + $font-unit);
           margin-top: 5px;
-          margin-bottom: 5px;
+          margin-bottom: 8px;
           font-weight: 700;
           line-height:1.3em;
-          height:65px;
+          height:44px;
           overflow:hidden;
         }
       }

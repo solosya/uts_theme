@@ -44,7 +44,7 @@
                     <span class="category">{{article.label}}</span>
                     <time datetime="2016-11-16">{{_AppHelper.getDateTimeBasedOnTimezone(publishDate,'SHORT_d_M_Y')}}</time>
                     <h2>{{ articleTitle | raw }}</h2>
-                    <span class="author">{{ article.createdBy['displayName'] | upper }}</span>
+                    <span class="author">{{ article.createdBy['displayName'] }}</span>
                     
                     {% if cardClass != 'instagram no-caption' %}  
                         <p>{{ article.excerpt | raw }}</p>
