@@ -62,6 +62,7 @@
 
             @media screen and (max-width: $sm-break){
                 height:65px;
+                background:orange;
                 font-size:  ((28px / $font-size-base) + $font-unit);
             }
 

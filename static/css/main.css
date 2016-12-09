@@ -8198,6 +8198,7 @@ a.card:hover {
       @media screen and (max-width: 769px) {
         .card-sm .card.other h2 {
           height: 65px;
+          background: orange;
           font-size: 2.15385em; } }
     .card-sm .card.other p {
       max-height: 55px; }
