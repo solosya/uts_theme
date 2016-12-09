@@ -37,8 +37,14 @@
                 position: absolute;
                 top: 0;
             }
+
         }
         
+        h2 {
+            background:pink;
+            text-transform: uppercase;
+        }
+
         .content{
             position: relative;
             z-index: 1;
@@ -48,6 +54,15 @@
             padding-left: 115px;
             padding-right: 115px;
             padding-bottom: 35px;
+
+            @media screen and (max-width: $sm-mobile-break){
+                padding-left: 50px;
+                padding-right: 50px;
+            }
+
+
+
+
 
             time{
                 color: #fefefe;

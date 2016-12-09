@@ -6697,6 +6697,9 @@ body.no_profile .profile_overlay {
   @media screen and (max-width: 992px) {
     .content-block {
       margin-bottom: 106px; } }
+  @media screen and (max-width: 620px) {
+    .content-block {
+      margin-bottom: 50px; } }
   .content-block aside {
     overflow: hidden; }
 
@@ -8192,6 +8195,10 @@ a.card:hover {
     .card-sm .card.other h2 {
       height: 44px;
       overflow: hidden; }
+      @media screen and (max-width: 769px) {
+        .card-sm .card.other h2 {
+          height: 65px;
+          font-size: 2.15385em; } }
     .card-sm .card.other p {
       max-height: 55px; }
     .card-sm .card.other figure {
@@ -8375,6 +8382,9 @@ a.card:hover {
       height: 100%;
       position: absolute;
       top: 0; }
+  .card-md .card h2 {
+    background: pink;
+    text-transform: uppercase; }
   .card-md .card .content {
     position: relative;
     z-index: 1;
@@ -8384,6 +8394,10 @@ a.card:hover {
     padding-left: 115px;
     padding-right: 115px;
     padding-bottom: 35px; }
+    @media screen and (max-width: 490px) {
+      .card-md .card .content {
+        padding-left: 50px;
+        padding-right: 50px; } }
     .card-md .card .content time {
       color: #fefefe; }
     .card-md .card .content .author {
@@ -8728,6 +8742,9 @@ a.card:hover {
 .featured-carousel {
   height: 650px;
   margin-bottom: 130px; }
+  @media screen and (max-width: 769px) {
+    .featured-carousel {
+      margin-bottom: 30px; } }
   .featured-carousel .swiper-container {
     width: 100%;
     height: 100%; }
@@ -9518,6 +9535,9 @@ button.swiper-pagination-bullet {
       font-size: 1.23077em;
       font-weight: 700;
       margin-top: 0; }
+      @media screen and (max-width: 769px) {
+        .aap-news article h3 {
+          font-size: 1.84615em; } }
     .aap-news article figure {
       width: 85px;
       margin-right: 11px;
@@ -9618,7 +9638,7 @@ button.swiper-pagination-bullet {
         width: 93.5%; } }
     @media screen and (max-width: 769px) {
       .subscribe input {
-        width: 75%; } }
+        width: 85%; } }
   .subscribe h3 {
     padding-top: 7px;
     border-top: dotted 1px #939597; }

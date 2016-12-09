@@ -42,6 +42,7 @@
         h2{
             margin-top:5px;
             margin-bottom: 9px;
+
         }
 
         .share-icon{
@@ -58,6 +59,13 @@
             h2 {
                 height:44px;
                 overflow:hidden;
+
+            @media screen and (max-width: $sm-break){
+                height:65px;
+                font-size:  ((28px / $font-size-base) + $font-unit);
+            }
+
+
             }
 
             p {

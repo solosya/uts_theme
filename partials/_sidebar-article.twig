@@ -10,11 +10,12 @@
 {% set publishDate = _AppHelper.getDefaultTimezoneDateTime(article.publishDate) %}
 {% set articleTitle =  titleTruncateLength is defined ? article.title | truncate(titleTruncateLength) : article.title  %}
 
-
-<article>
-    <figure>
-        <img src="{{articleImg}}">
-    </figure>
-    <h3>{{ articleTitle | raw }}</h3>
-    <time datetime="2016-11-16">{{_AppHelper.getDateTimeBasedOnTimezone(publishDate,'SHORT')}}</time>
-</article>
+<div class="">
+	<article>
+	    <figure>
+	        <img src="{{articleImg}}">
+	    </figure>
+	    <h3>{{ articleTitle | raw }}</h3>
+	    <time datetime="2016-11-16">{{_AppHelper.getDateTimeBasedOnTimezone(publishDate,'SHORT')}}</time>
+	</article>
+</div>

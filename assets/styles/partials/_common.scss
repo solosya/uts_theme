@@ -58,6 +58,9 @@
     @media screen and (max-width: $mmd-break){
         margin-bottom: 106px;
     }
+    @media screen and (max-width: $mobile-break){
+        margin-bottom: 50px;
+    }
 
     aside{
         overflow: hidden;
