@@ -8194,7 +8194,8 @@ a.card:hover {
     color: black; }
     .card-sm .card.other h2 {
       height: 44px;
-      overflow: hidden; }
+      overflow: hidden;
+      background: orange; }
       @media screen and (max-width: 769px) {
         .card-sm .card.other h2 {
           height: 65px;
@@ -8384,7 +8385,7 @@ a.card:hover {
       position: absolute;
       top: 0; }
   .card-md .card h2 {
-    background: pink;
+    background: red;
     text-transform: uppercase; }
   .card-md .card .content {
     position: relative;
