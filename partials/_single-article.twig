@@ -42,7 +42,7 @@
 
                 <div class="content">
                     <span class="category">{{article.label}}</span>
-                    <time datetime="2016-11-16">{{_AppHelper.getDateTimeBasedOnTimezone(publishDate,'SHORT_d_M_Y')}}</time>
+                    <time datetime="2016-11-16">{{_AppHelper.getDateTimeBasedOnTimezone(publishDate,'d M Y')}}</time>
                     <h2>{{ articleTitle | raw }}</h2>
                     <span class="author">{{ article.createdBy['displayName'] }}</span>
                     
@@ -108,7 +108,7 @@
                 <div class="content">
                     <span class="category">{{social.source}}</span>
                     <span class="article-icon"></span>
-                    <time datetime="2016-11-16">{{_AppHelper.getDateTimeBasedOnTimezone(social.publishDate,'SHORT_d_M_Y')}}</time>
+                    <time datetime="2016-11-16">{{_AppHelper.getDateTimeBasedOnTimezone(social.publishDate,'d M Y')}}</time>
 {#                     <h2>{{ articleTitle | raw }}</h2>
  #}                    <span class="author">{{ (social.source == _Article.socialArticleSourceTwitter()) ? '@' : ''}}{{ social.user['name'] | lower }}</span>
                     

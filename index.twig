@@ -55,7 +55,7 @@
                              data-article-text="{{ articleText }}">
 
                             <span class="slide-no">01</span>
-                            <time datetime="{{ articles[0].metaPublishDate }}">{{_AppHelper.getDateTimeBasedOnTimezone(articles[0].publishDate, 'SHORT_d_M_Y')}}</time>
+                            <time datetime="{{ articles[0].metaPublishDate }}">{{_AppHelper.getDateTimeBasedOnTimezone(articles[0].publishDate, 'd M Y')}}</time>
                             <h2>{{ articles[0].title }}</h2>
                         </div>
                     {% endif %}
@@ -73,7 +73,7 @@
                              data-article-image="{{ articleImg }}" 
                              data-article-text="{{articleText}}">
                             <span class="slide-no">02</span>
-                            <time datetime="{{ articles[1].metaPublishDate }}">{{_AppHelper.getDateTimeBasedOnTimezone(articles[1].publishDate, 'SHORT_d_M_Y')}}</time>
+                            <time datetime="{{ articles[1].metaPublishDate }}">{{_AppHelper.getDateTimeBasedOnTimezone(articles[1].publishDate, 'd M Y')}}</time>
                             <h2>{{ articles[1].title }}</h2>
                         </div>
                     {% endif %}
@@ -90,7 +90,7 @@
                              data-article-image="{{ articleImg }}" 
                              data-article-text="{{articleText}}">
                             <span class="slide-no">03</span>
-                            <time datetime="{{ articles[2].metaPublishDate }}">{{_AppHelper.getDateTimeBasedOnTimezone(articles[2].publishDate, 'SHORT_d_M_Y')}}</time>
+                            <time datetime="{{ articles[2].metaPublishDate }}">{{_AppHelper.getDateTimeBasedOnTimezone(articles[2].publishDate, 'd M Y')}}</time>
                             <h2>{{ articles[2].title }}</h2>
                         </div>
                     {% endif %}
