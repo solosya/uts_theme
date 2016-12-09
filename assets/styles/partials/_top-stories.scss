@@ -17,7 +17,7 @@
 
     > h2:first-child{
         margin-top: 0px;
-        width: 95px;
+        margin-bottom: 20px;
         @media screen and (max-width: $mmd-break){
             width: 100%;
             padding-left: 15px;
@@ -51,6 +51,7 @@
             font-size: ((14px / $font-size-base) + $font-unit);
             font-weight: 700;
             margin-top: 0;
+
         }
 
         figure{

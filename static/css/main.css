@@ -8753,6 +8753,45 @@ a.card:hover {
     width: 100%;
     background-color: rgba(35, 31, 32, 0.25);
     z-index: 1; }
+  .featured-carousel .btn_overlay {
+    top: 130px;
+    left: 100px; }
+
+.main-featured {
+  height: 568px;
+  margin-bottom: 130px;
+  margin-top: 100px; }
+  .main-featured .swiper-container {
+    width: 100%;
+    height: 100%; }
+  .main-featured .swiper-slide {
+    background-position: center;
+    background-size: cover; }
+  .main-featured .hero-content {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    color: #fefefe;
+    z-index: 20; }
+    .main-featured .hero-content .caption {
+      position: absolute;
+      z-index: 20;
+      bottom: 100px;
+      width: 100%; }
+  .main-featured .overlay {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(35, 31, 32, 0.25);
+    z-index: 1; }
+  .main-featured .btn_overlay {
+    top: 130px;
+    left: 100px; }
+  .main-featured .top-articles {
+    background: #221f20;
+    height: 100%; }
 
 .featured-carousel .card {
   position: relative;
@@ -9511,7 +9550,7 @@ button.swiper-pagination-bullet {
       margin-right: -15px; } }
   .top-stories > h2:first-child {
     margin-top: 0px;
-    width: 95px; }
+    margin-bottom: 20px; }
     @media screen and (max-width: 992px) {
       .top-stories > h2:first-child {
         width: 100%;

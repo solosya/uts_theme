@@ -1,6 +1,7 @@
 {% set networkData = _Network.getNetworkData() %}
 
 {% set blogInfo = _Blog.getBlog() %}
+{{ set(this, 'title', blogInfo.title) }}
 
 
 {{this.registerJs("HomeController.listing();")}}
