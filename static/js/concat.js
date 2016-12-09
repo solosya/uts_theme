@@ -32339,7 +32339,7 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
 
     //Follow/Unfollow a Blog
     $.fn.followBlog = function (options) {
-        console.log('follow blog yo!!!');
+
         var defaults = {
             channel : 0,
             onSuccess: function () {},
@@ -32352,7 +32352,6 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
         return this.each(function () {
             var elem = $(this);
             $(elem).click(function (e) {
-                console.log('clicked follow!!');
                 e.preventDefault();
                 var obj = $(this);
                 var blogGuid = $(this).data('guid');
@@ -32419,8 +32418,7 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
                 var userGuid = $(this).data('guid');
                 var status = $(this).data('status');
                 var obj = $(this);
-                console.log(userGuid);
-                console.log(status);
+                
                 if(typeof userGuid === 'undefined' || userGuid === '') {
                     return false;
                 }
@@ -32430,8 +32428,7 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
 
                 var state = (status === 'unfollow') ? 'follow' : 'unfollow';
                 var csrfToken = $('meta[name="csrf-token"]').attr("content");
-                console.log(csrfToken);
-                console.log(_appJsConfig.baseHttpPath + '/user/follow-user');
+                
                 $.ajax({
                     type: 'POST',
                     url: _appJsConfig.baseHttpPath + '/user/follow-user',
@@ -32552,6 +32549,7 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
                 $modal.tabIndex = -1;
                 $modal.setAttribute("role", "dialog");
                 $modal.setAttribute("aria-labelledby", "myModalLabel");
+                
                 document.body.appendChild($modal);
 
                 $('body').modalmanager('loading');
