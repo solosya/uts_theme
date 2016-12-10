@@ -39,6 +39,13 @@
     background-image: url(../icons/arrow-btn.svg);
     width: 42px;
     height: 42px;
+    vertical-align:top;
+
+    @media screen and (max-width: $sm-break){
+        width: 52px;
+        height: 52px;
+    }
+
 }
 
 .icon-submit-blk{

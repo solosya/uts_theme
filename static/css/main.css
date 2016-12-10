@@ -6681,7 +6681,12 @@ body.no_profile .profile_overlay {
 .icon-submit {
   background-image: url(../icons/arrow-btn.svg);
   width: 42px;
-  height: 42px; }
+  height: 42px;
+  vertical-align: top; }
+  @media screen and (max-width: 769px) {
+    .icon-submit {
+      width: 52px;
+      height: 52px; } }
 
 .icon-submit-blk {
   background-image: url(../icons/arrow-btn-blk.svg); }
@@ -7979,6 +7984,9 @@ a.card:hover {
     text-transform: uppercase;
     padding: 4px 5px;
     margin-bottom: 17px; }
+    @media screen and (max-width: 769px) {
+      .card .category {
+        padding: 9px 15px; } }
   .card h2 {
     margin-bottom: 1.07692em;
     font-size: 1.53846em; }
@@ -8162,6 +8170,13 @@ a.card:hover {
   padding-right: 12px;
   margin-bottom: 30px;
   color: #fefefe; }
+  @media screen and (max-width: 769px) {
+    .card-sm .card {
+      min-height: 570px;
+      max-height: 570px; } }
+  @media screen and (max-width: 769px) {
+    .card-sm .card time {
+      font-size: 1.07692em; } }
   .card-sm .card p {
     max-height: 110px;
     overflow: hidden;
@@ -8175,6 +8190,9 @@ a.card:hover {
     margin-right: -12px;
     margin-bottom: 32.5px;
     height: 172px; }
+    @media screen and (max-width: 769px) {
+      .card-sm .card figure {
+        height: 300px; } }
   .card-sm .card .category {
     position: absolute;
     top: 0;
@@ -8192,17 +8210,26 @@ a.card:hover {
     padding-right: 0;
     background-color: transparent;
     color: black; }
+    @media screen and (max-width: 769px) {
+      .card-sm .card.other {
+        border-bottom: solid 8px #231f20; } }
     .card-sm .card.other h2 {
       height: 44px;
-      overflow: hidden;
-      background: orange; }
+      overflow: hidden; }
       @media screen and (max-width: 769px) {
         .card-sm .card.other h2 {
+          margin-top: 10px;
+          margin-bottom: 20px;
           height: 65px;
-          background: orange;
-          font-size: 2.15385em; } }
+          font-size: 2.30769em; } }
+    @media screen and (max-width: 769px) {
+      .card-sm .card.other .author {
+        padding: 8px; } }
     .card-sm .card.other p {
       max-height: 55px; }
+      @media screen and (max-width: 769px) {
+        .card-sm .card.other p {
+          font-size: 1.38462em; } }
     .card-sm .card.other figure {
       margin-left: 0;
       margin-right: 0; }
@@ -8360,6 +8387,9 @@ a.card:hover {
   overflow: hidden;
   margin-bottom: 30px;
   color: #fefefe; }
+  @media screen and (max-width: 490px) {
+    .card-md .card {
+      height: 300px; } }
   .card-md .card .article-icon {
     width: 38px;
     height: 37px; }
@@ -8385,7 +8415,6 @@ a.card:hover {
       position: absolute;
       top: 0; }
   .card-md .card h2 {
-    background: red;
     text-transform: uppercase; }
   .card-md .card .content {
     position: relative;
@@ -8398,8 +8427,8 @@ a.card:hover {
     padding-bottom: 35px; }
     @media screen and (max-width: 490px) {
       .card-md .card .content {
-        padding-left: 50px;
-        padding-right: 50px; } }
+        padding-left: 20px;
+        padding-right: 20px; } }
     .card-md .card .content time {
       color: #fefefe; }
     .card-md .card .content .author {
@@ -8476,8 +8505,6 @@ a.card:hover {
   overflow: hidden;
   margin-bottom: 30px;
   color: #fefefe; }
-  .card-lg .card h2 {
-    height: 120px; }
   .card-lg .card .article-icon {
     width: 38px;
     height: 37px; }
@@ -8523,18 +8550,33 @@ a.card:hover {
       font-size: 3.69231em;
       width: 470px;
       margin-bottom: 25px;
-      margin-top: 0; }
+      margin-top: 0;
+      height: 120px;
+      overflow: hidden; }
+      @media screen and (max-width: 769px) {
+        .card-lg .card .content h2 {
+          line-height: 1.5em;
+          width: none;
+          height: 150px;
+          margin-bottom: 10px; } }
     .card-lg .card .content .author {
       background-color: #ffff00;
       color: #1a1818; }
+      @media screen and (max-width: 769px) {
+        .card-lg .card .content .author {
+          padding: 9px 12px;
+          margin-bottom: 30px; } }
     .card-lg .card .content p {
       font-size: 1.23077em;
       font-weight: 900;
       margin-bottom: 29px;
-      width: 600px; }
+      width: 600px;
+      overflow: hidden; }
       @media screen and (max-width: 769px) {
         .card-lg .card .content p {
-          width: 100%; } }
+          height: 120px;
+          width: 100%;
+          font-size: 1.53846em; } }
   .card-lg .card.twitter .content p {
     font-size: 28px;
     font-weight: normal; }
@@ -8553,25 +8595,47 @@ a.card:hover {
   padding-right: 12px;
   margin-bottom: 30px;
   color: #fefefe; }
+  @media screen and (max-width: 769px) {
+    .card-strip .card {
+      min-height: 350px;
+      max-height: 350px; } }
   .card-strip .card p {
     max-height: 65px;
     overflow: hidden;
     font-weight: 500;
-    line-height: 1.5em; }
+    line-height: 1.5em;
+    color: #464648; }
+    @media screen and (max-width: 769px) {
+      .card-strip .card p {
+        margin-top: 20px;
+        height: 170px;
+        max-height: 170px;
+        line-height: 1.8em;
+        font-size: 1.46154em; } }
   .card-strip .card article > .other-content:first-child {
     margin-bottom: 26px; }
   .card-strip .card time {
+    font-family: "KeplerStd";
+    display: inline-block;
     font-weight: 300;
-    margin-top: 15px; }
+    margin-top: 15px;
+    color: #808285; }
+    @media screen and (max-width: 769px) {
+      .card-strip .card time {
+        font-size: 1.53846em; } }
   .card-strip .card .other-content {
     margin-bottom: 5px; }
   .card-strip .card .author {
+    font-family: "KeplerStd";
     padding: 0;
     background: none;
     color: #808285;
     font-weight: 300;
-    margin-bottom: 10px;
     text-transform: none; }
+    @media screen and (max-width: 769px) {
+      .card-strip .card .author {
+        margin-bottom: 0;
+        font-size: 1.53846em; } }
   .card-strip .card figure {
     disply: none; }
   .card-strip .card .category {
@@ -8579,7 +8643,14 @@ a.card:hover {
   .card-strip .card h2 {
     margin-top: 5px;
     margin-bottom: 9px;
-    line-height: 1.2em; }
+    line-height: 1.2em;
+    height: 48px;
+    overflow: hidden; }
+    @media screen and (max-width: 769px) {
+      .card-strip .card h2 {
+        margin-top: 0;
+        height: 120px;
+        font-size: 2.61538em; } }
   .card-strip .card .share-icon {
     display: none; }
   .card-strip .card.other {
@@ -8587,9 +8658,6 @@ a.card:hover {
     padding-right: 0;
     background-color: transparent;
     color: black; }
-    .card-strip .card.other h2 {
-      height: 48px;
-      overflow: hidden; }
     .card-strip .card.other figure {
       margin-left: 0;
       margin-right: 0; }
@@ -9515,12 +9583,14 @@ button.swiper-pagination-bullet {
     width: 95px; }
     @media screen and (max-width: 992px) {
       .aap-news > h2:first-child {
+        font-size: 2.30769em;
+        margin-bottom: 30px;
         padding-left: 15px;
         padding-right: 15px; } }
     @media screen and (max-width: 490px) {
       .aap-news > h2:first-child {
         width: 100%;
-        margin-bottom: 15px; } }
+        margin-bottom: 30px; } }
   .aap-news article {
     display: inline-block;
     margin-bottom: 23.6px; }
@@ -9539,13 +9609,22 @@ button.swiper-pagination-bullet {
       margin-top: 0; }
       @media screen and (max-width: 769px) {
         .aap-news article h3 {
+          margin-bottom: 30px;
           font-size: 1.84615em; } }
     .aap-news article figure {
       width: 85px;
       margin-right: 11px;
       float: left; }
+      @media screen and (max-width: 769px) {
+        .aap-news article figure {
+          width: 100px;
+          height: 100px; } }
       .aap-news article figure img {
         max-width: 100%; }
+        @media screen and (max-width: 769px) {
+          .aap-news article figure img {
+            width: 100%;
+            height: 100%; } }
     .aap-news article time {
       font-size: 11px;
       font-weight: 600;
@@ -9579,11 +9658,16 @@ button.swiper-pagination-bullet {
       .top-stories > h2:first-child {
         width: 100%;
         padding-left: 15px; } }
+    @media screen and (max-width: 769px) {
+      .top-stories > h2:first-child {
+        font-size: 2.30769em;
+        margin-bottom: 30px; } }
   .top-stories article {
     display: inline-block;
     margin-bottom: 23.6px;
     border-bottom: solid 1px #e5e6e7;
-    padding-bottom: 12px; }
+    padding-bottom: 12px;
+    position: relative; }
     @media screen and (max-width: 992px) {
       .top-stories article {
         width: 50%;
@@ -9599,22 +9683,36 @@ button.swiper-pagination-bullet {
         margin-left: 15px;
         padding-left: 0;
         margin-right: 15px;
+        height: 120px;
         padding-right: 0;
         border-bottom: solid 1px #e5e6e7; } }
     .top-stories article h3 {
       font-size: 1.07692em;
       font-weight: 700;
       margin-top: 0; }
+      @media screen and (max-width: 769px) {
+        .top-stories article h3 {
+          font-size: 2em; } }
     .top-stories article figure {
       width: 50px;
       margin-right: 14px;
       float: left; }
+      @media screen and (max-width: 769px) {
+        .top-stories article figure {
+          width: 100px;
+          height: 100px; } }
       .top-stories article figure img {
+        width: 100%;
         max-width: 100%; }
     .top-stories article time {
+      position: absolute;
+      bottom: 10px;
       font-size: 11px;
       font-weight: 600;
       color: #6c6e71; }
+      @media screen and (max-width: 769px) {
+        .top-stories article time {
+          font-size: 1.23077em; } }
   .top-stories a {
     font-size: 13px;
     font-weight: 500;
@@ -9627,6 +9725,7 @@ button.swiper-pagination-bullet {
     .subscribe {
       padding-left: 0; } }
   .subscribe input {
+    vertical-align: top;
     border: 2px solid #231f20;
     border-radius: 0;
     width: 80%;
@@ -9640,23 +9739,43 @@ button.swiper-pagination-bullet {
         width: 93.5%; } }
     @media screen and (max-width: 769px) {
       .subscribe input {
+        border: 4px solid #231f20;
+        font-size: 1.53846em;
+        height: 52px;
         width: 85%; } }
   .subscribe h3 {
     padding-top: 7px;
     border-top: dotted 1px #939597; }
+    @media screen and (max-width: 769px) {
+      .subscribe h3 {
+        margin: 30px 0;
+        padding-top: 20px;
+        font-size: 2.30769em; } }
   .subscribe .btn {
     padding: 0;
     border: 0;
     position: relative;
     left: -5px; }
 
+@media screen and (max-width: 769px) {
+  h5.ser-h5 {
+    color: #464648;
+    font-size: 2.76923em; } }
+
 .ser {
   padding-top: 37px;
   padding-bottom: 40px;
   border-top: solid 3px #d0d2d3;
   border-bottom: solid 3px #d0d2d3; }
+  @media screen and (max-width: 769px) {
+    .ser {
+      padding-top: 20px;
+      padding-bottom: 10px; } }
   .ser img {
     max-width: 100%; }
+    @media screen and (max-width: 769px) {
+      .ser img {
+        margin-bottom: 25px; } }
   .ser article.card {
     background-color: transparent; }
     .ser article.card.other {
@@ -9686,6 +9805,9 @@ button.swiper-pagination-bullet {
   @media screen and (max-width: 992px) {
     .page-hero {
       margin-bottom: 93px; } }
+  @media screen and (max-width: 769px) {
+    .page-hero {
+      margin-bottom: 40px; } }
   .page-hero .image-wrapper {
     width: 100%;
     height: 100%;
@@ -9785,6 +9907,9 @@ button.swiper-pagination-bullet {
     .page-content .social-link-sidebar {
       margin-top: 0;
       text-align: center; } }
+  @media screen and (max-width: 769px) {
+    .page-content .social-link-sidebar {
+      border-right: none; } }
   .page-content .social-link-sidebar li {
     margin-bottom: 18px; }
     @media screen and (max-width: 992px) {
@@ -9815,18 +9940,35 @@ button.swiper-pagination-bullet {
 
 .related-posts {
   margin-bottom: 133px; }
+  .related-posts > div {
+    width: 950px; }
+    @media screen and (max-width: 769px) {
+      .related-posts > div {
+        width: auto; } }
   .related-posts h2 {
     margin-bottom: 64px;
     font-size: 2.46154em;
     font-weight: 900;
     color: #1a1818; }
-  .related-posts .card h2 {
+  @media screen and (max-width: 769px) {
+    .related-posts .card-sm .card {
+      height: 610px;
+      max-height: 610px; } }
+  .related-posts .card-sm .card h2 {
     font-size: 1.53846em;
     line-height: 1.46154em;
     text-transform: uppercase;
-    height: 58px !important; }
-  .related-posts .card p {
+    height: 58px; }
+    @media screen and (max-width: 769px) {
+      .related-posts .card-sm .card h2 {
+        font-size: 2.30769em;
+        height: 90px; } }
+  .related-posts .card-sm .card p {
     line-height: 1.69231em; }
+    @media screen and (max-width: 769px) {
+      .related-posts .card-sm .card p {
+        max-height: 70px;
+        height: 70px; } }
 
 .blog-page-hero {
   height: 658px;

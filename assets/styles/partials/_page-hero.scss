@@ -6,6 +6,12 @@
     @media screen and (max-width: $mmd-break){
         margin-bottom:93px;
     }
+
+    @media screen and (max-width: $sm-break) {
+        margin-bottom:40px;
+    }
+    
+
     .image-wrapper{
         width: 100%;
         height: 100%;

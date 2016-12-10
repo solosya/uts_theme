@@ -97,7 +97,7 @@
     </div><!--page-content-->
 
     <section class="related-posts">
-        <div class="container" style="width:950px">
+        <div class="container">
             <div class="col-sm-12 text-center">
                 <h2>YOU MIGHT ALSO LIKE...</h2>
             </div>
@@ -107,7 +107,7 @@
                 {% set popularArticles = _Article.getPopularArticles({ limit: 3, excludeArticleId : article.id }) %}
                 {% if popularArticles|length > 0 %}
                     {% for article in popularArticles %}
-                        {{this.render('partials/_single-article.twig', {article: article, containerClass: 'col-sm-4 card-sm', cardClass : 'card__news'}) | raw}}
+                        {{this.render('partials/_single-article.twig', {article: article, containerClass: 'col-sm-12 col-md-4 card-sm', cardClass : 'card__news'}) | raw}}
                     {% endfor %}
                 {% else %}
                     <p class="nodata text-center">No data found.</p>

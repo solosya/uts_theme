@@ -22,6 +22,10 @@
             width: 100%;
             padding-left: 15px;
         }
+        @media screen and (max-width: $sm-break) {
+            font-size:  ((30px / $font-size-base) + $font-unit);
+            margin-bottom: 30px;
+        }
     }
 
     article{
@@ -29,6 +33,7 @@
         margin-bottom: 23.6px;
         border-bottom: solid 1px #e5e6e7;
         padding-bottom: 12px;
+        position:relative;
 
         @media screen and (max-width: $mmd-break){
             width: 50%;
@@ -44,6 +49,7 @@
             margin-left: 15px;
             padding-left: 0;
             margin-right: 15px;
+            height: 120px;
             padding-right: 0;
             border-bottom: solid 1px #e5e6e7;
         }
@@ -51,7 +57,10 @@
             font-size: ((14px / $font-size-base) + $font-unit);
             font-weight: 700;
             margin-top: 0;
+            @media screen and (max-width: $sm-break) {
+                font-size: ((26px / $font-size-base) + $font-unit);
 
+            }
         }
 
         figure{
@@ -59,15 +68,27 @@
             margin-right: 14px;
             float: left;
 
+            @media screen and (max-width: $sm-break){
+                width:100px;
+                height:100px;
+            }
+
+
             img{
+                width:100%;
                 max-width: 100%;
             }
         }
 
         time{
+            position:absolute;
+            bottom:10px;
             font-size: 11px;
             font-weight: 600;
             color: #6c6e71;
+            @media screen and (max-width: $sm-break) {
+                font-size: ((16px / $font-size-base) + $font-unit);
+            }
         }
     }
 

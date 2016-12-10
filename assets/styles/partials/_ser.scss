@@ -1,11 +1,28 @@
+h5.ser-h5 {
+    @media screen and (max-width: $sm-break) {
+        color: #464648;
+        font-size:  ((36px / $font-size-base) + $font-unit);
+    }
+}
+
+
+
 .ser{
     padding-top: 37px;
     padding-bottom: 40px;
     border-top: solid 3px #d0d2d3;
     border-bottom: solid 3px #d0d2d3;
+    
+    @media screen and (max-width: $sm-break) {
+        padding-top: 20px;
+        padding-bottom: 10px;
+    }
 
     img{
         max-width: 100%;
+        @media screen and (max-width: $sm-break) {
+            margin-bottom:25px;
+        }
     }
 
     article.card{

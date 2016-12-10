@@ -6,10 +6,6 @@
         margin-bottom: 30px;
         color: #fefefe;
 
-        h2 {
-            height:120px;
-        }
-
         .article-icon{
             width: 38px;
             height: 37px;
@@ -68,20 +64,39 @@
                 width: 470px;
                 margin-bottom: 25px;
                 margin-top: 0;
+                height:120px;
+                overflow:hidden;
+
+
+                @media screen and (max-width: $sm-break) {
+                    line-height:1.5em;
+                    width:none;
+                    height:150px;
+                    margin-bottom: 10px;
+                }
             }
 
             .author{
                 background-color: #ffff00;
                 color: #1a1818;
+                @media screen and (max-width: $sm-break) {
+                    padding:9px 12px;
+                    margin-bottom:30px;
+                }
             }
+        
 
             p{
                 font-size:  ((16px / $font-size-base) + $font-unit);
                 font-weight: 900;
                 margin-bottom: 29px;
                 width: 600px;
+                overflow:hidden;
+
                 @media screen and (max-width: $sm-break){
+                    height:120px;
                     width: 100%;
+                    font-size:  ((20px / $font-size-base) + $font-unit);
                 }
             }
         }

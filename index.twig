@@ -140,7 +140,7 @@
                         <h3>Get Reportage direct to your inbox</h3>
                         <form method="get" id="subscribe-form" action="#">
                             <label for="header-search" class="assistive-text sr-only">Search</label>
-                            <div class="input-group">
+                            <div class="input-group subscribe-group">
                                 <input type="email" class="field form-control" name="email" placeholder="Email" required="">
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit" id="searchsubmit">
@@ -156,7 +156,7 @@
     </section>
 
     <div class="container">
-        <h5>2SER</h5>
+        <h5 class="ser-h5">2SER</h5>
         <section class="content-block ser">
             <div class="row">
                 <div class="col-sm-4">
@@ -167,7 +167,7 @@
                 
                 {% if popularArticles|length > 0 %}
                     {% for i in 0..1 %}
-                        {{this.render('partials/_single-article.twig', {article: popularArticles[i], 'position': (i+1), containerClass: 'col-sm-4 card-strip'}) | raw}}
+                        {{this.render('partials/_2ser-article.twig', {article: popularArticles[i], 'position': (i+1), containerClass: 'col-sm-4 card-strip'}) | raw}}
                     {% endfor %}
                 {% endif %}
 
@@ -187,7 +187,7 @@
             <div class="col-md-3 col-sm-12">
                 <aside class="right-border">
                     <section class="top-stories">
-                        <h2>MOST VIEWED STORIES</h2>
+                        <h2>MOST VIEWED<br /> STORIES</h2>
 
                         {% if popularArticles|length > 0 %}
                             {% for article in popularArticles %}

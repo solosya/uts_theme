@@ -61,6 +61,10 @@ a.card:hover {
         text-transform: uppercase;
         padding: 4px 5px;
         margin-bottom: 17px;
+
+        @media screen and (max-width: $sm-break){
+            padding:9px 15px;
+        }
     }
 
     h2{

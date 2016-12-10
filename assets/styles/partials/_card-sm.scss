@@ -9,6 +9,18 @@
         margin-bottom: 30px;
         color:#fefefe;
         
+        @media screen and (max-width: $sm-break){
+            min-height: 570px;
+            max-height:570px;
+        }
+
+
+        time {
+            @media screen and (max-width: $sm-break){
+                font-size:  ((14px / $font-size-base) + $font-unit);
+            }
+        }
+
         p {
             max-height:110px;
             overflow: hidden;
@@ -29,6 +41,12 @@
             margin-right: -12px;
             margin-bottom: 32.5px;
             height: 172px;
+        
+            @media screen and (max-width: $sm-break){
+                height: 300px;
+            }
+
+
         }
 
         .category{
@@ -37,12 +55,12 @@
             right: 0;
             background-color: $brand-yellow;
             color: #1a1818;
+
         }
 
         h2{
             margin-top:5px;
             margin-bottom: 9px;
-
         }
 
         .share-icon{
@@ -56,22 +74,37 @@
             background-color: transparent;
             color:black;
 
+            @media screen and (max-width: $sm-break){
+                border-bottom: solid 8px #231f20;
+            }
+
+
+
             h2 {
                 height:44px;
                 overflow:hidden;
-                background:orange;
 
-            @media screen and (max-width: $sm-break){
-                height:65px;
-                background:orange;
-                font-size:  ((28px / $font-size-base) + $font-unit);
+                @media screen and (max-width: $sm-break){
+                    margin-top:10px;
+                    margin-bottom:20px;
+                    height:65px;
+                    font-size:  ((30px / $font-size-base) + $font-unit);
+                }
             }
 
-
+            .author{
+                @media screen and (max-width: $sm-break){
+                    padding:8px;
+                }
             }
+
 
             p {
                 max-height:55px;
+
+                @media screen and (max-width: $sm-break){
+                    font-size:  ((18px / $font-size-base) + $font-unit);
+                }
             }
 
             figure{

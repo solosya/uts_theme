@@ -84,6 +84,11 @@
             margin-top: 0;
             text-align: center;
         }
+        @media screen and (max-width: $sm-break) {
+            border-right: none;
+        }
+
+
         li{
             margin-bottom: 18px;
             @media screen and (max-width: $mmd-break){
