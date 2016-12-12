@@ -8,12 +8,19 @@
         font-size:  ((48px / $font-size-base) + $font-unit);
         font-weight:600;
         margin-bottom:30px;
+        @media screen and (max-width: $sm-break) {
+            margin-bottom:0;
+        }
 	}
 
 
     .follow-box {
         position:relative;
         text-align:right;
+        @media screen and (max-width: $sm-break) {
+            text-align:left;
+            padding-bottom: 20px;
+        }
     }
 
     .follow {
@@ -22,6 +29,11 @@
         padding-top: 10px;
         height:40px;
         width:180px;
+
+        @media screen and (max-width: $sm-break) {
+            margin-top:15px;
+        }
+
     }
 
 

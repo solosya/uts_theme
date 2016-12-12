@@ -48,6 +48,10 @@
         
         h2 {
             text-transform: uppercase;
+            @media screen and (max-width: $mobile-break) {
+                line-height:1.3em;
+                font-size:  ((27px / $font-size-base) + $font-unit);
+            }
         }
 
         .content{
@@ -61,8 +65,7 @@
             padding-bottom: 35px;
 
             @media screen and (max-width: $sm-mobile-break){
-                padding-left: 20px;
-                padding-right: 20px;
+                padding: 80px 20px 35px 20px;
             }
 
 
@@ -76,18 +79,21 @@
             .author{
                 background-color: transparent;
                 color: #fefefe;
+            
+                &:before{
+                    content: '';
+                    width: 85px;
+                    height: 6px;
+                    background-color: #fefefe;
+                    // margin-top: 15px;
+                    margin-bottom:5px;
+                    display: block;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+
             }
 
-            &:after{
-                content: '';
-                width: 85px;
-                height: 6px;
-                background-color: #fefefe;
-                margin-top: 35px;
-                display: block;
-                margin-left: auto;
-                margin-right: auto;
-            }
 
             p{
                 height: 50px;

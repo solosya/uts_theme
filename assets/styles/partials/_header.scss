@@ -48,6 +48,31 @@
         @media screen and (max-width: $mobile-break){
             padding-left: 0;
         }
+
+        &::after {
+            color:white;
+            font-size: ((12px / $font-size-base) + $font-unit);
+            display:inline-block;
+            background:black;
+            padding:10px;
+
+            @media screen and (max-width: $sm-mobile-break) {
+                content: "sm-mobile-break 0 - 490px";
+            }
+            @media screen and (min-width: $sm-mobile-break) and (max-width: $mobile-break){
+                content: "mobile-break 491px - 620px";
+            }
+            @media screen and (min-width: $mobile-break) and (max-width: $sm-break){
+                content: "sm-break 621px - 769px";
+            }
+            @media screen and (min-width: $sm-break) and (max-width: $mmd-break){
+                content: "mmd-break 770px - 992px";
+            }
+            @media screen and (min-width: $mmd-break) and (max-width: $md-break){
+                content: "md-break 992px - 1200px";
+            }
+
+        }
     }
 
     .navbar-brand{
@@ -66,6 +91,9 @@
             width: auto;
             display: inline-block;
             float: left;
+            @media screen and (max-width: $mobile-break) {
+                display:none;
+            }
         }
 
         div.reportage {
@@ -76,6 +104,15 @@
             background-size:contain;
             background-image: url(../images/Desktopsite_1.svg);
             background-repeat:no-repeat;
+            
+            @media screen and (max-width: $mobile-break) {
+                margin-left:5px;
+                height:60px;
+                width:180px;
+                background-image: url(../images/Mobilesite_1.svg);
+            }
+
+
         }
 
 
@@ -164,6 +201,14 @@
             }
         }
 
+        img{
+            @media screen and (max-width: $mobile-break) {
+                display:none;
+            }
+        }
+
+
+
         div.reportage {
             margin-top:20px;
             height:40px;
@@ -172,6 +217,14 @@
             background-size:contain;
             background-image: url(../images/Desktopsite_2.svg);
             background-repeat:no-repeat;
+        
+            @media screen and (max-width: $mobile-break) {
+                margin-top:15px;
+                margin-left:5px;
+                background-image: url(../images/Mobilesite_2.svg);
+            }
+
+
         }
     }
 }

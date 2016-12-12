@@ -22,8 +22,8 @@
     background-image: url(../icons/menu.svg);
     background-size: contain;
     background-repeat: no-repeat;
-    width: 42px;
-    height: 42px;
+    width: 35px;
+    height: 35px;
 
     @media screen and (max-width: 1260px){
         display: block;
@@ -34,7 +34,7 @@
     }
 
     @media screen and (max-width: $mobile-break){
-        top: 23px;
+        top: 40px;
         right: 15px;
         width: 36px;
         height: 36px;
@@ -222,7 +222,7 @@ ul.menu > li > ul.sub-menu.breaking-news-menu > li > ul.sub-sub-menu > li{
         top: 115px;
         right: 15px;
         bottom: 0;
-        background: rgba(26, 26, 26, 0.9);
+        background: rgba(26, 26, 26, 1);
         padding: 15px 25px;
     }
     .sb-custom-menu > ul > li {
