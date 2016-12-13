@@ -169,7 +169,7 @@
     {{ content | raw}}
 
 
-    {{ this.render('partials/footer.twig', {network : networkData}) | raw }}
+    {{ this.render('partials/footer.twig', {network : networkData, blog: blogData }) | raw }}
 
     
     {{ this.render('partials/_javascript.twig') | raw }}
