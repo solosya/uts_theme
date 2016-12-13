@@ -17,11 +17,11 @@
     {% endif %}
 {% endfor %}
 
-{% set 2serPanel =  "2ser" %}
-{% set 2serPanelfeed = [] %}
+{% set two_serPanel =  "2ser" %}
+{% set two_serPanelfeed = [] %}
 {% for blog in networkData.networkBlogs %}
-    {% if blog.title == 2serPanel %}
-        {% set 2serPanelfeed = _Blog.getBlogFeed({'limit': 5, 'offset': 0, 'blogid':blog.guid}) %}
+    {% if blog.title == two_serPanel %}
+        {% set two_serPanelfeed = _Blog.getBlogFeed({'limit': 5, 'offset': 0, 'blogid':blog.guid}) %}
     {% endif %}
 {% endfor %}
 
@@ -174,9 +174,9 @@
                     </a>
                 </div><!--col-sm-4-->
                 
-                {% if 2serPanelfeed|length > 0 %}
+                {% if two_serPanelfeed|length > 0 %}
                     {% for i in 0..1 %}
-                        {{this.render('partials/_2ser-article.twig', {article: 2serPanelfeed[i], 'position': (i+1), containerClass: 'col-sm-4 card-strip'}) | raw}}
+                        {{this.render('partials/_2ser-article.twig', {article: two_serPanelfeed[i], 'position': (i+1), containerClass: 'col-sm-4 card-strip'}) | raw}}
                     {% endfor %}
                 {% endif %}
 
