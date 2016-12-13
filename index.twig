@@ -20,11 +20,15 @@
 {% set two_serPanel =  "2SER" %}
 {% set two_serPanelfeed = [] %}
 {% for blog in networkData.networkBlogs %}
+    {{ dump(blog.title) }}
     {% if blog.title == two_serPanel %}
+        {{ dump(two_serPanel) }}
         {% set two_serPanelfeed = _Blog.getBlogFeed({'limit': 5, 'offset': 0, 'blogid':blog.guid}) %}
+        {{ dump(two_serPanelfeed) }}
+
     {% endif %}
 {% endfor %}
-
+{{ dump(two_serPanelFeed) }}
 
 {% set popularArticles = _Article.getPopularArticles({ limit: 10, sortBy: 'VIEWS' }) %}
 
@@ -137,7 +141,7 @@
                     <section class="aap-news">
                         <h2>AAP<br />BREAKING<br />NEWS</h2>
                         {% for i in 0..4 %}
-                            {% if articles[i] %}
+                            {% if sidePanelfeed.articles[i] %}
                                 {{this.render('partials/_sidebar-article.twig', {article: sidePanelfeed.articles[i]}) | raw}}
                             {% endif %}
                         {% endfor %}
@@ -176,7 +180,7 @@
                 
                 {% if two_serPanelfeed|length > 0 %}
                     {% for i in 0..1 %}
-                        {{this.render('partials/_2ser-article.twig', {article: two_serPanelfeed[i], 'position': (i+1), containerClass: 'col-sm-4 card-strip'}) | raw}}
+                        {{this.render('partials/_2ser-article.twig', {article: two_serPanelfeed.articles[i], 'position': (i+1), containerClass: 'col-sm-4 card-strip'}) | raw}}
                     {% endfor %}
                 {% endif %}
 
