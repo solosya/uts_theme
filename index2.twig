@@ -24,18 +24,21 @@
 
 
     <section class="main-featured">
-        <div class="row">
-            <div class="feature col-sm-7">
+        <div class="row feature-row">
+
+            <div class="feature col-sm-12 col-md-7">
                 {% if articles[0] %}                                                                
-                    {{this.render('partials/_single-article.twig', {article: articles[articleCount], position: 1, containerClass: 'col-sm-8 swiper-slide'}) | raw}}
+                    {{this.render('partials/_single-article.twig', {article: articles[articleCount], position: 1, containerClass: 'swiper-slide'}) | raw}}
                     {% set articleCount = articleCount + 1 %}
                 {% endif %}
             </div>
                 <!-- Add Pagination -->
-            <div class="top-articles col-sm-5">
+            <div class="top-articles col-sm-12 col-md-5">
+                <h3>TOP STORIES</h3>
+
                 {% for i in 1..3 %}
                     {% if articles[i] %}                                                                
-                        {{this.render('partials/_sidebar-article.twig', {article: articles[articleCount], position: 1}) | raw}}
+                        {{this.render('partials/_single-article.twig', {article: articles[articleCount], position: 1}) | raw}}
                         {% set articleCount = articleCount + 1 %}
                     {% endif %}
                 {% endfor %}
@@ -45,6 +48,7 @@
 
     <section class="content-block container">
         <div class="row">
+
             <div class="col-md-9 col-sm-12">
                 <div class="row">
                     {% if articles[3] %}

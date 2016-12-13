@@ -21,33 +21,39 @@
 
 
     <section class="page-hero">
-        {% for media in article.media %}
-            <div itemprop="image" itemscope itemtype="https://schema.org/ImageObject" 
-                 class="image-wrapper news__slide slide lazyload-remove" 
-                 data-thumbnail="{{media.path}}" 
-                 data-original="{{media.path}}" 
-                 style="background-image: url({{media.path}})">
+        <div itemprop="image" itemscope itemtype="https://schema.org/ImageObject" 
+             class="image-wrapper news__slide slide lazyload-remove" 
+             data-thumbnail="{{article.media[0].path}}" 
+             data-original="{{article.media[0].path}}" 
+             style="background-image: url({{article.media[0].path}})">
 
-                <meta itemprop="url" content="{{media.path}}">
-                <meta itemprop="height" content="{{media.height}}">
-                <meta itemprop="width" content="{{media.width}}">
-                {% if media.type == 'video' %} 
-                    {% set mediaUrl = "" %}
-                    {% if media.isSystemVideo == 'TRUE'%}
-                        {% set mediaUrl = _Media.getMediaVideoUrl(media, 0, 0,{resource_type: 'video', format: 'mp4'})  %}
-                    {% endif %}
-                    <a href="javascript:void(0)" itemprop="video" class="video-overlay video-player" data-source="{{media.source}}" data-video-id="{{media.videoId}}" data-url="{{mediaUrl}}" data-poster="{{media.path}}" data-caption="{{article.title | raw}}">
-                       <div class="icons">
-                           <div class="icon"><i class="fa fa-play"></i></div>
-                       </div>
-                    </a>
-              
-                   {% if media.caption | length %}
-                        <div class="news__slide-caption">{{media.caption | raw}}</div>
-                   {% endif %}                                    
+            <meta itemprop="url" content="{{article.media[0].path}}">
+            <meta itemprop="height" content="{{article.media[0].height}}">
+            <meta itemprop="width" content="{{article.media[0].width}}">
+            {% if article.media[0].type == 'video' %} 
+                {% set mediaUrl = "" %}
+                {% if article.media[0].isSystemVideo == 'TRUE'%}
+                    {% set mediaUrl = _article.media[0].getMediaVideoUrl(media, 0, 0,{resource_type: 'video', format: 'mp4'})  %}
                 {% endif %}
-            </div>
-        {% endfor %}
+                <a  href="javascript:void(0)"  
+                    itemprop="video" 
+                    class="video-overlay video-player" 
+                    data-source="{{article.media[0].source}}" 
+                    data-video-id="{{article.media[0].videoId}}" 
+                    data-url="{{mediaUrl}}" 
+                    data-poster="{{article.media[0].path}}" 
+                    data-caption="{{article.title | raw}}">
+
+                   <div class="icons">
+                       <div class="icon"><i class="fa fa-play"></i></div>
+                   </div>
+                </a>
+          
+               {% if article.media[0].caption | length %}
+                    <div class="news__slide-caption">{{article.media[0].caption | raw}}</div>
+               {% endif %}                                    
+            {% endif %}
+        </div>
         {# <div class="image-wrapper" style="background-image: url({{ articleImg }});"> #}
             
         <span class="category">{{ article.label}}</span>
@@ -67,7 +73,7 @@
             <div class="author-info col-sm-8 col-sm-offset-2">
                 <img src="{{ article.createdBy['media']['path'] }}" alt="Author name">
                 <span class="name">{{article.createdBy['displayName']}}</span>
-                <p>Ecerum qui que repudae doluptam qui conserum haruptati omnimillest, omnis exqueeum rerferro quo dus sus asiosimp ptam qui conserum haruptati omniurit aut.</p>
+                <p>{{ article.createdBy['bio'] }}</p>
                 
                 {% if _User.isGuest() %}
                 <a href="javascript:void(0)" class="btn btn-black follow forceLoginModal">Follow +</a>
@@ -80,9 +86,24 @@
             <div class="article-content-icons-wrapper col-sm-12">
                 <aside class="col-sm-2">
                    <ul class="social-link-sidebar">
-                        <li><a href="#"><span class="sr-only">Facebook</span><span class="facebook-blk icon"></span></a></li>
-                        <li><a href="#"><span class="sr-only">Twitter</span><span class="twitter-blk icon"></span></a></li>
-                        <li><a href="#"><span class="sr-only">Mail</span><span class="mail-blk icon"></span></a></li>
+                        <li>
+                            <a href="http://www.facebook.com/sharer/sharer.php?u={{article.url}}&title={{ article.title|url_encode }}" target="_blank">
+                                <span class="sr-only">Facebook</span>
+                                <span class="facebook-blk icon"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://twitter.com/intent/tweet?status={{ article.title|url_encode }}{{article.url}}" target="_blank">
+                                <span class="sr-only">Twitter</span>
+                                <span class="twitter-blk icon"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="sr-only">Mail</span>
+                                <span class="mail-blk icon"></span>
+                            </a>
+                        </li>
                    </ul>
                 </aside>
 

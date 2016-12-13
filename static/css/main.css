@@ -8889,28 +8889,71 @@ a.card:hover {
     left: 100px; }
 
 .main-featured {
-  height: 568px;
-  margin-bottom: 130px;
-  margin-top: 100px; }
-  .main-featured .feature {
-    padding-right: 0; }
-  .main-featured .swiper-container {
-    width: 100%;
+  height: 693px;
+  margin-bottom: 100px; }
+  .main-featured > div {
     height: 100%; }
-  .main-featured .swiper-slide {
-    background-position: center;
-    background-size: cover; }
-  .main-featured .hero-content {
-    position: absolute;
+  .main-featured .feature-row {
+    padding-top: 125px; }
+  .main-featured .feature {
+    position: relative;
     height: 100%;
-    width: 100%;
-    color: #fefefe;
-    z-index: 20; }
-    .main-featured .hero-content .caption {
+    padding-right: 0; }
+    .main-featured .feature figure {
       position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+      z-index: 0; }
+      .main-featured .feature figure img {
+        width: 100%;
+        height: auto; }
+    .main-featured .feature .content {
+      position: absolute;
+      right: -400px;
+      width: 1140px;
+      margin: 0 auto;
+      height: 100%;
+      padding-top: 250px;
       z-index: 20;
-      bottom: 100px;
-      width: 100%; }
+      color: white; }
+      .main-featured .feature .content h2 {
+        font-size: 3.07692em;
+        width: 550px;
+        margin-bottom: 20px;
+        height: 90px;
+        overflow: hidden; }
+        @media screen and (max-width: 490px) {
+          .main-featured .feature .content h2 {
+            width: 100%; } }
+      .main-featured .feature .content time {
+        color: #fefefe;
+        font-size: 0.84615em; }
+      .main-featured .feature .content .author {
+        background-color: #ffff00;
+        color: #1a1818; }
+      .main-featured .feature .content p {
+        font-size: 1.07692em;
+        font-weight: 900;
+        margin-bottom: 29px;
+        width: 470px;
+        height: 60px;
+        overflow: hidden; }
+        @media screen and (max-width: 490px) {
+          .main-featured .feature .content p {
+            width: 100%; } }
+      @media screen and (max-width: 1200px) {
+        .main-featured .feature .content {
+          width: 970px; } }
+      @media screen and (max-width: 992px) {
+        .main-featured .feature .content {
+          width: 750px; } }
+      @media screen and (max-width: 769px) {
+        .main-featured .feature .content {
+          width: 100%;
+          padding-left: 15px;
+          padding-right: 15px;
+          padding-top: 307px; } }
   .main-featured .overlay {
     content: '';
     position: absolute;
@@ -8925,6 +8968,31 @@ a.card:hover {
   .main-featured .top-articles {
     background: #221f20;
     height: 100%; }
+    .main-featured .top-articles > div:not(:last-child) {
+      border-bottom: solid 2px white;
+      margin-bottom: 30px; }
+    .main-featured .top-articles h3 {
+      color: white;
+      margin-bottom: 20px; }
+    .main-featured .top-articles .card {
+      padding-bottom: 15px;
+      background: transparent; }
+      .main-featured .top-articles .card figure {
+        height: 120px;
+        width: 120px;
+        margin-right: 20px;
+        float: left; }
+      .main-featured .top-articles .card .category {
+        display: none; }
+      .main-featured .top-articles .card .author {
+        background-color: #ffff00;
+        color: #1a1818; }
+      .main-featured .top-articles .card h2 {
+        color: white;
+        width: 420px;
+        font-weight: 500; }
+      .main-featured .top-articles .card p {
+        display: none; }
 
 .featured-carousel .card {
   position: relative;

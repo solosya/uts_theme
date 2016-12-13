@@ -17,6 +17,15 @@
     {% endif %}
 {% endfor %}
 
+{% set 2serPanel =  "2ser" %}
+{% set 2serPanelfeed = [] %}
+{% for blog in networkData.networkBlogs %}
+    {% if blog.title == 2serPanel %}
+        {% set 2serPanelfeed = _Blog.getBlogFeed({'limit': 5, 'offset': 0, 'blogid':blog.guid}) %}
+    {% endif %}
+{% endfor %}
+
+
 {% set popularArticles = _Article.getPopularArticles({ limit: 10, sortBy: 'VIEWS' }) %}
 
 
@@ -161,13 +170,13 @@
             <div class="row">
                 <div class="col-sm-4">
                     <a href="http://www.2ser.com/players" onClick="window.open(this.href, 'child', 'scrollbars,width=750,height=430'); return false">
-                        <img src="{{networkData.templatePath}}/static/images/ser.png" alt="ALT">
+                        <img src="{{networkData.templatePath}}/static/images/2SER_Desktop.jpg" alt="ALT">
                     </a>
                 </div><!--col-sm-4-->
                 
-                {% if popularArticles|length > 0 %}
+                {% if 2serPanelfeed|length > 0 %}
                     {% for i in 0..1 %}
-                        {{this.render('partials/_2ser-article.twig', {article: popularArticles[i], 'position': (i+1), containerClass: 'col-sm-4 card-strip'}) | raw}}
+                        {{this.render('partials/_2ser-article.twig', {article: 2serPanelfeed[i], 'position': (i+1), containerClass: 'col-sm-4 card-strip'}) | raw}}
                     {% endfor %}
                 {% endif %}
 
