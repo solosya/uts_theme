@@ -5,9 +5,17 @@
     {% if article.featuredMedia | length > 0 %}
         {% set imgWidth = 1280 %}
         {% set imgHeight = 720 %}
-
-        {% set articleImg = _Media.getMediaUrl(article.featuredMedia,imgWidth, imgHeight, {'crop': 'fill', 'gravity': 'faces'} ) %}
+        {% if 'card-sm' in containerClass %}
+            {% set imgWidth = 263 %}
+            {% set imgHeight = 172 %}
+        {% endif %}
+        {% if 'card-md' in containerClass %}
+            {% set imgWidth = 550 %}
+            {% set imgHeight = 392 %}
+        {% endif %}
+    {% set articleImg = _Media.getMediaUrl(article.featuredMedia,imgWidth, imgHeight, {'crop': 'fill', 'gravity': 'faces'} ) %}
     {% endif %}
+
     {% set placeholder = 'https://placeholdit.imgix.net/~text?txtsize=33&txt=Loading&w='~imgWidth~'&h='~imgHeight~'' %}
     {% set promotedClass = (article.isPromoted) ? 'ad_icon' : '' %}
     {% set hasArticleMediaClass = (article.hasMedia == 'TRUE') ? 'withImage__content': 'without__image' %}

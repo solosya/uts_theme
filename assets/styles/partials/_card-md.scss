@@ -156,6 +156,14 @@
                 margin: 0 auto;
                 background-size: cover;
             }
+
+            figure {
+                > div {
+                    background-size: 650px 520px;
+                    background-position: -35px -65px;
+                }
+            }
+
         }
 
         &.vimeo{

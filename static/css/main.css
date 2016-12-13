@@ -8518,6 +8518,9 @@ a.card:hover {
     bottom: 10px;
     margin: 0 auto;
     background-size: cover; }
+  .card-md .card.youtube figure > div {
+    background-size: 650px 520px;
+    background-position: -35px -65px; }
   .card-md .card.vimeo .content {
     padding-top: 42px; }
     .card-md .card.vimeo .content time {
