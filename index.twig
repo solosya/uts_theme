@@ -20,15 +20,11 @@
 {% set two_serPanel =  "2SER" %}
 {% set two_serPanelfeed = [] %}
 {% for blog in networkData.networkBlogs %}
-    {{ dump(blog.title) }}
     {% if blog.title == two_serPanel %}
-        {{ dump(two_serPanel) }}
         {% set two_serPanelfeed = _Blog.getBlogFeed({'limit': 5, 'offset': 0, 'blogid':blog.guid}) %}
-        {{ dump(two_serPanelfeed) }}
 
     {% endif %}
 {% endfor %}
-{{ dump(two_serPanelFeed) }}
 
 {% set popularArticles = _Article.getPopularArticles({ limit: 10, sortBy: 'VIEWS' }) %}
 
