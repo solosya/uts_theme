@@ -30,14 +30,13 @@
                         <img src="{{network.templatePath}}/static/images/uts-logo.png" alt="UTL Logo">
                     </a>
                 </div><!--col-sm-2-->
-{#                 {% set menuItems = blog.blogFooterMenu %}
-                {{ dump(menuItems) }}
- #}                <div class="col-sm-2 hidden-xxs footer-links">
+                {% set menuItems = blog.blogFooterMenu %}
+
+                <div class="col-sm-2 hidden-xxs footer-links">
                     <ul>
-                        <li><a href="#">Breaking News</a></li>
-                        <li>2SER</li>
-                        <li>Investigative</li>
-                        <li>The Wire</li>
+                    {% for menu in menuItems %}
+                        <li><a href="{{menu.link}}">{{menu.blogTitle}}</a></li>
+                    {% endfor %}
                     </ul>
                 </div><!--col-sm-2-->
 
