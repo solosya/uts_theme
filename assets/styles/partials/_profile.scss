@@ -31,7 +31,7 @@ a.user__login {
         position:absolute;
         top:50px;
         right:40px;
-        z-index:90;
+        z-index:1000;
 
 		@media #{$media-phone}, #{$media-iPhoneLarge}, #{$media-iPhoneMedium} {
             right:20px;
