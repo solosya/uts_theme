@@ -31807,7 +31807,7 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
         var csrfToken = $('meta[name="csrf-token"]').attr("content");
         
         var dateFormat = 'SHORT';
-        
+
         $.ajax({
             type: 'post',
             url: _appJsConfig.baseHttpPath + '/home/load-articles',
@@ -33968,16 +33968,17 @@ HomeController.Listing = (function ($) {
         
         $('.loadMoreArticles').on('click', function(e){
             e.preventDefault();
-
+            console.log('clicked load more');
             var btnObj = $(this);
             $.fn.Ajax_LoadBlogArticles({
                 onSuccess: function(data, textStatus, jqXHR){
+                    console.log(data, textStatus);
                     if (data.success == 1) {
                         $('.ajaxArticles').data('existing-nonpinned-count', data.existingNonPinnedCount);
 
-                        if (data.articles.length < 20) {
-                            $(btnObj).css('display', 'none');
-                        }
+                        // if (data.articles.length < 20) {
+                        //     $(btnObj).css('display', 'none');
+                        // }
                         var html = '';
                         for (var i in data.articles) {
                             data.articles[i]['containerClass'] = 'col-sm-4 card-sm';
@@ -34032,7 +34033,6 @@ HomeController.Listing = (function ($) {
                             initSwap();
                         }
                     }
-                 
                 },
                 beforeSend: function(jqXHR, settings){
                     $(btnObj).html("Please wait...");
