@@ -44,8 +44,8 @@
                             <div id="userArticleContainer" data-total-count="{{totalArticles}}" data-offset="0">
                                 {% if userArticles | length > 0  %}
                                     {% set i = 0 %}
-                                    {% for article in userArticles %}  
-                                        {{this.render('//partials/_single-article.twig', {article: article, 'position': (i+1), containerClass: 'col-third', cardClass : 'card__news card--local', 'titleTruncateLength': 70}) | raw}}
+                                    {% for article in userArticles %} 
+                                        {{this.render('partials/_single-article.twig',   {article: article, 'position': (i+1), containerClass: 'col-sm-4 card-sm'}) | raw}}
                                         {%  set i = i + 1 %}
                                     {% endfor %}
                                 {% else %}

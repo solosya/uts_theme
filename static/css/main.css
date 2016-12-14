@@ -7096,6 +7096,12 @@ time {
   .site-header.channel-page {
     background: #000000;
     margin-top: 0; }
+  .site-header.channel-page {
+    background: #000000;
+    margin-top: 0; }
+  .site-header.user {
+    background: #000000;
+    margin-top: 0; }
   .site-header.night-fall:before {
     content: '';
     background: rgba(35, 31, 32, 0.6);

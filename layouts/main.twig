@@ -154,8 +154,9 @@
     {{ this.head() }}
 </head>
 
+{% set pageClass = _Page.getBodyClass() %}
 
-<body {{_Page.getBodyClass()}}>
+<body {{ pageClass }}>
 
     {{ this.beginBody() }}
 
@@ -163,7 +164,7 @@
         {{ this.render('partials/_profile.twig', {network : networkData}) | raw }}
     </div><!--top-bar-->
     
-    {{ this.render('partials/_header_navigation.twig', {blog : blogData, homeUrl :  networkData.defaultBlogUrl, networkData: networkData}) | raw }}
+    {{ this.render('partials/_header_navigation.twig', {blog : blogData, homeUrl :  networkData.defaultBlogUrl, networkData: networkData, pageClass: pageClass }) | raw }}
 
 
     {{ content | raw}}

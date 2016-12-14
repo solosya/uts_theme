@@ -17,58 +17,58 @@
         {% if userPosts|length > 0 %}
             <div class="row">
                     {% if userPosts[0] is defined %}
-                            {{this.render('partials/_single-article.twig', {article: userPosts[0], containerClass: 'col-full', cardClass : 'card__news card--rural'}) | raw}}
+                            {{this.render('partials/_single-article.twig', {article: userPosts[0], containerClass: 'card-lg'}) | raw}}
                     {% endif %}
                 </div>
             <div class="row">
-                {% for i in 1..3 %}
+                {% for i in 1..4 %}
                     {% if userPosts[i] is defined %}
-                        {{this.render('partials/_single-article.twig', {article: userPosts[i], containerClass: 'col-third', cardClass : 'card__news card--local'}) | raw}}
+                        {{this.render('partials/_single-article.twig', {article: userPosts[i], containerClass: 'col-sm-3 card-sm'}) | raw}}
                     {% endif %}
                 {% endfor %}
 
-                {% for i in 4..6 %}
+                {% for i in 5..8 %}
                     {% if userPosts[i] is defined %}
-                        {{this.render('partials/_single-article.twig', {article: userPosts[i], containerClass: 'col-third', cardClass : 'card__news card--local'}) | raw}}
+                        {{this.render('partials/_single-article.twig', {article: userPosts[i], containerClass: 'col-sm-3 card-sm'}) | raw}}
                     {% endif %}
                 {% endfor %}
             </div>
             <div class="row">
-                {% for i in 7..11 %}
+                {% for i in 9..12 %}
                     {% if userPosts[i] is defined %}
-                        {{this.render('partials/_single-article.twig', {article: userPosts[i], containerClass: 'col-third', cardClass : 'card__news card--local'}) | raw}}
+                        {{this.render('partials/_single-article.twig', {article: userPosts[i], containerClass: 'col-sm-3 card-sm'}) | raw}}
                     {% endif %}
                 {% endfor %}
-                {% for i in 12..14 %}
+                {% for i in 13..16 %}
                     {% if userPosts[i] is defined %}
-                        {{this.render('partials/_single-article.twig', {article: userPosts[i], containerClass: 'col-third-short', cardClass : 'card__news card--local'}) | raw}}
-                    {% endif %}
-                {% endfor %}
-            </div>
-
-            <div class="row">
-                {% for i in 15..19 %}
-                    {% if userPosts[i] is defined %}
-                        {{this.render('partials/_single-article.twig', {article: userPosts[i], containerClass: 'col-third', cardClass : 'card__news card--local'}) | raw}}
-                    {% endif %}
-                {% endfor %}
-
-                {% for i in 20..22 %}
-                    {% if userPosts[i] is defined %}
-                        {{this.render('partials/_single-article.twig', {article: userPosts[i], containerClass: 'col-third-short', cardClass : 'card__news card--local'}) | raw}}
+                        {{this.render('partials/_single-article.twig', {article: userPosts[i], containerClass: 'col-sm-3 card-sm'}) | raw}}
                     {% endif %}
                 {% endfor %}
             </div>
 
             <div class="row">
-                {% for i in 23..27 %}
+                {% for i in 17..20 %}
                     {% if userPosts[i] is defined %}
-                        {{this.render('partials/_single-article.twig', {article: userPosts[i], containerClass: 'col-third', cardClass : 'card__news card--local'}) | raw}}
+                        {{this.render('partials/_single-article.twig', {article: userPosts[i], containerClass: 'col-sm-3 card-sm'}) | raw}}
                     {% endif %}
                 {% endfor %}
-                {% for i in 28..30 %}
+
+                {% for i in 21..24 %}
                     {% if userPosts[i] is defined %}
-                        {{this.render('partials/_single-article.twig', {article: userPosts[i], containerClass: 'col-third-short', cardClass : 'card__news card--local'}) | raw}}
+                        {{this.render('partials/_single-article.twig', {article: userPosts[i], containerClass: 'col-sm-3 card-sm'}) | raw}}
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+            <div class="row">
+                {% for i in 25..28 %}
+                    {% if userPosts[i] is defined %}
+                        {{this.render('partials/_single-article.twig', {article: userPosts[i], containerClass: 'col-sm-3 card-sm'}) | raw}}
+                    {% endif %}
+                {% endfor %}
+                {% for i in 29..32 %}
+                    {% if userPosts[i] is defined %}
+                        {{this.render('partials/_single-article.twig', {article: userPosts[i], containerClass: 'col-sm-3 card-sm'}) | raw}}
                     {% endif %}
                 {% endfor %}      
             </div>
