@@ -181,7 +181,7 @@
                 
                 {% if two_serPanelfeed|length > 0 %}
                     {% for i in 0..1 %}
-                        {{this.render('partials/_2ser-article.twig', {article: two_serPanelfeed.articles[i], 'position': (i+1), containerClass: 'col-sm-4 card-strip'}) | raw}}
+                        {{this.render('partials/_2ser-article.twig', {article: two_serPanelfeed.articles[i], 'position': (i+1), containerClass: 'col-sm-4'}) | raw}}
                     {% endfor %}
                 {% endif %}
 

@@ -10129,27 +10129,230 @@ button.swiper-pagination-bullet {
     @media screen and (max-width: 769px) {
       .ser img {
         margin-bottom: 25px; } }
-  .ser article.card {
-    background-color: transparent; }
-    .ser article.card.other {
-      padding-top: 16px;
-      padding-bottom: 15px; }
-    .ser article.card time {
-      font-size: 0.84615em;
+  .ser .card {
+    min-height: 178px;
+    max-height: 178px;
+    overflow: hidden;
+    background-color: #e5e6e7;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-bottom: 30px;
+    color: #fefefe; }
+    @media screen and (max-width: 769px) {
+      .ser .card {
+        min-height: 350px;
+        max-height: 350px; } }
+    .ser .card p {
+      max-height: 65px;
+      overflow: hidden;
+      font-weight: 500;
+      line-height: 1.6em;
+      color: #464648; }
+      @media screen and (max-width: 769px) {
+        .ser .card p {
+          margin-top: 20px;
+          height: 170px;
+          max-height: 170px;
+          line-height: 1.8em;
+          font-size: 1.46154em; } }
+    .ser .card article > .other-content:first-child {
+      margin-bottom: 26px; }
+    .ser .card time {
+      font-family: "KeplerStd";
+      display: inline-block;
+      font-weight: 300;
+      margin-top: 15px;
       color: #808285; }
-    .ser article.card .author {
-      float: left;
-      margin-right: 10px;
-      background-color: transparent;
-      color: #808285;
+      @media screen and (max-width: 769px) {
+        .ser .card time {
+          font-size: 1.53846em; } }
+    .ser .card .other-content {
+      margin-bottom: 5px; }
+    .ser .card .author {
+      font-family: "KeplerStd";
       padding: 0;
-      margin: 0;
-      font-size: 0.84615em;
-      font-weight: 600;
-      display: block; }
-    .ser article.card h2 {
-      margin-top: 2px;
+      margin-bottom: 0;
+      background: none;
+      color: #808285;
+      font-weight: 300;
+      text-transform: none; }
+      @media screen and (max-width: 769px) {
+        .ser .card .author {
+          margin-bottom: 0;
+          font-size: 1.53846em; } }
+    .ser .card figure {
+      disply: none; }
+    .ser .card .category {
+      display: none; }
+    .ser .card h2 {
+      margin-top: 5px;
+      margin-bottom: 15px;
+      line-height: 1.2em;
+      height: 55px;
+      overflow: hidden;
       font-size: 1.69231em; }
+      @media screen and (max-width: 769px) {
+        .ser .card h2 {
+          margin-top: 0;
+          height: 120px;
+          font-size: 2.61538em; } }
+    .ser .card .share-icon {
+      display: none; }
+    .ser .card.other {
+      padding-left: 0;
+      padding-right: 0;
+      background-color: transparent;
+      color: black; }
+      .ser .card.other figure {
+        margin-left: 0;
+        margin-right: 0; }
+      .ser .card.other article > .content:first-child {
+        padding-top: 87px; }
+    .ser .card.facebook {
+      color: black; }
+      .ser .card.facebook time {
+        margin-bottom: 5px; }
+      .ser .card.facebook figure {
+        border-bottom: 7.4px solid #FFF;
+        max-height: 172px;
+        overflow: hidden; }
+      .ser .card.facebook h2 {
+        display: none; }
+      .ser .card.facebook .article-icon {
+        background-image: url(../icons/facebook-blk.svg); }
+      .ser .card.facebook article > .content:nth-child(2) {
+        padding-top: 71px;
+        margin-top: 0; }
+      .ser .card.facebook article > .content {
+        margin-top: -50px; }
+    .ser .card.twitter {
+      color: black;
+      background-color: #ffff00; }
+      .ser .card.twitter h2 {
+        display: none; }
+      .ser .card.twitter time {
+        margin-bottom: 5px;
+        color: #808285; }
+      .ser .card.twitter figure {
+        border-bottom: 7.4px solid #FFF;
+        max-height: 172px;
+        overflow: hidden; }
+      .ser .card.twitter .article-icon {
+        background-image: url(../icons/twitter-blk.svg); }
+      .ser .card.twitter article > .content:nth-child(2) {
+        padding-top: 71px;
+        margin-top: 0; }
+      .ser .card.twitter article > .content {
+        margin-top: -50px; }
+        .ser .card.twitter article > .content p {
+          font-size: 16px;
+          font-weight: bold;
+          color: #1a1818; }
+          .ser .card.twitter article > .content p a {
+            color: #0099cc; }
+    .ser .card.instagram {
+      background-color: #4a494a; }
+      .ser .card.instagram time {
+        margin-bottom: 5px;
+        color: #bdbebf; }
+      .ser .card.instagram figure {
+        border-bottom: 7.4px solid #FFF;
+        max-height: 172px;
+        overflow: hidden; }
+      .ser .card.instagram.no-caption figure {
+        max-height: 280px;
+        height: 294px; }
+      .ser .card.instagram .article-icon {
+        background-image: url(../icons/instagram-blk.svg); }
+      .ser .card.instagram article > .content:first-child {
+        padding-top: 71px;
+        margin-top: 0; }
+      .ser .card.instagram article > .content {
+        margin-top: -50px; }
+        .ser .card.instagram article > .content p {
+          font-size: 14px;
+          font-weight: 500;
+          color: #ffffff; }
+          .ser .card.instagram article > .content p a {
+            color: #ffffff; }
+    .ser .card.youtube {
+      padding-left: 0;
+      padding-right: 0;
+      background-color: transparent; }
+      .ser .card.youtube figure {
+        border-bottom: 7.4px solid #FFF;
+        max-height: 172px;
+        overflow: hidden; }
+        .ser .card.youtube figure:after {
+          content: '';
+          background-image: url(../icons/youtube-play.svg);
+          width: 48px;
+          height: 48px;
+          position: relative;
+          display: block;
+          bottom: 105px;
+          margin: 0 auto;
+          background-size: cover; }
+      .ser .card.youtube .article-icon {
+        margin-left: 13px;
+        background-image: url(../icons/youtube-blk.svg); }
+      .ser .card.youtube article > .content:first-child {
+        padding-top: 71px;
+        margin-top: 0; }
+      .ser .card.youtube article > .content {
+        margin-top: -50px; }
+    .ser .card.vimeo {
+      padding-left: 0;
+      padding-right: 0;
+      background-color: transparent; }
+      .ser .card.vimeo figure {
+        border-bottom: 7.4px solid #FFF;
+        max-height: 172px;
+        overflow: hidden; }
+        .ser .card.vimeo figure:after {
+          content: '';
+          background-image: url(../icons/youtube-play.svg);
+          width: 48px;
+          height: 48px;
+          position: relative;
+          display: block;
+          bottom: 105px;
+          margin: 0 auto;
+          background-size: cover; }
+      .ser .card.vimeo .article-icon {
+        margin-left: 13px;
+        background-image: url(../icons/vimeo-blk.svg); }
+      .ser .card.vimeo article > .content:first-child {
+        padding-top: 71px;
+        margin-top: 0; }
+      .ser .card.vimeo article > .content {
+        margin-top: -50px; }
+    .ser .card.soundcloud {
+      padding-left: 0;
+      padding-right: 0;
+      background-color: transparent;
+      color: black; }
+      .ser .card.soundcloud p {
+        max-height: 75px;
+        overflow: hidden;
+        text-overflow: ellipsis; }
+      .ser .card.soundcloud h2 {
+        display: none; }
+      .ser .card.soundcloud .author {
+        margin-bottom: 5px; }
+      .ser .card.soundcloud figure {
+        max-height: 172px;
+        margin-bottom: 0;
+        border: 0; }
+      .ser .card.soundcloud time {
+        margin-bottom: 5px; }
+      .ser .card.soundcloud .other-content {
+        height: 88.5px;
+        overflow: hidden; }
+      .ser .card.soundcloud .article-icon {
+        display: none; }
+      .ser .card.soundcloud h2 {
+        margin-top: 5px; }
 
 .page-hero {
   height: 520px;
