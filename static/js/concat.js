@@ -31947,11 +31947,11 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
             $(elem).off('click');
             $(elem).on('click', function(e){
                 e.preventDefault();
-             
+
                 var isSocial = $(elem).data('social');
                 var msgStr = (isSocial == 1) ? "Do you really want to delete this article?" : "Do you really want to hide this article?";
                 var articleGuid = $(elem).data('guid');
-                
+
                 if (typeof bootbox === 'undefined') {
                     var result = confirm(msgStr);
                     if (result === true) {
@@ -33374,65 +33374,48 @@ function(a){"use strict";void 0===a.en&&(a.en={"mejs.plural-form":1,"mejs.downlo
  * Handlebar Article templates for listing
  */
 
-var systemCardTemplate = '<div itemscope itemtype="http://schema.org/NewsArticle"  class="article {{containerClass}} ">'+
-        '<meta itemscope itemprop="mainEntityOfPage"  itemType="https://schema.org/WebPage" itemid="https://google.com/article"/>'+
-        '<div itemprop="image" itemscope itemtype="https://schema.org/ImageObject">'+
-            '{{#if imageUrl}}'+
-                '<meta itemprop="url" content="{{imageUrl}}"/>'+
-            '{{else}}'+
-                '<meta itemprop="url" content="https://placeholdit.imgix.net/~text?txtsize=33&txt=Loading&w=450&h=250"/>'+
-            '{{/if}}'+
-            '<meta itemprop="width" content="500"/>'+
-            '<meta itemprop="height" content="500"/>'+
-        '</div>'+
-        '<div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">'+
-            '<meta itemprop="name" content="{{blog.title}}"/>'+
-            '<div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">'+
-                '{{#if blog.media.structured.url}}'+
-                    '<meta itemprop="url" content="{{blog.media.structured.url}}"/>'+
-                    '<meta itemprop="width" content="{{blog.media.structured.width}}"/>'+
-                    '<meta itemprop="height" content="{{blog.media.structured.height}}"/>'+
-                '{{else}}'+
-                    '<meta itemprop="url" content="https://placeholdit.imgix.net/~text?txtsize=33&txt=No Image&w=600&h=60"/>'+
-                    '<meta itemprop="width" content="600"/>'+
-                    '<meta itemprop="height" content="60"/>'+
-                '{{/if}}'+
+var systemCardTemplate = 
+'<div class="{{containerClass}} "> \
+    <a  itemprop="url" \
+        href="{{url}}" \
+        class="card swap other" \
+        data-id="{{articleId}}" \
+        data-position="{{position}}" \
+        data-social="0" \
+        data-article-image="{{{imageUrl}}}" \
+        data-article-text="{{title}}"> \
+        \
+        <article class="">\
+            {{#if hasMedia}}  \
+                <figure>\
+                    <div class="image-wrapper lazyload" data-original="{{imageUrl}}" style="background-image:url("{{placeholder}}");"></div>\
+                </figure>\
+            {{/if}} \
+        \
+            <div class="content">\
+                    <span class="category">{{label}}</span>\
+                    <time datetime="2016-11-16">{{publishDate}}</time>\
+                    <h2>{{{title}}}</h2>\
+                    <span class="author">{{ createdBy.displayName }}</span>\
+                    <p>{{{ excerpt }}}</p>\
+            </div>\
+        </article>'+
+        
+        '{{#if userHasBlogAccess}}'+
+            '<div class="btn_overlay articleMenu">'+
+                '<button title="Hide" data-guid="{{guid}}" class="btnhide social-tooltip HideBlogArticle" type="button" data-social="0">'+
+                    '<i class="fa fa-eye-slash"></i><span class="hide">Hide</span>'+
+                '</button>'+
+                '<button onclick="window.location=\'{{{editUrl}}}\'; return false;" title="Edit" class="btnhide social-tooltip" type="button">'+
+                    '<i class="fa fa-edit"></i><span class="hide">Edit</span>'+
+                '</button>'+
+                '<button data-position="{{position}}" data-social="0" data-id="{{articleId}}" title="{{pinTitle}}" class="btnhide social-tooltip PinArticleBtn" type="button" data-status="{{isPinned}}">'+
+                    '<i class="fa fa-thumb-tack"></i><span class="hide">{{pinText}}</span>'+
+                '</button>'+
             '</div>'+
-        '</div>'+
-        '<meta itemprop="datePublished" content="{{metaPublishDate}}"/>'+
-        '<meta itemprop="dateModified" content="{{metaUpdateDate}}"/>'+
-        '<a itemprop="url" href="{{url}}" class="card swap card__news {{hasArticleMediaClass}} {{promotedClass}} {{blogClass}}" data-id="{{articleId}}" data-position="{{position}}" data-social="0" data-article-image="{{{imageUrl}}}" data-article-text="{{title}}">'+
-            '{{#if hasMedia}}  '+
-              '<div class="card-image lazyload" data-original="{{imageUrl}}" style="background-image:url(https://placeholdit.imgix.net/~text?txtsize=33&txt=Loading&w=450&h=250);"></div>'+
-            '{{/if}}'+
-            '<div class="content-section">'+
-                '<div class="title-section">'+
-                    '<span>{{label}}</span>'+
-                    '<div class="card-icon"></div>'+
-                '</div>'+
-                '<h1 itemprop="headline" class="heading-section">{{{title}}}</h1>'+
-                '<p itemprop="description" class="description">{{{excerpt}}}</p>'+
-                '<div class="caption_bottom" itemprop="author" itemscope itemtype="https://schema.org/Person">'+
-                    '<div class="author_name" itemprop="name">{{createdBy.displayName}}</div>'+
-                    '<div class="post_date">{{publishDate}}</div>'+
-                    '<span class="category_share_icon shareIcons"><i class="fa fa-share-alt"></i></span>'+
-                '</div>'+
-            '</div>'+
-            '{{#if userHasBlogAccess}}'+
-                '<div class="btn_overlay articleMenu">'+
-                    '<button title="Hide" data-guid="{{guid}}" class="btnhide social-tooltip HideBlogArticle" type="button" data-social="0">'+
-                        '<i class="fa fa-eye-slash"></i><span class="hide">Hide</span>'+
-                    '</button>'+
-                    '<button onclick="window.location=\'{{{editUrl}}}\'; return false;" title="Edit" class="btnhide social-tooltip" type="button">'+
-                        '<i class="fa fa-edit"></i><span class="hide">Edit</span>'+
-                    '</button>'+
-                    '<button data-position="{{position}}" data-social="0" data-id="{{articleId}}" title="{{pinTitle}}" class="btnhide social-tooltip PinArticleBtn" type="button" data-status="{{isPinned}}">'+
-                        '<i class="fa fa-thumb-tack"></i><span class="hide">{{pinText}}</span>'+
-                    '</button>'+
-                '</div>'+
-                "{{/if}}"+
-            '</a>'+
-        '</div>';
+        "{{/if}}"+
+    '</a>'+
+'</div>';
                                                 
 var socialCardTemplate =  '<div class="{{containerClass}}">' +
                                 '<a href="{{social.url}}" target="_blank" class="card swap card__{{social.source}} {{#if social.hasMedia}} withImage__content {{else }} without__image {{/if}} {{videoClass}}" data-id="{{socialId}}" data-position="{{position}}" data-social="1" data-article-image="{{{social.media.path}}}" data-article-text="{{social.content}}">'+
@@ -33774,7 +33757,7 @@ AuthController.ResetPassword = (function ($) {
 
 
 var HomeController = (function ($) {
-    console.log("HELLO FROM OUTER SPACE yo!!");
+
     return {
         listing: function () {
             console.log('homecontroller initing');
@@ -33995,8 +33978,12 @@ HomeController.Listing = (function ($) {
                         if (data.articles.length < 20) {
                             $(btnObj).css('display', 'none');
                         }
+                        var html = '';
                         for (var i in data.articles) {
-                            data.articles[i]['containerClass'] = 'col-quarter';
+                            data.articles[i]['containerClass'] = 'col-sm-4 card-sm';
+                            if ((i%5 === 0 || i%5 === 1 ) && i%2 == 1) {
+                                data.articles[i]['containerClass'] = 'col-sm-8 card-md';
+                            }
                             data.articles[i]['pinTitle'] = (data.articles[i].isPinned == 1) ? 'Un-Pin Article' : 'Pin Article';
                             data.articles[i]['pinText'] = (data.articles[i].isPinned == 1) ? 'Un-Pin' : 'Pin';
                             data.articles[i]['promotedClass'] = (data.articles[i].isPromoted == 1)? 'ad_icon' : '';
@@ -34020,10 +34007,10 @@ HomeController.Listing = (function ($) {
                             } else {
                                 articleTemplate = Handlebars.compile(systemCardTemplate);
                             }
-                            var article = articleTemplate(data.articles[i]);
-                            $('.ajaxArticles').append(article);
+                            html += articleTemplate(data.articles[i]);
                         }
 
+                        $('.ajaxArticles').append(html);
 
                         $(".card p, .card h1").dotdotdot();
                         
@@ -34110,7 +34097,6 @@ HomeController.Blog = (function ($) {
     var attachEvents = function () {
        
         //attach follow blog
-        console.log('attaching follow blog');
         $('a.followBlog').followBlog({
             'onSuccess': function(data, obj){
                 var message = ($(obj).data('status') === 'follow') ? 'Unfollow' : 'Follow';
