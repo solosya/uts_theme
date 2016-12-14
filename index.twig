@@ -246,5 +246,15 @@
             </div>
             <a class="loadMoreArticles col-sm-9 col-sm-offset-3" href="#">Load more <i class="fa fa-refresh"></i></a>
         </div>
+
+        {% set noDataCls = 'hide' %}
+        {% if articles|length == 0 %}
+            {% set noDataCls = '' %}
+         {% endif %}
+        <div class="row text-center has-margin-bottom-20 has-margin-top-20 {{noDataCls}} NoArticlesMsg">
+            <p class="no-data text-center">No articles found.</p>  
+        </div>
+
+        
     </section>
 
