@@ -11,9 +11,13 @@
 
 {% set sidePanel =  "Breaking News" %}
 {% set sidePanelfeed = [] %}
+{% set sidePanelLink = "" %}
+
 {% for blog in networkData.networkBlogs %}
     {% if blog.title == sidePanel %}
         {% set sidePanelfeed = _Blog.getBlogFeed({'limit': 5, 'offset': 0, 'blogid':blog.guid}) %}
+        {% set sidePanelLink = blog.link %}
+
     {% endif %}
 {% endfor %}
 
@@ -21,8 +25,8 @@
 {% set two_serPanelfeed = [] %}
 {% for blog in networkData.networkBlogs %}
     {% if blog.title == two_serPanel %}
+        {% set two_serPanelLink = blog.link %}
         {% set two_serPanelfeed = _Blog.getBlogFeed({'limit': 5, 'offset': 0, 'blogid':blog.guid}) %}
-
     {% endif %}
 {% endfor %}
 
@@ -135,14 +139,15 @@
             <div class="col-md-3 col-sm-12">
                 <aside class="left-border">
                     <section class="aap-news">
-                        <h2>AAP<br />BREAKING<br />NEWS</h2>
+
+                        <a href ="{{ sidePanelLink }}"><h2>AAP<br />BREAKING<br />NEWS</h2></a>
                         {% for i in 0..4 %}
                             {% if sidePanelfeed.articles[i] %}
                                 {{this.render('partials/_sidebar-article.twig', {article: sidePanelfeed.articles[i]}) | raw}}
                             {% endif %}
                         {% endfor %}
 
-                        <a href="#" class="viewmore">VIEW MORE</a>
+                        <a href="{{ sidePanelLink }}" class="viewmore">VIEW MORE</a>
                     </section>
 
                     <section class="subscribe">
@@ -165,7 +170,7 @@
     </section>
 
     <div class="container">
-        <h5 class="ser-h5">2SER</h5>
+        <a href="{{ two_serPanelLink }}"><h5 class="ser-h5">2SER</h5></a>
         <section class="content-block ser">
             <div class="row">
                 <div class="col-sm-4">
