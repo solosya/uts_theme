@@ -80,9 +80,11 @@
         padding-right: 26.5px;
         border-right: solid 1px #d1d2d4;
         
-        @media screen and (max-width: $mmd-break){
-            margin-top: 0;
+        @media screen and (max-width: $mmd-break) {
             text-align: center;
+            margin-top:23px;
+            padding-left:0;
+
         }
         @media screen and (max-width: $sm-break) {
             border-right: none;

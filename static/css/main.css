@@ -7117,27 +7117,6 @@ time {
     @media screen and (max-width: 620px) {
       .site-header .site-branding {
         padding-left: 0; } }
-    .site-header .site-branding::after {
-      color: white;
-      font-size: 0.92308em;
-      display: inline-block;
-      background: black;
-      padding: 10px; }
-      @media screen and (max-width: 490px) {
-        .site-header .site-branding::after {
-          content: "sm-mobile-break 0 - 490px"; } }
-      @media screen and (min-width: 490px) and (max-width: 620px) {
-        .site-header .site-branding::after {
-          content: "mobile-break 491px - 620px"; } }
-      @media screen and (min-width: 620px) and (max-width: 769px) {
-        .site-header .site-branding::after {
-          content: "sm-break 621px - 769px"; } }
-      @media screen and (min-width: 769px) and (max-width: 992px) {
-        .site-header .site-branding::after {
-          content: "mmd-break 770px - 992px"; } }
-      @media screen and (min-width: 992px) and (max-width: 1200px) {
-        .site-header .site-branding::after {
-          content: "md-break 992px - 1200px"; } }
   .site-header .navbar-brand {
     font-size: inherit;
     padding: 0;
@@ -10467,8 +10446,9 @@ button.swiper-pagination-bullet {
   border-right: solid 1px #d1d2d4; }
   @media screen and (max-width: 992px) {
     .page-content .social-link-sidebar {
-      margin-top: 0;
-      text-align: center; } }
+      text-align: center;
+      margin-top: 23px;
+      padding-left: 0; } }
   @media screen and (max-width: 769px) {
     .page-content .social-link-sidebar {
       border-right: none; } }
