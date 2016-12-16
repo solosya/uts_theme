@@ -33,6 +33,11 @@
         margin-top: 0;
     }
 
+    &.auth {
+        background:$black;
+        margin-top: 0;
+    }
+
 
     &.night-fall:before{
         content: '';

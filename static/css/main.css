@@ -956,24 +956,24 @@ input[type="reset"].btn-block,
 input[type="button"].btn-block {
   width: 100%; }
 
-.container, .login-page .container, .login-page .profile__container, .profile__container {
+.container, .login-page .container, .profile__container {
   margin-right: auto;
   margin-left: auto;
   padding-left: 15px;
   padding-right: 15px; }
-  .container:before, .login-page .container:before, .login-page .profile__container:before, .profile__container:before, .container:after, .login-page .container:after, .login-page .profile__container:after, .profile__container:after {
+  .container:before, .login-page .container:before, .profile__container:before, .container:after, .login-page .container:after, .profile__container:after {
     content: " ";
     display: table; }
-  .container:after, .login-page .container:after, .login-page .profile__container:after, .profile__container:after {
+  .container:after, .login-page .container:after, .profile__container:after {
     clear: both; }
   @media (min-width: 768px) {
-    .container, .login-page .container, .login-page .profile__container, .profile__container {
+    .container, .login-page .container, .profile__container {
       width: 750px; } }
   @media (min-width: 992px) {
-    .container, .login-page .container, .login-page .profile__container, .profile__container {
+    .container, .login-page .container, .profile__container {
       width: 970px; } }
   @media (min-width: 1200px) {
-    .container, .login-page .container, .login-page .profile__container, .profile__container {
+    .container, .login-page .container, .profile__container {
       width: 1170px; } }
 
 .container-fluid {
@@ -2484,15 +2484,15 @@ tbody.collapse.in {
     .navbar-fixed-bottom .navbar-collapse {
       max-height: 200px; } }
 
-.container > .navbar-header, .login-page .container > .navbar-header, .login-page .profile__container > .navbar-header, .profile__container > .navbar-header,
-.container > .navbar-collapse, .login-page .container > .navbar-collapse, .login-page .profile__container > .navbar-collapse, .profile__container > .navbar-collapse,
+.container > .navbar-header, .login-page .container > .navbar-header, .profile__container > .navbar-header,
+.container > .navbar-collapse, .login-page .container > .navbar-collapse, .profile__container > .navbar-collapse,
 .container-fluid > .navbar-header,
 .container-fluid > .navbar-collapse {
   margin-right: -15px;
   margin-left: -15px; }
   @media (min-width: 768px) {
-    .container > .navbar-header, .login-page .container > .navbar-header, .login-page .profile__container > .navbar-header, .profile__container > .navbar-header,
-    .container > .navbar-collapse, .login-page .container > .navbar-collapse, .login-page .profile__container > .navbar-collapse, .profile__container > .navbar-collapse,
+    .container > .navbar-header, .login-page .container > .navbar-header, .profile__container > .navbar-header,
+    .container > .navbar-collapse, .login-page .container > .navbar-collapse, .profile__container > .navbar-collapse,
     .container-fluid > .navbar-header,
     .container-fluid > .navbar-collapse {
       margin-right: 0;
@@ -2536,7 +2536,7 @@ tbody.collapse.in {
   .navbar-brand > img {
     display: block; }
   @media (min-width: 768px) {
-    .navbar > .container .navbar-brand, .login-page .navbar > .container .navbar-brand, .login-page .navbar > .profile__container .navbar-brand, .navbar > .profile__container .navbar-brand,
+    .navbar > .container .navbar-brand, .login-page .navbar > .container .navbar-brand, .navbar > .profile__container .navbar-brand,
     .navbar > .container-fluid .navbar-brand {
       margin-left: -15px; } }
 
@@ -5324,7 +5324,7 @@ tbody.collapse.in {
 /*! Layout Login Page
 -------------------------*/
 .login-page {
-  margin: 40px 0 50px;
+  margin: 140px 0 50px;
   /* Forms */ }
   .login-page .container, .login-page .profile__container {
     /* background-color:#fff;
@@ -7102,6 +7102,9 @@ time {
   .site-header.user {
     background: #000000;
     margin-top: 0; }
+  .site-header.auth {
+    background: #000000;
+    margin-top: 0; }
   .site-header.night-fall:before {
     content: '';
     background: rgba(35, 31, 32, 0.6);
@@ -7937,291 +7940,6 @@ ul.menu > li > ul.sub-menu.breaking-news-menu > li > ul.sub-sub-menu > li {
       float: right;
       max-height: 44px;
       padding: 5px 25px 8px; }
-
-/*! Layout Login Page
--------------------------*/
-.login-page {
-  margin: 40px 0 50px;
-  /* Forms */ }
-  .login-page .container, .login-page .profile__container {
-    /* background-color:#fff;
-        border:1px solid rgba(0,0,0, 0.1); */ }
-  .login-page .nav-tabs {
-    border-bottom: 2px solid rgba(0, 0, 0, 0.2); }
-    .login-page .nav-tabs > li {
-      border: 0 none;
-      margin: 0 !important;
-      border-left: 1px solid rgba(0, 0, 0, 0.2); }
-      .login-page .nav-tabs > li:first-child {
-        border-left: 0px none; }
-      .login-page .nav-tabs > li > a {
-        font-weight: 400;
-        border-radius: 0;
-        text-align: center;
-        margin: 0 !important;
-        border: 0 none !important;
-        padding: 16px 10px 22px;
-        font-size: 15px;
-        background: #dfe0e1 none repeat scroll 0 0; }
-      .login-page .nav-tabs > li.active {
-        border-bottom: 0px none !important; }
-        .login-page .nav-tabs > li.active > a {
-          border-bottom: 0px none !important;
-          background: #ffffff none repeat scroll 0 0; }
-  .login-page .tab-content {
-    width: 100%;
-    margin: 0px auto;
-    padding: 50px 15%;
-    background: none repeat scroll 0 0 #ffffff; }
-    @media screen and (max-width: 992px) {
-      .login-page .tab-content {
-        padding: 50px 0; } }
-    .login-page .tab-content .txt-link span.green {
-      color: #585e5e;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-      padding-bottom: 5px;
-      position: relative; }
-      .login-page .tab-content .txt-link span.green:after {
-        position: absolute;
-        content: "";
-        width: 0;
-        height: 1px;
-        background: #000000;
-        bottom: 0;
-        left: 0;
-        transition: all 0.3s ease-in;
-        -moz-transition: all 0.3s ease-in;
-        -o-transition: all 0.3s ease-in;
-        -webkit-transition: all 0.3s ease-in;
-        -ms-transition: all 0.3s ease-in; }
-      .login-page .tab-content .txt-link span.green:hover:after {
-        width: 100%; }
-      @media screen and (min-width: 200px) and (max-width: 480px) {
-        .login-page .tab-content .txt-link span.green {
-          display: inline-block;
-          width: 125px; } }
-    .login-page .tab-content.forget_password button.forget_btn {
-      background: #8a9292 none repeat scroll 0 0;
-      border-color: #8a9292;
-      color: #ffffff; }
-      .login-page .tab-content.forget_password button.forget_btn:hover {
-        background: #717878 none repeat scroll 0 0;
-        border-color: #717878; }
-    @media screen and (max-width: 992px) {
-      .login-page .tab-content.forget_password {
-        padding: 50px 40px; } }
-    .login-page .tab-content.forget_password .forget_btn {
-      font-size: 15px;
-      padding: 7px 20px;
-      float: right; }
-      @media screen and (min-width: 481px) and (max-width: 667px), screen and (min-width: 200px) and (max-width: 480px) {
-        .login-page .tab-content.forget_password .forget_btn {
-          width: 100%; } }
-    .login-page .tab-content a > span, .login-page .tab-content p > span {
-      font-size: 15px; }
-  .login-page .email-login {
-    color: #383b40;
-    font-weight: 400;
-    position: relative;
-    text-align: center;
-    margin-bottom: 50px;
-    font-size: 15px; }
-    .login-page .email-login .seperation {
-      z-index: 90;
-      position: relative;
-      display: inline-block;
-      padding: 0px 20px;
-      background: none repeat scroll 0 0 #ffffff; }
-    .login-page .email-login:before, .login-page .email-login:after {
-      top: 55%;
-      height: 1px;
-      width: 100%;
-      content: " ";
-      display: block;
-      position: absolute;
-      border-top: 1px solid #cccccc; }
-    .login-page .email-login .seperation:before {
-      left: 0; }
-    .login-page .email-login .seperation:after {
-      right: 0; }
-  .login-page .WriteAnArticleForm {
-    width: 100%;
-    margin: 0 auto;
-    padding: 0px 10%; }
-    .login-page .WriteAnArticleForm .alert-danger {
-      overflow: hidden; }
-      .login-page .WriteAnArticleForm .alert-danger ul {
-        font-size: 12px; }
-    .login-page .WriteAnArticleForm.fullWidth {
-      padding: 0px; }
-    .login-page .WriteAnArticleForm .controls-full {
-      width: 100%;
-      margin-bottom: 20px;
-      display: inline-block; }
-    .login-page .WriteAnArticleForm .button-set {
-      margin-bottom: 20px; }
-      .login-page .WriteAnArticleForm .button-set label {
-        font-size: 12px;
-        margin-top: 6px; }
-      .login-page .WriteAnArticleForm .button-set .right-section {
-        float: right;
-        display: inline-block; }
-        @media screen and (min-width: 481px) and (max-width: 667px), screen and (min-width: 200px) and (max-width: 480px) {
-          .login-page .WriteAnArticleForm .button-set .right-section {
-            float: left;
-            width: 100%; } }
-        .login-page .WriteAnArticleForm .button-set .right-section .button {
-          float: right;
-          padding: 8px 24px 9px;
-          font-size: 13px; }
-          .login-page .WriteAnArticleForm .button-set .right-section .button.green {
-            background: #8a9292 none repeat scroll 0 0;
-            border-color: #8a9292;
-            color: #ffffff; }
-            .login-page .WriteAnArticleForm .button-set .right-section .button.green:hover {
-              background: #717878 none repeat scroll 0 0;
-              border-color: #717878; }
-          @media screen and (min-width: 481px) and (max-width: 667px), screen and (min-width: 200px) and (max-width: 480px) {
-            .login-page .WriteAnArticleForm .button-set .right-section .button {
-              width: 100%;
-              float: none;
-              margin-top: 15px;
-              padding: 10px 24px; } }
-        .login-page .WriteAnArticleForm .button-set .right-section .forget {
-          color: #17aa1c;
-          margin-top: 8px;
-          margin-right: 15px;
-          display: inline-block;
-          /*@media screen and (min-width : 481px) and (max-width : 667px), screen and (min-width : 200px) and (max-width : 480px) {
-                        position:absolute;
-                        right:0;
-                        top:0;
-                    }*/ }
-          .login-page .WriteAnArticleForm .button-set .right-section .forget span.green {
-            color: #585e5e; }
-    .login-page .WriteAnArticleForm .btn {
-      padding: 12px 30px 14px;
-      font-size: 22px; }
-    .login-page .WriteAnArticleForm .signup-button {
-      text-align: right; }
-      @media screen and (min-width: 668px) and (max-width: 767px), screen and (min-width: 481px) and (max-width: 667px), screen and (min-width: 200px) and (max-width: 480px) {
-        .login-page .WriteAnArticleForm .signup-button {
-          text-align: left; } }
-    .login-page .WriteAnArticleForm .form-control {
-      width: 100%;
-      height: 50px;
-      -webkit-border-radius: 2px;
-      border-radius: 2px; }
-  .login-page .controls-lt, .login-page .controls-rt {
-    width: 48.387%;
-    margin-bottom: 20px; }
-    @media screen and (min-width: 481px) and (max-width: 667px), screen and (min-width: 200px) and (max-width: 480px) {
-      .login-page .controls-lt, .login-page .controls-rt {
-        width: 100%; } }
-  .login-page .controls-lt {
-    float: left; }
-  .login-page .controls-rt {
-    float: right; }
-
-/* Social Icons */
-.social-buttons {
-  width: 100%;
-  margin: 0 auto 25px; }
-  .social-buttons > ul {
-    width: 100%;
-    padding: 0px;
-    list-style: none;
-    margin: 0 auto;
-    text-align: center; }
-    .social-buttons > ul > li {
-      width: 45%;
-      /*float:left;*/
-      display: inline-block;
-      list-style: none;
-      padding: 0 10px;
-      margin: 0 0 15px; }
-      @media screen and (min-width: 481px) and (max-width: 667px), screen and (min-width: 200px) and (max-width: 480px) {
-        .social-buttons > ul > li {
-          width: 100%;
-          margin-bottom: 15px;
-          display: block; } }
-      .social-buttons > ul > li > a {
-        width: 100%;
-        color: #fff;
-        font-size: 13px;
-        font-weight: 400;
-        text-align: center;
-        position: relative;
-        padding: 15px 20px;
-        -webkit-border-radius: 2px;
-        border-radius: 2px;
-        transition: all 0.3s ease-in;
-        -moz-transition: all 0.3s ease-in;
-        -o-transition: all 0.3s ease-in;
-        -webkit-transition: all 0.3s ease-in;
-        -ms-transition: all 0.3s ease-in;
-        background: none repeat scroll 0 0 #e6e6e6;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -moz-flex;
-        display: -ms-flexbox;
-        display: flex;
-        /* or inline-flex then width will be 100% */
-        -webkit-align-self: auto;
-        -moz-align-self: auto;
-        -ms-flex-item-align: auto;
-        align-self: auto;
-        align-items: center;
-        -webkit-align-items: center;
-        -moz-align-items: center;
-        align-items: center;
-        -webkit-justify-content: center;
-        -moz-justify-content: center;
-        justify-content: center; }
-        .social-buttons > ul > li > a > .fa {
-          padding-right: 10px;
-          font-size: 22px; }
-      .social-buttons > ul > li.facebook > a {
-        background: none repeat scroll 0 0 #3d5c95; }
-        .social-buttons > ul > li.facebook > a:hover, .social-buttons > ul > li.facebook > a:focus, .social-buttons > ul > li.facebook > a:active {
-          background: none repeat scroll 0 0 #2e4671; }
-      .social-buttons > ul > li.twitter > a {
-        background: none repeat scroll 0 0 #2eb1eb; }
-        .social-buttons > ul > li.twitter > a:hover, .social-buttons > ul > li.twitter > a:focus, .social-buttons > ul > li.twitter > a:active {
-          background: none repeat scroll 0 0 #1498d2; }
-      .social-buttons > ul > li.g-plus > a {
-        background: none repeat scroll 0 0 #f37b65; }
-        .social-buttons > ul > li.g-plus > a:hover, .social-buttons > ul > li.g-plus > a:focus, .social-buttons > ul > li.g-plus > a:active {
-          background: none repeat scroll 0 0 #ef5236; }
-      .social-buttons > ul > li.linkedin > a {
-        background: none repeat scroll 0 0 #0077b5; }
-        .social-buttons > ul > li.linkedin > a:hover, .social-buttons > ul > li.linkedin > a:focus, .social-buttons > ul > li.linkedin > a:active {
-          background: none repeat scroll 0 0 #005582; }
-  .social-buttons button.disconnect {
-    right: -9px;
-    top: -9px;
-    padding: 0;
-    border: 0 none;
-    cursor: pointer;
-    color: #ffffff;
-    font-weight: normal;
-    text-align: center;
-    line-height: 1;
-    position: absolute;
-    opacity: 1;
-    filter: alpha(opacity=100);
-    width: 26px;
-    height: 26px;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-    font-size: 15px;
-    background: none repeat scroll 0 0 white;
-    -webkit-box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.1);
-    -ms-box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.1);
-    box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.1); }
-    .social-buttons button.disconnect .fa {
-      color: #e73d4a; }
 
 a.card:hover {
   text-decoration: none; }
