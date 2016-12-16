@@ -69,7 +69,13 @@
 
                             <span class="slide-no">01</span>
                             <time datetime="{{ articles[0].metaPublishDate }}">{{_AppHelper.getDateTimeBasedOnTimezone(articles[0].publishDate, 'd M Y')}}</time>
-                            <h2>{{ articles[0].title }}</h2>
+                            
+                            {% if articles[0].articleId > 0 %}
+                                <h2>{{ articles[0].title }}</h2>
+                            {% else %}
+                                <h2>{{ articles[0].social.content }}</h2>
+                            {% endif %}
+
                         </div>
                     {% endif %}
     
@@ -87,7 +93,12 @@
                              data-article-text="{{articleText}}">
                             <span class="slide-no">02</span>
                             <time datetime="{{ articles[1].metaPublishDate }}">{{_AppHelper.getDateTimeBasedOnTimezone(articles[1].publishDate, 'd M Y')}}</time>
-                            <h2>{{ articles[1].title }}</h2>
+                            {% if articles[1].articleId > 0 %}
+                                <h2>{{ articles[1].title }}</h2>
+                            {% else %}
+                                <h2>{{ articles[1].social.content }}</h2>
+                            {% endif %}
+
                         </div>
                     {% endif %}
 
@@ -104,7 +115,12 @@
                              data-article-text="{{articleText}}">
                             <span class="slide-no">03</span>
                             <time datetime="{{ articles[2].metaPublishDate }}">{{_AppHelper.getDateTimeBasedOnTimezone(articles[2].publishDate, 'd M Y')}}</time>
-                            <h2>{{ articles[2].title }}</h2>
+                            {% if articles[2].articleId > 0 %}
+                                <h2>{{ articles[2].title }}</h2>
+                            {% else %}
+                                <h2>{{ articles[2].social.content }}</h2>
+                            {% endif %}
+
                         </div>
                     {% endif %}
                 </div><!--custom-pagination-->

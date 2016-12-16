@@ -123,7 +123,7 @@
                     <span class="article-icon"></span>
                     <time datetime="2016-11-16">{{_AppHelper.getDateTimeBasedOnTimezone(social.publishDate,'d M Y')}}</time>
 {#                     <h2>{{ articleTitle | raw }}</h2>
- #}                    <span class="author">{{ (social.source == _Article.socialArticleSourceTwitter()) ? '@' : ''}}{{ social.user['name'] | lower }}</span>
+ #}                  <span class="author">{{ (social.source == _Article.socialArticleSourceTwitter()) ? '@' : ''}}{{ social.user['name'] | lower }}</span>
                     
                     {% if cardClass != 'instagram no-caption' %}  
                         <p id="updateSocial{{article.socialId}}" data-update="0">{{ social.content | preg_replace('/(@.+?) /', '<span style="color:#0099cc">$1</span> ') 

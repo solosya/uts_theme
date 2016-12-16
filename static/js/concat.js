@@ -31807,7 +31807,7 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
         var csrfToken = $('meta[name="csrf-token"]').attr("content");
         
         var dateFormat = 'SHORT';
-
+        
         $.ajax({
             type: 'post',
             url: _appJsConfig.baseHttpPath + '/home/load-articles',
@@ -31947,11 +31947,11 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
             $(elem).off('click');
             $(elem).on('click', function(e){
                 e.preventDefault();
-
+             
                 var isSocial = $(elem).data('social');
                 var msgStr = (isSocial == 1) ? "Do you really want to delete this article?" : "Do you really want to hide this article?";
                 var articleGuid = $(elem).data('guid');
-
+                
                 if (typeof bootbox === 'undefined') {
                     var result = confirm(msgStr);
                     if (result === true) {
@@ -33760,7 +33760,6 @@ var HomeController = (function ($) {
 
     return {
         listing: function () {
-            console.log('homecontroller initing');
             HomeController.Listing.init();
         },
         blog: function() {
@@ -33892,7 +33891,6 @@ HomeController.Listing = (function ($) {
                     var destinationPostId   = parseInt(destObject.data('id'));
                     var destinationIsSocial = parseInt(destObject.data('social'));
 
-
                     var newDest = sourceObj.clone().removeAttr('style').insertAfter( destObject );
                     var newSrc = destObject.clone().insertAfter( sourceObj );
                     
@@ -33906,7 +33904,11 @@ HomeController.Listing = (function ($) {
                     }
 
                     if (destProxy) {
-                        destProxy.find('h2').text( sourceObj.find('h2').text() );
+                        if (sourceIsSocial) {
+                            destProxy.find('h2').text( sourceObj.find('p').text() );
+                        } else {
+                            destProxy.find('h2').text( sourceObj.find('h2').text() );
+                        }
                         newSrc.addClass('swap');
                         newDest.removeClass('swap');
                         destProxy.attr('data-article-text', sourceObj.data('article-text'));
@@ -33968,17 +33970,17 @@ HomeController.Listing = (function ($) {
         
         $('.loadMoreArticles').on('click', function(e){
             e.preventDefault();
-            console.log('clicked load more');
+
             var btnObj = $(this);
             $.fn.Ajax_LoadBlogArticles({
                 onSuccess: function(data, textStatus, jqXHR){
-                    console.log(data, textStatus);
+
                     if (data.success == 1) {
                         $('.ajaxArticles').data('existing-nonpinned-count', data.existingNonPinnedCount);
 
-                        // if (data.articles.length < 20) {
-                        //     $(btnObj).css('display', 'none');
-                        // }
+                        if (data.articles.length < 20) {
+                            $(btnObj).css('display', 'none');
+                        }
                         var html = '';
                         for (var i in data.articles) {
                             data.articles[i]['containerClass'] = 'col-sm-4 card-sm';
