@@ -7,7 +7,7 @@ var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('styles', function() {
-    return gulp.src('./assets/styles/**/*.scss')
+    return gulp.src('./assets/styles/main.scss')
 	    .pipe(sourcemaps.init())
     	.pipe(sass({includePaths: ['./assets/styles/partials']}).on('error', sass.logError))
     	.pipe(sourcemaps.write('.'))

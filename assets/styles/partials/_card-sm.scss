@@ -42,11 +42,12 @@
             margin-bottom: 32.5px;
             height: 172px;
         
-            @media screen and (max-width: $sm-break){
+            @media screen and (min-width: $mobile-break) and (max-width: $sm-break){
                 height: 300px;
             }
-
-
+            @media screen and (min-width: $sm-break) and (max-width: $mmd-break){
+                height: 600px;
+            }
         }
 
         .category{

@@ -13,7 +13,6 @@
             {% set imgWidth = 550 %}
             {% set imgHeight = 392 %}
         {% endif %}
-    {% set articleImg = _Media.getMediaUrl(article.featuredMedia,imgWidth, imgHeight, {'crop': 'fill', 'gravity': 'faces'} ) %}
     {% endif %}
 
     {% set placeholder = 'https://placeholdit.imgix.net/~text?txtsize=33&txt=Loading&w='~imgWidth~'&h='~imgHeight~'' %}
@@ -35,9 +34,14 @@
             data-article-text="{{Helper.htmlToText(article.title, -1) | raw | escape('html')}}">
 
             <article class="">
-                {% if article.hasMedia == 'TRUE' %}  
+                {% if article.hasMedia == 'TRUE' %}
+                    {% set articleImg = _Media.getMediaUrl(article.featuredMedia,imgWidth, imgHeight, {'crop': 'fill', 'gravity': 'faces'} ) %}
                     <figure>
-                        <div class="image-wrapper lazyload" data-original="{{articleImg}}" {% if articleImg is not empty %}style="background-image:url('{{placeholder}}');"{%endif%}></div>
+                        {% if lazylod == false %}
+                            <div class="image-wrapper lazyload" {% if articleImg is not empty %} style="background-image:url('{{articleImg}}');" {%endif%}></div>
+                        {% else %}
+                            <div class="image-wrapper lazyload" data-original="{{articleImg}}" {% if articleImg is not empty %} style="background-image:url('{{placeholder}}');" {%endif%}></div>
+                        {%endif%}
                     </figure>
                 {% endif %}
 

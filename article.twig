@@ -16,7 +16,8 @@
 {% set imgWidth = 1000 %}
 {% set imgHeight = 400 %}
 
-{% set articleImg = _Media.getMediaUrl(article.media[0]['path'],imgWidth, imgHeight, {'crop': 'fill', 'gravity': 'faces'} ) %}
+{% set articleImg = _Media.getMediaUrl(article.media[0],imgWidth, imgHeight, {'crop': 'fill', 'gravity': 'faces'} ) %}
+{% set profileImg = _Media.getMediaUrl(article.createdBy['media'], 100, 100, {radius: 'max', gravity: 'face', 'crop': 'thumb', type: 'user'}) %}
 
 
 
@@ -25,7 +26,7 @@
              class="image-wrapper news__slide slide lazyload-remove" 
              data-thumbnail="{{article.media[0].path}}" 
              data-original="{{article.media[0].path}}" 
-             style="background-image: url({{article.media[0].path}})">
+             style="background-image: url({{articleImg}})">
 
             <meta itemprop="url" content="{{article.media[0].path}}">
             <meta itemprop="height" content="{{article.media[0].height}}">
@@ -61,7 +62,7 @@
 
    <div class="container page-content">
         
-        
+
         <article class="col-sm-12">
             
             <header class="col-sm-8 col-sm-offset-2">
@@ -71,7 +72,7 @@
             </header>
 
             <div class="author-info col-sm-8 col-sm-offset-2">
-                <img src="{{ article.createdBy['media']['path'] }}" alt="Author name">
+                <img src="{{ profileImg }}" alt="Author name">
                 <span class="name">{{article.createdBy['displayName']}}</span>
                 <p>{{ article.createdBy['bio'] }}</p>
                 
