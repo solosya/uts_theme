@@ -68,6 +68,11 @@
             display: none;
         }
 
+        &.without__image {
+            padding-top:100px;
+        }
+
+
         &.other{
             border-bottom: solid 5.6px #231f20;
             padding-left: 0;

@@ -18,7 +18,7 @@
     {% set placeholder = 'https://placeholdit.imgix.net/~text?txtsize=33&txt=Loading&w='~imgWidth~'&h='~imgHeight~'' %}
     {% set promotedClass = (article.isPromoted) ? 'ad_icon' : '' %}
     {% set hasArticleMediaClass = (article.hasMedia == 'TRUE') ? 'withImage__content': 'without__image' %}
-    {% set blogClass = 'card--blog_'~article.blog['id'] %}
+
     {% set publishDate = _AppHelper.getDefaultTimezoneDateTime(article.publishDate) %}
     {% set articleTitle =  titleTruncateLength is defined ? article.title | truncate(titleTruncateLength) : article.title  %}
     {% set swap = swap is defined and swap == 'false' ? '' : 'swap'  %}
@@ -26,7 +26,7 @@
 
     <div class="{{containerClass}}">
         <a  href="{{article.url}}" 
-            class="{{swap}} card other" 
+            class="{{swap}} card other {{hasArticleMediaClass}}" 
             data-id="{{article.articleId}}" 
             data-position="{{position}}" 
             data-social="0" 
@@ -94,10 +94,11 @@
     {% set social = article.social %}
     {% set mediaClass = (social.hasMedia == 'TRUE') ? 'withImage__content' : 'without__image' %}
     {% set videoClass = (social.media['type'] == 'video') ? 'video_card' : '' %}
+    {% set hasArticleMediaClass = (social.hasMedia == 'TRUE') ? 'withImage__content': 'without__image' %}
 
     <div class="{{containerClass}}">
         <a  href="{{social.url}}"
-            class="swap card {{ social.source }}" 
+            class="swap card {{ social.source }}  {{hasArticleMediaClass}}" 
             data-id="{{article.socialId}}" 
             data-position="{{position}}" 
             data-social="1" 

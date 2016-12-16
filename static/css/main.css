@@ -8492,6 +8492,8 @@ a.card:hover {
     margin-bottom: 9px; }
   .card-sm .card .share-icon {
     display: none; }
+  .card-sm .card.without__image {
+    padding-top: 100px; }
   .card-sm .card.other {
     border-bottom: solid 5.6px #231f20;
     padding-left: 0;
