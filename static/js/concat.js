@@ -31853,9 +31853,12 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
             $(elem).off('click');
             $(elem).on('click', function(e){
                 e.preventDefault();
-
+                e.stopPropagation();
+                
                 var articleId = parseInt($(elem).data('id'));
                 var position = parseInt($(elem).data('position'));
+                console.log('pinning');
+                console.log(position);
                 var existingStatus = $(elem).data('status');
                 var isSocial = $(elem).data('social');
                 
@@ -31907,7 +31910,7 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
         if (typeof articleGuid === 'undefined' || articleGuid === "") {
             return;
         }
-
+        
         var csrfToken = $('meta[name="csrf-token"]').attr("content");
         $.ajax({
             type: 'POST',
@@ -31947,6 +31950,8 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
             $(elem).off('click');
             $(elem).on('click', function(e){
                 e.preventDefault();
+                e.stopPropagation();
+                
              
                 var isSocial = $(elem).data('social');
                 var msgStr = (isSocial == 1) ? "Do you really want to delete this article?" : "Do you really want to hide this article?";
@@ -33757,7 +33762,6 @@ AuthController.ResetPassword = (function ($) {
 
 
 var HomeController = (function ($) {
-
     return {
         listing: function () {
             HomeController.Listing.init();
@@ -33779,7 +33783,7 @@ HomeController.Listing = (function ($) {
                     : $(obj).attr('title', 'Pin Article');
                (status == 1) 
                     ? $(obj).find('span').first().html('Un-Pin') 
-                    : $(obj).find('span').first().html('Pin');
+                    : $(obj).find('span').first().html('Pin');        
             }
         });
     };
@@ -33800,27 +33804,69 @@ HomeController.Listing = (function ($) {
         });
     };
     
-    var attachEvents = function () {
+    var bindSocialUpdatePost = function () {
+        $('.editSocialPost').on('click', function (e) {
+            e.preventDefault();
+            var elem = $(this);
+            var url = elem.data('url');
+            var popup = window.open(url, '_blank', 'toolbar=no,scrollbars=yes,resizable=false,width=360,height=450');
+            popup.focus();
 
+            var intervalId = setInterval(function () {
+                if (popup.closed) {
+                    clearInterval(intervalId);
+                    var socialId = elem.parents('a').data('id');
+                    if ($('#updateSocial' + socialId).data('update') == '1') {
+                        $().General_ShowNotification({message: 'Social Post(s) updated successfully.'});
+                    }
+                }
+            }, 50);
+
+            return;
+        });
+    };
+    
+    var bindSocialShareArticle = function () {
+        $('.shareIcons').SocialShare({
+            onLoad: function (obj) {
+                var title = obj.parents('div.article').find('.card__news-category').text();
+                var url = obj.parents('div.article').find('a').attr('href');
+                var content = obj.parents('div.article').find('.card__news-description').text();
+                $('.rrssb-buttons').rrssb({
+                    title: title,
+                    url: url,
+                    description: content
+                });
+                setTimeout(function () {
+                    rrssbInit();
+                }, 10);
+            }
+        });
+    };
+    
+    var attachEvents = function () {
         if(_appJsConfig.isUserLoggedIn === 1 && _appJsConfig.userHasBlogAccess === 1) {
+            initSwap();
+        }
+        
+        function initSwap() {
+            initDroppable();
+            initDraggable();
+            
             //Bind pin/unpin article event
             bindPinUnpinArticle();
 
             //Bind delete social article & hide system article
             bindDeleteHideArticle();
-        }
-        
-        function initSwap() {
-
-            initDroppable();
-            initDraggable();
+            
+            //Bind update social article
+            bindSocialUpdatePost();
             
             //Following will called on page load and also on load more articles
             $(".articleMenu, .socialMenu").delay(2000).fadeIn(500);
         }
         
         function initDraggable() {
-
             $('.swap').draggable({
                 helper: 'clone',
                 revert: true,
@@ -33829,12 +33875,10 @@ HomeController.Listing = (function ($) {
                 scrollSensitivity: 100,
                 cursorAt: { left: 150, top: 50 },
                 appendTo:'body',
-//                containment: false,
                 start: function( event, ui ) {
                     ui.helper.attr('class', '');
                     var postImage = $(ui.helper).data('article-image');
                     var postText = $(ui.helper).data('article-text');
-
                     if(postImage !== "") {
                         $('div.SwappingHelper img.article-image').attr('src', postImage);
                     }
@@ -33853,12 +33897,6 @@ HomeController.Listing = (function ($) {
                 hoverClass: "ui-state-hover",
                 drop: function(event, ui) {
                     
-                    function isInt(pos) {
-                      if (isNaN(pos)) { return false; }
-                      var x = parseFloat(pos);
-                      return (x | 0) === x;
-                    }   
-
                     function getElementAtPosition(elem, pos) {
                         return elem.find('a.card').eq(pos);
                     }
@@ -33891,14 +33929,14 @@ HomeController.Listing = (function ($) {
                     var destinationPostId   = parseInt(destObject.data('id'));
                     var destinationIsSocial = parseInt(destObject.data('social'));
 
-                    var newDest = sourceObj.clone().removeAttr('style').insertAfter( destObject );
-                    var newSrc = destObject.clone().insertAfter( sourceObj );
+                    var swappedDestinationElement = sourceObj.clone().removeAttr('style').insertAfter( destObject );
+                    var swappedSourceElement = destObject.clone().insertAfter( sourceObj );
                     
 
                     if (sourceProxy) {
                         sourceProxy.find('h2').text(destObject.find('h2').text());
-                        newDest.addClass('swap');
-                        newSrc.removeClass('swap');
+                        swappedDestinationElement.addClass('swap');
+                        swappedSourceElement.removeClass('swap');
                         sourceProxy.attr('data-article-text', destObject.data('article-text'));
                         sourceProxy.attr('data-article-image', destObject.data('article-image'));
                     }
@@ -33909,21 +33947,22 @@ HomeController.Listing = (function ($) {
                         } else {
                             destProxy.find('h2').text( sourceObj.find('h2').text() );
                         }
-                        newSrc.addClass('swap');
-                        newDest.removeClass('swap');
+                        swappedSourceElement.addClass('swap');
+                        swappedDestinationElement.removeClass('swap');
                         destProxy.attr('data-article-text', sourceObj.data('article-text'));
                         destProxy.attr('data-article-image', sourceObj.data('article-image'));
                     }
                     
+                    swappedSourceElement.data('position', sourcePosition);
+                    swappedDestinationElement.data('position', destinationPosition);
+                    swappedSourceElement.find('.PinArticleBtn').data('position', sourcePosition);
+                    swappedDestinationElement.find('.PinArticleBtn').data('position', destinationPosition);
+
+
                     $(ui.helper).remove(); //destroy clone
                     sourceObj.remove();
                     destObject.remove();
                     
-                    //swap positions
-                    sourceObj.data('position', destinationPosition);
-                    destObject.data('position', sourcePosition);
-
-
                     var csrfToken = $('meta[name="csrf-token"]').attr("content");
                     var postData = {
                         sourcePosition: sourcePosition,
@@ -33964,9 +34003,6 @@ HomeController.Listing = (function ($) {
             }); 
         }
 
-        if(_appJsConfig.isUserLoggedIn === 1 && _appJsConfig.userHasBlogAccess === 1) {
-            initSwap();
-        }
         
         $('.loadMoreArticles').on('click', function(e){
             e.preventDefault();
@@ -33974,19 +34010,14 @@ HomeController.Listing = (function ($) {
             var btnObj = $(this);
             $.fn.Ajax_LoadBlogArticles({
                 onSuccess: function(data, textStatus, jqXHR){
-
                     if (data.success == 1) {
                         $('.ajaxArticles').data('existing-nonpinned-count', data.existingNonPinnedCount);
 
                         if (data.articles.length < 20) {
                             $(btnObj).css('display', 'none');
                         }
-                        var html = '';
                         for (var i in data.articles) {
-                            data.articles[i]['containerClass'] = 'col-sm-4 card-sm';
-                            if ((i%5 === 0 || i%5 === 1 ) && i%2 == 1) {
-                                data.articles[i]['containerClass'] = 'col-sm-8 card-md';
-                            }
+                            data.articles[i]['containerClass'] = 'col-quarter';
                             data.articles[i]['pinTitle'] = (data.articles[i].isPinned == 1) ? 'Un-Pin Article' : 'Pin Article';
                             data.articles[i]['pinText'] = (data.articles[i].isPinned == 1) ? 'Un-Pin' : 'Pin';
                             data.articles[i]['promotedClass'] = (data.articles[i].isPromoted == 1)? 'ad_icon' : '';
@@ -34010,10 +34041,9 @@ HomeController.Listing = (function ($) {
                             } else {
                                 articleTemplate = Handlebars.compile(systemCardTemplate);
                             }
-                            html += articleTemplate(data.articles[i]);
+                            var article = articleTemplate(data.articles[i]);
+                            $('.ajaxArticles').append(article);
                         }
-
-                        $('.ajaxArticles').append(html);
 
                         $(".card p, .card h1").dotdotdot();
                         
@@ -34026,65 +34056,19 @@ HomeController.Listing = (function ($) {
                             effect: "fadeIn"
                         });
                         if (_appJsConfig.isUserLoggedIn === 1 && _appJsConfig.userHasBlogAccess === 1) {
-                            //Bind pin/unpin article event
-                            bindPinUnpinArticle();
-                            //Bind delete social article & hide system article
-                            bindDeleteHideArticle();
-                            bindSocialUpdatePost();
-
                             initSwap();
                         }
                     }
+                 
                 },
                 beforeSend: function(jqXHR, settings){
                     $(btnObj).html("Please wait...");
                 },
-                onComplete: function(jqXHR, textStatus){
-                    $(btnObj).html("Load More");
+                onComplete: function(jqXHR, textStatus) {
+                    $(btnObj).html("Load more <i class='fa fa-refresh'></i>");
                 }
             });
         });
-        
-        var bindSocialShareArticle = function () {
-            $('.shareIcons').SocialShare({
-                onLoad: function (obj) {
-                    var title = obj.parents('div.article').find('.card__news-category').text();
-                    var url = obj.parents('div.article').find('a').attr('href');
-                    var content = obj.parents('div.article').find('.card__news-description').text();
-                    $('.rrssb-buttons').rrssb({
-                        title: title,
-                        url: url,
-                        description: content
-                    });
-                    setTimeout(function () {
-                        rrssbInit();
-                    }, 10);
-                }
-            });
-        };
-        
-        var bindSocialUpdatePost = function () {
-            $('.editSocialPost').on('click', function (e) {
-                e.preventDefault();
-                var elem = $(this);
-                var url = elem.data('url');
-                var popup = window.open(url, '_blank', 'toolbar=no,scrollbars=yes,resizable=false,width=360,height=450');
-                popup.focus();
-
-                var intervalId = setInterval(function () {
-                    if (popup.closed) {
-                        clearInterval(intervalId);
-                        var socialId = elem.parents('a').data('id');
-                        if ($('#updateSocial' + socialId).data('update') == '1') {
-                            $().General_ShowNotification({message: 'Social Post(s) updated successfully.'});
-                        }
-                    }
-                }, 50);
-
-                return;
-            });
-        };
-
     };
     return {
         init: function () {

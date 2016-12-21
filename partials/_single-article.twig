@@ -22,10 +22,12 @@
     {% set publishDate = _AppHelper.getDefaultTimezoneDateTime(article.publishDate) %}
     {% set articleTitle =  titleTruncateLength is defined ? article.title | truncate(titleTruncateLength) : article.title  %}
     {% set swap = swap is defined and swap == 'false' ? '' : 'swap'  %}
+    {% set articleImg = _Media.getMediaUrl(article.featuredMedia,imgWidth, imgHeight, {'crop': 'fill', 'gravity': 'faces'} ) %}
 
 
     <div class="{{containerClass}}">
         <a  href="{{article.url}}" 
+            id="Article{{article.articleId}}"
             class="{{swap}} card other {{hasArticleMediaClass}}" 
             data-id="{{article.articleId}}" 
             data-position="{{position}}" 
@@ -35,7 +37,6 @@
 
             <article class="">
                 {% if article.hasMedia == 'TRUE' %}
-                    {% set articleImg = _Media.getMediaUrl(article.featuredMedia,imgWidth, imgHeight, {'crop': 'fill', 'gravity': 'faces'} ) %}
                     <figure>
                         {% if lazylod == false %}
                             <div class="image-wrapper lazyload" {% if articleImg is not empty %} style="background-image:url('{{articleImg}}');" {%endif%}></div>
@@ -99,6 +100,7 @@
     <div class="{{containerClass}}">
         <a  href="{{social.url}}"
             class="swap card {{ social.source }}  {{hasArticleMediaClass}}" 
+            id="Social{{article.socialId}}"
             data-id="{{article.socialId}}" 
             data-position="{{position}}" 
             data-social="1" 

@@ -44,7 +44,7 @@
             <div class="swiper-wrapper">
                 {% for i in 0..2 %}
                     {% if articles[i] %}                                                                
-                        {{this.render('partials/_single-article.twig', {article: articles[i], position: 'swiper-wrapper', containerClass: 'swiper-slide', swap: 'false'}) | raw}}
+                        {{this.render('partials/_single-article.twig', {article: articles[i], position: (i+1), containerClass: 'swiper-slide', swap: 'false'}) | raw}}
                     {% endif %}
                 {% endfor %}
             </div>
