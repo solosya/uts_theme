@@ -9,9 +9,16 @@
         margin-bottom: 30px;
         color:#fefefe;
         
-        @media screen and (max-width: $sm-break){
+
+        @media screen and (max-width: $mobile-break){
+            min-height: 450px;
+            max-height: 450px;
+        }
+
+
+        @media screen and (min-width: $mobile-break) and (max-width: $sm-break){
             min-height: 570px;
-            max-height:570px;
+            max-height: 570px;
         }
 
 
@@ -44,9 +51,6 @@
         
             @media screen and (min-width: $mobile-break) and (max-width: $sm-break){
                 height: 300px;
-            }
-            @media screen and (min-width: $sm-break) and (max-width: $mmd-break){
-                height: 600px;
             }
         }
 

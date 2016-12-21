@@ -7120,6 +7120,27 @@ time {
     @media screen and (max-width: 620px) {
       .site-header .site-branding {
         padding-left: 0; } }
+    .site-header .site-branding::after {
+      color: white;
+      font-size: 0.92308em;
+      display: inline-block;
+      background: black;
+      padding: 10px; }
+      @media screen and (max-width: 490px) {
+        .site-header .site-branding::after {
+          content: "sm-mobile-break 0 - 490px"; } }
+      @media screen and (min-width: 490px) and (max-width: 620px) {
+        .site-header .site-branding::after {
+          content: "mobile-break 491px - 620px"; } }
+      @media screen and (min-width: 620px) and (max-width: 769px) {
+        .site-header .site-branding::after {
+          content: "sm-break 621px - 769px"; } }
+      @media screen and (min-width: 769px) and (max-width: 992px) {
+        .site-header .site-branding::after {
+          content: "mmd-break 770px - 992px"; } }
+      @media screen and (min-width: 992px) and (max-width: 1200px) {
+        .site-header .site-branding::after {
+          content: "md-break 992px - 1200px"; } }
   .site-header .navbar-brand {
     font-size: inherit;
     padding: 0;
@@ -8152,7 +8173,11 @@ a.card:hover {
   padding-right: 12px;
   margin-bottom: 30px;
   color: #fefefe; }
-  @media screen and (max-width: 769px) {
+  @media screen and (max-width: 620px) {
+    .card-sm .card {
+      min-height: 450px;
+      max-height: 450px; } }
+  @media screen and (min-width: 620px) and (max-width: 769px) {
     .card-sm .card {
       min-height: 570px;
       max-height: 570px; } }
@@ -8175,9 +8200,6 @@ a.card:hover {
     @media screen and (min-width: 620px) and (max-width: 769px) {
       .card-sm .card figure {
         height: 300px; } }
-    @media screen and (min-width: 769px) and (max-width: 992px) {
-      .card-sm .card figure {
-        height: 600px; } }
   .card-sm .card .category {
     position: absolute;
     top: 0;
@@ -9639,17 +9661,17 @@ button.swiper-pagination-bullet {
       padding-left: 0;
       margin-left: -15px;
       margin-right: -15px; } }
-  .aap-news > h2:first-child {
+  .aap-news > a > h2:first-child {
     margin-top: 0px;
     width: 95px; }
     @media screen and (max-width: 992px) {
-      .aap-news > h2:first-child {
+      .aap-news > a > h2:first-child {
         font-size: 2.30769em;
         margin-bottom: 30px;
         padding-left: 15px;
         padding-right: 15px; } }
     @media screen and (max-width: 490px) {
-      .aap-news > h2:first-child {
+      .aap-news > a > h2:first-child {
         width: 100%;
         margin-bottom: 30px; } }
   .aap-news article {
