@@ -1,0 +1,146 @@
+{% set networkData = _Network.getNetworkData() %}
+
+{% set blogInfo = _Blog.getBlog() %}
+{{ set(this, 'title', blogInfo.title) }}
+
+
+{{this.registerJs("HomeController.listing();")}}
+{{this.registerJs("HomeController.blog();")}}
+
+{% set limit = 20 %}
+
+{% set articlesArr = _Blog.getBlogFeed({'limit': limit, 'offset': 0}) %}
+{% set articles = articlesArr.articles %}
+
+
+{% set status = 'follow' %}
+{% set text = 'Follow +' %}
+{% if not _User.isGuset() and _User.isUserFollowing('blog', article.blog['id'])%}
+    {% set status = 'unfollow' %}
+    {% set text = 'Following -' %}
+{% endif %}
+
+
+
+
+<!-- used to index each article as we loop over throughout the template -->
+{% set articleCount = 0 %}
+
+
+{% set sidePanel =  "Breaking News" %}
+{% set sidePanelfeed = [] %}
+{% for blog in networkData.networkBlogs %}
+    {% if blog.title == sidePanel %}
+        {% set sidePanelfeed = _Blog.getBlogFeed({'limit': 5, 'offset': 0, 'blogid':blog.guid}) %}
+    {% endif %}
+{% endfor %}
+
+
+
+
+
+    <!--placeholder temp -->
+    <section class="channel container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="row">
+
+                    <div class="col-sm-6">
+                        <h1>{{blogInfo.title}}</h1>
+                    </div>
+
+                    <div class="col-sm-6 follow-box">
+
+                        {% if not _User.isGuest %}
+                            {% set isUserFollowingBlog = _User.isUserFollowing('blog', blogInfo.id) %}
+                            {% if isUserFollowingBlog %}
+                                <a href="javascript:void(0)" class="btn btn-black follow followBlog" data-status="unfollow" data-guid="{{blogInfo.guid}}">Following -</a>
+                            {% else %}
+                                <a href="javascript:void(0)" class="btn btn-black follow followBlog" data-status="follow"  data-guid="{{blogInfo.guid}}">Follow +</a>
+                            {% endif %}
+                        {% else %}
+                            <a href="javascript:void(0)" class="btn btn-black follow forceLoginModal">Follow +</a>
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </section><!--featured-carousel-->
+
+    <section class="content-block container top">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="row">
+                    {% if articles[articleCount] %}
+                        {{this.render('partials/_single-article.twig', {article: articles[articleCount], 'position': (articleCount + 1 ), containerClass: 'col-sm-6 card-md'}) | raw}}
+                        {% set articleCount = articleCount + 1 %}
+                    {% endif %}
+
+                    {% if articles[articleCount] %}
+                        {{this.render('partials/_single-article.twig', {article: articles[articleCount], 'position': (articleCount + 1 ), containerClass: 'col-sm-3 card-sm'}) | raw}}
+                        {% set articleCount = articleCount + 1 %}
+                    {% endif %}
+
+                    {% if articles[articleCount] %}
+                        {{this.render('partials/_single-article.twig', {article: articles[articleCount], 'position': (articleCount + 1 ), containerClass: 'col-sm-3 card-sm'}) | raw}}
+                        {% set articleCount = articleCount + 1 %}
+                    {% endif %}
+
+                    {% if articles[articleCount] %}
+                        {{this.render('partials/_single-article.twig', {article: articles[articleCount], 'position': (articleCount + 1 ), containerClass: 'col-sm-3 card-sm'}) | raw}}
+                        {% set articleCount = articleCount + 1 %}
+                    {% endif %}
+
+                    {% if articles[articleCount] %}
+                        {{this.render('partials/_single-article.twig', {article: articles[articleCount], 'position': (articleCount + 1 ), containerClass: 'col-sm-3 card-sm'}) | raw}}
+                        {% set articleCount = articleCount + 1 %}
+                    {% endif %}
+
+                    {% if articles[articleCount] %}
+                        {{this.render('partials/_single-article.twig', {article: articles[articleCount], 'position': (articleCount + 1 ), containerClass: 'col-sm-6 card-md'}) | raw}}
+                        {% set articleCount = articleCount + 1 %}
+                    {% endif %}
+
+                </div><!--row-->
+            </div>
+        </div>
+    </section>
+
+
+    <section class="highlight content-block">
+        {% if articles[7] %}
+            {{this.render('partials/_single-article.twig', {article: articles[7], 'position': (8), containerClass: 'card-lg', cardClass : 'other'}) | raw}}
+        {% endif %}
+    </section><!--highlight-->
+
+    <section class="content-block container">
+        <div class="row">
+
+            <div class="col-sm-12">
+                <div class="row">
+
+                    {% if articles[8] %}
+                        {{this.render('partials/_single-article.twig', {article: articles[8], 'position': (9), containerClass: 'col-sm-4 card-sm', cardClass : 'instagram'}) | raw}}
+                    {% endif %}
+                    {% if articles[9] %}
+                        {{this.render('partials/_single-article.twig', {article: articles[9], 'position': (10), containerClass: 'col-sm-8 card-md', cardClass : 'youtube'}) | raw}}
+                    {% endif %}
+                    {% if articles[10] %}
+                        {{this.render('partials/_single-article.twig', {article: articles[10], 'position': (11), containerClass: 'col-sm-4 card-sm', cardClass : 'twitter'}) | raw}}
+                    {% endif %}
+                    {% if articles[11] %}
+                        {{this.render('partials/_single-article.twig', {article: articles[11], 'position': (12), containerClass: 'col-sm-4 card-sm', cardClass : 'soundcloud'}) | raw}}
+                    {% endif %}
+                    {% if articles[12] %}
+                        {{this.render('partials/_single-article.twig', {article: articles[12], 'position': (13), containerClass: 'col-sm-4 card-sm', cardClass : 'instagram no-caption'}) | raw}}
+                    {% endif %}
+
+                </div><!--row-->
+            </div>
+
+        </div>
+    </section>
