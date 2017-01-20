@@ -38,7 +38,7 @@
     <link type="text/css" rel="stylesheet" href="{{networkData.templatePath}}/assets/scripts/plugins/jquery.fancybox/source/jquery.fancybox.css" />
     <link type="text/css" rel="stylesheet" href="{{networkData.templatePath}}/assets/scripts/plugins/jquery.noty-2.3.8/demo/animate.css" />
     <link type="text/css" rel="stylesheet" href="{{_AppHelper.getAssetsSDKPath()}}/js/media-player/mediaelementplayer.css" />
-    <link rel='stylesheet' href='{{networkData.templatePath}}/static/css/main.css?ver=1' type='text/css' media='all' />
+    <link rel='stylesheet' href='{{networkData.templatePath}}/static/css/main.css?ver=3' type='text/css' media='all' />
     
     <script src="https://use.typekit.net/unp4tin.js"></script>
     <script>try{Typekit.load({ async: true });}catch(e){}</script>
@@ -156,7 +156,12 @@
 
 {% set pageClass = _Page.getBodyClass() %}
 
-<body {{ pageClass }}>
+{% set blogName = '' %}
+{% if blogData.title == 'Screen' %}
+    {% set blogName = blogData.title %}
+{% endif %}
+
+<body class="{{ pageClass }} {{ blogName }}">
 
     {{ this.beginBody() }}
 
@@ -170,7 +175,7 @@
     {{ content | raw}}
 
 
-    {{ this.render('partials/footer.twig', {network : networkData, blog: blogData }) | raw }}
+    {# {{ this.render('partials/footer.twig', {network : networkData, blog: blogData }) | raw }} #}
 
     
     {{ this.render('partials/_javascript.twig') | raw }}
