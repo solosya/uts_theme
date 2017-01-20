@@ -247,14 +247,19 @@ HomeController.Listing = (function ($) {
             var btnObj = $(this);
             $.fn.Ajax_LoadBlogArticles({
                 onSuccess: function(data, textStatus, jqXHR){
+
                     if (data.success == 1) {
                         $('.ajaxArticles').data('existing-nonpinned-count', data.existingNonPinnedCount);
 
                         if (data.articles.length < 20) {
                             $(btnObj).css('display', 'none');
                         }
+                        var html = '';
                         for (var i in data.articles) {
-                            data.articles[i]['containerClass'] = 'col-quarter';
+                            data.articles[i]['containerClass'] = 'col-sm-4 card-sm';
+                            if ((i%5 === 0 || i%5 === 1 ) && i%2 == 1) {
+                                data.articles[i]['containerClass'] = 'col-sm-8 card-md';
+                            }
                             data.articles[i]['pinTitle'] = (data.articles[i].isPinned == 1) ? 'Un-Pin Article' : 'Pin Article';
                             data.articles[i]['pinText'] = (data.articles[i].isPinned == 1) ? 'Un-Pin' : 'Pin';
                             data.articles[i]['promotedClass'] = (data.articles[i].isPromoted == 1)? 'ad_icon' : '';
@@ -278,9 +283,10 @@ HomeController.Listing = (function ($) {
                             } else {
                                 articleTemplate = Handlebars.compile(systemCardTemplate);
                             }
-                            var article = articleTemplate(data.articles[i]);
-                            $('.ajaxArticles').append(article);
+                            html += articleTemplate(data.articles[i]);
                         }
+
+                        $('.ajaxArticles').append(html);
 
                         $(".card p, .card h1").dotdotdot();
                         
@@ -296,7 +302,6 @@ HomeController.Listing = (function ($) {
                             initSwap();
                         }
                     }
-                 
                 },
                 beforeSend: function(jqXHR, settings){
                     $(btnObj).html("Please wait...");
