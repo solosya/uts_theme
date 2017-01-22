@@ -34230,7 +34230,18 @@ $('document').ready(function() {
     }), 750);
 
 
-	var swiper = new Swiper('.swiper-container', {
+
+    var screenswiper = new Swiper('#screen-swiper', {
+        spaceBetween: 30,
+        effect: 'fade',
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        autoplay: 2500,
+        autoplayDisableOnInteraction: false
+    });
+
+
+	var swiper = new Swiper('#index-swiper', {
 	        spaceBetween: 30,
 	        effect: 'fade',
             pagination: '.swiper-pagination',
