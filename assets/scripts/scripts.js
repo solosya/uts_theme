@@ -114,7 +114,7 @@ $('document').ready(function() {
         autoplayDisableOnInteraction: false
     });
 
-
+    console.log(screenswiper);
 	var swiper = new Swiper('#index-swiper', {
 	        spaceBetween: 30,
 	        effect: 'fade',
