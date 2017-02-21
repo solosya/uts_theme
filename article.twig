@@ -100,7 +100,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="mailto:?subject={{ article.title|url_encode }}&body={{ article.title|url_encode }}%0D%0A%3C{{article.url|url_encode}}%3E">{# %3Cimg%3E{{ articleImg|url_encode }}%3C%2Fimg%3E%0D%0A{{ article.content|url_encode }}"> #}
                                 <span class="sr-only">Mail</span>
                                 <span class="mail-blk icon"></span>
                             </a>
