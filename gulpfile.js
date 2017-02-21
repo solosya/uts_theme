@@ -7,7 +7,11 @@ var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('styles', function() {
-    return gulp.src('./assets/styles/main.scss')
+    return gulp.src([
+            './assets/styles/main.scss',
+            './assets/scripts/plugins/jquery.fancybox/source/jquery.fancybox.css',
+            './assets/scripts/plugins/jquery.noty-2.3.8/demo/animate.css',
+        ])
 	    .pipe(sourcemaps.init())
     	.pipe(sass({includePaths: ['./assets/styles/partials']}).on('error', sass.logError))
     	.pipe(sourcemaps.write('.'))

@@ -46,13 +46,14 @@
                     data-caption="{{article.title | raw}}">
 
                    <div class="icons">
+                    
                        <div class="icon"><i class="fa fa-play"></i></div>
                    </div>
                 </a>
           
-               {% if article.media[0].caption | length %}
+       {#         {% if article.media[0].caption | length %}
                     <div class="news__slide-caption">{{article.media[0].caption | raw}}</div>
-               {% endif %}                                    
+               {% endif %} #}                                    
             {% endif %}
         </div>
         {# <div class="image-wrapper" style="background-image: url({{ articleImg }});"> #}
