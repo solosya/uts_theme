@@ -7998,10 +7998,6 @@ a.card:hover {
     display: none; }
   .card.instagram .article-icon {
     background-image: url(../icons/instagram-white.svg); }
-  .card.youtube span.category {
-    display: none; }
-  .card.youtube span.author {
-    display: none; }
   .card.youtube .article-icon {
     background-image: url(../icons/youtube-white.svg); }
   .card.vimeo .article-icon {

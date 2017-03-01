@@ -62,8 +62,8 @@
                              data-proxyfor="swiper-wrapper" 
                              data-position="1" 
                              data-slide="0"
-                             data-id="{{ article.articleId > 0 ? article.articleId : article.socialId }}" 
-                             data-social="{{ article.socialId > 0 ? '1' : '0' }}"
+                             data-id="{{ articles[0].articleId > 0 ? articles[0].articleId : articles[i].socialId }}" 
+                             data-social="{{ articles[0].socialId > 0 ? '1' : '0' }}"
                              data-article-image="{{ articleImg }}" 
                              data-article-text="{{ articleText }}">
 
@@ -87,8 +87,8 @@
                              data-proxyfor="swiper-wrapper" 
                              data-position="2" 
                              data-slide="1"
-                             data-id="{{ article.articleId > 0 ? article.articleId : article.socialId }}" 
-                             data-social="{{ article.socialId > 0 ? '1' : '0' }}"
+                             data-id="{{ articles[1].articleId > 0 ? articles[1].articleId : articles[1].socialId }}" 
+                             data-social="{{ articles[1].socialId > 0 ? '1' : '0' }}"
                              data-article-image="{{ articleImg }}" 
                              data-article-text="{{articleText}}">
                             <span class="slide-no">02</span>
@@ -109,8 +109,8 @@
                              data-proxyfor="swiper-wrapper" 
                              data-position="3" 
                              data-slide="2"
-                             data-id="{{ article.articleId > 0 ? article.articleId : article.socialId }}" 
-                             data-social="{{ article.socialId > 0 ? '1' : '0' }}"
+                             data-id="{{ articles[2].articleId > 0 ? articles[2].articleId : articles[2].socialId }}" 
+                             data-social="{{ articles[2].socialId > 0 ? '1' : '0' }}"
                              data-article-image="{{ articleImg }}" 
                              data-article-text="{{articleText}}">
                             <span class="slide-no">03</span>
@@ -186,7 +186,7 @@
     </section>
 
     <div class="container">
-        <a href="{{ two_serPanelLink }}"><h5 class="ser-h5">2SER</h5></a>
+        <a href="/@2ser"><h5 class="ser-h5">2SER</h5></a>
         <section class="content-block ser">
             <div class="row">
                 <div class="col-sm-4">
