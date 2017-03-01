@@ -110,7 +110,7 @@
             <article class="">
                 {% if social.hasMedia == 'TRUE' %}  
                     <figure>
-                        <div class="image-wrapper" data-original="{{social.media['path']}}" {% if social.media['path'] is not empty %} style="background-image:url('{{placeholder}}');"{%endif%}></div>
+                        <div class="image-wrapper lazyload" data-original="{{social.media['path']}}" {% if social.media['path'] is not empty %} style="background-image:url('{{placeholder}}');"{%endif%}></div>
                     </figure>
                 {% endif %}
 
