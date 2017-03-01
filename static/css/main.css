@@ -7990,8 +7990,6 @@ a.card:hover {
       background-image: url(../icons/facebook-white.svg); }
   .card.twitter span.category {
     display: none; }
-  .card.twitter figure {
-    display: none; }
   .card.twitter .article-icon {
     background-image: url(../icons/twitter-white.svg); }
   .card.instagram h2 {
@@ -8295,7 +8293,8 @@ a.card:hover {
   .card-sm .card.youtube {
     padding-left: 0;
     padding-right: 0;
-    background-color: transparent; }
+    background-color: transparent;
+    border-bottom: solid 5.6px #231f20; }
     .card-sm .card.youtube figure {
       border-bottom: 7.4px solid #FFF;
       max-height: 172px;
@@ -8321,7 +8320,7 @@ a.card:hover {
       .card-sm .card.youtube article > .content p {
         font-size: 14px;
         font-weight: 500;
-        color: #ffffff; }
+        color: #000; }
         .card-sm .card.youtube article > .content p a {
           color: #ffffff; }
   .card-sm .card.vimeo {
