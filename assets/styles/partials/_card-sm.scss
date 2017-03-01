@@ -182,7 +182,7 @@
                 background-image: url(../icons/twitter-blk.svg);
             }
 
-            article > .content:nth-child(2) {
+            article > .content:first-child {
                 padding-top: 71px;
                 margin-top: 0;
             }
@@ -283,7 +283,18 @@
 
             article > .content{
                 margin-top: -50px;
+
+                p{
+                    font-size: 14px;
+                    font-weight: 500;
+                    color: #ffffff;
+
+                    a{
+                        color: #ffffff;
+                    }
+                }
             }
+
         }
 
         &.vimeo{

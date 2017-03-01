@@ -7149,14 +7149,14 @@ body.Screen .top-bar {
       width: 300px;
       margin-left: 95px;
       background-size: contain;
-      background-image: url(../images/Desktopsite_1.svg);
+      background-image: url(../images/Desktopsite_3.svg);
       background-repeat: no-repeat; }
       @media screen and (max-width: 620px) {
         .site-header .navbar-brand div.reportage {
           margin-left: 5px;
           height: 60px;
           width: 180px;
-          background-image: url(../images/Mobilesite_1.svg); } }
+          background-image: url(../images/Mobilesite_3.svg); } }
     .site-header .navbar-brand .logo-name {
       font-size: 3.38462em;
       color: #fefefe;
@@ -7224,13 +7224,13 @@ body.Screen .top-bar {
       width: 150px;
       margin-left: 85px;
       background-size: contain;
-      background-image: url(../images/Desktopsite_2.svg);
+      background-image: url(../images/Desktopsite_4.svg);
       background-repeat: no-repeat; }
       @media screen and (max-width: 620px) {
         .site-header.stick div.reportage {
           margin-top: 15px;
           margin-left: 5px;
-          background-image: url(../images/Mobilesite_2.svg); } }
+          background-image: url(../images/Mobilesite_4.svg); } }
 
 .site-header,
 .sb-custom-menu > ul > li > a,
@@ -7990,6 +7990,8 @@ a.card:hover {
       background-image: url(../icons/facebook-white.svg); }
   .card.twitter span.category {
     display: none; }
+  .card.twitter figure {
+    display: none; }
   .card.twitter .article-icon {
     background-image: url(../icons/twitter-white.svg); }
   .card.instagram h2 {
@@ -8254,7 +8256,7 @@ a.card:hover {
       overflow: hidden; }
     .card-sm .card.twitter .article-icon {
       background-image: url(../icons/twitter-blk.svg); }
-    .card-sm .card.twitter article > .content:nth-child(2) {
+    .card-sm .card.twitter article > .content:first-child {
       padding-top: 71px;
       margin-top: 0; }
     .card-sm .card.twitter article > .content {
@@ -8316,6 +8318,12 @@ a.card:hover {
       margin-top: 0; }
     .card-sm .card.youtube article > .content {
       margin-top: -50px; }
+      .card-sm .card.youtube article > .content p {
+        font-size: 14px;
+        font-weight: 500;
+        color: #ffffff; }
+        .card-sm .card.youtube article > .content p a {
+          color: #ffffff; }
   .card-sm .card.vimeo {
     padding-left: 0;
     padding-right: 0;
