@@ -126,14 +126,14 @@ body.Screen {
             width:300px;
             margin-left:95px;
             background-size:contain;
-            background-image: url(../images/Desktopsite_1.svg);
+            background-image: url(../images/Desktopsite_3.svg);
             background-repeat:no-repeat;
             
             @media screen and (max-width: $mobile-break) {
                 margin-left:5px;
                 height:60px;
                 width:180px;
-                background-image: url(../images/Mobilesite_1.svg);
+                background-image: url(../images/Mobilesite_3.svg);
             }
 
 
@@ -239,13 +239,13 @@ body.Screen {
             width:150px;
             margin-left:85px;
             background-size:contain;
-            background-image: url(../images/Desktopsite_2.svg);
+            background-image: url(../images/Desktopsite_4.svg);
             background-repeat:no-repeat;
         
             @media screen and (max-width: $mobile-break) {
                 margin-top:15px;
                 margin-left:5px;
-                background-image: url(../images/Mobilesite_2.svg);
+                background-image: url(../images/Mobilesite_4.svg);
             }
 
 

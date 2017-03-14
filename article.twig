@@ -46,13 +46,14 @@
                     data-caption="{{article.title | raw}}">
 
                    <div class="icons">
+                    
                        <div class="icon"><i class="fa fa-play"></i></div>
                    </div>
                 </a>
           
-               {% if article.media[0].caption | length %}
+       {#         {% if article.media[0].caption | length %}
                     <div class="news__slide-caption">{{article.media[0].caption | raw}}</div>
-               {% endif %}                                    
+               {% endif %} #}                                    
             {% endif %}
         </div>
         {# <div class="image-wrapper" style="background-image: url({{ articleImg }});"> #}
@@ -100,7 +101,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="mailto:?subject={{ article.title|url_encode }}&body={{ article.title|url_encode }}%0D%0A%3C{{article.url|url_encode}}%3E">{# %3Cimg%3E{{ articleImg|url_encode }}%3C%2Fimg%3E%0D%0A{{ article.content|url_encode }}"> #}
                                 <span class="sr-only">Mail</span>
                                 <span class="mail-blk icon"></span>
                             </a>
