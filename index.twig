@@ -7,6 +7,7 @@
 {% set articlesArr = _Blog.getBlogFeed({'limit': limit, 'offset': 0}) %}
 {% set articles = articlesArr.articles %}
 
+{% set articleCount = 0 %}
 
 
 {% set sidePanel =  "Breaking News" %}
@@ -45,6 +46,7 @@
                 {% for i in 0..2 %}
                     {% if articles[i] %}                                                                
                         {{this.render('partials/_single-article.twig', {article: articles[i], position: (i+1), containerClass: 'swiper-slide', swap: 'false'}) | raw}}
+                        {% set articleCount = articleCount + 1 %}
                     {% endif %}
                 {% endfor %}
             </div>
@@ -71,7 +73,7 @@
                             <time datetime="{{ articles[0].metaPublishDate }}">{{_AppHelper.getDateTimeBasedOnTimezone(articles[0].publishDate, 'd M Y')}}</time>
                             
                             {% if articles[0].articleId > 0 %}
-                                <h2>{{ articles[0].title }}</h2>
+                                <h2>{{ articles[0].title | raw }}</h2>
                             {% else %}
                                 <h2>{{ articles[0].social.content }}</h2>
                             {% endif %}
@@ -94,7 +96,7 @@
                             <span class="slide-no">02</span>
                             <time datetime="{{ articles[1].metaPublishDate }}">{{_AppHelper.getDateTimeBasedOnTimezone(articles[1].publishDate, 'd M Y')}}</time>
                             {% if articles[1].articleId > 0 %}
-                                <h2>{{ articles[1].title }}</h2>
+                                <h2>{{ articles[1].title | raw }}</h2>
                             {% else %}
                                 <h2>{{ articles[1].social.content }}</h2>
                             {% endif %}
@@ -116,7 +118,7 @@
                             <span class="slide-no">03</span>
                             <time datetime="{{ articles[2].metaPublishDate }}">{{_AppHelper.getDateTimeBasedOnTimezone(articles[2].publishDate, 'd M Y')}}</time>
                             {% if articles[2].articleId > 0 %}
-                                <h2>{{ articles[2].title }}</h2>
+                                <h2>{{ articles[2].title | raw  }}</h2>
                             {% else %}
                                 <h2>{{ articles[2].social.content }}</h2>
                             {% endif %}
@@ -137,17 +139,21 @@
 
             <div class="col-md-9 col-sm-12">
                 <div class="row">
-                    {% if articles[3] %}
-                        {{this.render('partials/_single-article.twig', {article: articles[3], 'position': (4), containerClass: 'col-sm-8 card-md'}) | raw}}
+                    {% if articles[articleCount] %}
+                        {{this.render('partials/_single-article.twig', {article: articles[articleCount], 'position': (articleCount+1), containerClass: 'col-sm-8 card-md'}) | raw}}
+                        {% set articleCount = articleCount + 1 %}
                     {% endif %}
-                    {% if articles[4] %}
-                        {{this.render('partials/_single-article.twig', {article: articles[4], 'position': (5), containerClass: 'col-sm-4 card-sm'}) | raw}}
+                    {% if articles[articleCount] %}
+                        {{this.render('partials/_single-article.twig', {article: articles[articleCount], 'position': (articleCount+1), containerClass: 'col-sm-4 card-sm'}) | raw}}
+                        {% set articleCount = articleCount + 1 %}
                     {% endif %}
-                    {% if articles[5] %}
-                        {{this.render('partials/_single-article.twig', {article: articles[5], 'position': (6), containerClass: 'col-sm-4 card-sm'}) | raw}}
+                    {% if articles[articleCount] %}
+                        {{this.render('partials/_single-article.twig', {article: articles[articleCount], 'position': (articleCount+1), containerClass: 'col-sm-4 card-sm'}) | raw}}
+                        {% set articleCount = articleCount + 1 %}
                     {% endif %}
-                    {% if articles[6] %}
-                        {{this.render('partials/_single-article.twig', {article: articles[6], 'position': (7), containerClass: 'col-sm-8 card-md'}) | raw}}
+                    {% if articles[articleCount] %}
+                        {{this.render('partials/_single-article.twig', {article: articles[articleCount], 'position': (articleCount+1), containerClass: 'col-sm-8 card-md'}) | raw}}
+                        {% set articleCount = articleCount + 1 %}
                     {% endif %}
                 </div><!--row-->
             </div>
@@ -207,8 +213,9 @@
     </div>
 
     <section class="highlight content-block">
-        {% if articles[7] %}
-            {{this.render('partials/_single-article.twig', {article: articles[7], 'position': (8), containerClass: 'card-lg'}) | raw}}
+        {% if articles[articleCount] %}
+            {{this.render('partials/_single-article.twig', {article: articles[articleCount], 'position': (articleCount+1), containerClass: 'card-lg'}) | raw}}
+            {% set articleCount = articleCount + 1 %}
         {% endif %}
     </section><!--highlight-->
 
@@ -232,20 +239,25 @@
             <div class="col-md-9 col-sm-12">
                 <div class="row">
 
-                    {% if articles[8] %}
-                        {{this.render('partials/_single-article.twig', {article: articles[8], 'position': (9), containerClass: 'col-sm-4 card-sm'}) | raw}}
+                    {% if articles[articleCount] %}
+                        {{this.render('partials/_single-article.twig', {article: articles[articleCount], 'position': (articleCount+1), containerClass: 'col-sm-4 card-sm'}) | raw}}
+                        {% set articleCount = articleCount + 1 %}
                     {% endif %}
-                    {% if articles[9] %}
-                        {{this.render('partials/_single-article.twig', {article: articles[9], 'position': (10), containerClass: 'col-sm-8 card-md'}) | raw}}
+                    {% if articles[articleCount] %}
+                        {{this.render('partials/_single-article.twig', {article: articles[articleCount], 'position': (articleCount+1), containerClass: 'col-sm-8 card-md'}) | raw}}
+                        {% set articleCount = articleCount + 1 %}
                     {% endif %}
-                    {% if articles[10] %}
-                        {{this.render('partials/_single-article.twig', {article: articles[10], 'position': (11), containerClass: 'col-sm-4 card-sm'}) | raw}}
+                    {% if articles[articleCount] %}
+                        {{this.render('partials/_single-article.twig', {article: articles[articleCount], 'position': (articleCount+1), containerClass: 'col-sm-4 card-sm'}) | raw}}
+                        {% set articleCount = articleCount + 1 %}
                     {% endif %}
-                    {% if articles[11] %}
-                        {{this.render('partials/_single-article.twig', {article: articles[11], 'position': (12), containerClass: 'col-sm-4 card-sm'}) | raw}}
+                    {% if articles[articleCount] %}
+                        {{this.render('partials/_single-article.twig', {article: articles[articleCount], 'position': (articleCount+1), containerClass: 'col-sm-4 card-sm'}) | raw}}
+                        {% set articleCount = articleCount + 1 %}
                     {% endif %}
-                    {% if articles[12] %}
-                        {{this.render('partials/_single-article.twig', {article: articles[12], 'position': (13), containerClass: 'col-sm-4 card-sm'}) | raw}}
+                    {% if articles[articleCount] %}
+                        {{this.render('partials/_single-article.twig', {article: articles[articleCount], 'position': (articleCount+1), containerClass: 'col-sm-4 card-sm'}) | raw}}
+                        {% set articleCount = articleCount + 1 %}
                     {% endif %}
 
                 </div><!--row-->
@@ -257,7 +269,7 @@
 
     <section class="content-block container">
         <div class="row section__content">
-            <div class="ajaxArticles col-sm-9 col-sm-offset-3" data-existing-nonpinned-count="{{articlesArr.existingNonPinnedCount}}">
+            <div class="ajaxArticles col-sm-9 col-sm-offset-3" data-offset="2" data-existing-nonpinned-count="{{articlesArr.existingNonPinnedCount}}">
                 
             </div>
             <a class="loadMoreArticles col-sm-9 col-sm-offset-3" href="#">Load more <i class="fa fa-refresh"></i></a>

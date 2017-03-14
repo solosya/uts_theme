@@ -24,10 +24,9 @@
                     {% for parentItem in menuItems %}
                         {% set activeClass = (parentItem.link == _AppHelper.getServerUrl()) ? 'active' : ''%}
                         {% set externalClass = (parentItem.isExternal) ? 'external-link' : '' %}
-
                         <li class="menu-item">
                             <a href="{{parentItem.link |raw}}" class="{{activeClass}} {{externalClass}}" {% if parentItem.target != "" %}target="{{parentItem.target}}"{% endif %}>
-                                {{ ((parentItem.label is empty) ? ((parentItem.pageTitle is empty)? parentItem.blogTitle : parentItem.pageTitle) : parentItem.label )}}
+                                {{ ((parentItem.blogTitle is empty) ? ((parentItem.blogTitle is empty)? parentItem.blogTitle : parentItem.pageTitle) : parentItem.label )}}
                             </a>
                         </li>
 
