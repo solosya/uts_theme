@@ -9,8 +9,35 @@
 
 {% set articleCount = 0 %}
 
+{% set popularArticles = _Article.getPopularArticles({ limit: 10, sortBy: 'VIEWS' }) %}
 
-{% set sidePanel =  "Breaking News" %}
+
+{% set sections =  {
+        "Breaking News": {
+            "feed": "",
+            "link": ""
+        }, 
+        "The Wire": {
+            "feed": "",
+            "link": ""
+        }
+    }
+%}
+
+{% for key, value in sections %}
+    {% for blog in networkData.networkBlogs %}
+        {% if blog.title | lower == key %}
+            {% set sections = sections | merge({
+                (key) : {
+                    'feed': _Blog.getBlogFeed({'limit': 4, 'offset': 0, 'blogid':blog.guid}),
+                    'link' : blog.link
+                    }
+                }) %}
+        {% endif %}
+    {% endfor %}
+{% endfor %}
+
+{# {% set sidePanel =  "Breaking News" %}
 {% set sidePanelfeed = [] %}
 {% set sidePanelLink = "" %}
 
@@ -29,9 +56,8 @@
         {% set two_serPanelLink = blog.link %}
         {% set two_serPanelfeed = _Blog.getBlogFeed({'limit': 5, 'offset': 0, 'blogid':blog.guid}) %}
     {% endif %}
-{% endfor %}
+{% endfor %} #}
 
-{% set popularArticles = _Article.getPopularArticles({ limit: 10, sortBy: 'VIEWS' }) %}
 
 
 
@@ -160,17 +186,22 @@
 
             <div class="col-md-3 col-sm-12">
                 <aside class="left-border">
+                    
+
+                    {% if sections['Breaking News'].feed.articles|length > 0 %}
+
                     <section class="aap-news">
 
                         <a href ="{{ sidePanelLink }}"><h2>AAP<br />BREAKING<br />NEWS</h2></a>
                         {% for i in 0..4 %}
-                            {% if sidePanelfeed.articles[i] %}
-                                {{this.render('partials/_sidebar-article.twig', {article: sidePanelfeed.articles[i]}) | raw}}
+                            {% if sections['Breaking News'].feed.articles[i] %}
+                                {{this.render('partials/_sidebar-article.twig', {article: sections['Breaking News'].feed.articles[i]}) | raw}}
                             {% endif %}
                         {% endfor %}
 
                         <a href="{{ sidePanelLink }}" class="viewmore">VIEW MORE</a>
                     </section>
+                    {% endif %}
 
                     <section class="subscribe">
                         <h3>Get Reportage direct to your inbox</h3>
@@ -191,8 +222,13 @@
         </div>
     </section>
 
+
+
+
+
+    {% if sections['The Wire'].feed.articles|length > 0 %}
     <div class="container">
-        <a href="/@2ser"><h5 class="ser-h5">2SER</h5></a>
+        <a href="{{ sections['The Wire'].link }}"><h5 class="ser-h5">The Wire</h5></a>
         <section class="content-block ser">
             <div class="row">
                 <div class="col-sm-4">
@@ -203,14 +239,19 @@
                 
                 {% if two_serPanelfeed|length > 0 %}
                     {% for i in 0..1 %}
-                        {{this.render('partials/_2ser-article.twig', {article: two_serPanelfeed.articles[i], 'position': (i+1), containerClass: 'col-sm-4'}) | raw}}
+                        {% if sections['The Wire'].feed.articles[i] %}        
+                            {{this.render('partials/_2ser-article.twig', {article: sections['The Wire'].feed.articles[i], 'position': (i+1), containerClass: 'col-sm-4'}) | raw}}
+                        {% endif %}                   
                     {% endfor %}
                 {% endif %}
-
-
             </div><!--row-->
         </section><!--ser-->
     </div>
+    {% endif %}
+
+
+
+
 
     <section class="highlight content-block">
         {% if articles[articleCount] %}

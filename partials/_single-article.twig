@@ -1,4 +1,5 @@
-{% set placeholder = 'https://placeholdit.imgix.net/~text?txtsize=33&txt=Loading&w=450&h=250' %}
+{% import "quotes.twig" as quotes %}
+
 
 {% if article.articleId > 0 %}
     {% set articleImg = '' %}
@@ -20,7 +21,7 @@
     {% set hasArticleMediaClass = (article.hasMedia == 'TRUE') ? 'withImage__content': 'without__image' %}
 
     {% set publishDate = _AppHelper.getDefaultTimezoneDateTime(article.publishDate) %}
-    {% set articleTitle =  titleTruncateLength is defined ? article.title | truncate(titleTruncateLength) : article.title  %}
+    {% set articleTitle =  quotes.smarten(titleTruncateLength is defined ? article.title | truncate(titleTruncateLength) : article.title)  %}
     {% set swap = swap is defined and swap == 'false' ? '' : 'swap'  %}
     {% set articleImg = _Media.getMediaUrl(article.featuredMedia,imgWidth, imgHeight, {'crop': 'fill', 'gravity': 'faces'} ) %}
 
@@ -38,8 +39,8 @@
             <article class="">
                 {% if article.hasMedia == 'TRUE' %}
                     <figure>
-                        {% if lazylod == false %}
-                            <div class="image-wrapper lazyload" {% if articleImg is not empty %} style="background-image:url('{{articleImg}}');" {%endif%}></div>
+                        {% if lazyload == false %}
+                            <div class="image-wrapper" {% if articleImg is not empty %} style="background-image:url('{{articleImg}}');" {%endif%}></div>
                         {% else %}
                             <div class="image-wrapper lazyload" data-original="{{articleImg}}" {% if articleImg is not empty %} style="background-image:url('{{placeholder}}');" {%endif%}></div>
                         {%endif%}
@@ -56,7 +57,7 @@
                 <div class="content">
                     <span class="category">{{article.label}}</span>
                     <time datetime="2016-11-16">{{_AppHelper.getDateTimeBasedOnTimezone(publishDate,'d M Y')}}</time>
-                    <h2>{{ articleTitle | raw }}</h2>
+                    <h2>{{ articleTitle }}</h2>
                     <span class="author">{{ article.createdBy['displayName'] }}</span>
                     
                     {% if cardClass != 'instagram no-caption' %}  
@@ -128,7 +129,8 @@
  #}                  <span class="author">{{ (social.source == _Article.socialArticleSourceTwitter()) ? '@' : ''}}{{ social.user['name'] | lower }}</span>
                     
                     {% if cardClass != 'instagram no-caption' %}  
-                        <p id="updateSocial{{article.socialId}}" data-update="0">{{ social.content | preg_replace('/(@.+?) /', '<span style="color:#0099cc">$1</span> ') 
+                        <p id="updateSocial{{article.socialId}}" data-update="0">
+                            {{ social.content | preg_replace('/(@.+?) /', '<span style="color:#0099cc">$1</span> ') 
                                              | raw }}</p>
                     {% endif %}
 
@@ -140,7 +142,7 @@
 
             {% if article.userHasBlogAccess == '1' %}
             <div class="btn_overlay articleMenu">
-                <button title="Hide" data-guid="{{article.guid}}" class="btnhide social-tooltip HideBlogArticle" type="button" data-social="1">
+                <button title="Hide" data-guid="{{social.guid}}" class="btnhide social-tooltip HideBlogArticle" type="button" data-social="1">
                     <i class="fa fa-eye-slash"></i><span class="hide">Hide</span>
                 </button>
                     <button title="Edit" class="btnhide social-tooltip editSocialPost" type="button" data-url="/admin/social-funnel/update-social?guid={{social.blog['guid']}}&socialguid={{social.guid}}">

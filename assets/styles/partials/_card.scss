@@ -17,6 +17,38 @@ a.card:hover {
             background-size: cover;
             background-position: center top;
         }
+
+
+        &.video {
+
+            &:after{
+                position: absolute;
+                top: 45%;
+                left: 45%;
+                content: '';
+                width: 56px;
+                height: 56px;
+                background-image: url(../images/play-icon.svg);
+                background-repeat: no-repeat;
+                background-size: cover;
+
+                @media screen and (max-width: $md-break){
+                    top: 40%;
+                    left: 35%;
+                    width: 40px;
+                    height: 40px;
+                }
+
+                @media screen and (max-width: $sm-break){
+                    width: 30px;
+                    height: 30px;
+                }
+            }
+
+        }
+
+
+
         img{
             max-width: 100%;
         }
