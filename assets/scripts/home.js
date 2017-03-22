@@ -155,7 +155,7 @@ HomeController.Listing = (function ($) {
                         destObject.attr('data-position', sourceObj.data('position'));
                     }
 
-                    
+
                     //get positions
                     var sourcePosition      = sourceObj.data('position');
                     var sourcePostId        = parseInt(sourceObj.data('id'));
@@ -164,7 +164,7 @@ HomeController.Listing = (function ($) {
                     var destinationPostId   = parseInt(destObject.data('id'));
                     var destinationIsSocial = parseInt(destObject.data('social'));
 
-                    
+
                     var swappedDestinationElement = sourceObj.clone().removeAttr('style').insertAfter( destObject );
                     var swappedSourceElement = destObject.clone().insertAfter( sourceObj );
                     

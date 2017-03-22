@@ -26,7 +26,8 @@
 
 {% for key, value in sections %}
     {% for blog in networkData.networkBlogs %}
-        {% if blog.title | lower == key %}
+
+        {% if blog.title | lower == key | lower %}
             {% set sections = sections | merge({
                 (key) : {
                     'feed': _Blog.getBlogFeed({'limit': 4, 'offset': 0, 'blogid':blog.guid}),
@@ -37,26 +38,6 @@
     {% endfor %}
 {% endfor %}
 
-{# {% set sidePanel =  "Breaking News" %}
-{% set sidePanelfeed = [] %}
-{% set sidePanelLink = "" %}
-
-{% for blog in networkData.networkBlogs %}
-    {% if blog.title == sidePanel %}
-        {% set sidePanelfeed = _Blog.getBlogFeed({'limit': 5, 'offset': 0, 'blogid':blog.guid}) %}
-        {% set sidePanelLink = blog.link %}
-
-    {% endif %}
-{% endfor %}
-
-{% set two_serPanel =  "2SER" %}
-{% set two_serPanelfeed = [] %}
-{% for blog in networkData.networkBlogs %}
-    {% if blog.title == two_serPanel %}
-        {% set two_serPanelLink = blog.link %}
-        {% set two_serPanelfeed = _Blog.getBlogFeed({'limit': 5, 'offset': 0, 'blogid':blog.guid}) %}
-    {% endif %}
-{% endfor %} #}
 
 
 
@@ -191,13 +172,11 @@
                     </a>
                 </div><!--col-sm-4-->
                 
-                {% if two_serPanelfeed|length > 0 %}
-                    {% for i in 0..1 %}
-                        {% if sections['The Wire'].feed.articles[i] %}        
-                            {{this.render('partials/_2ser-article.twig', {article: sections['The Wire'].feed.articles[i], 'position': (i+1), containerClass: 'col-sm-4'}) | raw}}
-                        {% endif %}                   
-                    {% endfor %}
-                {% endif %}
+                {% for i in 0..1 %}
+                    {% if sections['The Wire'].feed.articles[i] %}        
+                        {{this.render('partials/_2ser-article.twig', {article: sections['The Wire'].feed.articles[i], 'position': (i+1), containerClass: 'col-sm-4'}) | raw}}
+                    {% endif %}                   
+                {% endfor %}
             </div><!--row-->
         </section><!--ser-->
     </div>
