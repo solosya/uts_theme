@@ -143,7 +143,6 @@ HomeController.Listing = (function ($) {
                     var sourceProxy     = null;
                     var destProxy       = null;
 
-
                     if (typeof sourceObj.data('proxyfor') !== 'undefined') {
                         sourceProxy = sourceObj;
                         sourceObj   = getElementAtPosition($( '.' + sourceProxy.data('proxyfor')), sourceProxy.data('position') -1);
@@ -156,8 +155,7 @@ HomeController.Listing = (function ($) {
                         destObject.attr('data-position', sourceObj.data('position'));
                     }
 
-
-
+                    
                     //get positions
                     var sourcePosition      = sourceObj.data('position');
                     var sourcePostId        = parseInt(sourceObj.data('id'));
@@ -166,6 +164,7 @@ HomeController.Listing = (function ($) {
                     var destinationPostId   = parseInt(destObject.data('id'));
                     var destinationIsSocial = parseInt(destObject.data('social'));
 
+                    
                     var swappedDestinationElement = sourceObj.clone().removeAttr('style').insertAfter( destObject );
                     var swappedSourceElement = destObject.clone().insertAfter( sourceObj );
                     
@@ -228,7 +227,7 @@ HomeController.Listing = (function ($) {
                             initSwap();
                         },
                         error: function(jqXHR, textStatus, errorThrown){
-                            //$().General_ShowErrorMessage({message: jqXHR.responseText});
+                            // $().General_ShowErrorMessage({message: jqXHR.responseText});
                         },
                         beforeSend: function(jqXHR, settings) { 
                         },

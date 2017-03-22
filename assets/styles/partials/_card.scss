@@ -21,14 +21,14 @@ a.card:hover {
 
         &.video {
 
-            &:after{
+            &:before{
                 position: absolute;
                 top: 45%;
                 left: 45%;
                 content: '';
                 width: 56px;
                 height: 56px;
-                background-image: url(../images/play-icon.svg);
+                background-image: url(../images/play-icon.svg?ver=1);
                 background-repeat: no-repeat;
                 background-size: cover;
 

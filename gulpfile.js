@@ -5,8 +5,24 @@ var gp_rename = require("gulp-rename");
 var gutil = require('gulp-util');
 var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
+var minifyCss = require("gulp-minify-css");
 
-gulp.task('styles', function() {
+
+// task
+gulp.task('minify-css', function () {
+    return gulp.src([
+        './static/css/main.css',
+        './assets/scripts/plugins/jquery.fancybox/source/jquery.fancybox.css',
+        './assets/scripts/plugins/jquery.noty-2.3.8/demo/animate.css',
+    ]) // path to your file
+    .pipe(concat('main.css'))
+    .pipe(gp_rename({suffix: '.min'}))
+    .pipe(minifyCss())
+    .pipe(gulp.dest('./static/css'));
+});
+
+
+gulp.task('styles', ['minify-css'], function() {
     return gulp.src([
             './assets/styles/main.scss',
             './assets/scripts/plugins/jquery.fancybox/source/jquery.fancybox.css',

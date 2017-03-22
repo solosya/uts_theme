@@ -105,14 +105,14 @@ $('document').ready(function() {
 
 
 
-    var screenswiper = new Swiper('#screen-swiper', {
-        spaceBetween: 30,
-        effect: 'fade',
-        pagination: '.swiper-pagination',
-        paginationClickable: true,
-        autoplay: 2500,
-        autoplayDisableOnInteraction: false
-    });
+    // var screenswiper = new Swiper('#screen-swiper', {
+    //     spaceBetween: 30,
+    //     effect: 'fade',
+    //     pagination: '.swiper-paginations',
+    //     paginationClickable: true,
+    //     autoplay: 2500,
+    //     autoplayDisableOnInteraction: false
+    // });
 
     console.log(screenswiper);
 	var swiper = new Swiper('#index-swiper', {

@@ -1,3 +1,4 @@
+
 .top-stories{
     margin-bottom: 15px;
     &:before,
@@ -17,86 +18,104 @@
 
     > h2:first-child{
         margin-top: 0px;
-        margin-bottom: 20px;
+        width: 95px;
         @media screen and (max-width: $mmd-break){
             width: 100%;
             padding-left: 15px;
         }
-        @media screen and (max-width: $sm-break) {
-            font-size:  ((30px / $font-size-base) + $font-unit);
-            margin-bottom: 30px;
+    }
+
+    div.pagination-item:nth-child(2) {
+
+        article {
+            margin-top:14px;
         }
     }
 
-    article{
-        display: inline-block;
-        margin-bottom: 23.6px;
-        border-bottom: solid 1px #e5e6e7;
-        padding-bottom: 12px;
-        position:relative;
-
-        @media screen and (max-width: $mmd-break){
-            width: 50%;
-            padding-left: 15px;
-            padding-right: 15px;
-            float: left;
-            height: 65px;
-            overflow: hidden;
-            border: 0;
-        }
-        @media screen and (max-width: $sm-break){
-            width: 100%;
-            margin-left: 15px;
-            padding-left: 0;
-            margin-right: 15px;
-            height: 120px;
-            padding-right: 0;
-            border-bottom: solid 1px #e5e6e7;
-        }
-        h3{
-            font-size: ((14px / $font-size-base) + $font-unit);
-            font-weight: 700;
-            margin-top: 0;
-            @media screen and (max-width: $sm-break) {
-                font-size: ((26px / $font-size-base) + $font-unit);
-
-            }
-        }
-
-        figure{
-            width: 50px;
-            margin-right: 14px;
-            float: left;
-
-            @media screen and (max-width: $sm-break){
-                width:100px;
-                height:100px;
-            }
 
 
-            img{
-                width:100%;
-                max-width: 100%;
-            }
-        }
-
-        time{
-            position:absolute;
-            bottom:10px;
-            font-size: 11px;
-            font-weight: 600;
-            color: #6c6e71;
-            @media screen and (max-width: $sm-break) {
-                font-size: ((16px / $font-size-base) + $font-unit);
-            }
-        }
-    }
-
-    a{
+    a.card {
+        height:auto;
         font-size: 13px;
         font-weight: 500;
         color: #1a1818;
-        text-decoration: underline;
+        background:none;
+        
+        &:before {
+            background:none;
+        }
+    
+        article{
+            width:100%;
+            display: inline-block;
+            // margin-top: 23.6px;
+            border-bottom: solid 1px #e5e6e7;
+            padding-bottom: 12px;
+
+            @media screen and (max-width: $mmd-break){
+                padding-right: 15px;
+                float: left;
+                height: 65px;
+                overflow: hidden;
+                // border: 0;
+            }
+            @media screen and (max-width: $sm-break){
+                width: 100%;
+                margin-left: 15px;
+                padding-left: 0;
+                margin-right: 15px;
+                padding-right: 0;
+                border-bottom: solid 1px #e5e6e7;
+            }
+
+            figure{
+                // width: 50px;
+                position:static;
+                margin-right: 14px;
+                float: left;
+
+                img{
+                    max-width: 100%;
+                }
+            }
+
+
+            .content {
+                position:static;
+                margin:0;
+
+                .category {
+                    display:none;
+                }
+                h2{
+                    font-size: ((17px / $font-size-base) + $font-unit) !important;
+                    font-weight: 700;
+                    margin-top: .5em;
+                    color:black;
+                    max-width: 90%;
+                    height:40px;
+                     @media screen and (max-width: $mmd-break){
+                        margin-top: .3em;
+                        height:60px;
+                     }
+                }
+                
+                > p {
+                    display:none;
+                }
+
+                .author {
+                    display:none;
+                }
+                time{
+                    font-size: 11px;
+                    font-weight: 600;
+                    color: #6c6e71;
+                    margin:0;
+                }
+
+            }
+        }
     }
 
 }
