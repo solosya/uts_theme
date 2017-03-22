@@ -127,7 +127,7 @@
 
                     <section class="aap-news">
 
-                        <a href ="{{ sidePanelLink }}"><h2>AAP<br />BREAKING<br />NEWS</h2></a>
+                        <a href ="{{ sections['Breaking News'].link }}"><h2>AAP<br />BREAKING<br />NEWS</h2></a>
                         {% for i in 0..4 %}
                             {% if sections['Breaking News'].feed.articles[i] %}
                                 {{this.render('partials/_sidebar-article.twig', {article: sections['Breaking News'].feed.articles[i]}) | raw}}
