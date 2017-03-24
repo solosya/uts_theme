@@ -26,8 +26,7 @@
 
 {% for key, value in sections %}
     {% for blog in networkData.networkBlogs %}
-
-        {% if blog.title | lower == key | lower %}
+        {% if blog.title | lower == key %}
             {% set sections = sections | merge({
                 (key) : {
                     'feed': _Blog.getBlogFeed({'limit': 4, 'offset': 0, 'blogid':blog.guid}),
@@ -38,6 +37,26 @@
     {% endfor %}
 {% endfor %}
 
+{# {% set sidePanel =  "Breaking News" %}
+{% set sidePanelfeed = [] %}
+{% set sidePanelLink = "" %}
+
+{% for blog in networkData.networkBlogs %}
+    {% if blog.title == sidePanel %}
+        {% set sidePanelfeed = _Blog.getBlogFeed({'limit': 5, 'offset': 0, 'blogid':blog.guid}) %}
+        {% set sidePanelLink = blog.link %}
+
+    {% endif %}
+{% endfor %}
+
+{% set two_serPanel =  "2SER" %}
+{% set two_serPanelfeed = [] %}
+{% for blog in networkData.networkBlogs %}
+    {% if blog.title == two_serPanel %}
+        {% set two_serPanelLink = blog.link %}
+        {% set two_serPanelfeed = _Blog.getBlogFeed({'limit': 5, 'offset': 0, 'blogid':blog.guid}) %}
+    {% endif %}
+{% endfor %} #}
 
 
 
@@ -50,39 +69,91 @@
 
     <section class="featured-carousel">
         <!-- Swiper -->
-        <div id="index-swiper" class="swiper-container clearfix">
+        <div id="index-swiper" class="swiper-container">
             <div class="swiper-wrapper">
-
-                    {% if articles[0] %}                                                                
-                        {{this.render('partials/_single-article.twig', {article: articles[0], position: (1), containerClass: 'swiper-slide'}) | raw}}
+                {% for i in 0..2 %}
+                    {% if articles[i] %}                                                                
+                        {{this.render('partials/_single-article.twig', {article: articles[i], position: (i+1), containerClass: 'swiper-slide', swap: 'false'}) | raw}}
                         {% set articleCount = articleCount + 1 %}
                     {% endif %}
-
+                {% endfor %}
             </div>
             <!-- Add Pagination -->
             <div class="container">
-                 <section class="aap-news top-stories">
-                    <h2>TOP STORIES</h2>
-                    {% if articles[1] %}
-                        {{this.render('partials/_single-article.twig', {article: articles[1], position: (2), containerClass: 'slide-1 pagination-item active'}) | raw}}
-                        {% set articleCount = articleCount + 1 %}
+
+                <div class="custom-pagination">
+                    <h2 class="top-stories">TOP STORIES</h2>
+
+                    {% if articles[0] %}
+                        {% set articleImg = articles[0].articleId > 0 ? _Media.getMediaUrl(articles[0].featuredMedia,50, 50, {'crop': 'fill', 'gravity': 'faces'} ) : articles[0].social.media['path'] %}
+                        {% set articleText = articles[0].articleId > 0 ? Helper.htmlToText(articles[0].title, -1) | raw | escape('html') : Helper.htmlToText(articles[0].social.content, -1) | raw | escape('html') %}
+
+                        <div class="slide-1 pagination-item swap active" 
+                             data-proxyfor="swiper-wrapper" 
+                             data-position="1" 
+                             data-slide="0"
+                             data-id="{{ articles[0].articleId > 0 ? articles[0].articleId : articles[i].socialId }}" 
+                             data-social="{{ articles[0].socialId > 0 ? '1' : '0' }}"
+                             data-article-image="{{ articleImg }}" 
+                             data-article-text="{{ articleText }}">
+
+                            <span class="slide-no">01</span>
+                            <time datetime="{{ articles[0].metaPublishDate }}">{{_AppHelper.getDateTimeBasedOnTimezone(articles[0].publishDate, 'd M Y')}}</time>
+                            
+                            {% if articles[0].articleId > 0 %}
+                                <h2>{{ articles[0].title | raw }}</h2>
+                            {% else %}
+                                <h2>{{ articles[0].social.content }}</h2>
+                            {% endif %}
+
+                        </div>
                     {% endif %}
     
+                    {% if articles[1] %}
+                            
+                        {% set articleImg = articles[1].articleId > 0 ? _Media.getMediaUrl(articles[1].featuredMedia,50, 50, {'crop': 'fill', 'gravity': 'faces'} ) : articles[1].social.media['path'] %}
+                        {% set articleText = articles[1].articleId > 0 ? Helper.htmlToText(articles[1].title, -1) | raw | escape('html') : Helper.htmlToText(articles[1].social.content, -1) | raw | escape('html') %}
+                        <div class="slide-1 pagination-item swap" 
+                             data-proxyfor="swiper-wrapper" 
+                             data-position="2" 
+                             data-slide="1"
+                             data-id="{{ articles[1].articleId > 0 ? articles[1].articleId : articles[1].socialId }}" 
+                             data-social="{{ articles[1].socialId > 0 ? '1' : '0' }}"
+                             data-article-image="{{ articleImg }}" 
+                             data-article-text="{{articleText}}">
+                            <span class="slide-no">02</span>
+                            <time datetime="{{ articles[1].metaPublishDate }}">{{_AppHelper.getDateTimeBasedOnTimezone(articles[1].publishDate, 'd M Y')}}</time>
+                            {% if articles[1].articleId > 0 %}
+                                <h2>{{ articles[1].title | raw }}</h2>
+                            {% else %}
+                                <h2>{{ articles[1].social.content }}</h2>
+                            {% endif %}
+
+                        </div>
+                    {% endif %}
+
                     {% if articles[2] %}
-                        {{this.render('partials/_single-article.twig', {article: articles[2], position: (3), containerClass: 'slide-1 pagination-item'}) | raw}}
-                        {% set articleCount = articleCount + 1 %}
-                    {% endif %}
+                        {% set articleImg = articles[2].articleId > 0 ? _Media.getMediaUrl(articles[2].featuredMedia,50, 50, {'crop': 'fill', 'gravity': 'faces'} ) : articles[2].social.media['path'] %}
+                        {% set articleText = articles[2].articleId > 0 ? Helper.htmlToText(articles[2].title, -1) | raw | escape('html') : Helper.htmlToText(articles[2].social.content, -1) | raw | escape('html') %}
+                        <div class="slide-1 pagination-item swap" 
+                             data-proxyfor="swiper-wrapper" 
+                             data-position="3" 
+                             data-slide="2"
+                             data-id="{{ articles[2].articleId > 0 ? articles[2].articleId : articles[2].socialId }}" 
+                             data-social="{{ articles[2].socialId > 0 ? '1' : '0' }}"
+                             data-article-image="{{ articleImg }}" 
+                             data-article-text="{{articleText}}">
+                            <span class="slide-no">03</span>
+                            <time datetime="{{ articles[2].metaPublishDate }}">{{_AppHelper.getDateTimeBasedOnTimezone(articles[2].publishDate, 'd M Y')}}</time>
+                            {% if articles[2].articleId > 0 %}
+                                <h2>{{ articles[2].title | raw  }}</h2>
+                            {% else %}
+                                <h2>{{ articles[2].social.content }}</h2>
+                            {% endif %}
 
-                    {% if articles[3] %}
-                        {{this.render('partials/_single-article.twig', {article: articles[3], position: (4), containerClass: 'slide-1 pagination-item'}) | raw}}
-                        {% set articleCount = articleCount + 1 %}
+                        </div>
                     {% endif %}
-
-                    {% if articles[4] %}
-                        {{this.render('partials/_single-article.twig', {article: articles[4], position: (5), containerClass: 'slide-1 pagination-item'}) | raw}}
-                        {% set articleCount = articleCount + 1 %}
-                    {% endif %}
-                </section><!--custom-pagination-->
+                </div><!--custom-pagination-->
             </div><!--container-->
 
             <!-- Add Pagination -->
@@ -93,7 +164,7 @@
     {% endif %}
 
 
-
+    
     <section class="content-block container">
         <div class="row">
 
@@ -242,12 +313,10 @@
 
     <section class="content-block container">
         <div class="row section__content">
-            <div class="ajaxArticles clearfix col-sm-9 col-sm-offset-3" 
-            data-offset="{{limit}}" 
-            data-existing-nonpinned-count="{{articlesArr.existingNonPinnedCount}}">
+            <div class="ajaxArticles col-sm-9 col-sm-offset-3" data-offset="2" data-existing-nonpinned-count="{{articlesArr.existingNonPinnedCount}}">
                 
             </div>
-            <a class="loadMoreArticles col-sm-9 col-sm-offset-3" href="#">LOAD MORE</a>
+            <a class="loadMoreArticles col-sm-9 col-sm-offset-3" href="#">Load more <i class="fa fa-refresh"></i></a>
         </div>
 
         {% set noDataCls = 'hide' %}
@@ -260,4 +329,3 @@
 
         
     </section>
-

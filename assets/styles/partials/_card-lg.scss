@@ -23,6 +23,17 @@
             width: 100%;
             z-index: 0;
 
+            &.video {
+                &:before{
+                    width:36px;
+                    height:36px;
+                    margin-left:-18px;
+                    margin-top:-18px;
+                }
+            }
+
+
+
             &:after{
                 content: '';
                 opacity: 0.3;

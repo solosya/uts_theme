@@ -12,12 +12,22 @@
     {% set profileImg = _Media.getMediaUrl(blogInfo.owner['media'], 100, 100, {radius:'max', crop: 'thumb', gravity: 'face'}) %}
 {% endif %}
 
-{% set hasBlogImage = FALSE %}
-{% set blogImage = "" %}
+
+{% set blogThumbImage = false %}
+{% if blogInfo.media['thumb']['path'] is not empty %}
+    {% set blogThumbImage = _Media.getMediaUrl(blogInfo.media['thumb'], 100, 100, {radius:'max', crop: 'thumb', gravity: 'face'}) %}
+{% endif %}
+
+
+{% set blogImage = false %}
 {% if blogInfo.media['cover']['path'] is not empty %}
     {% set blogImage = blogInfo.media['cover']['path'] %}
-    {% set hasBlogImage = TRUE %}
 {% endif %}    
+
+
+{% set socialLinks = false %}
+
+
 
 {{this.registerJs("HomeController.listing();")}}
 {{this.registerJs("HomeController.blog();")}}
@@ -50,18 +60,24 @@
 
    <section class="author-bio">
         <div class="container">
-            {% if profileImg %}
-                <img src="{{ profileImg }}" alt="Author name">
+            {% if blogThumbImage %}
+                <img src="{{ blogThumbImage }}" alt="Blog Thumb image">
+            {% else %}
+                <img src="{{ profileImg }}" alt="Author image">
             {% endif %}
 
 
             <p>{{ blogInfo.shortDescription }}</p>
             <ul class="social-links">
-                <li><a href="#"><span class="sr-only">Facebook</span><span class="facebook-blk icon"></span></a></li>
+
+                {% for name, link in blogInfo.settings['social'] if link != "" %}
+                    <li><a href="{{link}}" target="_blank"><span class="sr-only">{{name}}</span><span class="{{name}}-blk icon"></span></a></li>
+                {% endfor %}    
+
+{#                 <li><a href="#"><span class="sr-only">Facebook</span><span class="facebook-blk icon"></span></a></li>
                 <li><a href="#"><span class="sr-only">Twitter</span><span class="twitter-blk icon"></span></a></li>
-                <li><a href="#"><span class="sr-only">Tumblr</span><span class="tumblr-blk icon"></span></a></li>
                 <li><a href="#"><span class="sr-only">Instagram</span><span class="instagram-blk icon"></span></a></li>
-                <li><a href="#"><span class="sr-only">Mail</span><span class="mail-blk icon"></span></a></li>
+ #}                <li><a href="#"><span class="sr-only">Mail</span><span class="mail-blk icon"></span></a></li>
            </ul>
         </div>
    </section>

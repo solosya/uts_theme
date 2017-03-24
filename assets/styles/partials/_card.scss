@@ -23,26 +23,17 @@ a.card:hover {
 
             &:before{
                 position: absolute;
-                top: 45%;
-                left: 45%;
+                top: 50%;
+                left: 50%;
                 content: '';
                 width: 56px;
                 height: 56px;
                 background-image: url(../images/play-icon.svg?ver=1);
                 background-repeat: no-repeat;
                 background-size: cover;
-
-                @media screen and (max-width: $md-break){
-                    top: 40%;
-                    left: 35%;
-                    width: 40px;
-                    height: 40px;
-                }
-
-                @media screen and (max-width: $sm-break){
-                    width: 30px;
-                    height: 30px;
-                }
+                z-index: 10;
+                margin-left:-28px;
+                margin-top:-28px;
             }
 
         }

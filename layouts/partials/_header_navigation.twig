@@ -7,11 +7,11 @@
         <div class="site-branding col-md-3 col-sm-2">
             <div class="logo pull-left">
                     <a class="navbar-brand" href="{{networkData.defaultBlogUrl}}" rel="Home"  title="Home">
-                        <img src="{{networkData.templatePath}}/static/images/uts-logo.png" alt="UTL Logo">
-                        <svg class="navbar-brand-name" role="img">
+                        <img id="main-logo" src="{{networkData.templatePath}}/static/images/CN-large-logo.png" alt="UTL Logo">
+{#                         <svg class="navbar-brand-name" role="img">
                             <use xlink:href="#svgsymbol_central-news-header" />
                         </svg>
-                    </a>
+ #}                    </a>
             </div>
         </div><!-- .site-branding -->
 
@@ -19,12 +19,15 @@
 
             <ul id="menu-primary-menu" class="menu">
                 {% set menuItems = blog.blogHeaderMenu %}
+
                     {% for parentItem in menuItems %}
                         {% set activeClass = (parentItem.link == _AppHelper.getServerUrl()) ? 'active' : ''%}
                         {% set externalClass = (parentItem.isExternal) ? 'external-link' : '' %}
                         <li class="menu-item">
-                            <a href="{{parentItem.link |raw}}" class="{{activeClass}} {{externalClass}}" {% if parentItem.target != "" %}target="{{parentItem.target}}"{% endif %}>
-                                {{ ((parentItem.blogTitle is empty) ? ((parentItem.blogTitle is empty)? parentItem.blogTitle : parentItem.pageTitle) : parentItem.label )}}
+                            <a href="{{parentItem.link |raw}}" class="{{activeClass}} {{externalClass}}" {% if parentItem.target != "" %} target="{{parentItem.target}}"{% endif %}>
+                                {{ ((parentItem.blogTitle is empty) ? 
+                                        ( (parentItem.pageTitle is empty) ? parentItem.label : parentItem.pageTitle ) 
+                                    : parentItem.blogTitle )}}
                             </a>
                         </li>
 

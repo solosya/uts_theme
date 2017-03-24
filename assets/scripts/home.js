@@ -306,7 +306,7 @@ HomeController.Listing = (function ($) {
                     $(btnObj).html("Please wait...");
                 },
                 onComplete: function(jqXHR, textStatus) {
-                    $(btnObj).html("Load more <i class='fa fa-refresh'></i>");
+                    $(btnObj).html("Load more");
                 }
             });
         });

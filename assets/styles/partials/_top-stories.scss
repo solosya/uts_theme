@@ -73,6 +73,17 @@
                 position:static;
                 margin-right: 14px;
                 float: left;
+                position:relative;
+
+                &.video {
+                    &:before{
+                        width:36px;
+                        height:36px;
+                        margin-left:-18px;
+                        margin-top:-18px;
+                    }
+                }
+
 
                 img{
                     max-width: 100%;

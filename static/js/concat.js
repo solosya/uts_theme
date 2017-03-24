@@ -33298,6 +33298,7 @@ jQuery(document).ready(function () {
             onError: function () {}
         };
 
+        var isLoaded = 0; 
         var opts = $.extend({}, defaults, options);
 
         return this.each(function () {
@@ -33307,11 +33308,11 @@ jQuery(document).ready(function () {
                 e.stopPropagation();
 
                 var obj = $(this);
-
+                
                 //initialization code
-                $.loadScript("//api.filepicker.io/v2/filepicker.js", function () {
-                    
+                $.loadScript("//api.filepicker.io/v2/filepicker.js", isLoaded, function () {
                     var tabs = $.extend([], ['COMPUTER'], opts.tabs);
+                    isLoaded = 1;
 
                     //Set file picker api key
                     filepicker.setKey(_appJsConfig.filepickerKey);
@@ -33336,27 +33337,32 @@ jQuery(document).ready(function () {
         });
     };
 
-    $.loadScript = function (url, callback) {
+    $.loadScript = function (url, isLoaded, callback) {
 
-        var script = document.createElement("script")
-        script.type = "text/javascript";
+        if (!isLoaded) {
+            var script = document.createElement("script");
+            script.type = "text/javascript";
 
-        if (script.readyState) {  //IE
-            script.onreadystatechange = function () {
-                if (script.readyState == "loaded" ||
-                        script.readyState == "complete") {
-                    script.onreadystatechange = null;
+            if (script.readyState) {  //IE
+                script.onreadystatechange = function () {
+                    if (script.readyState == "loaded" ||
+                            script.readyState == "complete") {
+                        script.onreadystatechange = null;
+                        callback();
+                    }
+                };
+            } else {  //Others
+                script.onload = function () {
                     callback();
-                }
-            };
-        } else {  //Others
-            script.onload = function () {
-                callback();
-            };
-        }
+                };
+            }
 
-        script.src = url;
-        document.getElementsByTagName("head")[0].appendChild(script);
+            script.src = url;
+            document.getElementsByTagName("head")[0].appendChild(script);
+        }
+        else { 
+            callback();
+        }
     };
 
 }(jQuery));
@@ -33934,7 +33940,6 @@ HomeController.Listing = (function ($) {
                     var sourceProxy     = null;
                     var destProxy       = null;
 
-
                     if (typeof sourceObj.data('proxyfor') !== 'undefined') {
                         sourceProxy = sourceObj;
                         sourceObj   = getElementAtPosition($( '.' + sourceProxy.data('proxyfor')), sourceProxy.data('position') -1);
@@ -33948,7 +33953,6 @@ HomeController.Listing = (function ($) {
                     }
 
 
-
                     //get positions
                     var sourcePosition      = sourceObj.data('position');
                     var sourcePostId        = parseInt(sourceObj.data('id'));
@@ -33956,6 +33960,7 @@ HomeController.Listing = (function ($) {
                     var destinationPosition = destObject.data('position');
                     var destinationPostId   = parseInt(destObject.data('id'));
                     var destinationIsSocial = parseInt(destObject.data('social'));
+
 
                     var swappedDestinationElement = sourceObj.clone().removeAttr('style').insertAfter( destObject );
                     var swappedSourceElement = destObject.clone().insertAfter( sourceObj );
@@ -34019,7 +34024,7 @@ HomeController.Listing = (function ($) {
                             initSwap();
                         },
                         error: function(jqXHR, textStatus, errorThrown){
-                            //$().General_ShowErrorMessage({message: jqXHR.responseText});
+                            // $().General_ShowErrorMessage({message: jqXHR.responseText});
                         },
                         beforeSend: function(jqXHR, settings) { 
                         },
@@ -34098,7 +34103,7 @@ HomeController.Listing = (function ($) {
                     $(btnObj).html("Please wait...");
                 },
                 onComplete: function(jqXHR, textStatus) {
-                    $(btnObj).html("Load more <i class='fa fa-refresh'></i>");
+                    $(btnObj).html("Load more");
                 }
             });
         });
@@ -34191,8 +34196,10 @@ $('document').ready(function() {
     stickHeader = function(){
         if ( isScrolledPass() ){
             $("#masthead").addClass("stick");
+            $("#main-logo").addClass("small");
         } else {
             $("#masthead").removeClass("stick");
+            $("#main-logo").removeClass("small");
         }
         return false;
     };   
@@ -34262,30 +34269,30 @@ $('document').ready(function() {
     var screenswiper = new Swiper('#screen-swiper', {
         spaceBetween: 30,
         effect: 'fade',
-        pagination: '.swiper-pagination',
+        pagination: '.swiper-paginations',
         paginationClickable: true,
         autoplay: 2500,
         autoplayDisableOnInteraction: false
     });
 
-    console.log(screenswiper);
-	var swiper = new Swiper('#index-swiper', {
-	        spaceBetween: 30,
-	        effect: 'fade',
-            pagination: '.swiper-pagination',
-            paginationClickable: true,
-	    });
 
-    $(".pagination-item").click(function(){
-        var elem = $(this);
-        var slideToSlide = elem.data("slide");
-        elem.siblings().each(function(i,e) {
-            $(e).removeClass('active');
-        });
+	// var swiper = new Swiper('#index-swiper', {
+ //        spaceBetween: 30,
+ //        effect: 'fade',
+ //        pagination: '.swiper-pagination',
+ //        paginationClickable: true,
+ //    });
 
-        elem.addClass('active');
-        swiper.slideTo(slideToSlide);
-    });
+    // $(".pagination-item").click(function(){
+    //     var elem = $(this);
+    //     var slideToSlide = elem.data("slide");
+    //     elem.siblings().each(function(i,e) {
+    //         $(e).removeClass('active');
+    //     });
+
+    //     elem.addClass('active');
+    //     swiper.slideTo(slideToSlide);
+    // });
 
 });
 
