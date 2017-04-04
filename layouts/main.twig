@@ -39,12 +39,9 @@
     <link rel="alternate" type="application/rss+xml" title="{{_Network.getNetworkTitle()}} -  RSS Feeds" href="http://{{networkData.defaultDomain['domain']}}/feed/rss"/>
 
     {% if _AppHelper.getApplicationEnv() == 'PROD'%}
-        <link rel="stylesheet" href="{{networkData.templatePath}}/static/css/main.min.css?ver=15" type="text/css" media="all">
+        <link rel="stylesheet" href="{{networkData.templatePath}}/static/css/main.min.css?ver=15" type="text/css" media="all" />
     {% else %}
-{#         <link type="text/css" rel="stylesheet" href="{{networkData.templatePath}}/assets/scripts/plugins/jquery.fancybox/source/jquery.fancybox.css" />
-        <link type="text/css" rel="stylesheet" href="{{networkData.templatePath}}/assets/scripts/plugins/jquery.noty-2.3.8/demo/animate.css" />
-        <link type="text/css" rel="stylesheet" href="{{_AppHelper.getAssetsSDKPath()}}/js/media-player/mediaelementplayer.css" />#}        
-        <link rel='stylesheet' href='{{networkData.templatePath}}/static/css/main.css?ver=28 type='text/css' media='all' />
+        <link rel="stylesheet" href='{{networkData.templatePath}}/static/css/main.css?ver=28' type="text/css" media="all" />
     {% endif %}
     <link rel="stylesheet" type="text/css" href="{{networkData.templatePath}}/assets/scripts/plugins/tipped-4.6.0-light/css/tipped/tipped.css?ver=1"/>
 
