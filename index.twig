@@ -2,14 +2,14 @@
 {% set networkData = _Network.getNetworkData() %}
 
 {{this.registerJs("HomeController.listing();")}}
-{% set limit = 20 %}
+{% set limit = 15 %}
 
 {% set articlesArr = _Blog.getBlogFeed({'limit': limit, 'offset': 0}) %}
 {% set articles = articlesArr.articles %}
 
 {% set articleCount = 0 %}
 
-{% set popularArticles = _Article.getPopularArticles({ limit: 10, sortBy: 'VIEWS' }) %}
+{% set popularArticles = _Article.getPopularArticles({ limit: 9, sortBy: 'VIEWS' }) %}
 
 
 {% set sections =  {
@@ -61,7 +61,7 @@
             </div>
             <!-- Add Pagination -->
             <div class="container">
-                 <section class="aap-news top-stories">
+                 <section class="aap-news top-stories_index2">
                     <h2>TOP STORIES</h2>
                     {% if articles[1] %}
                         {{this.render('partials/_single-article.twig', {article: articles[1], position: (2), containerClass: 'slide-1 pagination-item active'}) | raw}}
@@ -126,19 +126,19 @@
 
                     <section class="aap-news">
 
-                        <a href ="{{ sections['Breaking News'].link }}"><h2>AAP<br />BREAKING<br />NEWS</h2></a>
+                        <a href ="{{ sections['Breaking News'].link }}"><h2>BREAKING NEWS</h2></a>
                         {% for i in 0..4 %}
                             {% if sections['Breaking News'].feed.articles[i] %}
                                 {{this.render('partials/_sidebar-article.twig', {article: sections['Breaking News'].feed.articles[i]}) | raw}}
                             {% endif %}
                         {% endfor %}
 
-                        <a href="{{ sidePanelLink }}" class="viewmore">VIEW MORE</a>
+                        <a href="{{ sections['Breaking News'].link }}" class="viewmore">VIEW MORE</a>
                     </section>
                     {% endif %}
 
                     <section class="subscribe">
-                        <h3>Get Reportage direct to your inbox</h3>
+                        <h3>Get Central News direct to your inbox</h3>
                         <form method="get" id="subscribe-form" action="#">
                             <label for="header-search" class="assistive-text sr-only">Search</label>
                             <div class="input-group subscribe-group">
@@ -197,7 +197,7 @@
             <div class="col-md-3 col-sm-12">
                 <aside class="right-border">
                     <section class="top-stories-sidebar">
-                        <h2>MOST VIEWED<br /> STORIES</h2>
+                        <h2>MOST VIEWED</h2>
 
                         {% if popularArticles|length > 0 %}
                             {% for article in popularArticles %}
@@ -238,26 +238,28 @@
             
 
         </div>
-    </section>
 
-    <section class="content-block container">
-        <div class="row section__content">
-            <div class="ajaxArticles clearfix col-sm-9 col-sm-offset-3" 
-            data-offset="{{limit}}" 
-            data-existing-nonpinned-count="{{articlesArr.existingNonPinnedCount}}">
-                
+        <div class="row">
+            <div class="col-sm-9 col-sm-offset-3 section__content">
+                <div class="row">
+                    <div class="ajaxArticles clearfix " 
+                    data-offset="{{limit}}" 
+                    data-existing-nonpinned-count="{{articlesArr.existingNonPinnedCount}}">
+                        
+                    </div>
+                    <a class="loadMoreArticles" href="#">LOAD MORE</a>
+                </div>
             </div>
-            <a class="loadMoreArticles col-sm-9 col-sm-offset-3" href="#">LOAD MORE</a>
+
+            {% set noDataCls = 'hide' %}
+            {% if articles|length == 0 %}
+                {% set noDataCls = '' %}
+             {% endif %}
+            <div class="row text-center has-margin-bottom-20 has-margin-top-20 {{noDataCls}} NoArticlesMsg">
+                <p class="no-data text-center">No articles found.</p>  
+            </div>
         </div>
 
-        {% set noDataCls = 'hide' %}
-        {% if articles|length == 0 %}
-            {% set noDataCls = '' %}
-         {% endif %}
-        <div class="row text-center has-margin-bottom-20 has-margin-top-20 {{noDataCls}} NoArticlesMsg">
-            <p class="no-data text-center">No articles found.</p>  
-        </div>
-
-        
     </section>
+
 

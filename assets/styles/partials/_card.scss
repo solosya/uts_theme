@@ -28,7 +28,7 @@ a.card:hover {
                 content: '';
                 width: 56px;
                 height: 56px;
-                background-image: url(../images/play-icon.svg?ver=1);
+                background-image: url(../icons/youtube-play.svg);
                 background-repeat: no-repeat;
                 background-size: cover;
                 z-index: 10;
@@ -99,11 +99,15 @@ a.card:hover {
         margin-bottom: ((20.9px / $font-size-base) + $font-unit);
     }
 
-    &.facebook {
-        color:black;
-        span.category {
+    &.social {
+        .category {
             display:none;
         }
+    }
+
+
+    &.facebook {
+        color:black;
         figure { 
             display:none;
         }
@@ -113,9 +117,6 @@ a.card:hover {
     }
 
     &.twitter{
-        span.category {
-            display:none;
-        }
 
         .article-icon{
             background-image: url(../icons/twitter-white.svg);

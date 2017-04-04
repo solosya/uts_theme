@@ -46,14 +46,9 @@
                     </figure>
                 {% endif %}
 
-                {% if cardClass == 'soundcloud' %}  
-                    <div class="other-content">
-                        <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/289583160&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_artwork=false"></iframe>
-                    </div>
-                {% endif %}
-
 
                 <div class="content">
+                    <img src="{{network.templatePath}}/static/images/aap_logo.png">
                     <span class="category">{{article.label}}</span>
                     <time datetime="2016-11-16">{{_AppHelper.getDateTimeBasedOnTimezone(publishDate,'d M Y')}}</time>
                     <h2>{{ articleTitle | raw }}</h2>

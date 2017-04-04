@@ -34,15 +34,6 @@
             left: 0;
             right: 0;
 
-
-            &.video {
-                &:before{
-                    top: auto;
-                    bottom: 30px;
-                }
-            }
-
-
             &:after{
                 content: '';
                 opacity: 0.3;
@@ -55,23 +46,16 @@
 
         }
         
-        h2 {
-            text-transform: uppercase;
-            @media screen and (max-width: $mobile-break) {
-                line-height:1.3em;
-                font-size:  ((27px / $font-size-base) + $font-unit);
-            }
-        }
 
         .content{
             position: relative;
             z-index: 1;
             text-align: center;
             color: #fefefe;
-            padding-top: 99px;
+            padding-top: 220px;
             padding-left: 115px;
             padding-right: 115px;
-            padding-bottom: 35px;
+            // padding-bottom: 35px;
 
             @media screen and (max-width: $sm-mobile-break){
                 padding: 80px 20px 35px 20px;
@@ -79,6 +63,15 @@
 
 
 
+            h2 {
+                text-transform: uppercase;
+                line-height: 28.0px;
+                height:70px;
+                @media screen and (max-width: $mobile-break) {
+                    line-height:1.3em;
+                    font-size:  ((27px / $font-size-base) + $font-unit);
+                }
+            }
 
 
             time{
@@ -105,7 +98,7 @@
 
 
             p{
-                height: 50px;
+                display: none;
                 @media screen and (max-width: $sm-mobile-break){
                     display: none;
                 }
@@ -116,12 +109,20 @@
             display: none;
         }
 
-        &.facebook{
 
+        &.social {
             .content{
-                padding-top: 59px;
+
+                padding-top: 120px;
+                padding-left: 115px;
+                padding-right: 115px;
+
+                > p {
+                    display:block;
+                }
             }
         }
+
 
         &.twitter{
 
@@ -154,45 +155,37 @@
                     margin-bottom: 5px;
                 }
             }
-            &:after{
-                content: '';
-                background-image: url(../icons/youtube-play.svg);
-                width: 48px;
-                height: 48px;
-                position: relative;
-                display: block;
-                bottom: 10px;
-                margin: 0 auto;
-                background-size: cover;
-            }
-
             figure {
                 > div {
                     background-size: 650px 520px;
                     background-position: -35px -65px;
+                }
+
+                &.video {
+                    &:before{
+                        top: 80%;
+                    }
                 }
             }
 
         }
 
         &.vimeo{
+            
+            figure {
+                &.video {
+                    &:before{
+                        top: 80%;
+                    }
+                }
+            }
+
             .content{
                 padding-top: 42px;
 
                 time{
                     margin-bottom: 5px;
                 }
-            }
-            &:after{
-                content: '';
-                background-image: url(../icons/youtube-play.svg);
-                width: 48px;
-                height: 48px;
-                position: relative;
-                display: block;
-                bottom: 10px;
-                margin: 0 auto;
-                background-size: cover;
             }
         }
 

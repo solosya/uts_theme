@@ -2,12 +2,31 @@ html {
     height:100%
 }
 
-body.Screen {
+body.screen {
     height:100%;
     background:pink;
+
+  .site-footer{
+    display:none;
+  }
+  .site-header {
+    display:none;
+  }
+  .top-bar {
+    display:none;
+  }
+
+
 }
 
 .screen-carousel {
+
+  .screen_logo {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    z-index: 20; 
+  }
 
   .card{
     position: relative;
@@ -90,7 +109,7 @@ body.Screen {
         p{
           font-size:  ((25px / $font-size-base) + $font-unit);
           font-weight: 400;
-          height: 80px;
+          height: 60px;
           overflow: hidden;
 
           @media screen and (max-width: $sm-mobile-break){
@@ -196,6 +215,14 @@ body.Screen {
     .swiper-container {
         width: 100%;
         height: 100%;
+
+      .swiper-wrapper {
+          width: 100%;
+          height: 100%;
+      }
+
+
+
     }
 
     .swiper-slide {

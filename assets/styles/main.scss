@@ -15,8 +15,8 @@
 @import "placeholder";
 @import "common";
 @import "topBar";
-@import "header";
-// @import "header_old";
+// @import "header";
+@import "header_old";
 @import "menu";
 @import "modal";
 @import "card";
@@ -27,6 +27,11 @@
 @import "hero";
 @import "hero2";
 @import "swiper";
+
+// to be used with index2.twig
+@import "swiper_index2";
+@import "top-stories_index2";
+
 @import "screen";
 @import "aap-news";
 @import "top-stories";

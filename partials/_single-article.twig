@@ -24,8 +24,8 @@
     {% set publishDate = _AppHelper.getDefaultTimezoneDateTime(article.publishDate) %}
     {% set articleTitle =  quotes.smarten(titleTruncateLength is defined ? article.title | truncate(titleTruncateLength) : article.title)  %}
     {% set swap = swap is defined and swap == 'false' ? '' : 'swap'  %}
+    {% set imageSuppress = imageSuppress is defined and imageSuppress == 'true' ? 'true' : 'false'  %}
     {% set articleImg = _Media.getMediaUrl(article.featuredMedia,imgWidth, imgHeight, {'crop': 'fill', 'gravity': 'faces'} ) %}
-
 
     <div class="{{containerClass}}">
         <a  href="{{article.url}}" 
@@ -38,7 +38,7 @@
             data-article-text="{{Helper.htmlToText(article.title, -1) | raw | escape('html')}}">
 
             <article class="">
-                {% if article.hasMedia == 'TRUE' %}
+                {% if article.hasMedia == 'TRUE' and imageSuppress == 'false' %}
                     <figure class="{{ figureClass }}">
                         {% if lazyload == false %}
                             <div class="image-wrapper" {% if articleImg is not empty %} style="background-image:url('{{articleImg}}');" {%endif%}></div>
@@ -54,7 +54,7 @@
                     <time datetime="2016-11-16">{{_AppHelper.getDateTimeBasedOnTimezone(publishDate,'d M Y')}}</time>
                     <h2>{{ articleTitle }}</h2>
                     <span class="author">{{ article.createdBy['displayName'] }}</span>
-                    <p>{{ article.excerpt | raw }}</p>
+                    <p class="excerpt">{{ article.excerpt | raw }}</p>
 
                 </div>
             </article>
@@ -85,14 +85,14 @@
 
 {% else %}
 
-    {% set social = article.social %}
+    {% set social     = article.social %}
     {% set mediaClass = (social.hasMedia == 'TRUE') ? 'withImage__content' : 'without__image' %}
-    {% set videoClass = (social.media['type'] == 'video') ? 'video_card' : '' %}
+    {% set videoClass = (social.media['type'] == 'video') ? 'video' : '' %}
     {% set hasArticleMediaClass = (social.hasMedia == 'TRUE') ? 'withImage__content': 'without__image' %}
 
     <div class="{{containerClass}}">
         <a  href="{{social.url}}"
-            class="swap card {{ social.source }}  {{hasArticleMediaClass}}" 
+            class="swap card social {{ social.source }}  {{hasArticleMediaClass}}" 
             id="Social{{article.socialId}}"
             data-id="{{article.socialId}}" 
             data-position="{{position}}" 
@@ -102,7 +102,7 @@
 
             <article class="">
                 {% if social.hasMedia == 'TRUE' %}  
-                    <figure>
+                    <figure class="{{ videoClass }}">
                         <div class="image-wrapper lazyload" data-original="{{social.media['path']}}" {% if social.media['path'] is not empty %} style="background-image:url('{{placeholder}}');"{%endif%}></div>
                     </figure>
                 {% endif %}
@@ -117,10 +117,10 @@
                     <span class="category">{{social.source}}</span>
                     <span class="article-icon"></span>
                     <time datetime="2016-11-16">{{_AppHelper.getDateTimeBasedOnTimezone(social.publishDate,'d M Y')}}</time>
-                  <span class="author">{{ (social.source == _Article.socialArticleSourceTwitter()) ? '@' : ''}}{{ social.user['name'] | lower }}</span>
+                    <span class="author">{{ (social.source == _SocialFeed.getSocialArticleSourceIsTwitter()) ? '@' : ''}}{{ social.user['name'] | lower }}</span>
                     
                     {# {% if cardClass != 'instagram no-caption' %}   #}
-                    <p id="updateSocial{{article.socialId}}" data-update="0">
+                    <p class="socialContent" id="updateSocial{{article.socialId}}" data-update="0">
                         {{ social.content | preg_replace('/(@.+?) /', '<span style="color:#0099cc">$1</span> ') 
                                          | raw }}</p>
                     {# {% endif %} #}
@@ -143,7 +143,7 @@
                      {% set pinTitle = 'Un-Pin Article' %}
                      {% set pinTxt = 'Un-Pin' %}
                      {% set pinClass = 'selected' %}
-                 {% endif %}    
+                 {% endif %}
                 <button data-position="{{position}}" data-social="1" data-id="{{article.socialId}}" title="{{pinTitle}}" class="btnhide social-tooltip PinArticleBtn {{pinClass}}" type="button" data-status="{{article.isPinned}}">
                     <i class="fa fa-thumb-tack"></i><span class="hide">{{pinTxt}}</span>
                 </button>

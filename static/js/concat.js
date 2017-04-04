@@ -31729,8 +31729,8 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
 
 
 
-(function($) {
-   
+(function ($) {
+
     //Noty Message
     $.fn.General_ShowNotification = function (options) {
         var defaults = {
@@ -31738,15 +31738,15 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
             type: 'success',
             timeout: 2000
         };
-        
-        var opts = $.extend( {}, defaults, options );
-        
+
+        var opts = $.extend({}, defaults, options);
+
         $.noty.closeAll();  //close all before displaying
-        
-        if($('#noty_topRight_layout_container').length > 0) {
+
+        if ($('#noty_topRight_layout_container').length > 0) {
             $('#noty_topRight_layout_container').remove();
         }
-        
+
         var n = noty({
             type: opts.type,
             text: opts.message,
@@ -31761,7 +31761,7 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
             }
         });
     };
-    
+
     //Show Error Message
     $.fn.General_ShowErrorMessage = function (options) {
         var defaults = {
@@ -31770,17 +31770,18 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
             timeout: 2000,
             title: 'Error'
         };
-        
-        var opts = $.extend( {}, defaults, options );
-        
+
+        var opts = $.extend({}, defaults, options);
+
         bootbox.alert({
             title: opts.title,
             message: opts.message
         });
     };
-    
+
 }(jQuery));
     $.fn.Ajax_LoadBlogArticles = function(options){
+        console.log('loading more blog articles mamma');
         var defaults = {
             'limit': 20,
             'containerClass': 'ajaxArticles',
@@ -31807,9 +31808,11 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
         var csrfToken = $('meta[name="csrf-token"]').attr("content");
         
         var dateFormat = 'SHORT';
+        // console.log(_appJsConfig.baseHttpPath + '/home/load-articles');
+        _appJsConfig.baseHttpPath = 'http://theme.aap.io';
         
         $.ajax({
-            type: 'post',
+            type: 'get',
             url: _appJsConfig.baseHttpPath + '/home/load-articles',
             dataType: 'json',
             data: {offset: offset, limit: opts.limit, existingNonPinnedCount: existingNonPinnedCount, _csrf: csrfToken, dateFormat: dateFormat},
@@ -31853,8 +31856,7 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
             $(elem).off('click');
             $(elem).on('click', function(e){
                 e.preventDefault();
-                e.stopPropagation();
-                
+
                 var articleId = parseInt($(elem).data('id'));
                 var position = parseInt($(elem).data('position'));
                 var existingStatus = $(elem).data('status');
@@ -31908,7 +31910,7 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
         if (typeof articleGuid === 'undefined' || articleGuid === "") {
             return;
         }
-        
+
         var csrfToken = $('meta[name="csrf-token"]').attr("content");
         $.ajax({
             type: 'POST',
@@ -31948,8 +31950,6 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
             $(elem).off('click');
             $(elem).on('click', function(e){
                 e.preventDefault();
-                e.stopPropagation();
-                
              
                 var isSocial = $(elem).data('social');
                 var msgStr = (isSocial == 1) ? "Do you really want to delete this article?" : "Do you really want to hide this article?";
@@ -32098,7 +32098,6 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
 (function ($) {
 
     $.fn.videoPlayer = function (options) {
-
         var defaults = {
             type: "html",
             scrolling: "no",
@@ -32122,20 +32121,20 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
             enableKeyboard: true,
             pauseOtherPlayers: true
         };
+
         var opts = $.extend({}, defaults, options);
         return this.click(function (e) {
-
             e.preventDefault();
             e.stopPropagation();
             var elem = $(this);
             var source = elem.data('source');
             var poster = elem.data('poster');
             var caption = elem.data('caption');
-            var url, content;
 
+            var url, content;
+            
             if (source.trim() !== 'undefined' && source.trim() !== "") {
                 var videoId = elem.data('video-id');
-
                 if (source.trim() === 'youtube') {
                     if (videoId !== "" && typeof videoId !== "undefined") {
                         url = "http://www.youtube.com/watch?v=" + videoId;
@@ -32156,28 +32155,6 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
                 else if (source.trim() === 'cloudinary' || source.trim() === 'instagram' || source.trim() === 'twitter' || source === 'facebook') {
                     url = elem.data('url');
                     content = "<video class ='videoPlayer' src='" + url + "' poster='" + poster + "' width='" + opts.width + "' height='" + opts.height + "' controls='controls' preload='none' ></video>";
-                }
-                else if (source.trim() === 'brightcove') {
-                    accountID = videoId.toString().split("::")[1];
-                    videoId = videoId.toString().split("::")[0];
-
-                    if (videoId !== "" && typeof videoId !== "undefined") {
-                         url = "http://players.brightcove.net/"+accountID+"/default_default/index.html?videoId=" + videoId;
-                    } else {
-                        url = $(elem).data('url');
-                    }
-                    opts.features = [];
-                    opts.width = (window.innerWidth/3)*2;
-                    opts.height = (opts.width * 9)/16;
-
-                    content = 
-                        '<div style="display: block; position: relative; max-width: 100%;"><div style="padding-top: 56.25%;">\
-                            <iframe src="//players.brightcove.net/'+accountID+'/default_default/index.html?videoId='+videoId+'" \
-                            allowfullscreen\
-                            webkitallowfullscreen\
-                            mozallowfullscreen\
-                            style="width: 100%; height: 100%; position: absolute; top: 0px; bottom: 0px; right: 0px; left: 0px;"></iframe>\
-                        </div></div>';
                 }
             }
             
@@ -32202,39 +32179,34 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
                         this.height = opts.height;
                     },
                     afterShow: function () {
-
-
-                        if (source.trim() !== 'brightcove'){
-
-                            new MediaElementPlayer('.videoPlayer', {
-                                defaultVideoWidth: this.width,
-                                defaultVideoHeight: this.height,
-                                startVolume: opts.startVolume,
-                                loop: opts.loop,
-                                enableAutosize: opts.enableAutosize,
-                                features: opts.features,
-                                alwaysShowControls: opts.alwaysShowControls,
-                                iPadUseNativeControls: opts.iPadUseNativeControls,
-                                iPhoneUseNativeControls: opts.iPhoneUseNativeControls,
-                                AndroidUseNativeControls: opts.AndroidUseNativeControls,
-                                alwaysShowHours: opts.alwaysShowHours,
-                                showTimecodeFrameCount: opts.showTimecodeFrameCount,
-                                framesPerSecond: opts.framesPerSecond,
-                                enableKeyboard: opts.enableKeyboard,
-                                pauseOtherPlayers: opts.pauseOtherPlayers,
-                                success: function (mediaElement, domObject) {
-                                    _player = mediaElement;
-                                    _player.load();
-                                    _player.play();
-                                    _player.addEventListener('playing', function () {
-                                        _isPlaying = true;
-                                    }, false);
-                                    if (source.trim() == 'vimeo') { alert();
-                                        $('.mejs-controls').remove();
-                                    }
+                        new MediaElementPlayer('.videoPlayer', {
+                            defaultVideoWidth: this.width,
+                            defaultVideoHeight: this.height,
+                            startVolume: opts.startVolume,
+                            loop: opts.loop,
+                            enableAutosize: opts.enableAutosize,
+                            features: opts.features,
+                            alwaysShowControls: opts.alwaysShowControls,
+                            iPadUseNativeControls: opts.iPadUseNativeControls,
+                            iPhoneUseNativeControls: opts.iPhoneUseNativeControls,
+                            AndroidUseNativeControls: opts.AndroidUseNativeControls,
+                            alwaysShowHours: opts.alwaysShowHours,
+                            showTimecodeFrameCount: opts.showTimecodeFrameCount,
+                            framesPerSecond: opts.framesPerSecond,
+                            enableKeyboard: opts.enableKeyboard,
+                            pauseOtherPlayers: opts.pauseOtherPlayers,
+                            success: function (mediaElement, domObject) {
+                                _player = mediaElement;
+                                _player.load();
+                                _player.play();
+                                _player.addEventListener('playing', function () {
+                                    _isPlaying = true;
+                                }, false);
+                                if (source.trim() == 'vimeo') { alert();
+                                    $('.mejs-controls').remove();
                                 }
-                            });
-                        }
+                            }
+                        });
                     },
                     beforeClose: function () {
                         if (_isPlaying && navigator.userAgent.match(/msie [6-8]/i)) {
@@ -32404,6 +32376,7 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
                     data: {guid: blogGuid,  _csrf: csrfToken},
                     success: function (data, textStatus, jqXHR) {
                         $(obj).data('status', state);
+                        $().General_ShowNotification({message: 'Follow blog successfully'});
                         if (opts.onSuccess && typeof opts.onSuccess === 'function') {
                             opts.onSuccess(data, obj);
                         }
@@ -32467,6 +32440,7 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
                     data: {guid: userGuid, _csrf: csrfToken},
                     success: function (data, textStatus, jqXHR) {
                         $(obj).data('status', state);
+                        $().General_ShowNotification({message: 'Follow user successfully'});
                         if (opts.onSuccess && typeof opts.onSuccess === 'function') {
                             opts.onSuccess(data, obj);
                         }
@@ -32529,6 +32503,7 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
                     data: {guid: guid, _csrf: csrfToken},
                     success: function (data, textStatus, jqXHR) {
                         $(obj).data('status', state);
+                        $().General_ShowNotification({message: 'Follow article successfully'});
                         if (opts.onSuccess && typeof opts.onSuccess === 'function') {
                             opts.onSuccess(data, obj);
                         }
@@ -33298,7 +33273,6 @@ jQuery(document).ready(function () {
             onError: function () {}
         };
 
-        var isLoaded = 0; 
         var opts = $.extend({}, defaults, options);
 
         return this.each(function () {
@@ -33308,19 +33282,17 @@ jQuery(document).ready(function () {
                 e.stopPropagation();
 
                 var obj = $(this);
-                
+
                 //initialization code
-                $.loadScript("//api.filepicker.io/v2/filepicker.js", isLoaded, function () {
+                $.loadScript("//api.filepicker.io/v2/filepicker.js", function () {
+                    
                     var tabs = $.extend([], ['COMPUTER'], opts.tabs);
-                    isLoaded = 1;
 
                     //Set file picker api key
                     filepicker.setKey(_appJsConfig.filepickerKey);
 
                     filepicker.pick({
-                        //mimetype: 'image/*',
-                        maxSize: _appJsConfig.uploadImageMaxFilesize,
-                        extensions: _appJsConfig.uploadImageFileFormat.split(","),
+                        mimetype: 'image/*',
                         services: tabs
                     },
                     function (Blob) {
@@ -33337,32 +33309,27 @@ jQuery(document).ready(function () {
         });
     };
 
-    $.loadScript = function (url, isLoaded, callback) {
+    $.loadScript = function (url, callback) {
 
-        if (!isLoaded) {
-            var script = document.createElement("script");
-            script.type = "text/javascript";
+        var script = document.createElement("script")
+        script.type = "text/javascript";
 
-            if (script.readyState) {  //IE
-                script.onreadystatechange = function () {
-                    if (script.readyState == "loaded" ||
-                            script.readyState == "complete") {
-                        script.onreadystatechange = null;
-                        callback();
-                    }
-                };
-            } else {  //Others
-                script.onload = function () {
+        if (script.readyState) {  //IE
+            script.onreadystatechange = function () {
+                if (script.readyState == "loaded" ||
+                        script.readyState == "complete") {
+                    script.onreadystatechange = null;
                     callback();
-                };
-            }
+                }
+            };
+        } else {  //Others
+            script.onload = function () {
+                callback();
+            };
+        }
 
-            script.src = url;
-            document.getElementsByTagName("head")[0].appendChild(script);
-        }
-        else { 
-            callback();
-        }
+        script.src = url;
+        document.getElementsByTagName("head")[0].appendChild(script);
     };
 
 }(jQuery));
@@ -33456,39 +33423,52 @@ var systemCardTemplate =
     '</a>'+
 '</div>';
                                                 
-var socialCardTemplate =  '<div class="{{containerClass}}">' +
-                                '<a href="{{social.url}}" target="_blank" class="card swap card__{{social.source}} {{#if social.hasMedia}} withImage__content {{else }} without__image {{/if}} {{videoClass}}" data-id="{{socialId}}" data-position="{{position}}" data-social="1" data-article-image="{{{social.media.path}}}" data-article-text="{{social.content}}">'+
-                                    '{{#if social.hasMedia}}'+
-                                    '<div class="card-image lazyload" data-original="{{social.media.path}}" style="background-image:url(https://placeholdit.imgix.net/~text?txtsize=33&txt=Loading&w=450&h=250)">'+
-                                        '<div class="play_icon video-player" data-source="{{social.source}}" data-url="{{social.media.videoUrl}}" data-poster="{{social.media.path}}"></div>'+
-                                    '</div>' +
-                                    '{{/if}}'+
-                                    '<div class="content-section">' +
-                                        '<div class="title-section">' +
-                                            '<span>{{social.source}}</span>' +
-                                            '<div class="card-icon"></div>' +
-                                        '</div>' +
-                                        '<p class="description" id="updateSocial{{socialId}}" data-update="0">{{{social.content}}}</p>' +
-                                        '<div class="caption_bottom">' +
-                                            '<div class="author_name">{{social.user.name}}</div>' +
-                                            '<div class="post_date">{{social.publishDate}}</div>' +
-                                        '</div>' +
-                                    '</div>' +
-                                    '{{#if userHasBlogAccess}}'+
-                                        '<div class="btn_overlay articleMenu">'+
-                                            '<button title="Hide" data-guid="{{social.guid}}" class="btnhide social-tooltip HideBlogArticle" type="button" data-social="1">'+
-                                                '<i class="fa fa-eye-slash"></i><span class="hide">Hide</span>'+
-                                            '</button>'+
-                                            '<button title="Edit" class="btnhide social-tooltip editSocialPost" type="button" data-url="/admin/social-funnel/update-social?guid={{blog.guid}}&socialguid={{social.guid}}">'+
-                                            '<i class="fa fa-edit"></i><span class="hide">Edit</span>'+
-                                            '</button>'+
-                                            '<button data-position="{{position}}" data-social="1" data-id="{{socialId}}" title="{{pinTitle}}" class="btnhide social-tooltip PinArticleBtn" type="button" data-status="{{isPinned}}">'+
-                                                '<i class="fa fa-thumb-tack"></i><span class="hide">{{pinText}}</span>'+
-                                            '</button>'+
-                                        '</div>'+
-                                    '{{/if}}'+   
-                                '</a>' +
-                            '</div>';
+
+var socialCardTemplate = 
+'<div class="{{containerClass}}"> \
+        <a  href="{{social.url}}"\
+            target="_blank"\
+            class="swap card {{ social.source }} {{#if social.hasMedia}} withImage__content {{else }} without__image {{/if}} {{videoClass}}"\
+            id="Social{{socialId}}"\
+            data-id="{{socialId}}"\
+            data-position="{{position}}"\
+            data-social="1"\
+            data-article-image="{{{social.media.path}}}"\
+            data-article-text="{{social.content}}">\
+            \
+            <article class="">\
+                {{#if social.hasMedia}}\
+                    <figure>\
+                        <div class="image-wrapper lazyload" data-original="{{social.media.path}}" style="background-image:url(https://placeholdit.imgix.net/~text?txtsize=33&txt=Loading&w=450&h=250)")></div>\
+                    </figure>\
+                {{/if}}\
+                \
+                <div class="content">\
+                    <span class="category">{{social.source}}</span>\
+                    <span class="article-icon"></span>\
+                    <time datetime="2016-11-16">{{social.publishDate}}</time>\
+                    <span class="author">{{ social.user.name }}</span>\
+                    <p class="socialContent" id="updateSocial{{article.socialId}}" data-update="0">\
+                        {{ social.content }}</p>\
+                </div>\
+            </article>\
+            {{#if userHasBlogAccess}}\
+                <div class="btn_overlay articleMenu">\
+                    <button title="Hide" data-guid="{{social.guid}}" class="btnhide social-tooltip HideBlogArticle" type="button" data-social="1">\
+                        <i class="fa fa-eye-slash"></i><span class="hide">Hide</span>\
+                    </button>\
+                    <button title="Edit" class="btnhide social-tooltip editSocialPost" type="button" data-url="/admin/social-funnel/update-social?guid={{blog.guid}}&socialguid={{social.guid}}">\
+                    <i class="fa fa-edit"></i><span class="hide">Edit</span>\
+                    </button>\
+                    <button data-position="{{position}}" data-social="1" data-id="{{socialId}}" title="{{pinTitle}}" class="btnhide social-tooltip PinArticleBtn" type="button" data-status="{{isPinned}}">\
+                        <i class="fa fa-thumb-tack"></i><span class="hide">{{pinText}}</span>\
+                    </button>\
+                </div>\
+            {{/if}}\
+        </a>\
+    </div>';
+
+
 var ArticleController = (function ($) {
     return {
         view: function () {
@@ -34039,11 +34019,9 @@ HomeController.Listing = (function ($) {
         
         $('.loadMoreArticles').on('click', function(e){
             e.preventDefault();
-
             var btnObj = $(this);
             $.fn.Ajax_LoadBlogArticles({
                 onSuccess: function(data, textStatus, jqXHR){
-
                     if (data.success == 1) {
                         $('.ajaxArticles').data('existing-nonpinned-count', data.existingNonPinnedCount);
 
@@ -34248,12 +34226,11 @@ $('document').ready(function() {
         }
     });
 
-      $('#profile').on('click', function(e) {
-        
+    $('#profile').on('click', function(e) {
         $('#header__menu').toggleClass('Profile_Open');
         $('body').toggleClass('no_profile');
         e.preventDefault();
-      });
+    });
 
     cardHolder = '';
 
@@ -34271,8 +34248,14 @@ $('document').ready(function() {
         effect: 'fade',
         pagination: '.swiper-paginations',
         paginationClickable: true,
-        autoplay: 2500,
+        autoplay: 20000,
         autoplayDisableOnInteraction: false
+    });
+
+    Tipped.create('.tool_tipped', {
+        maxWidth: 150,
+        offset: { x: 0, y: -35 },
+
     });
 
 

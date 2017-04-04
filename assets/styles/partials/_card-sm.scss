@@ -48,29 +48,36 @@
             margin-right: -12px;
             margin-bottom: 32.5px;
             height: 172px;
-        
+            position: relative;
+
             @media screen and (min-width: $mobile-break) and (max-width: $sm-break){
                 height: 300px;
             }
         }
 
-        .category{
-            position: absolute;
-            top: 0;
-            right: 0;
-            background-color: $brand-yellow;
-            color: #1a1818;
+        .content {
+
+            .category{
+                position: absolute;
+                top: 0;
+                right: 0;
+                background-color: $brand-yellow;
+                color: #1a1818;
+
+            }
+
+            h2{
+                margin-top:5px;
+                margin-bottom: 9px;
+            }
+
+            .share-icon{
+                display: none;
+            }
+
 
         }
 
-        h2{
-            margin-top:5px;
-            margin-bottom: 9px;
-        }
-
-        .share-icon{
-            display: none;
-        }
 
         &.without__image {
             padding-top:100px;
@@ -128,26 +135,33 @@
             }
         }
 
+
+
         &.facebook{
             color:black;
 
-            time{
-                margin-bottom: 5px;
-            }
+            .content {
+                margin-top: -50px;
+                position: relative;
+
+                time {
+                    margin-bottom: 5px;
+                }
 
 
-            figure{
-                border-bottom: 7.4px solid #FFF;
-                max-height: 172px;
-                overflow: hidden;
-            }
+                figure{
+                    border-bottom: 7.4px solid #FFF;
+                    max-height: 172px;
+                    overflow: hidden;
+                }
 
-            h2 {
-                display: none;
-            }
+                h2 {
+                    display: none;
+                }
 
-            .article-icon {
-                background-image: url(../icons/facebook-blk.svg);
+                .article-icon {
+                    background-image: url(../icons/facebook-blk.svg);
+                }
             }
 
             article > .content:nth-child(2) {
@@ -155,43 +169,24 @@
                 margin-top: 0;
             }
 
-            article > .content{
-                margin-top: -50px;
-            }
         }
 
-        &.twitter{
+        &.twitter {
             color:black;
             background-color: $brand-yellow;
-
-            h2 {
-                display: none;
-            }
-
-            time{
-                margin-bottom: 5px;
-                color: #808285;
-            }
-
+            
             figure{
                 border-bottom: 7.4px solid #FFF;
                 max-height: 172px;
                 overflow: hidden;
             }
 
-            .article-icon {
-                background-image: url(../icons/twitter-blk.svg);
-            }
 
-            article > .content:first-child {
-                padding-top: 71px;
-                margin-top: 0;
-            }
-
-            article > .content{
+            .content {
+                position: relative;
                 margin-top: -50px;
 
-                p{
+                p {
                     font-size: 16px;
                     font-weight: bold;
                     color: #1a1818;
@@ -200,18 +195,33 @@
                         color: #0099cc;
                     }
                 }
+
+                .article-icon {
+                    background-image: url(../icons/twitter-blk.svg);
+                }
+
+                h2 {
+                    display: none;
+                }
+
+                time{
+                    margin-bottom: 5px;
+                    color: #808285;
+                }
+            }
+
+
+
+            article > .content:first-child {
+                padding-top: 71px;
+                margin-top: 0;
             }
 
         }
 
 
-        &.instagram{
+        &.instagram {
             background-color: #4a494a;
-
-            time{
-                margin-bottom: 5px;
-                color: #bdbebf;
-            }
 
             figure{
                 border-bottom: 7.4px solid #FFF;
@@ -219,13 +229,34 @@
                 overflow: hidden;
             }
 
-            &.no-caption figure{
+            &.no-caption figure {
                 max-height: 280px;
                 height: 294px;
             }
 
-            .article-icon {
-                background-image: url(../icons/instagram-blk.svg);
+
+            .content {
+                position: relative;
+                margin-top: -50px;
+
+                p {
+                    font-size: 14px;
+                    font-weight: 500;
+                    color: #ffffff;
+
+                    a {
+                        color: #ffffff;
+                    }
+                }
+
+                time {
+                    margin-bottom: 5px;
+                    color: #bdbebf;
+                }
+
+                .article-icon {
+                    background-image: url(../icons/instagram-blk.svg);
+                }
             }
 
             article > .content:first-child {
@@ -233,57 +264,22 @@
                 margin-top: 0;
             }
 
-            article > .content{
-                margin-top: -50px;
-
-                p{
-                    font-size: 14px;
-                    font-weight: 500;
-                    color: #ffffff;
-
-                    a{
-                        color: #ffffff;
-                    }
-                }
-            }
         }
 
-        &.youtube{
+        &.youtube {
             padding-left: 0;
             padding-right: 0;
             background-color: transparent;
             border-bottom: solid 5.6px #231f20;
 
-            figure{
+            figure {
                 border-bottom: 7.4px solid #FFF;
                 max-height: 172px;
                 overflow: hidden;
 
-                &:after{
-                    content: '';
-                    background-image: url(../icons/youtube-play.svg);
-                    width: 48px;
-                    height: 48px;
-                    position: relative;
-                    display: block;
-                    bottom: 105px;
-                    margin: 0 auto;
-                    background-size: cover;
-                }
             }
-
-            .article-icon {
-                margin-left: 13px;
-                background-image: url(../icons/youtube-blk.svg);
-            }
-
-
-            article > .content:first-child {
-                padding-top: 71px;
-                margin-top: 0;
-            }
-
-            article > .content{
+            .content {
+                position: relative;
                 margin-top: -50px;
 
                 p{
@@ -295,6 +291,16 @@
                         color: #ffffff;
                     }
                 }
+
+                .article-icon {
+                    margin-left: 13px;
+                    background-image: url(../icons/youtube-blk.svg);
+                }
+            }
+
+            article > .content:first-child {
+                padding-top: 71px;
+                margin-top: 0;
             }
 
         }
@@ -309,33 +315,24 @@
                 max-height: 172px;
                 overflow: hidden;
 
-                &:after{
-                    content: '';
-                    background-image: url(../icons/youtube-play.svg);
-                    width: 48px;
-                    height: 48px;
-                    position: relative;
-                    display: block;
-                    bottom: 105px;
-                    margin: 0 auto;
-                    background-size: cover;
+            }
+
+            .content {
+                position: relative;
+                margin-top: -50px;
+
+
+                .article-icon {
+                    margin-left: 13px;
+                    background-image: url(../icons/vimeo-blk.svg);
                 }
             }
-
-            .article-icon {
-                margin-left: 13px;
-                background-image: url(../icons/vimeo-blk.svg);
-            }
-
 
             article > .content:first-child {
                 padding-top: 71px;
                 margin-top: 0;
             }
 
-            article > .content{
-                margin-top: -50px;
-            }
         }
 
         &.soundcloud{

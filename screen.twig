@@ -13,13 +13,6 @@
 {% set articles = articlesArr.articles %}
 
 
-{% set status = 'follow' %}
-{% set text = 'Follow +' %}
-{% if not _User.isGuset() and _User.isUserFollowing('blog', article.blog['id'])%}
-    {% set status = 'unfollow' %}
-    {% set text = 'Following -' %}
-{% endif %}
-
 
 
 
@@ -30,12 +23,12 @@
 
     <!--placeholder temp -->
     <section class="screen-carousel">
-
+        <img class="screen_logo" src="{{networkData.templatePath}}/static/images/central-news-logo-clear.png">
         <div id="screen-swiper" class="swiper-container">
             <div class="swiper-wrapper">
                 {% for i in 0..2 %}
                     {% if articles[i] %}                                                                
-                        {{this.render('partials/_screen-article.twig', {article: articles[i], position: (i+1), containerClass: 'swiper-slide', swap: 'false'}) | raw}}
+                        {{this.render('partials/_screen-article.twig', {article: articles[i], position: (i+1), containerClass: 'swiper-slide', swap: 'false', network:networkData}) | raw}}
                     {% endif %}
                 {% endfor %}
             </div>
