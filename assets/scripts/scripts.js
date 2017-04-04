@@ -115,6 +115,8 @@ $('document').ready(function() {
         autoplayDisableOnInteraction: false
     });
 
+    console.log(screenswiper);
+
     Tipped.create('.tool_tipped', {
         maxWidth: 150,
         offset: { x: 0, y: -35 },
