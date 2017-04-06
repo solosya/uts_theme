@@ -13,8 +13,12 @@
     }
     @media screen and (max-width: $mmd-break){
         padding-left: 0;
-        margin-left:-15px;
+        // margin-left:-15px;
         margin-right: -15px;
+    }
+
+    > div {
+        padding-left:0;
     }
 
     > a > h2:first-child{
@@ -23,7 +27,6 @@
         font-size: ((18px / $font-size-base) + $font-unit) !important;
         width: auto;
         @media screen and (max-width: $mmd-break){
-            padding-left: 15px;
             padding-right: 15px;
         }
         @media screen and (max-width: $sm-mobile-break){
@@ -52,8 +55,8 @@
             width: 100%;
 
             @media screen and (max-width: $mmd-break){
-                width: 50%;
-                padding-left: 15px;
+                // width: 50%;
+                // padding-left: 15px;
                 padding-right: 15px;
                 float: left;
             }
@@ -67,6 +70,7 @@
                 height:90px;
                 margin-right: 11px;
                 float: left;
+                position:relative;
 
                 img{
                     max-width: 100%;

@@ -1,3 +1,4 @@
+// overrides for Tipped css for header menu tool tips
 .tpd-shift-stem-side { background:rgba(255,255,0,.8) !important;width:100% !important }
 .tpd-background-border-hack {background:rgba(255,255,0,.8) !important;border-radius:0 !important;}
 .tpd-stem-triangle {border-bottom-color: rgba(255,255,0,.8) !important;}
@@ -8,6 +9,12 @@
 .menu-background {
     background: rgba(26, 26, 26, 1);
 }   
+
+
+
+.content-block.top {
+    margin-bottom:85px;
+}
 
 .loadMoreArticles {
     text-decoration: none;

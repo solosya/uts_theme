@@ -9,7 +9,7 @@
 
 {% set articleCount = 0 %}
 
-{% set popularArticles = _Article.getPopularArticles({ limit: 9, sortBy: 'VIEWS' }) %}
+{% set popularArticles = _Article.getPopularArticles({ limit: 10, sortBy: 'VIEWS' }) %}
 
 
 {% set sections =  {
@@ -81,7 +81,7 @@
 
 
 
-    <section class="content-block container">
+    <section class="content-block container top">
         <div class="row">
             <div class="col-md-9 col-sm-12">
                 <div class="row">
@@ -105,6 +105,9 @@
                 </div><!--row-->
             </div>
 
+
+
+
             <div class="col-md-3 col-sm-12">
                 <aside class="left-border">
                     
@@ -118,7 +121,7 @@
 
                         {% for i in 0..4 %}
                             {% if sections['Breaking News'].feed.articles[i] %}
-                                {{this.render('partials/_single-article.twig', {article: sections['Breaking News'].feed.articles[i]}) | raw}}
+                                {{this.render('partials/_single-article.twig', {article: sections['Breaking News'].feed.articles[i], containerClass: 'col-sm-6 col-md-12'}) | raw}}
                             {% endif %}
                         {% endfor %}
 
@@ -229,7 +232,7 @@
         </div>
 
         <div class="row">
-            <div class="col-sm-9 col-sm-offset-3 section__content">
+            <div class="col-sm-12 col-md-9 col-md-offset-3 section__content">
                 <div class="row">
                     <div class="ajaxArticles clearfix " 
                     data-offset="{{limit}}" 

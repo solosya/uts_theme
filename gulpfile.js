@@ -6,30 +6,43 @@ var gutil = require('gulp-util');
 var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
 var minifyCss = require("gulp-minify-css");
+var runSequence = require('run-sequence');
+
+
+gulp.task('styles', function(callback) {
+  runSequence('sass', 'concat', 'minify-css', callback);
+});
 
 
 // task
 gulp.task('minify-css', function () {
     return gulp.src([
-        './static/css/main.css',
-        './assets/scripts/plugins/jquery.fancybox/source/jquery.fancybox.css',
-        './assets/scripts/plugins/jquery.noty-2.3.8/demo/animate.css',
+        './static/css/concat.css',
     ]) // path to your file
-    .pipe(concat('main.css'))
     .pipe(gp_rename({suffix: '.min'}))
     .pipe(minifyCss())
     .pipe(gulp.dest('./static/css'));
 });
 
 
-gulp.task('styles', ['minify-css'], function() {
+gulp.task('concat', function () {
+    return gulp.src([
+        './static/css/main.css',
+        './assets/scripts/plugins/tipped-4.6.0-light/css/tipped/tipped.css'
+    ]) // path to your file
+    .pipe(concat('concat.css'))
+    .pipe(gulp.dest('./static/css'));
+});
+
+
+gulp.task('sass', function() {
     return gulp.src([
             './assets/styles/main.scss',
-            './assets/scripts/plugins/jquery.fancybox/source/jquery.fancybox.css',
-            './assets/scripts/plugins/jquery.noty-2.3.8/demo/animate.css',
         ])
 	    .pipe(sourcemaps.init())
-    	.pipe(sass({includePaths: ['./assets/styles/partials']}).on('error', sass.logError))
+    	.pipe(sass({includePaths: [
+            './assets/styles/partials', 
+        ]}).on('error', sass.logError))
     	.pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('./static/css'));
 });
@@ -71,6 +84,7 @@ gulp.task('scripts', function(){
         '../../static/sdk/js/uploadfile.js',
         '../../static/sdk/js/media-player/mediaelement-and-player.min.js',
 
+        './assets/scripts/plugins/tipped-4.6.0-light/js/tipped/tipped.js',
 		'./assets/scripts/*.js',
 
 		])

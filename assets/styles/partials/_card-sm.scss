@@ -10,38 +10,9 @@
         color:#fefefe;
         
 
-        @media screen and (max-width: $mobile-break){
-            min-height: 450px;
-            max-height: 450px;
+        @media screen and (max-width: $sm-break){
+            max-height:none;
         }
-
-
-        @media screen and (min-width: $mobile-break) and (max-width: $sm-break){
-            min-height: 570px;
-            max-height: 570px;
-        }
-
-
-        time {
-            @media screen and (max-width: $sm-break){
-                font-size:  ((14px / $font-size-base) + $font-unit);
-            }
-        }
-
-        p {
-            max-height:110px;
-            overflow: hidden;
-            font-weight: 500;
-        }
-
-        article > .other-content:first-child {
-                margin-bottom: 26px;
-        }
-
-        .other-content{
-            margin-bottom: 5px;
-        }
-
 
         figure{
             margin-left: -12px;
@@ -50,38 +21,64 @@
             height: 172px;
             position: relative;
 
-            @media screen and (min-width: $mobile-break) and (max-width: $sm-break){
-                height: 300px;
+            @media screen and (max-width: $sm-break){
+                height:272px;
             }
-        }
-
-        .content {
-
-            .category{
-                position: absolute;
-                top: 0;
-                right: 0;
-                background-color: $brand-yellow;
-                color: #1a1818;
-
-            }
-
-            h2{
-                margin-top:5px;
-                margin-bottom: 9px;
-            }
-
-            .share-icon{
-                display: none;
-            }
-
 
         }
 
 
-        &.without__image {
-            padding-top:100px;
+
+        article > .other-content:first-child {
+            margin-bottom: 26px;
         }
+
+        .other-content{
+            margin-bottom: 5px;
+        }
+
+
+        article {
+            .content {
+
+                .category{
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    background-color: $brand-yellow;
+                    color: #1a1818;
+
+                }
+
+                h2{
+                    margin-top:5px;
+                    margin-bottom: 9px;
+                }
+
+                .share-icon{
+                    display: none;
+                }
+
+
+                time {
+                    // @media screen and (max-width: $sm-break){
+                    //     font-size:  ((14px / $font-size-base) + $font-unit);
+                    // }
+                }
+
+                p {
+                    // max-height:110px;
+                    overflow: hidden;
+                    font-weight: 500;
+                }
+            }
+        }
+
+
+
+        // &.without__image {
+        //     padding-top:100px;
+        // }
 
 
         &.other{
@@ -104,8 +101,13 @@
                 @media screen and (max-width: $sm-break){
                     margin-top:10px;
                     margin-bottom:20px;
-                    height:65px;
-                    font-size:  ((30px / $font-size-base) + $font-unit);
+                    height:32px;
+                    font-size:  ((19px / $font-size-base) + $font-unit);
+                }
+
+                @media screen and (max-width: $mobile-break){
+                    font-size:  ((25px / $font-size-base) + $font-unit);
+                    height:60px;
                 }
             }
 
@@ -119,8 +121,8 @@
             p {
                 max-height:55px;
 
-                @media screen and (max-width: $sm-break){
-                    font-size:  ((18px / $font-size-base) + $font-unit);
+                @media screen and (max-width: $mobile-break){
+                    font-size:  ((15px / $font-size-base) + $font-unit);
                 }
             }
 
@@ -136,9 +138,25 @@
         }
 
 
+        &.social{ 
+
+            // &.without__image {
+            //     padding:
+            // }
+
+            border-bottom: solid 5.6px #231f20;
+            
+            .content {
+                > p {
+                    color:black;
+                    height: 117px;
+                }
+            }
+        }
 
         &.facebook{
             color:black;
+            border-bottom: none;
 
             .content {
                 margin-top: -50px;
@@ -174,7 +192,8 @@
         &.twitter {
             color:black;
             background-color: $brand-yellow;
-            
+            border-bottom: none;
+
             figure{
                 border-bottom: 7.4px solid #FFF;
                 max-height: 172px;
