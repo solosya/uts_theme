@@ -27656,6 +27656,5754 @@ f(k).off(".owl owl");f(g).off("resize",this.resizer)},unWrap:function(){0!==this
 a);this.unWrap();this.init(a,this.$elem)},addItem:function(a,b){var e;if(!a)return!1;if(0===this.$elem.children().length)return this.$elem.append(a),this.setVars(),!1;this.unWrap();e=void 0===b||-1===b?-1:b;e>=this.$userItems.length||-1===e?this.$userItems.eq(-1).after(a):this.$userItems.eq(e).before(a);this.setVars()},removeItem:function(a){if(0===this.$elem.children().length)return!1;a=void 0===a||-1===a?-1:a;this.unWrap();this.$userItems.eq(a).remove();this.setVars()}};f.fn.owlCarousel=function(a){return this.each(function(){if(!0===
 f(this).data("owl-init"))return!1;f(this).data("owl-init",!0);var b=Object.create(l);b.init(a,this);f.data(this,"owlCarousel",b)})};f.fn.owlCarousel.options={items:5,itemsCustom:!1,itemsDesktop:[1199,4],itemsDesktopSmall:[979,3],itemsTablet:[768,2],itemsTabletSmall:!1,itemsMobile:[479,1],singleItem:!1,itemsScaleUp:!1,slideSpeed:200,paginationSpeed:800,rewindSpeed:1E3,autoPlay:!1,stopOnHover:!1,navigation:!1,navigationText:["prev","next"],rewindNav:!0,scrollPerPage:!1,pagination:!0,paginationNumbers:!1,
 responsive:!0,responsiveRefreshRate:200,responsiveBaseWidth:g,baseClass:"owl-carousel",theme:"owl-theme",lazyLoad:!1,lazyFollow:!0,lazyEffect:"fade",autoHeight:!1,jsonPath:!1,jsonSuccess:!1,dragBeforeAnimFinish:!0,mouseDrag:!0,touchDrag:!0,addClassActive:!1,transitionStyle:!1,beforeUpdate:!1,afterUpdate:!1,beforeInit:!1,afterInit:!1,beforeMove:!1,afterMove:!1,afterAction:!1,startDragging:!1,afterLazyLoad:!1}})(jQuery,window,document);
+
+/**
+ * Cloudinary's JavaScript library - Version 2.1.3
+ * Copyright Cloudinary
+ * see https://github.com/cloudinary/cloudinary_js
+ *
+ */
+var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
+
+(function(root, factory) {
+  var name, ref, results, value;
+  if ((typeof define === 'function') && define.amd) {
+    return define(['jquery'], factory);
+  } else if (typeof exports === 'object') {
+    return module.exports = factory(require('jquery'));
+  } else {
+    root.cloudinary || (root.cloudinary = {});
+    ref = factory(jQuery);
+    results = [];
+    for (name in ref) {
+      value = ref[name];
+      results.push(root.cloudinary[name] = value);
+    }
+    return results;
+  }
+})(this, function(jQuery) {
+
+  /**
+    * Includes utility methods and lodash / jQuery shims
+   */
+
+  /**
+    * Get data from the DOM element.
+    *
+    * This method will use jQuery's `data()` method if it is available, otherwise it will get the `data-` attribute
+    * @param {Element} element - the element to get the data from
+    * @param {string} name - the name of the data item
+    * @returns the value associated with the `name`
+    * @function Util.getData
+   */
+  var ArrayParam, Cloudinary, CloudinaryJQuery, Condition, Configuration, HtmlTag, ImageTag, Layer, LayerParam, Param, RangeParam, RawParam, SubtitlesLayer, TextLayer, Transformation, TransformationBase, TransformationParam, Util, VideoTag, addClass, allStrings, camelCase, cloneDeep, cloudinary, compact, contains, crc32, defaults, difference, functions, getAttribute, getData, hasClass, identity, isEmpty, isString, merge, parameters, reWords, removeAttribute, setAttribute, setAttributes, setData, snakeCase, utf8_encode, webp, width, without;
+  getData = function(element, name) {
+    return jQuery(element).data(name);
+  };
+
+  /**
+    * Set data in the DOM element.
+    *
+    * This method will use jQuery's `data()` method if it is available, otherwise it will set the `data-` attribute
+    * @param {Element} element - the element to set the data in
+    * @param {string} name - the name of the data item
+    * @param {*} value - the value to be set
+    *
+   */
+  setData = function(element, name, value) {
+    return jQuery(element).data(name, value);
+  };
+
+  /**
+    * Get attribute from the DOM element.
+    *
+    * This method will use jQuery's `attr()` method if it is available, otherwise it will get the attribute directly
+    * @param {Element} element - the element to set the attribute for
+    * @param {string} name - the name of the attribute
+    * @returns {*} the value of the attribute
+    *
+   */
+  getAttribute = function(element, name) {
+    return jQuery(element).attr(name);
+  };
+
+  /**
+    * Set attribute in the DOM element.
+    *
+    * This method will use jQuery's `attr()` method if it is available, otherwise it will set the attribute directly
+    * @param {Element} element - the element to set the attribute for
+    * @param {string} name - the name of the attribute
+    * @param {*} value - the value to be set
+    *
+   */
+  setAttribute = function(element, name, value) {
+    return jQuery(element).attr(name, value);
+  };
+  removeAttribute = function(element, name) {
+    return jQuery(element).removeAttr(name);
+  };
+  setAttributes = function(element, attributes) {
+    return jQuery(element).attr(attributes);
+  };
+  hasClass = function(element, name) {
+    return jQuery(element).hasClass(name);
+  };
+  addClass = function(element, name) {
+    return jQuery(element).addClass(name);
+  };
+  width = function(element) {
+    return jQuery(element).width();
+  };
+  isEmpty = function(item) {
+    return (item == null) || (jQuery.isArray(item) || Util.isString(item)) && item.length === 0 || (jQuery.isPlainObject(item) && jQuery.isEmptyObject(item));
+  };
+  allStrings = function(list) {
+    var item, j, len;
+    for (j = 0, len = list.length; j < len; j++) {
+      item = list[j];
+      if (!Util.isString(item)) {
+        return false;
+      }
+    }
+    return true;
+  };
+  isString = function(item) {
+    return typeof item === 'string' || (item != null ? item.toString() : void 0) === '[object String]';
+  };
+  merge = function() {
+    var args, i;
+    args = (function() {
+      var j, len, results;
+      results = [];
+      for (j = 0, len = arguments.length; j < len; j++) {
+        i = arguments[j];
+        results.push(i);
+      }
+      return results;
+    }).apply(this, arguments);
+    args.unshift(true);
+    return jQuery.extend.apply(this, args);
+  };
+
+  /** Used to match words to create compound words. */
+  reWords = (function() {
+    var lower, upper;
+    upper = '[A-Z\\xc0-\\xd6\\xd8-\\xde]';
+    lower = '[a-z\\xdf-\\xf6\\xf8-\\xff]+';
+    return RegExp(upper + '+(?=' + upper + lower + ')|' + upper + '?' + lower + '|' + upper + '+|[0-9]+', 'g');
+  })();
+  camelCase = function(source) {
+    var i, word, words;
+    words = source.match(reWords);
+    words = (function() {
+      var j, len, results;
+      results = [];
+      for (i = j = 0, len = words.length; j < len; i = ++j) {
+        word = words[i];
+        word = word.toLocaleLowerCase();
+        if (i) {
+          results.push(word.charAt(0).toLocaleUpperCase() + word.slice(1));
+        } else {
+          results.push(word);
+        }
+      }
+      return results;
+    })();
+    return words.join('');
+  };
+  snakeCase = function(source) {
+    var i, word, words;
+    words = source.match(reWords);
+    words = (function() {
+      var j, len, results;
+      results = [];
+      for (i = j = 0, len = words.length; j < len; i = ++j) {
+        word = words[i];
+        results.push(word.toLocaleLowerCase());
+      }
+      return results;
+    })();
+    return words.join('_');
+  };
+  compact = function(arr) {
+    var item, j, len, results;
+    results = [];
+    for (j = 0, len = arr.length; j < len; j++) {
+      item = arr[j];
+      if (item) {
+        results.push(item);
+      }
+    }
+    return results;
+  };
+  cloneDeep = function() {
+    var args;
+    args = jQuery.makeArray(arguments);
+    args.unshift({});
+    args.unshift(true);
+    return jQuery.extend.apply(this, args);
+  };
+  contains = function(arr, item) {
+    var i, j, len;
+    for (j = 0, len = arr.length; j < len; j++) {
+      i = arr[j];
+      if (i === item) {
+        return true;
+      }
+    }
+    return false;
+  };
+  defaults = function() {
+    var a, args, first, j, len;
+    args = [];
+    if (arguments.length === 1) {
+      return arguments[0];
+    }
+    for (j = 0, len = arguments.length; j < len; j++) {
+      a = arguments[j];
+      args.unshift(a);
+    }
+    first = args.pop();
+    args.unshift(first);
+    return jQuery.extend.apply(this, args);
+  };
+  difference = function(arr, values) {
+    var item, j, len, results;
+    results = [];
+    for (j = 0, len = arr.length; j < len; j++) {
+      item = arr[j];
+      if (!contains(values, item)) {
+        results.push(item);
+      }
+    }
+    return results;
+  };
+  functions = function(object) {
+    var i, results;
+    results = [];
+    for (i in object) {
+      if (jQuery.isFunction(object[i])) {
+        results.push(i);
+      }
+    }
+    return results;
+  };
+  identity = function(value) {
+    return value;
+  };
+  without = function(array, item) {
+    var i, length, newArray;
+    newArray = [];
+    i = -1;
+    length = array.length;
+    while (++i < length) {
+      if (array[i] !== item) {
+        newArray.push(array[i]);
+      }
+    }
+    return newArray;
+  };
+  Util = {
+    hasClass: hasClass,
+    addClass: addClass,
+    getAttribute: getAttribute,
+    setAttribute: setAttribute,
+    removeAttribute: removeAttribute,
+    setAttributes: setAttributes,
+    getData: getData,
+    setData: setData,
+    width: width,
+
+    /**
+     * Return true if all items in list are strings
+     * @param {Array} list - an array of items
+     */
+    allStrings: allStrings,
+    isString: isString,
+    isArray: jQuery.isArray,
+    isEmpty: isEmpty,
+
+    /**
+     * Assign source properties to destination.
+     * If the property is an object it is assigned as a whole, overriding the destination object.
+     * @param {Object} destination - the object to assign to
+     */
+    assign: jQuery.extend,
+
+    /**
+     * Recursively assign source properties to destination
+    * @param {Object} destination - the object to assign to
+     * @param {...Object} [sources] The source objects.
+     */
+    merge: merge,
+
+    /**
+     * Convert string to camelCase
+     * @param {string} string - the string to convert
+     * @return {string} in camelCase format
+     */
+    camelCase: camelCase,
+
+    /**
+     * Convert string to snake_case
+     * @param {string} string - the string to convert
+     * @return {string} in snake_case format
+     */
+    snakeCase: snakeCase,
+
+    /**
+     * Create a new copy of the given object, including all internal objects.
+     * @param {Object} value - the object to clone
+     * @return {Object} a new deep copy of the object
+     */
+    cloneDeep: cloneDeep,
+
+    /**
+     * Creates a new array from the parameter with "falsey" values removed
+     * @param {Array} array - the array to remove values from
+     * @return {Array} a new array without falsey values
+     */
+    compact: compact,
+
+    /**
+     * Check if a given item is included in the given array
+     * @param {Array} array - the array to search in
+     * @param {*} item - the item to search for
+     * @return {boolean} true if the item is included in the array
+     */
+    contains: contains,
+
+    /**
+     * Assign values from sources if they are not defined in the destination.
+     * Once a value is set it does not change
+     * @param {Object} destination - the object to assign defaults to
+     * @param {...Object} source - the source object(s) to assign defaults from
+     * @return {Object} destination after it was modified
+     */
+    defaults: defaults,
+
+    /**
+     * Returns values in the given array that are not included in the other array
+     * @param {Array} arr - the array to select from
+     * @param {Array} values - values to filter from arr
+     * @return {Array} the filtered values
+     */
+    difference: difference,
+
+    /**
+     * Returns true if argument is a function.
+     * @param {*} value - the value to check
+     * @return {boolean} true if the value is a function
+     */
+    isFunction: jQuery.isFunction,
+
+    /**
+     * Returns a list of all the function names in obj
+     * @param {Object} object - the object to inspect
+     * @return {Array} a list of functions of object
+     */
+    functions: functions,
+
+    /**
+     * Returns the provided value. This functions is used as a default predicate function.
+     * @param {*} value
+     * @return {*} the provided value
+     */
+    identity: identity,
+    isPlainObject: jQuery.isPlainObject,
+
+    /**
+     * Remove leading or trailing spaces from text
+     * @param {string} text
+     * @return {string} the `text` without leading or trailing spaces
+     */
+    trim: jQuery.trim,
+
+    /**
+     * Creates a new array without the given item.
+     * @param {Array} array - original array
+     * @param {*} item - the item to exclude from the new array
+     * @return {Array} a new array made of the original array's items except for `item`
+     */
+    without: without
+  };
+
+  /**
+   * UTF8 encoder
+   *
+   */
+  utf8_encode = function(argString) {
+    var c1, enc, end, n, start, string, stringl, utftext;
+    if (argString === null || typeof argString === 'undefined') {
+      return '';
+    }
+    string = argString + '';
+    utftext = '';
+    start = void 0;
+    end = void 0;
+    stringl = 0;
+    start = end = 0;
+    stringl = string.length;
+    n = 0;
+    while (n < stringl) {
+      c1 = string.charCodeAt(n);
+      enc = null;
+      if (c1 < 128) {
+        end++;
+      } else if (c1 > 127 && c1 < 2048) {
+        enc = String.fromCharCode(c1 >> 6 | 192, c1 & 63 | 128);
+      } else {
+        enc = String.fromCharCode(c1 >> 12 | 224, c1 >> 6 & 63 | 128, c1 & 63 | 128);
+      }
+      if (enc !== null) {
+        if (end > start) {
+          utftext += string.slice(start, end);
+        }
+        utftext += enc;
+        start = end = n + 1;
+      }
+      n++;
+    }
+    if (end > start) {
+      utftext += string.slice(start, stringl);
+    }
+    return utftext;
+  };
+
+  /**
+   * CRC32 calculator
+   * Depends on 'utf8_encode'
+   */
+  crc32 = function(str) {
+    var crc, i, iTop, table, x, y;
+    str = utf8_encode(str);
+    table = '00000000 77073096 EE0E612C 990951BA 076DC419 706AF48F E963A535 9E6495A3 0EDB8832 79DCB8A4 E0D5E91E 97D2D988 09B64C2B 7EB17CBD E7B82D07 90BF1D91 1DB71064 6AB020F2 F3B97148 84BE41DE 1ADAD47D 6DDDE4EB F4D4B551 83D385C7 136C9856 646BA8C0 FD62F97A 8A65C9EC 14015C4F 63066CD9 FA0F3D63 8D080DF5 3B6E20C8 4C69105E D56041E4 A2677172 3C03E4D1 4B04D447 D20D85FD A50AB56B 35B5A8FA 42B2986C DBBBC9D6 ACBCF940 32D86CE3 45DF5C75 DCD60DCF ABD13D59 26D930AC 51DE003A C8D75180 BFD06116 21B4F4B5 56B3C423 CFBA9599 B8BDA50F 2802B89E 5F058808 C60CD9B2 B10BE924 2F6F7C87 58684C11 C1611DAB B6662D3D 76DC4190 01DB7106 98D220BC EFD5102A 71B18589 06B6B51F 9FBFE4A5 E8B8D433 7807C9A2 0F00F934 9609A88E E10E9818 7F6A0DBB 086D3D2D 91646C97 E6635C01 6B6B51F4 1C6C6162 856530D8 F262004E 6C0695ED 1B01A57B 8208F4C1 F50FC457 65B0D9C6 12B7E950 8BBEB8EA FCB9887C 62DD1DDF 15DA2D49 8CD37CF3 FBD44C65 4DB26158 3AB551CE A3BC0074 D4BB30E2 4ADFA541 3DD895D7 A4D1C46D D3D6F4FB 4369E96A 346ED9FC AD678846 DA60B8D0 44042D73 33031DE5 AA0A4C5F DD0D7CC9 5005713C 270241AA BE0B1010 C90C2086 5768B525 206F85B3 B966D409 CE61E49F 5EDEF90E 29D9C998 B0D09822 C7D7A8B4 59B33D17 2EB40D81 B7BD5C3B C0BA6CAD EDB88320 9ABFB3B6 03B6E20C 74B1D29A EAD54739 9DD277AF 04DB2615 73DC1683 E3630B12 94643B84 0D6D6A3E 7A6A5AA8 E40ECF0B 9309FF9D 0A00AE27 7D079EB1 F00F9344 8708A3D2 1E01F268 6906C2FE F762575D 806567CB 196C3671 6E6B06E7 FED41B76 89D32BE0 10DA7A5A 67DD4ACC F9B9DF6F 8EBEEFF9 17B7BE43 60B08ED5 D6D6A3E8 A1D1937E 38D8C2C4 4FDFF252 D1BB67F1 A6BC5767 3FB506DD 48B2364B D80D2BDA AF0A1B4C 36034AF6 41047A60 DF60EFC3 A867DF55 316E8EEF 4669BE79 CB61B38C BC66831A 256FD2A0 5268E236 CC0C7795 BB0B4703 220216B9 5505262F C5BA3BBE B2BD0B28 2BB45A92 5CB36A04 C2D7FFA7 B5D0CF31 2CD99E8B 5BDEAE1D 9B64C2B0 EC63F226 756AA39C 026D930A 9C0906A9 EB0E363F 72076785 05005713 95BF4A82 E2B87A14 7BB12BAE 0CB61B38 92D28E9B E5D5BE0D 7CDCEFB7 0BDBDF21 86D3D2D4 F1D4E242 68DDB3F8 1FDA836E 81BE16CD F6B9265B 6FB077E1 18B74777 88085AE6 FF0F6A70 66063BCA 11010B5C 8F659EFF F862AE69 616BFFD3 166CCF45 A00AE278 D70DD2EE 4E048354 3903B3C2 A7672661 D06016F7 4969474D 3E6E77DB AED16A4A D9D65ADC 40DF0B66 37D83BF0 A9BCAE53 DEBB9EC5 47B2CF7F 30B5FFE9 BDBDF21C CABAC28A 53B39330 24B4A3A6 BAD03605 CDD70693 54DE5729 23D967BF B3667A2E C4614AB8 5D681B02 2A6F2B94 B40BBE37 C30C8EA1 5A05DF1B 2D02EF8D';
+    crc = 0;
+    x = 0;
+    y = 0;
+    crc = crc ^ -1;
+    i = 0;
+    iTop = str.length;
+    while (i < iTop) {
+      y = (crc ^ str.charCodeAt(i)) & 0xFF;
+      x = '0x' + table.substr(y * 9, 8);
+      crc = crc >>> 8 ^ x;
+      i++;
+    }
+    crc = crc ^ -1;
+    if (crc < 0) {
+      crc += 4294967296;
+    }
+    return crc;
+  };
+
+  /**
+   * Transformation parameters
+   * Depends on 'util', 'transformation'
+   */
+  Param = (function() {
+
+    /**
+     * Represents a single parameter
+     * @class Param
+     * @param {string} name - The name of the parameter in snake_case
+     * @param {string} shortName - The name of the serialized form of the parameter.
+     *                         If a value is not provided, the parameter will not be serialized.
+     * @param {function} [process=cloudinary.Util.identity ] - Manipulate origValue when value is called
+     * @ignore
+     */
+    function Param(name, shortName, process) {
+      if (process == null) {
+        process = cloudinary.Util.identity;
+      }
+
+      /**
+       * The name of the parameter in snake_case
+       * @member {string} Param#name
+       */
+      this.name = name;
+
+      /**
+       * The name of the serialized form of the parameter
+       * @member {string} Param#shortName
+       */
+      this.shortName = shortName;
+
+      /**
+       * Manipulate origValue when value is called
+       * @member {function} Param#process
+       */
+      this.process = process;
+    }
+
+
+    /**
+     * Set a (unprocessed) value for this parameter
+     * @function Param#set
+     * @param {*} origValue - the value of the parameter
+     * @return {Param} self for chaining
+     */
+
+    Param.prototype.set = function(origValue) {
+      this.origValue = origValue;
+      return this;
+    };
+
+
+    /**
+     * Generate the serialized form of the parameter
+     * @function Param#serialize
+     * @return {string} the serialized form of the parameter
+     */
+
+    Param.prototype.serialize = function() {
+      var val, valid;
+      val = this.value();
+      valid = cloudinary.Util.isArray(val) || cloudinary.Util.isPlainObject(val) || cloudinary.Util.isString(val) ? !cloudinary.Util.isEmpty(val) : val != null;
+      if ((this.shortName != null) && valid) {
+        return this.shortName + "_" + val;
+      } else {
+        return '';
+      }
+    };
+
+
+    /**
+     * Return the processed value of the parameter
+     * @function Param#value
+     */
+
+    Param.prototype.value = function() {
+      return this.process(this.origValue);
+    };
+
+    Param.norm_color = function(value) {
+      return value != null ? value.replace(/^#/, 'rgb:') : void 0;
+    };
+
+    Param.prototype.build_array = function(arg) {
+      if (arg == null) {
+        arg = [];
+      }
+      if (cloudinary.Util.isArray(arg)) {
+        return arg;
+      } else {
+        return [arg];
+      }
+    };
+
+
+    /**
+    * Covert value to video codec string.
+    *
+    * If the parameter is an object,
+    * @param {(string|Object)} param - the video codec as either a String or a Hash
+    * @return {string} the video codec string in the format codec:profile:level
+    * @example
+    * vc_[ :profile : [level]]
+    * or
+      { codec: 'h264', profile: 'basic', level: '3.1' }
+    * @ignore
+     */
+
+    Param.process_video_params = function(param) {
+      var video;
+      switch (param.constructor) {
+        case Object:
+          video = "";
+          if ('codec' in param) {
+            video = param['codec'];
+            if ('profile' in param) {
+              video += ":" + param['profile'];
+              if ('level' in param) {
+                video += ":" + param['level'];
+              }
+            }
+          }
+          return video;
+        case String:
+          return param;
+        default:
+          return null;
+      }
+    };
+
+    return Param;
+
+  })();
+  ArrayParam = (function(superClass) {
+    extend(ArrayParam, superClass);
+
+
+    /**
+     * A parameter that represents an array
+     * @param {string} name - The name of the parameter in snake_case
+     * @param {string} shortName - The name of the serialized form of the parameter
+     *                         If a value is not provided, the parameter will not be serialized.
+     * @param {string} [sep='.'] - The separator to use when joining the array elements together
+     * @param {function} [process=cloudinary.Util.identity ] - Manipulate origValue when value is called
+     * @class ArrayParam
+     * @extends Param
+     * @ignore
+     */
+
+    function ArrayParam(name, shortName, sep, process) {
+      if (sep == null) {
+        sep = '.';
+      }
+      this.sep = sep;
+      ArrayParam.__super__.constructor.call(this, name, shortName, process);
+    }
+
+    ArrayParam.prototype.serialize = function() {
+      var array, flat, t;
+      if (this.shortName != null) {
+        array = this.value();
+        if (cloudinary.Util.isEmpty(array)) {
+          return '';
+        } else {
+          flat = (function() {
+            var j, len, ref, results;
+            ref = this.value();
+            results = [];
+            for (j = 0, len = ref.length; j < len; j++) {
+              t = ref[j];
+              if (cloudinary.Util.isFunction(t.serialize)) {
+                results.push(t.serialize());
+              } else {
+                results.push(t);
+              }
+            }
+            return results;
+          }).call(this);
+          return this.shortName + "_" + (flat.join(this.sep));
+        }
+      } else {
+        return '';
+      }
+    };
+
+    ArrayParam.prototype.set = function(origValue) {
+      if ((origValue == null) || cloudinary.Util.isArray(origValue)) {
+        return ArrayParam.__super__.set.call(this, origValue);
+      } else {
+        return ArrayParam.__super__.set.call(this, [origValue]);
+      }
+    };
+
+    return ArrayParam;
+
+  })(Param);
+  TransformationParam = (function(superClass) {
+    extend(TransformationParam, superClass);
+
+
+    /**
+     * A parameter that represents a transformation
+     * @param {string} name - The name of the parameter in snake_case
+     * @param {string} [shortName='t'] - The name of the serialized form of the parameter
+     * @param {string} [sep='.'] - The separator to use when joining the array elements together
+     * @param {function} [process=cloudinary.Util.identity ] - Manipulate origValue when value is called
+     * @class TransformationParam
+     * @extends Param
+     * @ignore
+     */
+
+    function TransformationParam(name, shortName, sep, process) {
+      if (shortName == null) {
+        shortName = "t";
+      }
+      if (sep == null) {
+        sep = '.';
+      }
+      this.sep = sep;
+      TransformationParam.__super__.constructor.call(this, name, shortName, process);
+    }
+
+    TransformationParam.prototype.serialize = function() {
+      var joined, result, t;
+      if (cloudinary.Util.isEmpty(this.value())) {
+        return '';
+      } else if (cloudinary.Util.allStrings(this.value())) {
+        joined = this.value().join(this.sep);
+        if (!cloudinary.Util.isEmpty(joined)) {
+          return this.shortName + "_" + joined;
+        } else {
+          return '';
+        }
+      } else {
+        result = (function() {
+          var j, len, ref, results;
+          ref = this.value();
+          results = [];
+          for (j = 0, len = ref.length; j < len; j++) {
+            t = ref[j];
+            if (t != null) {
+              if (cloudinary.Util.isString(t) && !cloudinary.Util.isEmpty(t)) {
+                results.push(this.shortName + "_" + t);
+              } else if (cloudinary.Util.isFunction(t.serialize)) {
+                results.push(t.serialize());
+              } else if (cloudinary.Util.isPlainObject(t) && !cloudinary.Util.isEmpty(t)) {
+                results.push(new Transformation(t).serialize());
+              } else {
+                results.push(void 0);
+              }
+            }
+          }
+          return results;
+        }).call(this);
+        return cloudinary.Util.compact(result);
+      }
+    };
+
+    TransformationParam.prototype.set = function(origValue1) {
+      this.origValue = origValue1;
+      if (cloudinary.Util.isArray(this.origValue)) {
+        return TransformationParam.__super__.set.call(this, this.origValue);
+      } else {
+        return TransformationParam.__super__.set.call(this, [this.origValue]);
+      }
+    };
+
+    return TransformationParam;
+
+  })(Param);
+  RangeParam = (function(superClass) {
+    extend(RangeParam, superClass);
+
+
+    /**
+     * A parameter that represents a range
+     * @param {string} name - The name of the parameter in snake_case
+     * @param {string} shortName - The name of the serialized form of the parameter
+     *                         If a value is not provided, the parameter will not be serialized.
+     * @param {function} [process=norm_range_value ] - Manipulate origValue when value is called
+     * @class RangeParam
+     * @extends Param
+     * @ignore
+     */
+
+    function RangeParam(name, shortName, process) {
+      if (process == null) {
+        process = this.norm_range_value;
+      }
+      RangeParam.__super__.constructor.call(this, name, shortName, process);
+    }
+
+    RangeParam.norm_range_value = function(value) {
+      var modifier, offset;
+      offset = String(value).match(new RegExp('^' + offset_any_pattern + '$'));
+      if (offset) {
+        modifier = offset[5] != null ? 'p' : '';
+        value = (offset[1] || offset[4]) + modifier;
+      }
+      return value;
+    };
+
+    return RangeParam;
+
+  })(Param);
+  RawParam = (function(superClass) {
+    extend(RawParam, superClass);
+
+    function RawParam(name, shortName, process) {
+      if (process == null) {
+        process = cloudinary.Util.identity;
+      }
+      RawParam.__super__.constructor.call(this, name, shortName, process);
+    }
+
+    RawParam.prototype.serialize = function() {
+      return this.value();
+    };
+
+    return RawParam;
+
+  })(Param);
+  LayerParam = (function(superClass) {
+    var LAYER_KEYWORD_PARAMS;
+
+    extend(LayerParam, superClass);
+
+    function LayerParam() {
+      return LayerParam.__super__.constructor.apply(this, arguments);
+    }
+
+    LayerParam.prototype.value = function() {
+      var components, format, layer, publicId, resourceType, text, textStyle, type;
+      layer = this.origValue;
+      if (cloudinary.Util.isPlainObject(layer)) {
+        publicId = layer.public_id;
+        format = layer.format;
+        resourceType = layer.resource_type || "image";
+        type = layer.type || "upload";
+        text = layer.text;
+        textStyle = null;
+        components = [];
+        if (publicId != null) {
+          publicId = publicId.replace(/\//g, ":");
+          if (format != null) {
+            publicId = publicId + "." + format;
+          }
+        }
+        if ((text == null) && resourceType !== "text") {
+          if (cloudinary.Util.isEmpty(publicId)) {
+            throw "Must supply public_id for resource_type layer_parameter";
+          }
+          if (resourceType === "subtitles") {
+            textStyle = this.textStyle(layer);
+          }
+        } else {
+          resourceType = "text";
+          type = null;
+          textStyle = this.textStyle(layer);
+          if (text != null) {
+            if (!((publicId != null) ^ (textStyle != null))) {
+              throw "Must supply either style parameters or a public_id when providing text parameter in a text overlay/underlay";
+            }
+            text = cloudinary.Util.smart_escape(cloudinary.Util.smart_escape(text, /([,\/])/));
+          }
+        }
+        if (resourceType !== "image") {
+          components.push(resourceType);
+        }
+        if (type !== "upload") {
+          components.push(type);
+        }
+        components.push(textStyle);
+        components.push(publicId);
+        components.push(text);
+        layer = cloudinary.Util.compact(components).join(":");
+      }
+      return layer;
+    };
+
+    LAYER_KEYWORD_PARAMS = [["font_weight", "normal"], ["font_style", "normal"], ["text_decoration", "none"], ["text_align", null], ["stroke", "none"]];
+
+    LayerParam.prototype.textStyle = function(layer) {
+      var attr, defaultValue, fontFamily, fontSize, keywords, letterSpacing, lineSpacing;
+      fontFamily = layer.font_family;
+      fontSize = layer.font_size;
+      keywords = (function() {
+        var j, len, ref, results;
+        results = [];
+        for (j = 0, len = LAYER_KEYWORD_PARAMS.length; j < len; j++) {
+          ref = LAYER_KEYWORD_PARAMS[j], attr = ref[0], defaultValue = ref[1];
+          if (layer[attr] !== defaultValue) {
+            results.push(layer[attr]);
+          }
+        }
+        return results;
+      })();
+      letterSpacing = layer.letter_spacing;
+      if (!cloudinary.Util.isEmpty(letterSpacing)) {
+        keywords.push("letter_spacing_" + letterSpacing);
+      }
+      lineSpacing = layer.line_spacing;
+      if (!cloudinary.Util.isEmpty(lineSpacing)) {
+        keywords.push("line_spacing_" + lineSpacing);
+      }
+      if (!cloudinary.Util.isEmpty(fontSize) || !cloudinary.Util.isEmpty(fontFamily) || !cloudinary.Util.isEmpty(keywords)) {
+        if (cloudinary.Util.isEmpty(fontFamily)) {
+          throw "Must supply font_family for text in overlay/underlay";
+        }
+        if (cloudinary.Util.isEmpty(fontSize)) {
+          throw "Must supply font_size for text in overlay/underlay";
+        }
+        keywords.unshift(fontSize);
+        keywords.unshift(fontFamily);
+        return cloudinary.Util.compact(keywords).join("_");
+      }
+    };
+
+    return LayerParam;
+
+  })(Param);
+  parameters = {};
+  parameters.Param = Param;
+  parameters.ArrayParam = ArrayParam;
+  parameters.RangeParam = RangeParam;
+  parameters.RawParam = RawParam;
+  parameters.TransformationParam = TransformationParam;
+  parameters.LayerParam = LayerParam;
+  Condition = (function() {
+
+    /**
+     * @internal
+     */
+    Condition.OPERATORS = {
+      "=": 'eq',
+      "!=": 'ne',
+      "<": 'lt',
+      ">": 'gt',
+      "<=": 'lte',
+      ">=": 'gte',
+      "&&": 'and',
+      "||": 'or'
+    };
+
+    Condition.PARAMETERS = {
+      "width": "w",
+      "height": "h",
+      "aspect_ratio": "ar",
+      "aspectRatio": "ar",
+      "page_count": "pc",
+      "pageCount": "pc",
+      "face_count": "fc",
+      "faceCount": "fc"
+    };
+
+    Condition.BOUNDRY = "[ _]+";
+
+
+    /**
+     * Represents a transformation condition
+     * @param {string} conditionStr - a condition in string format
+     * @class Condition
+     * @example
+     * // normally this class is not instantiated directly
+     * var tr = cloudinary.Transformation.new()
+     *    .if().width( ">", 1000).and().aspectRatio("<", "3:4").then()
+     *      .width(1000)
+     *      .crop("scale")
+     *    .else()
+     *      .width(500)
+     *      .crop("scale")
+     *
+     * var tr = cloudinary.Transformation.new()
+     *    .if("w > 1000 and aspectRatio < 3:4")
+     *      .width(1000)
+     *      .crop("scale")
+     *    .else()
+     *      .width(500)
+     *      .crop("scale")
+     *
+     */
+
+    function Condition(conditionStr) {
+      this.predicate_list = [];
+      if (conditionStr != null) {
+        this.predicate_list.push(this.normalize(conditionStr));
+      }
+    }
+
+
+    /**
+     * Convenience constructor method
+     * @function Condition.new
+     */
+
+    Condition["new"] = function(conditionStr) {
+      return new this(conditionStr);
+    };
+
+
+    /**
+     * Normalize a string condition
+     * @function Cloudinary#normalize
+     * @param {string} value a condition, e.g. "w gt 100", "width_gt_100", "width > 100"
+     * @return {string} the normalized form of the value condition, e.g. "w_gt_100"
+     */
+
+    Condition.prototype.normalize = function(value) {
+      var replaceRE;
+      replaceRE = new RegExp("(" + Object.keys(Condition.PARAMETERS).join("|") + "|[=<>&|!]+)", "g");
+      value = value.replace(replaceRE, function(match) {
+        return Condition.OPERATORS[match] || Condition.PARAMETERS[match];
+      });
+      return value.replace(/[ _]+/g, '_');
+    };
+
+
+    /**
+     * Get the parent transformation of this condition
+     * @return Transformation
+     */
+
+    Condition.prototype.getParent = function() {
+      return this.parent;
+    };
+
+
+    /**
+     * Set the parent transformation of this condition
+     * @param {Transformation} the parent transformation
+     * @return {Condition} this condition
+     */
+
+    Condition.prototype.setParent = function(parent) {
+      this.parent = parent;
+      return this;
+    };
+
+
+    /**
+     * Serialize the condition
+     * @return {string} the condition as a string
+     */
+
+    Condition.prototype.toString = function() {
+      return this.predicate_list.join("_");
+    };
+
+
+    /**
+     * Add a condition
+     * @function Condition#predicate
+     * @internal
+     */
+
+    Condition.prototype.predicate = function(name, operator, value) {
+      if (Condition.OPERATORS[operator] != null) {
+        operator = Condition.OPERATORS[operator];
+      }
+      this.predicate_list.push(name + "_" + operator + "_" + value);
+      return this;
+    };
+
+
+    /**
+     * @function Condition#and
+     */
+
+    Condition.prototype.and = function() {
+      this.predicate_list.push("and");
+      return this;
+    };
+
+
+    /**
+     * @function Condition#or
+     */
+
+    Condition.prototype.or = function() {
+      this.predicate_list.push("or");
+      return this;
+    };
+
+
+    /**
+     * Conclude condition
+     * @function Condition#then
+     * @return {Transformation} the transformation this condition is defined for
+     */
+
+    Condition.prototype.then = function() {
+      return this.getParent()["if"](this.toString());
+    };
+
+
+    /**
+     * @function Condition#height
+     * @param {string} operator the comparison operator (e.g. "<", "lt")
+     * @param {string|number} value the right hand side value
+     * @return {Condition} this condition
+     */
+
+    Condition.prototype.height = function(operator, value) {
+      return this.predicate("h", operator, value);
+    };
+
+
+    /**
+     * @function Condition#width
+     * @param {string} operator the comparison operator (e.g. "<", "lt")
+     * @param {string|number} value the right hand side value
+     * @return {Condition} this condition
+     */
+
+    Condition.prototype.width = function(operator, value) {
+      return this.predicate("w", operator, value);
+    };
+
+
+    /**
+     * @function Condition#aspectRatio
+     * @param {string} operator the comparison operator (e.g. "<", "lt")
+     * @param {string|number} value the right hand side value
+     * @return {Condition} this condition
+     */
+
+    Condition.prototype.aspectRatio = function(operator, value) {
+      return this.predicate("ar", operator, value);
+    };
+
+
+    /**
+     * @function Condition#pages
+     * @param {string} operator the comparison operator (e.g. "<", "lt")
+     * @param {string|number} value the right hand side value
+     * @return {Condition} this condition
+     */
+
+    Condition.prototype.pageCount = function(operator, value) {
+      return this.predicate("pc", operator, value);
+    };
+
+
+    /**
+     * @function Condition#faces
+     * @param {string} operator the comparison operator (e.g. "<", "lt")
+     * @param {string|number} value the right hand side value
+     * @return {Condition} this condition
+     */
+
+    Condition.prototype.faceCount = function(operator, value) {
+      return this.predicate("fc", operator, value);
+    };
+
+    return Condition;
+
+  })();
+
+  /**
+   * TransformationBase
+   * Depends on 'configuration', 'parameters','util'
+   * @internal
+   */
+  TransformationBase = (function() {
+    var lastArgCallback;
+
+    TransformationBase.prototype.trans_separator = '/';
+
+    TransformationBase.prototype.param_separator = ',';
+
+    lastArgCallback = function(args) {
+      var callback;
+      callback = args != null ? args[args.length - 1] : void 0;
+      if (Util.isFunction(callback)) {
+        return callback;
+      } else {
+        return void 0;
+      }
+    };
+
+
+    /**
+     * The base class for transformations.
+     * Members of this class are documented as belonging to the {@link Transformation} class for convenience.
+     * @class TransformationBase
+     */
+
+    function TransformationBase(options) {
+      var m, parent, trans;
+      if (options == null) {
+        options = {};
+      }
+
+      /** @private */
+      parent = void 0;
+
+      /** @private */
+      trans = {};
+
+      /**
+       * Return an options object that can be used to create an identical Transformation
+       * @function Transformation#toOptions
+       * @return {Object} Returns a plain object representing this transformation
+       */
+      this.toOptions || (this.toOptions = function(withChain) {
+        var key, list, opt, ref, tr, value;
+        if (withChain == null) {
+          withChain = true;
+        }
+        opt = {};
+        for (key in trans) {
+          value = trans[key];
+          opt[key] = value.origValue;
+        }
+        ref = this.otherOptions;
+        for (key in ref) {
+          value = ref[key];
+          if (value !== void 0) {
+            opt[key] = value;
+          }
+        }
+        if (withChain && !Util.isEmpty(this.chained)) {
+          list = (function() {
+            var j, len, ref1, results;
+            ref1 = this.chained;
+            results = [];
+            for (j = 0, len = ref1.length; j < len; j++) {
+              tr = ref1[j];
+              results.push(tr.toOptions());
+            }
+            return results;
+          }).call(this);
+          list.push(opt);
+          opt = {
+            transformation: list
+          };
+        }
+        return opt;
+      });
+
+      /**
+       * Set a parent for this object for chaining purposes.
+       *
+       * @function Transformation#setParent
+       * @param {Object} object - the parent to be assigned to
+       * @returns {Transformation} Returns this instance for chaining purposes.
+       */
+      this.setParent || (this.setParent = function(object) {
+        parent = object;
+        if (object != null) {
+          this.fromOptions(typeof object.toOptions === "function" ? object.toOptions() : void 0);
+        }
+        return this;
+      });
+
+      /**
+       * Returns the parent of this object in the chain
+       * @function Transformation#getParent
+       * @protected
+       * @return {Object} Returns the parent of this object if there is any
+       */
+      this.getParent || (this.getParent = function() {
+        return parent;
+      });
+
+      /** @protected */
+      this.param || (this.param = function(value, name, abbr, defaultValue, process) {
+        if (process == null) {
+          if (Util.isFunction(defaultValue)) {
+            process = defaultValue;
+          } else {
+            process = Util.identity;
+          }
+        }
+        trans[name] = new Param(name, abbr, process).set(value);
+        return this;
+      });
+
+      /** @protected */
+      this.rawParam || (this.rawParam = function(value, name, abbr, defaultValue, process) {
+        if (process == null) {
+          process = Util.identity;
+        }
+        process = lastArgCallback(arguments);
+        trans[name] = new RawParam(name, abbr, process).set(value);
+        return this;
+      });
+
+      /** @protected */
+      this.rangeParam || (this.rangeParam = function(value, name, abbr, defaultValue, process) {
+        if (process == null) {
+          process = Util.identity;
+        }
+        process = lastArgCallback(arguments);
+        trans[name] = new RangeParam(name, abbr, process).set(value);
+        return this;
+      });
+
+      /** @protected */
+      this.arrayParam || (this.arrayParam = function(value, name, abbr, sep, defaultValue, process) {
+        if (sep == null) {
+          sep = ":";
+        }
+        if (defaultValue == null) {
+          defaultValue = [];
+        }
+        if (process == null) {
+          process = Util.identity;
+        }
+        process = lastArgCallback(arguments);
+        trans[name] = new ArrayParam(name, abbr, sep, process).set(value);
+        return this;
+      });
+
+      /** @protected */
+      this.transformationParam || (this.transformationParam = function(value, name, abbr, sep, defaultValue, process) {
+        if (sep == null) {
+          sep = ".";
+        }
+        if (process == null) {
+          process = Util.identity;
+        }
+        process = lastArgCallback(arguments);
+        trans[name] = new TransformationParam(name, abbr, sep, process).set(value);
+        return this;
+      });
+      this.layerParam || (this.layerParam = function(value, name, abbr) {
+        trans[name] = new LayerParam(name, abbr).set(value);
+        return this;
+      });
+
+      /**
+       * Get the value associated with the given name.
+       * @function Transformation#getValue
+       * @param {string} name - the name of the parameter
+       * @return {*} the processed value associated with the given name
+       * @description Use {@link get}.origValue for the value originally provided for the parameter
+       */
+      this.getValue || (this.getValue = function(name) {
+        var ref, ref1;
+        return (ref = (ref1 = trans[name]) != null ? ref1.value() : void 0) != null ? ref : this.otherOptions[name];
+      });
+
+      /**
+       * Get the parameter object for the given parameter name
+       * @function Transformation#get
+       * @param {string} name the name of the transformation parameter
+       * @returns {Param} the param object for the given name, or undefined
+       */
+      this.get || (this.get = function(name) {
+        return trans[name];
+      });
+
+      /**
+       * Remove a transformation option from the transformation.
+       * @function Transformation#remove
+       * @param {string} name - the name of the option to remove
+       * @return {*} Returns the option that was removed or null if no option by that name was found. The type of the
+       *              returned value depends on the value.
+       */
+      this.remove || (this.remove = function(name) {
+        var temp;
+        switch (false) {
+          case trans[name] == null:
+            temp = trans[name];
+            delete trans[name];
+            return temp.origValue;
+          case this.otherOptions[name] == null:
+            temp = this.otherOptions[name];
+            delete this.otherOptions[name];
+            return temp;
+          default:
+            return null;
+        }
+      });
+
+      /**
+       * Return an array of all the keys (option names) in the transformation.
+       * @return {Array<string>} the keys in snakeCase format
+       */
+      this.keys || (this.keys = function() {
+        var key;
+        return ((function() {
+          var results;
+          results = [];
+          for (key in trans) {
+            results.push(Util.snakeCase(key));
+          }
+          return results;
+        })()).sort();
+      });
+
+      /**
+       * Returns a plain object representation of the transformation. Values are processed.
+       * @function Transformation#toPlainObject
+       * @return {Object} the transformation options as plain object
+       */
+      this.toPlainObject || (this.toPlainObject = function() {
+        var hash, key, list, tr;
+        hash = {};
+        for (key in trans) {
+          hash[key] = trans[key].value();
+          if (Util.isPlainObject(hash[key])) {
+            hash[key] = Util.cloneDeep(hash[key]);
+          }
+        }
+        if (!Util.isEmpty(this.chained)) {
+          list = (function() {
+            var j, len, ref, results;
+            ref = this.chained;
+            results = [];
+            for (j = 0, len = ref.length; j < len; j++) {
+              tr = ref[j];
+              results.push(tr.toPlainObject());
+            }
+            return results;
+          }).call(this);
+          list.push(hash);
+          hash = {
+            transformation: list
+          };
+        }
+        return hash;
+      });
+
+      /**
+       * Complete the current transformation and chain to a new one.
+       * In the URL, transformations are chained together by slashes.
+       * @function Transformation#chain
+       * @return {Transformation} Returns this transformation for chaining
+       * @example
+       * var tr = cloudinary.Transformation.new();
+       * tr.width(10).crop('fit').chain().angle(15).serialize()
+       * // produces "c_fit,w_10/a_15"
+       */
+      this.chain || (this.chain = function() {
+        var names, tr;
+        names = Object.getOwnPropertyNames(trans);
+        if (names.length !== 0) {
+          tr = new this.constructor(this.toOptions(false));
+          this.resetTransformations();
+          this.chained.push(tr);
+        }
+        return this;
+      });
+      this.resetTransformations || (this.resetTransformations = function() {
+        trans = {};
+        return this;
+      });
+      this.otherOptions || (this.otherOptions = {});
+
+      /**
+       * Transformation Class methods.
+       * This is a list of the parameters defined in Transformation.
+       * Values are camelCased.
+       * @private
+       * @ignore
+       * @type {Array<string>}
+       */
+      this.methods || (this.methods = Util.difference(Util.functions(Transformation.prototype), Util.functions(TransformationBase.prototype)));
+
+      /**
+       * Parameters that are filtered out before passing the options to an HTML tag.
+       *
+       * The list of parameters is a combination of `Transformation::methods` and `Configuration::CONFIG_PARAMS`
+       * @const {Array<string>} Transformation.PARAM_NAMES
+       * @private
+       * @ignore
+       * @see toHtmlAttributes
+       */
+      this.PARAM_NAMES || (this.PARAM_NAMES = ((function() {
+        var j, len, ref, results;
+        ref = this.methods;
+        results = [];
+        for (j = 0, len = ref.length; j < len; j++) {
+          m = ref[j];
+          results.push(Util.snakeCase(m));
+        }
+        return results;
+      }).call(this)).concat(Configuration.CONFIG_PARAMS));
+      this.chained = [];
+      if (!Util.isEmpty(options)) {
+        this.fromOptions(options);
+      }
+    }
+
+
+    /**
+     * Merge the provided options with own's options
+     * @param {Object} [options={}] key-value list of options
+     * @returns {Transformation} Returns this instance for chaining
+     */
+
+    TransformationBase.prototype.fromOptions = function(options) {
+      var key, opt;
+      if (options instanceof TransformationBase) {
+        this.fromTransformation(options);
+      } else {
+        options || (options = {});
+        if (Util.isString(options) || Util.isArray(options)) {
+          options = {
+            transformation: options
+          };
+        }
+        options = Util.cloneDeep(options, function(value) {
+          if (value instanceof TransformationBase) {
+            return new value.constructor(value.toOptions());
+          }
+        });
+        for (key in options) {
+          opt = options[key];
+          this.set(key, opt);
+        }
+      }
+      return this;
+    };
+
+    TransformationBase.prototype.fromTransformation = function(other) {
+      var j, key, len, ref;
+      if (other instanceof TransformationBase) {
+        ref = other.keys();
+        for (j = 0, len = ref.length; j < len; j++) {
+          key = ref[j];
+          this.set(key, other.get(key).origValue);
+        }
+      }
+      return this;
+    };
+
+
+    /**
+     * Set a parameter.
+     * The parameter name `key` is converted to
+     * @param {string} key - the name of the parameter
+     * @param {*} value - the value of the parameter
+     * @returns {Transformation} Returns this instance for chaining
+     */
+
+    TransformationBase.prototype.set = function(key, value) {
+      var camelKey;
+      camelKey = Util.camelCase(key);
+      if (Util.contains(this.methods, camelKey)) {
+        this[camelKey](value);
+      } else {
+        this.otherOptions[key] = value;
+      }
+      return this;
+    };
+
+    TransformationBase.prototype.hasLayer = function() {
+      return this.getValue("overlay") || this.getValue("underlay");
+    };
+
+
+    /**
+     * Generate a string representation of the transformation.
+     * @function Transformation#serialize
+     * @return {string} Returns the transformation as a string
+     */
+
+    TransformationBase.prototype.serialize = function() {
+      var ifParam, paramList, ref, ref1, resultArray, t, tr, transformationList, transformationString, transformations, value;
+      resultArray = (function() {
+        var j, len, ref, results;
+        ref = this.chained;
+        results = [];
+        for (j = 0, len = ref.length; j < len; j++) {
+          tr = ref[j];
+          results.push(tr.serialize());
+        }
+        return results;
+      }).call(this);
+      paramList = this.keys();
+      transformations = (ref = this.get("transformation")) != null ? ref.serialize() : void 0;
+      ifParam = (ref1 = this.get("if")) != null ? ref1.serialize() : void 0;
+      paramList = Util.difference(paramList, ["transformation", "if"]);
+      transformationList = (function() {
+        var j, len, ref2, results;
+        results = [];
+        for (j = 0, len = paramList.length; j < len; j++) {
+          t = paramList[j];
+          results.push((ref2 = this.get(t)) != null ? ref2.serialize() : void 0);
+        }
+        return results;
+      }).call(this);
+      switch (false) {
+        case !Util.isString(transformations):
+          transformationList.push(transformations);
+          break;
+        case !Util.isArray(transformations):
+          resultArray = resultArray.concat(transformations);
+      }
+      transformationList = ((function() {
+        var j, len, results;
+        results = [];
+        for (j = 0, len = transformationList.length; j < len; j++) {
+          value = transformationList[j];
+          if (Util.isArray(value) && !Util.isEmpty(value) || !Util.isArray(value) && value) {
+            results.push(value);
+          }
+        }
+        return results;
+      })()).sort();
+      if (ifParam === "if_end") {
+        transformationList.push(ifParam);
+      } else if (!Util.isEmpty(ifParam)) {
+        transformationList.unshift(ifParam);
+      }
+      transformationString = transformationList.join(this.param_separator);
+      if (!Util.isEmpty(transformationString)) {
+        resultArray.push(transformationString);
+      }
+      return Util.compact(resultArray).join(this.trans_separator);
+    };
+
+
+    /**
+     * Provide a list of all the valid transformation option names
+     * @function Transformation#listNames
+     * @private
+     * @return {Array<string>} a array of all the valid option names
+     */
+
+    TransformationBase.prototype.listNames = function() {
+      return this.methods;
+    };
+
+
+    /**
+     * Returns attributes for an HTML tag.
+     * @function Cloudinary.toHtmlAttributes
+     * @return PlainObject
+     */
+
+    TransformationBase.prototype.toHtmlAttributes = function() {
+      var attrName, height, j, key, len, options, ref, ref1, ref2, ref3, value;
+      options = {};
+      ref = this.otherOptions;
+      for (key in ref) {
+        value = ref[key];
+        if (!(!Util.contains(this.PARAM_NAMES, key))) {
+          continue;
+        }
+        attrName = /^html_/.test(key) ? key.slice(5) : key;
+        options[attrName] = value;
+      }
+      ref1 = this.keys();
+      for (j = 0, len = ref1.length; j < len; j++) {
+        key = ref1[j];
+        if (/^html_/.test(key)) {
+          options[key.slice(5)] = this.getValue(key);
+        }
+      }
+      if (!(this.hasLayer() || this.getValue("angle") || Util.contains(["fit", "limit", "lfill"], this.getValue("crop")))) {
+        width = (ref2 = this.get("width")) != null ? ref2.origValue : void 0;
+        height = (ref3 = this.get("height")) != null ? ref3.origValue : void 0;
+        if (parseFloat(width) >= 1.0) {
+          if (options['width'] == null) {
+            options['width'] = width;
+          }
+        }
+        if (parseFloat(height) >= 1.0) {
+          if (options['height'] == null) {
+            options['height'] = height;
+          }
+        }
+      }
+      return options;
+    };
+
+    TransformationBase.prototype.isValidParamName = function(name) {
+      return this.methods.indexOf(Util.camelCase(name)) >= 0;
+    };
+
+
+    /**
+     * Delegate to the parent (up the call chain) to produce HTML
+     * @function Transformation#toHtml
+     * @return {string} HTML representation of the parent if possible.
+     * @example
+     * tag = cloudinary.ImageTag.new("sample", {cloud_name: "demo"})
+     * // ImageTag {name: "img", publicId: "sample"}
+     * tag.toHtml()
+     * // <img src="http://res.cloudinary.com/demo/image/upload/sample">
+     * tag.transformation().crop("fit").width(300).toHtml()
+     * // <img src="http://res.cloudinary.com/demo/image/upload/c_fit,w_300/sample">
+     */
+
+    TransformationBase.prototype.toHtml = function() {
+      var ref;
+      return (ref = this.getParent()) != null ? typeof ref.toHtml === "function" ? ref.toHtml() : void 0 : void 0;
+    };
+
+    TransformationBase.prototype.toString = function() {
+      return this.serialize();
+    };
+
+    return TransformationBase;
+
+  })();
+  Transformation = (function(superClass) {
+    extend(Transformation, superClass);
+
+
+    /**
+     *  Represents a single transformation.
+     *  @class Transformation
+     *  @example
+     *  t = new cloudinary.Transformation();
+     * t.angle(20).crop("scale").width("auto");
+     *
+     * // or
+     *
+     * t = new cloudinary.Transformation( {angle: 20, crop: "scale", width: "auto"});
+     */
+
+    function Transformation(options) {
+      if (options == null) {
+        options = {};
+      }
+      Transformation.__super__.constructor.call(this, options);
+    }
+
+
+    /**
+     * Convenience constructor
+     * @param {Object} options
+     * @return {Transformation}
+     * @example cl = cloudinary.Transformation.new( {angle: 20, crop: "scale", width: "auto"})
+     */
+
+    Transformation["new"] = function(args) {
+      return new Transformation(args);
+    };
+
+
+    /*
+      Transformation Parameters
+     */
+
+    Transformation.prototype.angle = function(value) {
+      return this.arrayParam(value, "angle", "a", ".");
+    };
+
+    Transformation.prototype.audioCodec = function(value) {
+      return this.param(value, "audio_codec", "ac");
+    };
+
+    Transformation.prototype.audioFrequency = function(value) {
+      return this.param(value, "audio_frequency", "af");
+    };
+
+    Transformation.prototype.aspectRatio = function(value) {
+      return this.param(value, "aspect_ratio", "ar");
+    };
+
+    Transformation.prototype.background = function(value) {
+      return this.param(value, "background", "b", Param.norm_color);
+    };
+
+    Transformation.prototype.bitRate = function(value) {
+      return this.param(value, "bit_rate", "br");
+    };
+
+    Transformation.prototype.border = function(value) {
+      return this.param(value, "border", "bo", function(border) {
+        if (Util.isPlainObject(border)) {
+          border = Util.assign({}, {
+            color: "black",
+            width: 2
+          }, border);
+          return border.width + "px_solid_" + (Param.norm_color(border.color));
+        } else {
+          return border;
+        }
+      });
+    };
+
+    Transformation.prototype.color = function(value) {
+      return this.param(value, "color", "co", Param.norm_color);
+    };
+
+    Transformation.prototype.colorSpace = function(value) {
+      return this.param(value, "color_space", "cs");
+    };
+
+    Transformation.prototype.crop = function(value) {
+      return this.param(value, "crop", "c");
+    };
+
+    Transformation.prototype.defaultImage = function(value) {
+      return this.param(value, "default_image", "d");
+    };
+
+    Transformation.prototype.delay = function(value) {
+      return this.param(value, "delay", "l");
+    };
+
+    Transformation.prototype.density = function(value) {
+      return this.param(value, "density", "dn");
+    };
+
+    Transformation.prototype.duration = function(value) {
+      return this.rangeParam(value, "duration", "du");
+    };
+
+    Transformation.prototype.dpr = function(value) {
+      return this.param(value, "dpr", "dpr", (function(_this) {
+        return function(dpr) {
+          dpr = dpr.toString();
+          if ((dpr === "auto") && _this.getValue("client_hints") !== true) {
+            return "1.0";
+          } else if (dpr != null ? dpr.match(/^\d+$/) : void 0) {
+            return dpr + ".0";
+          } else {
+            return dpr;
+          }
+        };
+      })(this));
+    };
+
+    Transformation.prototype.effect = function(value) {
+      return this.arrayParam(value, "effect", "e", ":");
+    };
+
+    Transformation.prototype["else"] = function() {
+      return this["if"]('else');
+    };
+
+    Transformation.prototype.endIf = function() {
+      return this["if"]('end');
+    };
+
+    Transformation.prototype.endOffset = function(value) {
+      return this.rangeParam(value, "end_offset", "eo");
+    };
+
+    Transformation.prototype.fallbackContent = function(value) {
+      return this.param(value, "fallback_content");
+    };
+
+    Transformation.prototype.fetchFormat = function(value) {
+      return this.param(value, "fetch_format", "f");
+    };
+
+    Transformation.prototype.format = function(value) {
+      return this.param(value, "format");
+    };
+
+    Transformation.prototype.flags = function(value) {
+      return this.arrayParam(value, "flags", "fl", ".");
+    };
+
+    Transformation.prototype.gravity = function(value) {
+      return this.param(value, "gravity", "g");
+    };
+
+    Transformation.prototype.height = function(value) {
+      return this.param(value, "height", "h", (function(_this) {
+        return function() {
+          if (_this.getValue("crop") || _this.getValue("overlay") || _this.getValue("underlay")) {
+            return value;
+          } else {
+            return null;
+          }
+        };
+      })(this));
+    };
+
+    Transformation.prototype.htmlHeight = function(value) {
+      return this.param(value, "html_height");
+    };
+
+    Transformation.prototype.htmlWidth = function(value) {
+      return this.param(value, "html_width");
+    };
+
+    Transformation.prototype["if"] = function(value) {
+      var i, ifVal, j, ref, trIf, trRest;
+      if (value == null) {
+        value = "";
+      }
+      switch (value) {
+        case "else":
+          this.chain();
+          return this.param(value, "if", "if");
+        case "end":
+          this.chain();
+          for (i = j = ref = this.chained.length - 1; j >= 0; i = j += -1) {
+            ifVal = this.chained[i].getValue("if");
+            if (ifVal === "end") {
+              break;
+            } else if (ifVal != null) {
+              trIf = Transformation["new"]()["if"](ifVal);
+              this.chained[i].remove("if");
+              trRest = this.chained[i];
+              this.chained[i] = Transformation["new"]().transformation([trIf, trRest]);
+              if (ifVal !== "else") {
+                break;
+              }
+            }
+          }
+          return this.param(value, "if", "if");
+        case "":
+          return Condition["new"]().setParent(this);
+        default:
+          return this.param(value, "if", "if", function(value) {
+            return Condition["new"](value).toString();
+          });
+      }
+    };
+
+    Transformation.prototype.keyframeInterval = function(value) {
+      return this.param(value, "keyframe_interval", "ki");
+    };
+
+    Transformation.prototype.offset = function(value) {
+      var end_o, ref, start_o;
+      ref = Util.isFunction(value != null ? value.split : void 0) ? value.split('..') : Util.isArray(value) ? value : [null, null], start_o = ref[0], end_o = ref[1];
+      if (start_o != null) {
+        this.startOffset(start_o);
+      }
+      if (end_o != null) {
+        return this.endOffset(end_o);
+      }
+    };
+
+    Transformation.prototype.opacity = function(value) {
+      return this.param(value, "opacity", "o");
+    };
+
+    Transformation.prototype.overlay = function(value) {
+      return this.layerParam(value, "overlay", "l");
+    };
+
+    Transformation.prototype.page = function(value) {
+      return this.param(value, "page", "pg");
+    };
+
+    Transformation.prototype.poster = function(value) {
+      return this.param(value, "poster");
+    };
+
+    Transformation.prototype.prefix = function(value) {
+      return this.param(value, "prefix", "p");
+    };
+
+    Transformation.prototype.quality = function(value) {
+      return this.param(value, "quality", "q");
+    };
+
+    Transformation.prototype.radius = function(value) {
+      return this.param(value, "radius", "r");
+    };
+
+    Transformation.prototype.rawTransformation = function(value) {
+      return this.rawParam(value, "raw_transformation");
+    };
+
+    Transformation.prototype.size = function(value) {
+      var height, ref;
+      if (Util.isFunction(value != null ? value.split : void 0)) {
+        ref = value.split('x'), width = ref[0], height = ref[1];
+        this.width(width);
+        return this.height(height);
+      }
+    };
+
+    Transformation.prototype.sourceTypes = function(value) {
+      return this.param(value, "source_types");
+    };
+
+    Transformation.prototype.sourceTransformation = function(value) {
+      return this.param(value, "source_transformation");
+    };
+
+    Transformation.prototype.startOffset = function(value) {
+      return this.rangeParam(value, "start_offset", "so");
+    };
+
+    Transformation.prototype.streamingProfile = function(value) {
+      return this.param(value, "streaming_profile", "sp");
+    };
+
+    Transformation.prototype.transformation = function(value) {
+      return this.transformationParam(value, "transformation", "t");
+    };
+
+    Transformation.prototype.underlay = function(value) {
+      return this.layerParam(value, "underlay", "u");
+    };
+
+    Transformation.prototype.videoCodec = function(value) {
+      return this.param(value, "video_codec", "vc", Param.process_video_params);
+    };
+
+    Transformation.prototype.videoSampling = function(value) {
+      return this.param(value, "video_sampling", "vs");
+    };
+
+    Transformation.prototype.width = function(value) {
+      return this.param(value, "width", "w", (function(_this) {
+        return function() {
+          if (_this.getValue("crop") || _this.getValue("overlay") || _this.getValue("underlay")) {
+            return value;
+          } else {
+            return null;
+          }
+        };
+      })(this));
+    };
+
+    Transformation.prototype.x = function(value) {
+      return this.param(value, "x", "x");
+    };
+
+    Transformation.prototype.y = function(value) {
+      return this.param(value, "y", "y");
+    };
+
+    Transformation.prototype.zoom = function(value) {
+      return this.param(value, "zoom", "z");
+    };
+
+    return Transformation;
+
+  })(TransformationBase);
+
+  /**
+   * Cloudinary configuration class
+   * Depends on 'utils'
+   */
+  Configuration = (function() {
+
+    /**
+     * Defaults configuration.
+     * @const {Object} Configuration.DEFAULT_CONFIGURATION_PARAMS
+     */
+    var DEFAULT_CONFIGURATION_PARAMS, ref;
+
+    DEFAULT_CONFIGURATION_PARAMS = {
+      responsive_class: 'cld-responsive',
+      responsive_use_breakpoints: true,
+      round_dpr: true,
+      secure: (typeof window !== "undefined" && window !== null ? (ref = window.location) != null ? ref.protocol : void 0 : void 0) === 'https:'
+    };
+
+    Configuration.CONFIG_PARAMS = ["api_key", "api_secret", "cdn_subdomain", "cloud_name", "cname", "private_cdn", "protocol", "resource_type", "responsive_class", "responsive_use_breakpoints", "responsive_width", "round_dpr", "secure", "secure_cdn_subdomain", "secure_distribution", "shorten", "type", "url_suffix", "use_root_path", "version"];
+
+
+    /**
+     * Cloudinary configuration class
+     * @constructor Configuration
+     * @param {Object} options - configuration parameters
+     */
+
+    function Configuration(options) {
+      if (options == null) {
+        options = {};
+      }
+      this.configuration = Util.cloneDeep(options);
+      Util.defaults(this.configuration, DEFAULT_CONFIGURATION_PARAMS);
+    }
+
+
+    /**
+     * Initialize the configuration.
+     * The function first tries to retrieve the configuration form the environment and then from the document.
+     * @function Configuration#init
+     * @return {Configuration} returns this for chaining
+     * @see fromDocument
+     * @see fromEnvironment
+     */
+
+    Configuration.prototype.init = function() {
+      this.fromEnvironment();
+      this.fromDocument();
+      return this;
+    };
+
+
+    /**
+     * Set a new configuration item
+     * @function Configuration#set
+     * @param {string} name - the name of the item to set
+     * @param {*} value - the value to be set
+     * @return {Configuration}
+     *
+     */
+
+    Configuration.prototype.set = function(name, value) {
+      this.configuration[name] = value;
+      return this;
+    };
+
+
+    /**
+     * Get the value of a configuration item
+     * @function Configuration#get
+     * @param {string} name - the name of the item to set
+     * @return {*} the configuration item
+     */
+
+    Configuration.prototype.get = function(name) {
+      return this.configuration[name];
+    };
+
+    Configuration.prototype.merge = function(config) {
+      if (config == null) {
+        config = {};
+      }
+      Util.assign(this.configuration, Util.cloneDeep(config));
+      return this;
+    };
+
+
+    /**
+     * Initialize Cloudinary from HTML meta tags.
+     * @function Configuration#fromDocument
+     * @return {Configuration}
+     * @example <meta name="cloudinary_cloud_name" content="mycloud">
+     *
+     */
+
+    Configuration.prototype.fromDocument = function() {
+      var el, j, len, meta_elements;
+      meta_elements = typeof document !== "undefined" && document !== null ? document.querySelectorAll('meta[name^="cloudinary_"]') : void 0;
+      if (meta_elements) {
+        for (j = 0, len = meta_elements.length; j < len; j++) {
+          el = meta_elements[j];
+          this.configuration[el.getAttribute('name').replace('cloudinary_', '')] = el.getAttribute('content');
+        }
+      }
+      return this;
+    };
+
+
+    /**
+     * Initialize Cloudinary from the `CLOUDINARY_URL` environment variable.
+     *
+     * This function will only run under Node.js environment.
+     * @function Configuration#fromEnvironment
+     * @requires Node.js
+     */
+
+    Configuration.prototype.fromEnvironment = function() {
+      var cloudinary_url, k, ref1, ref2, uri, v;
+      cloudinary_url = typeof process !== "undefined" && process !== null ? (ref1 = process.env) != null ? ref1.CLOUDINARY_URL : void 0 : void 0;
+      if (cloudinary_url != null) {
+        uri = require('url').parse(cloudinary_url, true);
+        this.configuration = {
+          cloud_name: uri.host,
+          api_key: uri.auth && uri.auth.split(":")[0],
+          api_secret: uri.auth && uri.auth.split(":")[1],
+          private_cdn: uri.pathname != null,
+          secure_distribution: uri.pathname && uri.pathname.substring(1)
+        };
+        if (uri.query != null) {
+          ref2 = uri.query;
+          for (k in ref2) {
+            v = ref2[k];
+            this.configuration[k] = v;
+          }
+        }
+      }
+      return this;
+    };
+
+
+    /**
+     * Create or modify the Cloudinary client configuration
+     *
+     * Warning: `config()` returns the actual internal configuration object. modifying it will change the configuration.
+     *
+     * This is a backward compatibility method. For new code, use get(), merge() etc.
+     * @function Configuration#config
+     * @param {hash|string|boolean} new_config
+     * @param {string} new_value
+     * @returns {*} configuration, or value
+     *
+     * @see {@link fromEnvironment} for initialization using environment variables
+     * @see {@link fromDocument} for initialization using HTML meta tags
+     */
+
+    Configuration.prototype.config = function(new_config, new_value) {
+      switch (false) {
+        case new_value === void 0:
+          this.set(new_config, new_value);
+          return this.configuration;
+        case !Util.isString(new_config):
+          return this.get(new_config);
+        case !Util.isPlainObject(new_config):
+          this.merge(new_config);
+          return this.configuration;
+        default:
+          return this.configuration;
+      }
+    };
+
+
+    /**
+     * Returns a copy of the configuration parameters
+     * @function Configuration#toOptions
+     * @returns {Object} a key:value collection of the configuration parameters
+     */
+
+    Configuration.prototype.toOptions = function() {
+      return Util.cloneDeep(this.configuration);
+    };
+
+    return Configuration;
+
+  })();
+
+  /**
+   * Generic HTML tag
+   * Depends on 'transformation', 'util'
+   */
+  HtmlTag = (function() {
+
+    /**
+     * Represents an HTML (DOM) tag
+     * @constructor HtmlTag
+     * @param {string} name - the name of the tag
+     * @param {string} [publicId]
+     * @param {Object} options
+     * @example tag = new HtmlTag( 'div', { 'width': 10})
+     */
+    var toAttribute;
+
+    function HtmlTag(name, publicId, options) {
+      var transformation;
+      this.name = name;
+      this.publicId = publicId;
+      if (options == null) {
+        if (Util.isPlainObject(publicId)) {
+          options = publicId;
+          this.publicId = void 0;
+        } else {
+          options = {};
+        }
+      }
+      transformation = new Transformation(options);
+      transformation.setParent(this);
+      this.transformation = function() {
+        return transformation;
+      };
+    }
+
+
+    /**
+     * Convenience constructor
+     * Creates a new instance of an HTML (DOM) tag
+     * @function HtmlTag.new
+     * @param {string} name - the name of the tag
+     * @param {string} [publicId]
+     * @param {Object} options
+     * @return {HtmlTag}
+     * @example tag = HtmlTag.new( 'div', { 'width': 10})
+     */
+
+    HtmlTag["new"] = function(name, publicId, options) {
+      return new this(name, publicId, options);
+    };
+
+
+    /**
+     * Represent the given key and value as an HTML attribute.
+     * @function HtmlTag#toAttribute
+     * @protected
+     * @param {string} key - attribute name
+     * @param {*|boolean} value - the value of the attribute. If the value is boolean `true`, return the key only.
+     * @returns {string} the attribute  
+     *
+     */
+
+    toAttribute = function(key, value) {
+      if (!value) {
+        return void 0;
+      } else if (value === true) {
+        return key;
+      } else {
+        return key + "=\"" + value + "\"";
+      }
+    };
+
+
+    /**
+     * combine key and value from the `attr` to generate an HTML tag attributes string.
+     * `Transformation::toHtmlTagOptions` is used to filter out transformation and configuration keys.
+     * @protected
+     * @param {Object} attrs
+     * @return {string} the attributes in the format `'key1="value1" key2="value2"'`
+     * @ignore
+     */
+
+    HtmlTag.prototype.htmlAttrs = function(attrs) {
+      var key, pairs, value;
+      return pairs = ((function() {
+        var results;
+        results = [];
+        for (key in attrs) {
+          value = attrs[key];
+          if (value) {
+            results.push(toAttribute(key, value));
+          }
+        }
+        return results;
+      })()).sort().join(' ');
+    };
+
+
+    /**
+     * Get all options related to this tag.
+     * @function HtmlTag#getOptions
+     * @returns {Object} the options
+     *
+     */
+
+    HtmlTag.prototype.getOptions = function() {
+      return this.transformation().toOptions();
+    };
+
+
+    /**
+     * Get the value of option `name`
+     * @function HtmlTag#getOption
+     * @param {string} name - the name of the option
+     * @returns {*} Returns the value of the option
+     *
+     */
+
+    HtmlTag.prototype.getOption = function(name) {
+      return this.transformation().getValue(name);
+    };
+
+
+    /**
+     * Get the attributes of the tag.
+     * @function HtmlTag#attributes
+     * @returns {Object} attributes
+     */
+
+    HtmlTag.prototype.attributes = function() {
+      return this.transformation().toHtmlAttributes();
+    };
+
+
+    /**
+     * Set a tag attribute named `name` to `value`
+     * @function HtmlTag#setAttr
+     * @param {string} name - the name of the attribute
+     * @param {string} value - the value of the attribute
+     */
+
+    HtmlTag.prototype.setAttr = function(name, value) {
+      this.transformation().set("html_" + name, value);
+      return this;
+    };
+
+
+    /**
+     * Get the value of the tag attribute `name`
+     * @function HtmlTag#getAttr
+     * @param {string} name - the name of the attribute
+     * @returns {*}
+     */
+
+    HtmlTag.prototype.getAttr = function(name) {
+      return this.attributes()["html_" + name] || this.attributes()[name];
+    };
+
+
+    /**
+     * Remove the tag attributed named `name`
+     * @function HtmlTag#removeAttr
+     * @param {string} name - the name of the attribute
+     * @returns {*}
+     */
+
+    HtmlTag.prototype.removeAttr = function(name) {
+      var ref;
+      return (ref = this.transformation().remove("html_" + name)) != null ? ref : this.transformation().remove(name);
+    };
+
+
+    /**
+     * @function HtmlTag#content
+     * @protected
+     * @ignore
+     */
+
+    HtmlTag.prototype.content = function() {
+      return "";
+    };
+
+
+    /**
+     * @function HtmlTag#openTag
+     * @protected
+     * @ignore
+     */
+
+    HtmlTag.prototype.openTag = function() {
+      return "<" + this.name + " " + (this.htmlAttrs(this.attributes())) + ">";
+    };
+
+
+    /**
+     * @function HtmlTag#closeTag
+     * @protected
+     * @ignore
+     */
+
+    HtmlTag.prototype.closeTag = function() {
+      return "</" + this.name + ">";
+    };
+
+
+    /**
+     * Generates an HTML representation of the tag.
+     * @function HtmlTag#toHtml
+     * @returns {string} Returns HTML in string format
+     */
+
+    HtmlTag.prototype.toHtml = function() {
+      return this.openTag() + this.content() + this.closeTag();
+    };
+
+
+    /**
+     * Creates a DOM object representing the tag.
+     * @function HtmlTag#toDOM
+     * @returns {Element}
+     */
+
+    HtmlTag.prototype.toDOM = function() {
+      var element, name, ref, value;
+      if (!Util.isFunction(typeof document !== "undefined" && document !== null ? document.createElement : void 0)) {
+        throw "Can't create DOM if document is not present!";
+      }
+      element = document.createElement(this.name);
+      ref = this.attributes();
+      for (name in ref) {
+        value = ref[name];
+        element[name] = value;
+      }
+      return element;
+    };
+
+    HtmlTag.isResponsive = function(tag, responsiveClass) {
+      var dataSrc;
+      dataSrc = Util.getData(tag, 'src-cache') || Util.getData(tag, 'src');
+      return Util.hasClass(tag, responsiveClass) && /\bw_auto\b/.exec(dataSrc);
+    };
+
+    return HtmlTag;
+
+  })();
+
+  /**
+   * Image Tag
+   * Depends on 'tags/htmltag', 'cloudinary'
+   */
+  ImageTag = (function(superClass) {
+    extend(ImageTag, superClass);
+
+
+    /**
+     * Creates an HTML (DOM) Image tag using Cloudinary as the source.
+     * @constructor ImageTag
+     * @extends HtmlTag
+     * @param {string} [publicId]
+     * @param {Object} [options]
+     */
+
+    function ImageTag(publicId, options) {
+      if (options == null) {
+        options = {};
+      }
+      ImageTag.__super__.constructor.call(this, "img", publicId, options);
+    }
+
+
+    /** @override */
+
+    ImageTag.prototype.closeTag = function() {
+      return "";
+    };
+
+
+    /** @override */
+
+    ImageTag.prototype.attributes = function() {
+      var attr;
+      attr = ImageTag.__super__.attributes.call(this) || [];
+      if (attr['src'] == null) {
+        attr['src'] = new Cloudinary(this.getOptions()).url(this.publicId);
+      }
+      return attr;
+    };
+
+    return ImageTag;
+
+  })(HtmlTag);
+
+  /**
+   * Video Tag
+   * Depends on 'tags/htmltag', 'util', 'cloudinary'
+   */
+  VideoTag = (function(superClass) {
+    var DEFAULT_POSTER_OPTIONS, DEFAULT_VIDEO_SOURCE_TYPES, VIDEO_TAG_PARAMS;
+
+    extend(VideoTag, superClass);
+
+    VIDEO_TAG_PARAMS = ['source_types', 'source_transformation', 'fallback_content', 'poster'];
+
+    DEFAULT_VIDEO_SOURCE_TYPES = ['webm', 'mp4', 'ogv'];
+
+    DEFAULT_POSTER_OPTIONS = {
+      format: 'jpg',
+      resource_type: 'video'
+    };
+
+
+    /**
+     * Creates an HTML (DOM) Video tag using Cloudinary as the source.
+     * @constructor VideoTag
+     * @extends HtmlTag
+     * @param {string} [publicId]
+     * @param {Object} [options]
+     */
+
+    function VideoTag(publicId, options) {
+      if (options == null) {
+        options = {};
+      }
+      options = Util.defaults({}, options, Cloudinary.DEFAULT_VIDEO_PARAMS);
+      VideoTag.__super__.constructor.call(this, "video", publicId.replace(/\.(mp4|ogv|webm)$/, ''), options);
+    }
+
+
+    /**
+     * Set the transformation to apply on each source
+     * @function VideoTag#setSourceTransformation
+     * @param {Object} an object with pairs of source type and source transformation
+     * @returns {VideoTag} Returns this instance for chaining purposes.
+     */
+
+    VideoTag.prototype.setSourceTransformation = function(value) {
+      this.transformation().sourceTransformation(value);
+      return this;
+    };
+
+
+    /**
+     * Set the source types to include in the video tag
+     * @function VideoTag#setSourceTypes
+     * @param {Array<string>} an array of source types
+     * @returns {VideoTag} Returns this instance for chaining purposes.
+     */
+
+    VideoTag.prototype.setSourceTypes = function(value) {
+      this.transformation().sourceTypes(value);
+      return this;
+    };
+
+
+    /**
+     * Set the poster to be used in the video tag
+     * @function VideoTag#setPoster
+     * @param {string|Object} value
+     * - string: a URL to use for the poster
+     * - Object: transformation parameters to apply to the poster. May optionally include a public_id to use instead of the video public_id.
+     * @returns {VideoTag} Returns this instance for chaining purposes.
+     */
+
+    VideoTag.prototype.setPoster = function(value) {
+      this.transformation().poster(value);
+      return this;
+    };
+
+
+    /**
+     * Set the content to use as fallback in the video tag
+     * @function VideoTag#setFallbackContent
+     * @param {string} value - the content to use, in HTML format
+     * @returns {VideoTag} Returns this instance for chaining purposes.
+     */
+
+    VideoTag.prototype.setFallbackContent = function(value) {
+      this.transformation().fallbackContent(value);
+      return this;
+    };
+
+    VideoTag.prototype.content = function() {
+      var cld, fallback, innerTags, mimeType, sourceTransformation, sourceTypes, src, srcType, transformation, videoType;
+      sourceTypes = this.transformation().getValue('source_types');
+      sourceTransformation = this.transformation().getValue('source_transformation');
+      fallback = this.transformation().getValue('fallback_content');
+      if (Util.isArray(sourceTypes)) {
+        cld = new Cloudinary(this.getOptions());
+        innerTags = (function() {
+          var j, len, results;
+          results = [];
+          for (j = 0, len = sourceTypes.length; j < len; j++) {
+            srcType = sourceTypes[j];
+            transformation = sourceTransformation[srcType] || {};
+            src = cld.url("" + this.publicId, Util.defaults({}, transformation, {
+              resource_type: 'video',
+              format: srcType
+            }));
+            videoType = srcType === 'ogv' ? 'ogg' : srcType;
+            mimeType = 'video/' + videoType;
+            results.push("<source " + (this.htmlAttrs({
+              src: src,
+              type: mimeType
+            })) + ">");
+          }
+          return results;
+        }).call(this);
+      } else {
+        innerTags = [];
+      }
+      return innerTags.join('') + fallback;
+    };
+
+    VideoTag.prototype.attributes = function() {
+      var a, attr, j, len, poster, ref, ref1, sourceTypes;
+      sourceTypes = this.getOption('source_types');
+      poster = (ref = this.getOption('poster')) != null ? ref : {};
+      if (Util.isPlainObject(poster)) {
+        defaults = poster.public_id != null ? Cloudinary.DEFAULT_IMAGE_PARAMS : DEFAULT_POSTER_OPTIONS;
+        poster = new Cloudinary(this.getOptions()).url((ref1 = poster.public_id) != null ? ref1 : this.publicId, Util.defaults({}, poster, defaults));
+      }
+      attr = VideoTag.__super__.attributes.call(this) || [];
+      for (j = 0, len = attr.length; j < len; j++) {
+        a = attr[j];
+        if (!Util.contains(VIDEO_TAG_PARAMS)) {
+          attr = a;
+        }
+      }
+      if (!Util.isArray(sourceTypes)) {
+        attr["src"] = new Cloudinary(this.getOptions()).url(this.publicId, {
+          resource_type: 'video',
+          format: sourceTypes
+        });
+      }
+      if (poster != null) {
+        attr["poster"] = poster;
+      }
+      return attr;
+    };
+
+    return VideoTag;
+
+  })(HtmlTag);
+  Layer = (function() {
+
+    /**
+     * Layer
+     * @constructor Layer
+     * @param {Object} options - layer parameters
+     */
+    function Layer(options) {
+      this.options = {};
+      if (options != null) {
+        this.options.resourceType = options["resource_type"];
+        this.options.type = options["type"];
+        this.options.publicId = options["public_id"];
+        this.options.format = options["format"];
+      }
+    }
+
+    Layer.prototype.resourceType = function(value) {
+      this.options.resourceType = value;
+      return this;
+    };
+
+    Layer.prototype.type = function(value) {
+      this.options.type = value;
+      return this;
+    };
+
+    Layer.prototype.publicId = function(value) {
+      this.options.publicId = value;
+      return this;
+    };
+
+
+    /**
+     * Get the public ID, formatted for layer parameter
+     * @function Layer#getPublicId
+     * @return {String} public ID
+     */
+
+    Layer.prototype.getPublicId = function() {
+      var ref;
+      return (ref = this.options.publicId) != null ? ref.replace(/\//g, ":") : void 0;
+    };
+
+
+    /**
+     * Get the public ID, with format if present
+     * @function Layer#getFullPublicId
+     * @return {String} public ID
+     */
+
+    Layer.prototype.getFullPublicId = function() {
+      if (this.options.format != null) {
+        return this.getPublicId() + "." + this.options.format;
+      } else {
+        return this.getPublicId();
+      }
+    };
+
+    Layer.prototype.format = function(value) {
+      this.options.format = value;
+      return this;
+    };
+
+
+    /**
+     * generate the string representation of the layer
+     * @function Layer#toString
+     */
+
+    Layer.prototype.toString = function() {
+      var components;
+      components = [];
+      if (this.options.publicId == null) {
+        throw "Must supply publicId";
+      }
+      if (!(this.options.resourceType === "image")) {
+        components.push(this.options.resourceType);
+      }
+      if (!(this.options.type === "upload")) {
+        components.push(this.options.type);
+      }
+      components.push(this.getFullPublicId());
+      return Util.compact(components).join(":");
+    };
+
+    return Layer;
+
+  })();
+  TextLayer = (function(superClass) {
+    var textStyleIdentifier;
+
+    extend(TextLayer, superClass);
+
+
+    /**
+     * @constructor TextLayer
+     * @param {Object} options - layer parameters
+     */
+
+    function TextLayer(options) {
+      TextLayer.__super__.constructor.call(this, options);
+      this.options.resourceType = "text";
+    }
+
+    TextLayer.prototype.resourceType = function(resourceType) {
+      throw "Cannot modify resourceType for text layers";
+    };
+
+    TextLayer.prototype.type = function(type) {
+      throw "Cannot modify type for text layers";
+    };
+
+    TextLayer.prototype.format = function(format) {
+      throw "Cannot modify format for text layers";
+    };
+
+    TextLayer.prototype.fontFamily = function(fontFamily) {
+      this.options.fontFamily = fontFamily;
+      return this;
+    };
+
+    TextLayer.prototype.fontSize = function(fontSize) {
+      this.options.fontSize = fontSize;
+      return this;
+    };
+
+    TextLayer.prototype.fontWeight = function(fontWeight) {
+      this.options.fontWeight = fontWeight;
+      return this;
+    };
+
+    TextLayer.prototype.fontStyle = function(fontStyle) {
+      this.options.fontStyle = fontStyle;
+      return this;
+    };
+
+    TextLayer.prototype.textDecoration = function(textDecoration) {
+      this.options.textDecoration = textDecoration;
+      return this;
+    };
+
+    TextLayer.prototype.textAlign = function(textAlign) {
+      this.options.textAlign = textAlign;
+      return this;
+    };
+
+    TextLayer.prototype.stroke = function(stroke) {
+      this.options.stroke = stroke;
+      return this;
+    };
+
+    TextLayer.prototype.letterSpacing = function(letterSpacing) {
+      this.options.letterSpacing = letterSpacing;
+      return this;
+    };
+
+    TextLayer.prototype.lineSpacing = function(lineSpacing) {
+      this.options.lineSpacing = lineSpacing;
+      return this;
+    };
+
+    TextLayer.prototype.text = function(text) {
+      this.options.text = text;
+      return this;
+    };
+
+
+    /**
+     * generate the string representation of the layer
+     * @function TextLayer#toString
+     * @return {String}
+     */
+
+    TextLayer.prototype.toString = function() {
+      var components, publicId, text;
+      if (this.options.publicId != null) {
+        publicId = this.getFullPublicId();
+      } else if (this.options.text != null) {
+        text = encodeURIComponent(this.options.text).replace(/%2C/g, "%E2%80%9A").replace(/\//g, "%E2%81%84");
+      } else {
+        throw "Must supply either text or public_id.";
+      }
+      components = [this.options.resourceType, textStyleIdentifier.call(this), publicId, text];
+      return Util.compact(components).join(":");
+    };
+
+    textStyleIdentifier = function() {
+      var components, fontSize;
+      components = [];
+      if (this.options.fontWeight !== "normal") {
+        components.push(this.options.fontWeight);
+      }
+      if (this.options.fontStyle !== "normal") {
+        components.push(this.options.fontStyle);
+      }
+      if (this.options.textDecoration !== "none") {
+        components.push(this.options.textDecoration);
+      }
+      components.push(this.options.textAlign);
+      if (this.options.stroke !== "none") {
+        components.push(this.options.stroke);
+      }
+      if (!Util.isEmpty(this.options.letterSpacing)) {
+        components.push("letter_spacing_" + this.options.letterSpacing);
+      }
+      if (this.options.lineSpacing != null) {
+        components.push("line_spacing_" + this.options.lineSpacing);
+      }
+      if (this.options.fontSize != null) {
+        fontSize = "" + this.options.fontSize;
+      }
+      components.unshift(this.options.fontFamily, fontSize);
+      components = Util.compact(components).join("_");
+      if (!Util.isEmpty(components)) {
+        if (Util.isEmpty(this.options.fontFamily)) {
+          throw "Must supply fontFamily.";
+        }
+        if (Util.isEmpty(fontSize)) {
+          throw "Must supply fontSize.";
+        }
+      }
+      return components;
+    };
+
+    return TextLayer;
+
+  })(Layer);
+  SubtitlesLayer = (function(superClass) {
+    extend(SubtitlesLayer, superClass);
+
+
+    /**
+     * Represent a subtitles layer
+     * @constructor SubtitlesLayer
+     * @param {Object} options - layer parameters
+     */
+
+    function SubtitlesLayer(options) {
+      SubtitlesLayer.__super__.constructor.call(this, options);
+      this.options.resourceType = "subtitles";
+    }
+
+    return SubtitlesLayer;
+
+  })(TextLayer);
+  Cloudinary = (function() {
+    var AKAMAI_SHARED_CDN, CF_SHARED_CDN, DEFAULT_POSTER_OPTIONS, DEFAULT_VIDEO_SOURCE_TYPES, OLD_AKAMAI_SHARED_CDN, SHARED_CDN, VERSION, absolutize, applyBreakpoints, cdnSubdomainNumber, closestAbove, cloudinaryUrlPrefix, defaultBreakpoints, finalizeResourceType, findContainerWidth, maxWidth, updateDpr;
+
+    VERSION = "2.1.3";
+
+    CF_SHARED_CDN = "d3jpl91pxevbkh.cloudfront.net";
+
+    OLD_AKAMAI_SHARED_CDN = "cloudinary-a.akamaihd.net";
+
+    AKAMAI_SHARED_CDN = "res.cloudinary.com";
+
+    SHARED_CDN = AKAMAI_SHARED_CDN;
+
+    DEFAULT_POSTER_OPTIONS = {
+      format: 'jpg',
+      resource_type: 'video'
+    };
+
+    DEFAULT_VIDEO_SOURCE_TYPES = ['webm', 'mp4', 'ogv'];
+
+
+    /**
+    * @const {Object} Cloudinary.DEFAULT_IMAGE_PARAMS
+    * Defaults values for image parameters.
+    *
+    * (Previously defined using option_consume() )
+     */
+
+    Cloudinary.DEFAULT_IMAGE_PARAMS = {
+      resource_type: "image",
+      transformation: [],
+      type: 'upload'
+    };
+
+
+    /**
+    * Defaults values for video parameters.
+    * @const {Object} Cloudinary.DEFAULT_VIDEO_PARAMS
+    * (Previously defined using option_consume() )
+     */
+
+    Cloudinary.DEFAULT_VIDEO_PARAMS = {
+      fallback_content: '',
+      resource_type: "video",
+      source_transformation: {},
+      source_types: DEFAULT_VIDEO_SOURCE_TYPES,
+      transformation: [],
+      type: 'upload'
+    };
+
+
+    /**
+     * Main Cloudinary class
+     * @class Cloudinary
+     * @param {Object} options - options to configure Cloudinary
+     * @see Configuration for more details
+     * @example
+     *    var cl = new cloudinary.Cloudinary( { cloud_name: "mycloud"});
+     *    var imgTag = cl.image("myPicID");
+     */
+
+    function Cloudinary(options) {
+      var configuration;
+      this.devicePixelRatioCache = {};
+      this.responsiveConfig = {};
+      this.responsiveResizeInitialized = false;
+      configuration = new Configuration(options);
+      this.config = function(newConfig, newValue) {
+        return configuration.config(newConfig, newValue);
+      };
+
+      /**
+       * Use \<meta\> tags in the document to configure this Cloudinary instance.
+       * @return {Cloudinary} this for chaining
+       */
+      this.fromDocument = function() {
+        configuration.fromDocument();
+        return this;
+      };
+
+      /**
+       * Use environment variables to configure this Cloudinary instance.
+       * @return {Cloudinary} this for chaining
+       */
+      this.fromEnvironment = function() {
+        configuration.fromEnvironment();
+        return this;
+      };
+
+      /**
+       * Initialize configuration.
+       * @function Cloudinary#init
+       * @see Configuration#init
+       * @return {Cloudinary} this for chaining
+       */
+      this.init = function() {
+        configuration.init();
+        return this;
+      };
+    }
+
+
+    /**
+     * Convenience constructor
+     * @param {Object} options
+     * @return {Cloudinary}
+     * @example cl = cloudinary.Cloudinary.new( { cloud_name: "mycloud"})
+     */
+
+    Cloudinary["new"] = function(options) {
+      return new this(options);
+    };
+
+
+    /**
+     * Return the resource type and action type based on the given configuration
+     * @function Cloudinary#finalizeResourceType
+     * @param {Object|string} resourceType
+     * @param {string} [type='upload']
+     * @param {string} [urlSuffix]
+     * @param {boolean} [useRootPath]
+     * @param {boolean} [shorten]
+     * @returns {string} resource_type/type
+     * @ignore
+     */
+
+    finalizeResourceType = function(resourceType, type, urlSuffix, useRootPath, shorten) {
+      var options;
+      if (Util.isPlainObject(resourceType)) {
+        options = resourceType;
+        resourceType = options.resource_type;
+        type = options.type;
+        urlSuffix = options.url_suffix;
+        useRootPath = options.use_root_path;
+        shorten = options.shorten;
+      }
+      if (type == null) {
+        type = 'upload';
+      }
+      if (urlSuffix != null) {
+        if (resourceType === 'image' && type === 'upload') {
+          resourceType = "images";
+          type = null;
+        } else if (resourceType === 'raw' && type === 'upload') {
+          resourceType = 'files';
+          type = null;
+        } else {
+          throw new Error("URL Suffix only supported for image/upload and raw/upload");
+        }
+      }
+      if (useRootPath) {
+        if (resourceType === 'image' && type === 'upload' || resourceType === "images") {
+          resourceType = null;
+          type = null;
+        } else {
+          throw new Error("Root path only supported for image/upload");
+        }
+      }
+      if (shorten && resourceType === 'image' && type === 'upload') {
+        resourceType = 'iu';
+        type = null;
+      }
+      return [resourceType, type].join("/");
+    };
+
+    absolutize = function(url) {
+      var prefix;
+      if (!url.match(/^https?:\//)) {
+        prefix = document.location.protocol + '//' + document.location.host;
+        if (url[0] === '?') {
+          prefix += document.location.pathname;
+        } else if (url[0] !== '/') {
+          prefix += document.location.pathname.replace(/\/[^\/]*$/, '/');
+        }
+        url = prefix + url;
+      }
+      return url;
+    };
+
+
+    /**
+     * Generate an resource URL.
+     * @function Cloudinary#url
+     * @param {string} publicId - the public ID of the resource
+     * @param {Object} [options] - options for the tag and transformations, possible values include all {@link Transformation} parameters
+     *                          and {@link Configuration} parameters
+     * @param {string} [options.type='upload'] - the classification of the resource
+     * @param {Object} [options.resource_type='image'] - the type of the resource
+     * @return {string} The resource URL
+     */
+
+    Cloudinary.prototype.url = function(publicId, options) {
+      var prefix, ref, resourceTypeAndType, transformation, transformationString, url, version;
+      if (options == null) {
+        options = {};
+      }
+      if (!publicId) {
+        return publicId;
+      }
+      if (options instanceof Transformation) {
+        options = options.toOptions();
+      }
+      options = Util.defaults({}, options, this.config(), Cloudinary.DEFAULT_IMAGE_PARAMS);
+      if (options.type === 'fetch') {
+        options.fetch_format = options.fetch_format || options.format;
+        publicId = absolutize(publicId);
+      }
+      transformation = new Transformation(options);
+      transformationString = transformation.serialize();
+      if (!options.cloud_name) {
+        throw 'Unknown cloud_name';
+      }
+      if (options.url_suffix && !options.private_cdn) {
+        throw 'URL Suffix only supported in private CDN';
+      }
+      if (publicId.search('/') >= 0 && !publicId.match(/^v[0-9]+/) && !publicId.match(/^https?:\//) && !((ref = options.version) != null ? ref.toString() : void 0)) {
+        options.version = 1;
+      }
+      if (publicId.match(/^https?:/)) {
+        if (options.type === 'upload' || options.type === 'asset') {
+          url = publicId;
+        } else {
+          publicId = encodeURIComponent(publicId).replace(/%3A/g, ':').replace(/%2F/g, '/');
+        }
+      } else {
+        publicId = encodeURIComponent(decodeURIComponent(publicId)).replace(/%3A/g, ':').replace(/%2F/g, '/');
+        if (options.url_suffix) {
+          if (options.url_suffix.match(/[\.\/]/)) {
+            throw 'url_suffix should not include . or /';
+          }
+          publicId = publicId + '/' + options.url_suffix;
+        }
+        if (options.format) {
+          if (!options.trust_public_id) {
+            publicId = publicId.replace(/\.(jpg|png|gif|webp)$/, '');
+          }
+          publicId = publicId + '.' + options.format;
+        }
+      }
+      prefix = cloudinaryUrlPrefix(publicId, options);
+      resourceTypeAndType = finalizeResourceType(options.resource_type, options.type, options.url_suffix, options.use_root_path, options.shorten);
+      version = options.version ? 'v' + options.version : '';
+      return url || Util.compact([prefix, resourceTypeAndType, transformationString, version, publicId]).join('/').replace(/([^:])\/+/g, '$1/');
+    };
+
+
+    /**
+     * Generate an video resource URL.
+     * @function Cloudinary#video_url
+     * @param {string} publicId - the public ID of the resource
+     * @param {Object} [options] - options for the tag and transformations, possible values include all {@link Transformation} parameters
+     *                          and {@link Configuration} parameters
+     * @param {string} [options.type='upload'] - the classification of the resource
+     * @return {string} The video URL
+     */
+
+    Cloudinary.prototype.video_url = function(publicId, options) {
+      options = Util.assign({
+        resource_type: 'video'
+      }, options);
+      return this.url(publicId, options);
+    };
+
+
+    /**
+     * Generate an video thumbnail URL.
+     * @function Cloudinary#video_thumbnail_url
+     * @param {string} publicId - the public ID of the resource
+     * @param {Object} [options] - options for the tag and transformations, possible values include all {@link Transformation} parameters
+     *                          and {@link Configuration} parameters
+     * @param {string} [options.type='upload'] - the classification of the resource
+     * @return {string} The video thumbnail URL
+     */
+
+    Cloudinary.prototype.video_thumbnail_url = function(publicId, options) {
+      options = Util.assign({}, DEFAULT_POSTER_OPTIONS, options);
+      return this.url(publicId, options);
+    };
+
+
+    /**
+     * Generate a string representation of the provided transformation options.
+     * @function Cloudinary#transformation_string
+     * @param {Object} options - the transformation options
+     * @returns {string} The transformation string
+     */
+
+    Cloudinary.prototype.transformation_string = function(options) {
+      return new Transformation(options).serialize();
+    };
+
+
+    /**
+     * Generate an image tag.
+     * @function Cloudinary#image
+     * @param {string} publicId - the public ID of the image
+     * @param {Object} [options] - options for the tag and transformations
+     * @return {HTMLImageElement} an image tag element
+     */
+
+    Cloudinary.prototype.image = function(publicId, options) {
+      var client_hints, img, ref, ref1;
+      if (options == null) {
+        options = {};
+      }
+      img = this.imageTag(publicId, options);
+      client_hints = (ref = (ref1 = options.client_hints) != null ? ref1 : this.config('client_hints')) != null ? ref : false;
+      if (!((options.src != null) || client_hints)) {
+        img.setAttr("src", '');
+      }
+      img = img.toDOM();
+      if (!client_hints) {
+        Util.setData(img, 'src-cache', this.url(publicId, options));
+        this.cloudinary_update(img, options);
+      }
+      return img;
+    };
+
+
+    /**
+     * Creates a new ImageTag instance, configured using this own's configuration.
+     * @function Cloudinary#imageTag
+     * @param {string} publicId - the public ID of the resource
+     * @param {Object} options - additional options to pass to the new ImageTag instance
+     * @return {ImageTag} An ImageTag that is attached (chained) to this Cloudinary instance
+     */
+
+    Cloudinary.prototype.imageTag = function(publicId, options) {
+      var tag;
+      tag = new ImageTag(publicId, this.config());
+      tag.transformation().fromOptions(options);
+      return tag;
+    };
+
+
+    /**
+     * Generate an image tag for the video thumbnail.
+     * @function Cloudinary#video_thumbnail
+     * @param {string} publicId - the public ID of the video
+     * @param {Object} [options] - options for the tag and transformations
+     * @return {HTMLImageElement} An image tag element
+     */
+
+    Cloudinary.prototype.video_thumbnail = function(publicId, options) {
+      return this.image(publicId, Util.merge({}, DEFAULT_POSTER_OPTIONS, options));
+    };
+
+
+    /**
+     * @function Cloudinary#facebook_profile_image
+     * @param {string} publicId - the public ID of the image
+     * @param {Object} [options] - options for the tag and transformations
+     * @return {HTMLImageElement} an image tag element
+     */
+
+    Cloudinary.prototype.facebook_profile_image = function(publicId, options) {
+      return this.image(publicId, Util.assign({
+        type: 'facebook'
+      }, options));
+    };
+
+
+    /**
+     * @function Cloudinary#twitter_profile_image
+     * @param {string} publicId - the public ID of the image
+     * @param {Object} [options] - options for the tag and transformations
+     * @return {HTMLImageElement} an image tag element
+     */
+
+    Cloudinary.prototype.twitter_profile_image = function(publicId, options) {
+      return this.image(publicId, Util.assign({
+        type: 'twitter'
+      }, options));
+    };
+
+
+    /**
+     * @function Cloudinary#twitter_name_profile_image
+     * @param {string} publicId - the public ID of the image
+     * @param {Object} [options] - options for the tag and transformations
+     * @return {HTMLImageElement} an image tag element
+     */
+
+    Cloudinary.prototype.twitter_name_profile_image = function(publicId, options) {
+      return this.image(publicId, Util.assign({
+        type: 'twitter_name'
+      }, options));
+    };
+
+
+    /**
+     * @function Cloudinary#gravatar_image
+     * @param {string} publicId - the public ID of the image
+     * @param {Object} [options] - options for the tag and transformations
+     * @return {HTMLImageElement} an image tag element
+     */
+
+    Cloudinary.prototype.gravatar_image = function(publicId, options) {
+      return this.image(publicId, Util.assign({
+        type: 'gravatar'
+      }, options));
+    };
+
+
+    /**
+     * @function Cloudinary#fetch_image
+     * @param {string} publicId - the public ID of the image
+     * @param {Object} [options] - options for the tag and transformations
+     * @return {HTMLImageElement} an image tag element
+     */
+
+    Cloudinary.prototype.fetch_image = function(publicId, options) {
+      return this.image(publicId, Util.assign({
+        type: 'fetch'
+      }, options));
+    };
+
+
+    /**
+     * @function Cloudinary#video
+     * @param {string} publicId - the public ID of the image
+     * @param {Object} [options] - options for the tag and transformations
+     * @return {HTMLImageElement} an image tag element
+     */
+
+    Cloudinary.prototype.video = function(publicId, options) {
+      if (options == null) {
+        options = {};
+      }
+      return this.videoTag(publicId, options).toHtml();
+    };
+
+
+    /**
+     * Creates a new VideoTag instance, configured using this own's configuration.
+     * @function Cloudinary#videoTag
+     * @param {string} publicId - the public ID of the resource
+     * @param {Object} options - additional options to pass to the new VideoTag instance
+     * @return {VideoTag} A VideoTag that is attached (chained) to this Cloudinary instance
+     */
+
+    Cloudinary.prototype.videoTag = function(publicId, options) {
+      options = Util.defaults({}, options, this.config());
+      return new VideoTag(publicId, options);
+    };
+
+
+    /**
+     * Generate the URL of the sprite image
+     * @function Cloudinary#sprite_css
+     * @param {string} publicId - the public ID of the resource
+     * @param {Object} [options] - options for the tag and transformations
+     * @see {@link http://cloudinary.com/documentation/sprite_generation Sprite generation}
+     */
+
+    Cloudinary.prototype.sprite_css = function(publicId, options) {
+      options = Util.assign({
+        type: 'sprite'
+      }, options);
+      if (!publicId.match(/.css$/)) {
+        options.format = 'css';
+      }
+      return this.url(publicId, options);
+    };
+
+
+    /**
+     * @function Cloudinary#responsive
+     */
+
+    Cloudinary.prototype.responsive = function(options, bootstrap) {
+      var ref, ref1, ref2, responsiveClass, responsiveResize, timeout;
+      if (bootstrap == null) {
+        bootstrap = true;
+      }
+      this.responsiveConfig = Util.merge(this.responsiveConfig || {}, options);
+      responsiveClass = (ref = this.responsiveConfig['responsive_class']) != null ? ref : this.config('responsive_class');
+      if (bootstrap) {
+        this.cloudinary_update("img." + responsiveClass + ", img.cld-hidpi", this.responsiveConfig);
+      }
+      responsiveResize = (ref1 = (ref2 = this.responsiveConfig['responsive_resize']) != null ? ref2 : this.config('responsive_resize')) != null ? ref1 : true;
+      if (responsiveResize && !this.responsiveResizeInitialized) {
+        this.responsiveConfig.resizing = this.responsiveResizeInitialized = true;
+        timeout = null;
+        return window.addEventListener('resize', (function(_this) {
+          return function() {
+            var debounce, ref3, ref4, reset, run, wait, waitFunc;
+            debounce = (ref3 = (ref4 = _this.responsiveConfig['responsive_debounce']) != null ? ref4 : _this.config('responsive_debounce')) != null ? ref3 : 100;
+            reset = function() {
+              if (timeout) {
+                clearTimeout(timeout);
+                return timeout = null;
+              }
+            };
+            run = function() {
+              return _this.cloudinary_update("img." + responsiveClass, _this.responsiveConfig);
+            };
+            waitFunc = function() {
+              reset();
+              return run();
+            };
+            wait = function() {
+              reset();
+              return timeout = setTimeout(waitFunc, debounce);
+            };
+            if (debounce) {
+              return wait();
+            } else {
+              return run();
+            }
+          };
+        })(this));
+      }
+    };
+
+
+    /**
+     * @function Cloudinary#calc_breakpoint
+     * @private
+     * @ignore
+     */
+
+    Cloudinary.prototype.calc_breakpoint = function(element, width, steps) {
+      var breakpoints, point;
+      breakpoints = Util.getData(element, 'breakpoints') || Util.getData(element, 'stoppoints') || this.config('breakpoints') || this.config('stoppoints') || defaultBreakpoints;
+      if (Util.isFunction(breakpoints)) {
+        return breakpoints(width, steps);
+      } else {
+        if (Util.isString(breakpoints)) {
+          breakpoints = ((function() {
+            var j, len, ref, results;
+            ref = breakpoints.split(',');
+            results = [];
+            for (j = 0, len = ref.length; j < len; j++) {
+              point = ref[j];
+              results.push(parseInt(point));
+            }
+            return results;
+          })()).sort(function(a, b) {
+            return a - b;
+          });
+        }
+        return closestAbove(breakpoints, width);
+      }
+    };
+
+
+    /**
+     * @function Cloudinary#calc_stoppoint
+     * @deprecated Use {@link calc_breakpoint} instead.
+     * @private
+     * @ignore
+     */
+
+    Cloudinary.prototype.calc_stoppoint = Cloudinary.prototype.calc_breakpoint;
+
+
+    /**
+     * @function Cloudinary#device_pixel_ratio
+     * @private
+     */
+
+    Cloudinary.prototype.device_pixel_ratio = function(roundDpr) {
+      var dpr, dprString;
+      if (roundDpr == null) {
+        roundDpr = true;
+      }
+      dpr = (typeof window !== "undefined" && window !== null ? window.devicePixelRatio : void 0) || 1;
+      if (roundDpr) {
+        dpr = Math.ceil(dpr);
+      }
+      if (dpr <= 0 || dpr === NaN) {
+        dpr = 1;
+      }
+      dprString = dpr.toString();
+      if (dprString.match(/^\d+$/)) {
+        dprString += '.0';
+      }
+      return dprString;
+    };
+
+    defaultBreakpoints = function(width, steps) {
+      if (steps == null) {
+        steps = 100;
+      }
+      return steps * Math.ceil(width / steps);
+    };
+
+    closestAbove = function(list, value) {
+      var i;
+      i = list.length - 2;
+      while (i >= 0 && list[i] >= value) {
+        i--;
+      }
+      return list[i + 1];
+    };
+
+    cdnSubdomainNumber = function(publicId) {
+      return crc32(publicId) % 5 + 1;
+    };
+
+    cloudinaryUrlPrefix = function(publicId, options) {
+      var cdnPart, host, path, protocol, ref, subdomain;
+      if (((ref = options.cloud_name) != null ? ref.indexOf("/") : void 0) === 0) {
+        return '/res' + options.cloud_name;
+      }
+      protocol = "http://";
+      cdnPart = "";
+      subdomain = "res";
+      host = ".cloudinary.com";
+      path = "/" + options.cloud_name;
+      if (options.protocol) {
+        protocol = options.protocol + '//';
+      }
+      if (options.private_cdn) {
+        cdnPart = options.cloud_name + "-";
+        path = "";
+      }
+      if (options.cdn_subdomain) {
+        subdomain = "res-" + cdnSubdomainNumber(publicId);
+      }
+      if (options.secure) {
+        protocol = "https://";
+        if (options.secure_cdn_subdomain === false) {
+          subdomain = "res";
+        }
+        if ((options.secure_distribution != null) && options.secure_distribution !== OLD_AKAMAI_SHARED_CDN && options.secure_distribution !== SHARED_CDN) {
+          cdnPart = "";
+          subdomain = "";
+          host = options.secure_distribution;
+        }
+      } else if (options.cname) {
+        protocol = "http://";
+        cdnPart = "";
+        subdomain = options.cdn_subdomain ? 'a' + ((crc32(publicId) % 5) + 1) + '.' : '';
+        host = options.cname;
+      }
+      return [protocol, cdnPart, subdomain, host, path].join("");
+    };
+
+
+    /**
+    * Finds all `img` tags under each node and sets it up to provide the image through Cloudinary
+    * @function Cloudinary#processImageTags
+     */
+
+    Cloudinary.prototype.processImageTags = function(nodes, options) {
+      var images, imgOptions, node, publicId, url;
+      if (options == null) {
+        options = {};
+      }
+      options = Util.defaults({}, options, this.config());
+      images = (function() {
+        var j, len, ref, results;
+        results = [];
+        for (j = 0, len = nodes.length; j < len; j++) {
+          node = nodes[j];
+          if (!(((ref = node.tagName) != null ? ref.toUpperCase() : void 0) === 'IMG')) {
+            continue;
+          }
+          imgOptions = Util.assign({
+            width: node.getAttribute('width'),
+            height: node.getAttribute('height'),
+            src: node.getAttribute('src')
+          }, options);
+          publicId = imgOptions['source'] || imgOptions['src'];
+          delete imgOptions['source'];
+          delete imgOptions['src'];
+          url = this.url(publicId, imgOptions);
+          imgOptions = new Transformation(imgOptions).toHtmlAttributes();
+          Util.setData(node, 'src-cache', url);
+          node.setAttribute('width', imgOptions.width);
+          results.push(node.setAttribute('height', imgOptions.height));
+        }
+        return results;
+      }).call(this);
+      this.cloudinary_update(images, options);
+      return this;
+    };
+
+    applyBreakpoints = function(tag, width, steps, options) {
+      var ref, ref1, ref2, responsive_use_breakpoints;
+      responsive_use_breakpoints = (ref = (ref1 = (ref2 = options['responsive_use_breakpoints']) != null ? ref2 : options['responsive_use_stoppoints']) != null ? ref1 : this.config('responsive_use_breakpoints')) != null ? ref : this.config('responsive_use_stoppoints');
+      if ((!responsive_use_breakpoints) || (responsive_use_breakpoints === 'resize' && !options.resizing)) {
+        return width;
+      } else {
+        return this.calc_breakpoint(tag, width, steps);
+      }
+    };
+
+    findContainerWidth = function(element) {
+      var containerWidth, style;
+      containerWidth = 0;
+      while (((element = element != null ? element.parentNode : void 0) instanceof Element) && !containerWidth) {
+        style = window.getComputedStyle(element);
+        if (!/^inline/.test(style.display)) {
+          containerWidth = Util.width(element);
+        }
+      }
+      return containerWidth;
+    };
+
+    updateDpr = function(dataSrc, roundDpr) {
+      return dataSrc.replace(/\bdpr_(1\.0|auto)\b/g, 'dpr_' + this.device_pixel_ratio(roundDpr));
+    };
+
+    maxWidth = function(requiredWidth, tag) {
+      var imageWidth;
+      imageWidth = Util.getData(tag, 'width') || 0;
+      if (requiredWidth > imageWidth) {
+        imageWidth = requiredWidth;
+        Util.setData(tag, 'width', requiredWidth);
+      }
+      return requiredWidth;
+    };
+
+
+    /**
+    * Update hidpi (dpr_auto) and responsive (w_auto) fields according to the current container size and the device pixel ratio.
+    * Only images marked with the cld-responsive class have w_auto updated.
+    * @function Cloudinary#cloudinary_update
+    * @param {(Array|string|NodeList)} elements - the elements to modify
+    * @param {Object} options
+    * @param {boolean|string} [options.responsive_use_breakpoints=true]
+    *  - when `true`, always use breakpoints for width
+    * - when `"resize"` use exact width on first render and breakpoints on resize
+    * - when `false` always use exact width
+    * @param {boolean} [options.responsive] - if `true`, enable responsive on this element. Can be done by adding cld-responsive.
+    * @param {boolean} [options.responsive_preserve_height] - if set to true, original css height is preserved.
+    *   Should only be used if the transformation supports different aspect ratios.
+     */
+
+    Cloudinary.prototype.cloudinary_update = function(elements, options) {
+      var client_hints, containerWidth, dataSrc, j, len, match, ref, ref1, ref2, ref3, ref4, ref5, ref6, ref7, requiredWidth, responsive, responsiveClass, roundDpr, setUrl, tag;
+      if (options == null) {
+        options = {};
+      }
+      client_hints = (ref = (ref1 = options.client_hints) != null ? ref1 : this.config('client_hints')) != null ? ref : false;
+      client_hints = client_hints || (typeof document !== "undefined" && document !== null ? document.querySelector('meta[http-equiv="Accept-CH"]') : void 0);
+      if (client_hints) {
+        return;
+      }
+      responsive = (ref2 = (ref3 = options.responsive) != null ? ref3 : this.config('responsive')) != null ? ref2 : false;
+      elements = (function() {
+        switch (false) {
+          case !Util.isArray(elements):
+            return elements;
+          case elements.constructor.name !== "NodeList":
+            return elements;
+          case !Util.isString(elements):
+            return document.querySelectorAll(elements);
+          default:
+            return [elements];
+        }
+      })();
+      responsiveClass = (ref4 = (ref5 = this.responsiveConfig['responsive_class']) != null ? ref5 : options['responsive_class']) != null ? ref4 : this.config('responsive_class');
+      roundDpr = (ref6 = options['round_dpr']) != null ? ref6 : this.config('round_dpr');
+      for (j = 0, len = elements.length; j < len; j++) {
+        tag = elements[j];
+        if (!((ref7 = tag.tagName) != null ? ref7.match(/img/i) : void 0)) {
+          continue;
+        }
+        setUrl = true;
+        if (responsive && !client_hints) {
+          Util.addClass(tag, responsiveClass);
+        }
+        dataSrc = Util.getData(tag, 'src-cache') || Util.getData(tag, 'src');
+        if (!Util.isEmpty(dataSrc)) {
+          dataSrc = updateDpr.call(this, dataSrc, roundDpr);
+          if (HtmlTag.isResponsive(tag, responsiveClass)) {
+            containerWidth = findContainerWidth(tag);
+            if (containerWidth !== 0) {
+              switch (false) {
+                case !/w_auto:breakpoints/.test(dataSrc):
+                  requiredWidth = maxWidth(containerWidth, tag);
+                  dataSrc = dataSrc.replace(/w_auto:breakpoints([_0-9]*)(:[0-9]+)?/, "w_auto:breakpoints$1:" + requiredWidth);
+                  break;
+                case !(match = /w_auto(:(\d+))?/.exec(dataSrc)):
+                  requiredWidth = applyBreakpoints.call(this, tag, containerWidth, match[2], options);
+                  requiredWidth = maxWidth(requiredWidth, tag);
+                  dataSrc = dataSrc.replace(/w_auto[^,\/]*/g, "w_" + requiredWidth);
+              }
+              Util.removeAttribute(tag, 'width');
+              if (!options.responsive_preserve_height) {
+                Util.removeAttribute(tag, 'height');
+              }
+            } else {
+              setUrl = false;
+            }
+          }
+          if (setUrl) {
+            Util.setAttribute(tag, 'src', dataSrc);
+          }
+        }
+      }
+      return this;
+    };
+
+
+    /**
+     * Provide a transformation object, initialized with own's options, for chaining purposes.
+     * @function Cloudinary#transformation
+     * @param {Object} options
+     * @return {Transformation}
+     */
+
+    Cloudinary.prototype.transformation = function(options) {
+      return Transformation["new"](this.config()).fromOptions(options).setParent(this);
+    };
+
+    return Cloudinary;
+
+  })();
+
+  /**
+   * Cloudinary jQuery plugin
+   * Depends on 'jquery', 'util', 'transformation', 'cloudinary'
+   */
+  CloudinaryJQuery = (function(superClass) {
+    extend(CloudinaryJQuery, superClass);
+
+
+    /**
+     * Cloudinary class with jQuery support
+     * @constructor CloudinaryJQuery
+     * @extends Cloudinary
+     */
+
+    function CloudinaryJQuery(options) {
+      CloudinaryJQuery.__super__.constructor.call(this, options);
+    }
+
+
+    /**
+     * @override
+     */
+
+    CloudinaryJQuery.prototype.image = function(publicId, options) {
+      var client_hints, img, ref, ref1;
+      if (options == null) {
+        options = {};
+      }
+      img = this.imageTag(publicId, options);
+      client_hints = (ref = (ref1 = options.client_hints) != null ? ref1 : this.config('client_hints')) != null ? ref : false;
+      if (!((options.src != null) || client_hints)) {
+        img.setAttr("src", '');
+      }
+      img = jQuery(img.toHtml());
+      if (!client_hints) {
+        img.data('src-cache', this.url(publicId, options)).cloudinary_update(options);
+      }
+      return img;
+    };
+
+
+    /**
+     * @override
+     */
+
+    CloudinaryJQuery.prototype.responsive = function(options) {
+      var ref, ref1, ref2, responsiveClass, responsiveConfig, responsiveResizeInitialized, responsive_resize, timeout;
+      responsiveConfig = jQuery.extend(responsiveConfig || {}, options);
+      responsiveClass = (ref = this.responsiveConfig['responsive_class']) != null ? ref : this.config('responsive_class');
+      jQuery("img." + responsiveClass + ", img.cld-hidpi").cloudinary_update(responsiveConfig);
+      responsive_resize = (ref1 = (ref2 = responsiveConfig['responsive_resize']) != null ? ref2 : this.config('responsive_resize')) != null ? ref1 : true;
+      if (responsive_resize && !responsiveResizeInitialized) {
+        responsiveConfig.resizing = responsiveResizeInitialized = true;
+        timeout = null;
+        return jQuery(window).on('resize', (function(_this) {
+          return function() {
+            var debounce, ref3, ref4, reset, run, wait;
+            debounce = (ref3 = (ref4 = responsiveConfig['responsive_debounce']) != null ? ref4 : _this.config('responsive_debounce')) != null ? ref3 : 100;
+            reset = function() {
+              if (timeout) {
+                clearTimeout(timeout);
+                return timeout = null;
+              }
+            };
+            run = function() {
+              return jQuery("img." + responsiveClass).cloudinary_update(responsiveConfig);
+            };
+            wait = function() {
+              reset();
+              return setTimeout((function() {
+                reset();
+                return run();
+              }), debounce);
+            };
+            if (debounce) {
+              return wait();
+            } else {
+              return run();
+            }
+          };
+        })(this));
+      }
+    };
+
+    return CloudinaryJQuery;
+
+  })(Cloudinary);
+
+  /**
+   * The following methods are provided through the jQuery class
+   * @class jQuery
+   */
+
+  /**
+   * Convert all img tags in the collection to utilize Cloudinary.
+   * @function jQuery#cloudinary
+   * @param {Object} [options] - options for the tag and transformations
+   * @returns {jQuery}
+   */
+  jQuery.fn.cloudinary = function(options) {
+    this.filter('img').each(function() {
+      var img_options, public_id, url;
+      img_options = jQuery.extend({
+        width: jQuery(this).attr('width'),
+        height: jQuery(this).attr('height'),
+        src: jQuery(this).attr('src')
+      }, jQuery(this).data(), options);
+      public_id = img_options.source || img_options.src;
+      delete img_options.source;
+      delete img_options.src;
+      url = jQuery.cloudinary.url(public_id, img_options);
+      img_options = new Transformation(img_options).toHtmlAttributes();
+      return jQuery(this).data('src-cache', url).attr({
+        width: img_options.width,
+        height: img_options.height
+      });
+    }).cloudinary_update(options);
+    return this;
+  };
+
+  /**
+   * Update hidpi (dpr_auto) and responsive (w_auto) fields according to the current container size and the device pixel ratio.
+   * Only images marked with the cld-responsive class have w_auto updated.
+   * options:
+   * - responsive_use_stoppoints:
+   *   - true - always use stoppoints for width
+   *   - "resize" - use exact width on first render and stoppoints on resize (default)
+   *   - false - always use exact width
+   * - responsive:
+   *   - true - enable responsive on this element. Can be done by adding cld-responsive.
+   *            Note that jQuery.cloudinary.responsive() should be called once on the page.
+   * - responsive_preserve_height: if set to true, original css height is perserved. Should only be used if the transformation supports different aspect ratios.
+   */
+  jQuery.fn.cloudinary_update = function(options) {
+    if (options == null) {
+      options = {};
+    }
+    jQuery.cloudinary.cloudinary_update(this.filter('img').toArray(), options);
+    return this;
+  };
+  webp = null;
+
+  /**
+   * @function jQuery#webpify
+   */
+  jQuery.fn.webpify = function(options, webp_options) {
+    var that, webp_canary;
+    if (options == null) {
+      options = {};
+    }
+    that = this;
+    webp_options = webp_options != null ? webp_options : options;
+    if (!webp) {
+      webp = jQuery.Deferred();
+      webp_canary = new Image;
+      webp_canary.onerror = webp.reject;
+      webp_canary.onload = webp.resolve;
+      webp_canary.src = 'data:image/webp;base64,UklGRi4AAABXRUJQVlA4TCEAAAAvAUAAEB8wAiMwAgSSNtse/cXjxyCCmrYNWPwmHRH9jwMA';
+    }
+    jQuery(function() {
+      return webp.done(function() {
+        return jQuery(that).cloudinary(jQuery.extend({}, webp_options, {
+          format: 'webp'
+        }));
+      }).fail(function() {
+        return jQuery(that).cloudinary(options);
+      });
+    });
+    return this;
+  };
+  jQuery.fn.fetchify = function(options) {
+    return this.cloudinary(jQuery.extend(options, {
+      'type': 'fetch'
+    }));
+  };
+  jQuery.cloudinary = new CloudinaryJQuery();
+  jQuery.cloudinary.fromDocument();
+
+  /**
+   * This module extends CloudinaryJquery to support jQuery File Upload
+   * Depends on 'jquery', 'util', 'cloudinaryjquery', 'jquery.ui.widget', 'jquery.iframe-transport','jquery.fileupload'
+   */
+
+  /**
+   * Delete a resource using the upload token
+   * @function CloudinaryJQuery#delete_by_token
+   * @param {string} delete_token - the delete token
+   * @param {Object} [options]
+   * @param {string} [options.url] - an alternative URL to use for the API
+   * @param {string} [options.cloud_name] - an alternative cloud_name to use. This parameter is ignored if `options.url` is provided.
+   */
+  CloudinaryJQuery.prototype.delete_by_token = function(delete_token, options) {
+    var cloud_name, dataType, url;
+    options = options || {};
+    url = options.url;
+    if (!url) {
+      cloud_name = options.cloud_name || jQuery.cloudinary.config().cloud_name;
+      url = 'https://api.cloudinary.com/v1_1/' + cloud_name + '/delete_by_token';
+    }
+    dataType = jQuery.support.xhrFileUpload ? 'json' : 'iframe json';
+    return jQuery.ajax({
+      url: url,
+      method: 'POST',
+      data: {
+        token: delete_token
+      },
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest'
+      },
+      dataType: dataType
+    });
+  };
+
+  /**
+   * Creates an `input` tag and sets it up to upload files to cloudinary
+   * @function CloudinaryJQuery#unsigned_upload_tag
+   * @param {string}
+   */
+  CloudinaryJQuery.prototype.unsigned_upload_tag = function(upload_preset, upload_params, options) {
+    return jQuery('<input/>').attr({
+      type: 'file',
+      name: 'file'
+    }).unsigned_cloudinary_upload(upload_preset, upload_params, options);
+  };
+
+  /**
+   * Initialize the jQuery File Upload plugin to upload to Cloudinary
+   * @function jQuery#cloudinary_fileupload
+   * @param {Object} options
+   * @returns {jQuery}
+   */
+  jQuery.fn.cloudinary_fileupload = function(options) {
+    var cloud_name, initializing, resource_type, type, upload_url;
+    if (!Util.isFunction(jQuery.fn.fileupload)) {
+      return this;
+    }
+    initializing = !this.data('blueimpFileupload');
+    if (initializing) {
+      options = jQuery.extend({
+        maxFileSize: 20000000,
+        dataType: 'json',
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest'
+        }
+      }, options);
+    }
+    this.fileupload(options);
+    if (initializing) {
+      this.bind('fileuploaddone', function(e, data) {
+        var add_field, field, multiple, upload_info;
+        if (data.result.error) {
+          return;
+        }
+        data.result.path = ['v', data.result.version, '/', data.result.public_id, data.result.format ? '.' + data.result.format : ''].join('');
+        if (data.cloudinaryField && data.form.length > 0) {
+          upload_info = [data.result.resource_type, data.result.type, data.result.path].join('/') + '#' + data.result.signature;
+          multiple = jQuery(e.target).prop('multiple');
+          add_field = function() {
+            return jQuery('<input/>').attr({
+              type: 'hidden',
+              name: data.cloudinaryField
+            }).val(upload_info).appendTo(data.form);
+          };
+          if (multiple) {
+            add_field();
+          } else {
+            field = jQuery(data.form).find('input[name="' + data.cloudinaryField + '"]');
+            if (field.length > 0) {
+              field.val(upload_info);
+            } else {
+              add_field();
+            }
+          }
+        }
+        return jQuery(e.target).trigger('cloudinarydone', data);
+      });
+      this.bind('fileuploadsend', function(e, data) {
+        data.headers = jQuery.extend({}, data.headers, {
+          'X-Unique-Upload-Id': (Math.random() * 10000000000).toString(16)
+        });
+        return true;
+      });
+      this.bind('fileuploadstart', function(e) {
+        return jQuery(e.target).trigger('cloudinarystart');
+      });
+      this.bind('fileuploadstop', function(e) {
+        return jQuery(e.target).trigger('cloudinarystop');
+      });
+      this.bind('fileuploadprogress', function(e, data) {
+        return jQuery(e.target).trigger('cloudinaryprogress', data);
+      });
+      this.bind('fileuploadprogressall', function(e, data) {
+        return jQuery(e.target).trigger('cloudinaryprogressall', data);
+      });
+      this.bind('fileuploadfail', function(e, data) {
+        return jQuery(e.target).trigger('cloudinaryfail', data);
+      });
+      this.bind('fileuploadalways', function(e, data) {
+        return jQuery(e.target).trigger('cloudinaryalways', data);
+      });
+      if (!this.fileupload('option').url) {
+        cloud_name = options.cloud_name || jQuery.cloudinary.config().cloud_name;
+        resource_type = options.resource_type || 'auto';
+        type = options.type || 'upload';
+        upload_url = 'https://api.cloudinary.com/v1_1/' + cloud_name + '/' + resource_type + '/' + type;
+        this.fileupload('option', 'url', upload_url);
+      }
+    }
+    return this;
+  };
+
+  /**
+   * Add a file to upload
+   * @function jQuery#cloudinary_upload_url
+   * @param {string} remote_url - the url to add
+   * @returns {jQuery}
+   */
+  jQuery.fn.cloudinary_upload_url = function(remote_url) {
+    if (!Util.isFunction(jQuery.fn.fileupload)) {
+      return this;
+    }
+    this.fileupload('option', 'formData').file = remote_url;
+    this.fileupload('add', {
+      files: [remote_url]
+    });
+    delete this.fileupload('option', 'formData').file;
+    return this;
+  };
+
+  /**
+   * Initialize the jQuery File Upload plugin to upload to Cloudinary using unsigned upload
+   * @function jQuery#unsigned_cloudinary_upload
+   * @param {string} upload_preset - the upload preset to use
+   * @param {Object} [upload_params] - parameters that should be past to the server
+   * @param {Object} [options]
+   * @returns {jQuery}
+   */
+  jQuery.fn.unsigned_cloudinary_upload = function(upload_preset, upload_params, options) {
+    var attr, attrs_to_move, html_options, i, key, value;
+    if (upload_params == null) {
+      upload_params = {};
+    }
+    if (options == null) {
+      options = {};
+    }
+    upload_params = Util.cloneDeep(upload_params);
+    options = Util.cloneDeep(options);
+    attrs_to_move = ['cloud_name', 'resource_type', 'type'];
+    i = 0;
+    while (i < attrs_to_move.length) {
+      attr = attrs_to_move[i];
+      if (upload_params[attr]) {
+        options[attr] = upload_params[attr];
+        delete upload_params[attr];
+      }
+      i++;
+    }
+    for (key in upload_params) {
+      value = upload_params[key];
+      if (Util.isPlainObject(value)) {
+        upload_params[key] = jQuery.map(value, function(v, k) {
+          return k + '=' + v;
+        }).join('|');
+      } else if (Util.isArray(value)) {
+        if (value.length > 0 && jQuery.isArray(value[0])) {
+          upload_params[key] = jQuery.map(value, function(array_value) {
+            return array_value.join(',');
+          }).join('|');
+        } else {
+          upload_params[key] = value.join(',');
+        }
+      }
+    }
+    if (!upload_params.callback) {
+      upload_params.callback = '/cloudinary_cors.html';
+    }
+    upload_params.upload_preset = upload_preset;
+    options.formData = upload_params;
+    if (options.cloudinary_field) {
+      options.cloudinaryField = options.cloudinary_field;
+      delete options.cloudinary_field;
+    }
+    html_options = options.html || {};
+    html_options["class"] = Util.trim("cloudinary_fileupload " + (html_options["class"] || ''));
+    if (options.multiple) {
+      html_options.multiple = true;
+    }
+    this.attr(html_options).cloudinary_fileupload(options);
+    return this;
+  };
+  jQuery.cloudinary = new CloudinaryJQuery();
+  cloudinary = {
+    utf8_encode: utf8_encode,
+    crc32: crc32,
+    Util: Util,
+    Condition: Condition,
+    Transformation: Transformation,
+    Configuration: Configuration,
+    HtmlTag: HtmlTag,
+    ImageTag: ImageTag,
+    VideoTag: VideoTag,
+    Layer: Layer,
+    TextLayer: TextLayer,
+    SubtitlesLayer: SubtitlesLayer,
+    Cloudinary: Cloudinary,
+    VERSION: "2.1.3",
+    CloudinaryJQuery: CloudinaryJQuery
+  };
+  return cloudinary;
+});
+
+
+
+(function ($) {
+
+    //Noty Message
+    $.fn.General_ShowNotification = function (options) {
+        var defaults = {
+            message: '',
+            type: 'success',
+            timeout: 2000
+        };
+
+        var opts = $.extend({}, defaults, options);
+
+        $.noty.closeAll();  //close all before displaying
+
+        if ($('#noty_topRight_layout_container').length > 0) {
+            $('#noty_topRight_layout_container').remove();
+        }
+
+        var n = noty({
+            type: opts.type,
+            text: opts.message,
+            layout: 'topRight',
+            timeout: opts.timeout,
+            dismissQueue: true,
+            animation: {
+                open: 'animated bounceInRight', // jQuery animate function property object
+                close: 'animated bounceOutRight', // jQuery animate function property object
+                easing: 'swing', // easing
+                speed: 500 // opening & closing animation speed
+            }
+        });
+    };
+
+    //Show Error Message
+    $.fn.General_ShowErrorMessage = function (options) {
+        var defaults = {
+            message: '',
+            type: 'error',
+            timeout: 2000,
+            title: 'Error'
+        };
+
+        var opts = $.extend({}, defaults, options);
+
+        bootbox.alert({
+            title: opts.title,
+            message: opts.message
+        });
+    };
+
+}(jQuery));
+    $.fn.Ajax_LoadBlogArticles = function(options){
+        var defaults = {
+            'limit': 20,
+            'containerClass': 'ajaxArticles',
+            'onSuccess' : function(){},
+            'onError' : function(){},
+            'beforeSend' : function(){},
+            'onComplete' : function(){}
+        };
+        
+        var opts = $.extend( {}, defaults, options );
+        
+        var offset = parseInt($('.'+opts.containerClass).data('offset'));
+        if(isNaN(offset) || offset < 0) {
+            offset = opts.limit;
+        }
+        
+        var existingNonPinnedCount = parseInt($('.'+opts.containerClass).data('existing-nonpinned-count'));
+        if(isNaN(existingNonPinnedCount)) {
+            existingNonPinnedCount = -1;
+        }
+        
+        $('.'+opts.containerClass).data('offset', (offset + opts.limit));
+        
+        var csrfToken = $('meta[name="csrf-token"]').attr("content");
+        
+        var dateFormat = 'SHORT';
+        
+        $.ajax({
+            type: 'post',
+            url: _appJsConfig.baseHttpPath + '/home/load-articles',
+            dataType: 'json',
+            data: {offset: offset, limit: opts.limit, existingNonPinnedCount: existingNonPinnedCount, _csrf: csrfToken, dateFormat: dateFormat},
+            success: function (data, textStatus, jqXHR) {
+                if (opts.onSuccess && typeof opts.onSuccess === 'function') {
+                    opts.onSuccess(data, textStatus, jqXHR);
+                }                
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR.responseText);
+                if (opts.onError && typeof opts.onError === 'function') {
+                    opts.onError(jqXHR, textStatus, errorThrown);
+                }
+            },
+            beforeSend: function (jqXHR, settings) {
+                if (opts.beforeSend && typeof opts.beforeSend === 'function') {
+                    opts.beforeSend(jqXHR, settings);
+                }
+            },
+            complete: function (jqXHR, textStatus) {
+                if (opts.onComplete && typeof opts.onComplete === 'function') {
+                    opts.onComplete(jqXHR, textStatus);
+                }
+            }
+        });        
+    };
+(function($) {
+
+    $.fn.Ajax_pinUnpinArticle = function(options){
+
+        var defaults = {
+            'onSuccess' : function(){},
+            'onError' : function(){},
+            'beforeSend' : function(){},
+            'onComplete' : function(){}
+        };
+        var opts = $.extend( {}, defaults, options );
+
+        return this.each (function(){
+            var elem  = $(this);
+            $(elem).off('click');
+            $(elem).on('click', function(e){
+                e.preventDefault();
+
+                var articleId = parseInt($(elem).data('id'));
+                var position = parseInt($(elem).data('position'));
+                var existingStatus = $(elem).data('status');
+                var isSocial = $(elem).data('social');
+                
+                if(isNaN(articleId) || articleId <= 0 || isNaN(position) || position <= 0) {
+                    return;
+                }
+
+                var csrfToken = $('meta[name="csrf-token"]').attr("content");
+                $.ajax({
+                    type: 'POST',
+                    url: _appJsConfig.baseHttpPath + '/home/pin-article',
+                    dataType: 'json',
+                    data: {id: articleId, status: existingStatus, social: isSocial, position: position, _csrf: csrfToken},
+                    success: function(data, textStatus, jqXHR) {
+                        $(elem).data('status', ((existingStatus == 1) ? 0 : 1));
+                        var msg = (existingStatus == 1) ? "Article un-pinned successfully" : "Article pinned successfully";
+                        (existingStatus == 1) ? $(elem).removeClass('selected') : $(elem).addClass('selected');
+                        $.fn.General_ShowNotification({message: msg});
+                        if (opts.onSuccess && typeof opts.onSuccess === 'function') {
+                            opts.onSuccess(data, elem);
+                        }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown){
+                        if (opts.onError && typeof opts.onError === 'function') {
+                            opts.onError(elem, jqXHR.responseText);
+                        }
+                    },
+                    beforeSend: function(jqXHR, settings) { 
+                        if (opts.beforeSend && typeof opts.beforeSend === 'function') {
+                            opts.beforeSend(elem);
+                        }
+                    },
+                    complete: function(jqXHR, textStatus) {
+                        if (opts.onComplete && typeof opts.onComplete === 'function') {
+                            opts.onComplete(elem);
+                        }
+                    }
+                });
+
+                
+
+            });
+        });
+    };
+    
+    
+ var deleteArticle = function (articleGuid, isSocial, elem, onSuccess) {
+
+        if (typeof articleGuid === 'undefined' || articleGuid === "") {
+            return;
+        }
+
+        var csrfToken = $('meta[name="csrf-token"]').attr("content");
+        $.ajax({
+            type: 'POST',
+            url: _appJsConfig.baseHttpPath + '/home/delete-article',
+            dataType: 'json',
+            data: {guid: articleGuid, social: isSocial, _csrf: csrfToken},
+            success: function (data, textStatus, jqXHR) {
+                var msg = (isSocial == 1) ? "Article deleted successfully" : "Article hidden successfully";
+                $.fn.General_ShowNotification({message: msg});
+                if (onSuccess && typeof onSuccess === 'function') {
+                    onSuccess(data, elem);
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                $.fn.General_ShowErrorMessage({message: jqXHR.responseText});
+            },
+            beforeSend: function (jqXHR, settings) {
+            },
+            complete: function (jqXHR, textStatus) {
+            }
+        });
+    };
+    
+    
+    $.fn.Ajax_deleteArticle = function(options){
+
+        var defaults = {
+            'onSuccess' : function(){},
+            'onError' : function(){},
+            'beforeSend' : function(){},
+            'onComplete' : function(){}
+        };
+        var opts = $.extend( {}, defaults, options );
+
+        return this.each (function(){
+            var elem  = $(this);
+            $(elem).off('click');
+            $(elem).on('click', function(e){
+                e.preventDefault();
+             
+                var isSocial = $(elem).data('social');
+                var msgStr = (isSocial == 1) ? "Do you really want to delete this article?" : "Do you really want to hide this article?";
+                var articleGuid = $(elem).data('guid');
+                
+                if (typeof bootbox === 'undefined') {
+                    var result = confirm(msgStr);
+                    if (result === true) {
+                        deleteArticle(articleGuid, isSocial, elem, opts.onSuccess);
+                    }
+                } else {
+                    bootbox.confirm({
+                        title: "Confirm",
+                        message: msgStr,
+                        callback: function (result) {
+                            if (result === true) {
+                                deleteArticle(articleGuid, isSocial, elem, opts.onSuccess);
+                            }
+                        }
+                    });
+                }
+
+
+            });
+        });
+    };    
+
+
+
+}(jQuery));
+    $.fn.Ajax_LoadSearchArticles = function(options){
+        var defaults = {
+            search: '',
+            limit: 20,
+            containerClass: 'ajaxArticles',
+            onSuccess : function(){},
+            onError : function(){},
+            beforeSend : function(){},
+            onComplete : function(){}
+        };
+        
+        var opts = $.extend( {}, defaults, options );
+        
+        var offset = parseInt($('.'+opts.containerClass).data('offset'));
+        if(isNaN(offset) || offset < 0) {
+            offset = opts.limit;
+        }
+        
+        $('.'+opts.containerClass).data('offset', (offset + opts.limit));
+        
+         var csrfToken = $('meta[name="csrf-token"]').attr("content");
+        
+        $.ajax({
+            type: 'POST',
+            url: _appJsConfig.baseHttpPath + '/search/load-articles',
+            dataType: 'JSON',
+            data: {offset: offset, limit: opts.limit, search: opts.search, _csrf: csrfToken},
+            success: function (data, textStatus, jqXHR) {
+                if (opts.onSuccess && typeof opts.onSuccess === 'function') {
+                    opts.onSuccess(data, textStatus, jqXHR);
+                }                
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (opts.onError && typeof opts.onError === 'function') {
+                    opts.onError(jqXHR, textStatus, errorThrown);
+                }
+            },
+            beforeSend: function (jqXHR, settings) {
+                if (opts.beforeSend && typeof opts.beforeSend === 'function') {
+                    opts.beforeSend(jqXHR, settings);
+                }
+            },
+            complete: function (jqXHR, textStatus) {
+                if (opts.onComplete && typeof opts.onComplete === 'function') {
+                    opts.onComplete(jqXHR, textStatus);
+                }
+            }
+        });        
+    };
+(function ($) {
+
+    $.fn.Disqus = function (options) {
+        var defaults = {
+            params: '',
+            //updateCountClass: $('.disqusComment').find('.total')
+        };
+
+        var opts = $.extend({}, defaults, options);
+
+        var disqus_identifier = opts.params.articleId;
+        var disqus_shortname = opts.params.shortName;
+        
+         disqus_config = function () { 
+            var token = opts.params.token;
+            var apiKey = opts.params.apiKey;
+            var networkName = opts.params.networkName;
+            var userId = opts.params.userId;
+            var currentUrl = opts.params.url;
+            this.page.identifier = disqus_identifier;
+            this.page.remote_auth_s3 = token;
+            this.page.api_key = apiKey;
+            this.sso = {
+                name: networkName,
+                url: _appJsConfig.baseHttpPath + '/auth/login',
+                logout: _appJsConfig.baseHttpPath + '/auth/logoff'
+            };
+            this.callbacks.onNewComment = [function (comment) {  //alert();
+                    var text = comment.text;
+                    var post_url = currentUrl;
+                    var authorId = userId;
+                    var articleId = opts.params.articleId;
+                    $.ajax({
+                        url: _appJsConfig.baseHttpPath + '/article/disqus-comment',
+                        type: 'post',
+                        data: {articleId: articleId, authorId: authorId, text: text, post_url: post_url, _csrf: yii.getCsrfToken()},
+                        dataType: 'json',
+                        success: function (data) {
+                            if(data.success == '1') {
+                            }
+                        }
+                    });
+                }];
+        };
+
+
+        (function () {
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+
+        (function () {
+            var s = document.createElement('script');
+            s.async = true;
+            s.type = 'text/javascript';
+            s.id = 'dsq-count-scr';
+            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+
+    };
+}(jQuery));
+
+(function ($) {
+
+    $.fn.videoPlayer = function (options) {
+
+        var defaults = {
+            type: "html",
+            scrolling: "no",
+            fitToView: false,
+            autoSize: false,
+            width: 650,
+            height: 460,
+            maxWidth: "90%",
+            aspectRatio: true,
+            startVolume: 0.8,
+            loop: false,
+            enableAutosize: true,
+            features: ['playpause', 'progress', 'current', 'duration', 'tracks', 'volume', 'fullscreen'],
+            alwaysShowControls: false,
+            iPadUseNativeControls: false,
+            iPhoneUseNativeControls: false,
+            AndroidUseNativeControls: false,
+            alwaysShowHours: false,
+            showTimecodeFrameCount: false,
+            framesPerSecond: 25,
+            enableKeyboard: true,
+            pauseOtherPlayers: true
+        };
+        var opts = $.extend({}, defaults, options);
+        return this.click(function (e) {
+
+            e.preventDefault();
+            e.stopPropagation();
+            var elem = $(this);
+            var source = elem.data('source');
+            var poster = elem.data('poster');
+            var caption = elem.data('caption');
+            var url, content;
+
+            if (source.trim() !== 'undefined' && source.trim() !== "") {
+                var videoId = elem.data('video-id');
+
+                if (source.trim() === 'youtube') {
+                    if (videoId !== "" && typeof videoId !== "undefined") {
+                        url = "http://www.youtube.com/watch?v=" + videoId;
+                    } else {
+                        url = $(elem).data('url');
+                    }
+                    content = "<video width='" + opts.width + "' height='" + opts.height + "' class='videoPlayer' controls='controls' preload='none'><source type='video/youtube' src='" + url + "' /></video>";
+                }
+                else if (source.trim() === 'vimeo') {
+                    if (videoId !== "" && typeof videoId !== "undefined") {
+                         url = "https://vimeo.com/" + videoId;
+                    } else {
+                        url = $(elem).data('url');
+                    }
+                    opts.features = [];
+                    content = "<video width='" + opts.width + "' height='" + opts.height + "' class='videoPlayer' controls='controls' preload='none'><source type='video/vimeo' src='" + url + "' /></video>";
+                }
+                else if (source.trim() === 'cloudinary' || source.trim() === 'instagram' || source.trim() === 'twitter' || source === 'facebook') {
+                    url = elem.data('url');
+                    content = "<video class ='videoPlayer' src='" + url + "' poster='" + poster + "' width='" + opts.width + "' height='" + opts.height + "' controls='controls' preload='none' ></video>";
+                }
+                else if (source.trim() === 'brightcove') {
+                    playerID = videoId.toString().split("::")[2];
+                    accountID = videoId.toString().split("::")[1];
+                    videoId = videoId.toString().split("::")[0];
+                    
+                    if (playerID == '' || typeof playerID == "undefined") {playerID = 'default';}
+                    console.log(playerID);
+                    if (videoId !== "" && typeof videoId !== "undefined") {
+                         url = "http://players.brightcove.net/"+accountID+"/"+playerID+"_default/index.html?videoId=" + videoId;
+                    } else {
+                        url = $(elem).data('url');
+                    }
+                    opts.features = [];
+                    opts.width = (window.innerWidth/3)*2;
+                    opts.height = (opts.width * 9)/16;
+
+                    content = 
+                        '<div style="display: block; position: relative; max-width: 100%;"><div style="padding-top: 56.25%;">\
+                            <iframe src="//players.brightcove.net/'+accountID+'/'+playerID+'_default/index.html?videoId='+videoId+'" \
+                            allowfullscreen\
+                            webkitallowfullscreen\
+                            mozallowfullscreen\
+                            style="width: 100%; height: 100%; position: absolute; top: 0px; bottom: 0px; right: 0px; left: 0px;"></iframe>\
+                        </div></div>';
+                }
+            }
+            
+            if (typeof url !== 'undefined' && url !== "") {
+                var _player, _isPlaying = false;
+                $.fancybox({
+                    type: opts.type,
+                    scrolling: opts.scrolling,
+                    fitToView: opts.fitToView,
+                    autoSize: opts.autoSize,
+                    maxWidth: opts.maxWidth,
+                    aspectRatio: opts.aspectRatio,
+                    helpers: {
+                        overlay: {
+                            locked: false
+                        }
+                    },
+                    beforeLoad: function () {
+                        this.content = content; //"<video class ='videoPlayer' src='" + url + "' poster='" + poster + "' width='" + opts.width + "' height='" + opts.height + "' controls='controls' preload='none' ></video>";
+                        this.title = caption;
+                        this.width = opts.width;
+                        this.height = opts.height;
+                    },
+                    afterShow: function () {
+
+
+                        if (source.trim() !== 'brightcove'){
+
+                            new MediaElementPlayer('.videoPlayer', {
+                                defaultVideoWidth: this.width,
+                                defaultVideoHeight: this.height,
+                                startVolume: opts.startVolume,
+                                loop: opts.loop,
+                                enableAutosize: opts.enableAutosize,
+                                features: opts.features,
+                                alwaysShowControls: opts.alwaysShowControls,
+                                iPadUseNativeControls: opts.iPadUseNativeControls,
+                                iPhoneUseNativeControls: opts.iPhoneUseNativeControls,
+                                AndroidUseNativeControls: opts.AndroidUseNativeControls,
+                                alwaysShowHours: opts.alwaysShowHours,
+                                showTimecodeFrameCount: opts.showTimecodeFrameCount,
+                                framesPerSecond: opts.framesPerSecond,
+                                enableKeyboard: opts.enableKeyboard,
+                                pauseOtherPlayers: opts.pauseOtherPlayers,
+                                success: function (mediaElement, domObject) {
+                                    _player = mediaElement;
+                                    _player.load();
+                                    _player.play();
+                                    _player.addEventListener('playing', function () {
+                                        _isPlaying = true;
+                                    }, false);
+                                    if (source.trim() == 'vimeo') { alert();
+                                        $('.mejs-controls').remove();
+                                    }
+                                }
+                            });
+                        }
+                    },
+                    beforeClose: function () {
+                        if (_isPlaying && navigator.userAgent.match(/msie [6-8]/i)) {
+                            _player.remove();
+                            _isPlaying = false;
+                        }
+                    }
+                });
+            }
+        });
+    };
+}(jQuery));
+(function ($) {
+    
+    $.urlParam = function (name) {
+        var url = window.location.href;
+        var urlArr = url.split('/');
+        return urlArr[urlArr.length - 2];
+    };
+    
+    /*
+     *  Load Users Article on view user profile and user post
+     */
+ 
+    $.fn.Ajax_LoadMoreUserArticles = function (options) {
+        var defaults = {
+            container: '#userArticleContainer',
+            onSuccess: function () {},
+            onError: function () {},
+            beforeSend: function () {},
+            onComplete: function () {}
+        };
+
+        var opts = $.extend({}, defaults, options);
+
+        var username = decodeURIComponent($.urlParam());
+        var totalPosts = parseInt($(opts.container).data('total-count'));
+        var offset = parseInt($(opts.container).data('offset'));
+        if(username === '' || typeof username === 'undefined'){
+            return;
+        }
+        if(isNaN(totalPosts) || isNaN(offset)){
+            return;
+        }
+        
+        offset = offset + _appJsConfig.articleOffset; //Declared in _javascripts.php
+        if(offset > totalPosts){
+            return;
+        }
+        $(opts.container).data('offset', offset);
+        var csrfToken = $('meta[name="csrf-token"]').attr("content");
+        
+        $.ajax({
+                type: 'POST',
+                url: _appJsConfig.baseHttpPath + '/profile/' + username + '/posts',
+                dataType: 'json',
+                data: {offset: offset, _csrf: csrfToken},
+                success: function(data, textStatus, jqXHR) {
+                    if (opts.onSuccess && typeof opts.onSuccess === 'function') {
+                        opts.onSuccess(data);
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown){
+                    if (opts.onError && typeof opts.onError === 'function') {
+                        opts.onError(jqXHR.responseText);
+                    }
+                },
+                beforeSend: function(jqXHR, settings) { 
+                    if (opts.beforeSend && typeof opts.beforeSend === 'function') {
+                        opts.beforeSend();
+                    }
+                },
+                complete: function(jqXHR, textStatus) {
+                    if (opts.onComplete && typeof opts.onComplete === 'function') {
+                        opts.onComplete();
+                    }
+                }
+            }); 
+    };
+    
+    /**
+     * My News Page Load More Articles
+     */
+    $.fn.Ajax_LoadMoreMyArticles = function (options) {
+        var defaults = {
+            containerClass: 'LoadMyArticles',
+            onSuccess: function () {},
+            onError: function () {},
+            beforeSend: function () {},
+            onComplete: function () {}
+        };
+
+        var opts = $.extend({}, defaults, options);
+
+        var page = parseInt($('.' + opts.containerClass).data('page'));
+        if (isNaN(page) || page < 0) {
+           page = 1;
+        }
+
+        $('.' + opts.containerClass).data('page', (page + 1));
+        var csrfToken = $('meta[name="csrf-token"]').attr("content");
+
+        $.ajax({
+            type: 'post',
+            url: _appJsConfig.baseHttpPath + '/user/load-articles',
+            dataType: 'json',
+            data: {page: page, limit: _appJsConfig.articleOffset, _csrf: csrfToken},
+            success: function (data, textStatus, jqXHR) {
+                if (opts.onSuccess && typeof opts.onSuccess === 'function') {
+                    opts.onSuccess(data, textStatus, jqXHR);
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR.responseText);
+                if (opts.onError && typeof opts.onError === 'function') {
+                    opts.onError(jqXHR, textStatus, errorThrown);
+                }
+            },
+            beforeSend: function (jqXHR, settings) {
+                if (opts.beforeSend && typeof opts.beforeSend === 'function') {
+                    opts.beforeSend(jqXHR, settings);
+                }
+            },
+            complete: function (jqXHR, textStatus) {
+                if (opts.onComplete && typeof opts.onComplete === 'function') {
+                    opts.onComplete(jqXHR, textStatus);
+                }
+            }
+        });
+    };
+}(jQuery));
+(function ($) {
+
+    //Follow/Unfollow a Blog
+    $.fn.followBlog = function (options) {
+
+        var defaults = {
+            channel : 0,
+            onSuccess: function () {},
+            onError: function () {},
+            beforeSend: function () {},
+            onComplete: function () {}
+        };
+        var opts = $.extend({}, defaults, options);
+
+        return this.each(function () {
+            var elem = $(this);
+            $(elem).click(function (e) {
+                e.preventDefault();
+                var obj = $(this);
+                var blogGuid = $(this).data('guid');
+                var status = $(this).data('status');
+                
+                if(typeof blogGuid === 'undefined' || blogGuid === '') {
+                    return false;
+                }
+                if(typeof status === 'undefined' || status === '') {
+                    return false;
+                }
+                
+                var state = (status === 'unfollow') ? 'follow' : 'unfollow';
+                var csrfToken = $('meta[name="csrf-token"]').attr("content");
+                $.ajax({
+                    type: 'POST',
+                    url: _appJsConfig.baseHttpPath + '/user/follow-blog',
+                    dataType: 'json',
+                    data: {guid: blogGuid,  _csrf: csrfToken},
+                    success: function (data, textStatus, jqXHR) {
+                        $(obj).data('status', state);
+                        $().General_ShowNotification({message: 'Follow blog successfully'});
+                        if (opts.onSuccess && typeof opts.onSuccess === 'function') {
+                            opts.onSuccess(data, obj);
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        if (opts.onError && typeof opts.onError === 'function') {
+                            opts.onError(obj, jqXHR.responseText);
+                        }
+                    },
+                    beforeSend: function (jqXHR, settings) {
+                        if (opts.beforeSend && typeof opts.beforeSend === 'function') {
+                            opts.beforeSend(obj);
+                        }
+                    },
+                    complete: function (jqXHR, textStatus) {
+                        if (opts.onComplete && typeof opts.onComplete === 'function') {
+                            opts.onComplete(obj);
+                        }
+                    }
+                });
+            });
+        });
+    };
+    
+     
+
+    //Follow/Unfollow a user or writer
+    $.fn.followUser = function (options) {
+
+        var defaults = {
+            'onSuccess': function () {},
+            'onError': function () {},
+            'beforeSend': function () {},
+            'onComplete': function () {}
+        };
+        var opts = $.extend({}, defaults, options);
+
+        return this.each(function () {
+            var elem = $(this);
+            $(elem).click(function (e) {
+                e.preventDefault();
+
+                var userGuid = $(this).data('guid');
+                var status = $(this).data('status');
+                var obj = $(this);
+                
+                if(typeof userGuid === 'undefined' || userGuid === '') {
+                    return false;
+                }
+                if(typeof status === 'undefined' || status === '') {
+                    return false;
+                }
+
+                var state = (status === 'unfollow') ? 'follow' : 'unfollow';
+                var csrfToken = $('meta[name="csrf-token"]').attr("content");
+                
+                $.ajax({
+                    type: 'POST',
+                    url: _appJsConfig.baseHttpPath + '/user/follow-user',
+                    dataType: 'json',
+                    data: {guid: userGuid, _csrf: csrfToken},
+                    success: function (data, textStatus, jqXHR) {
+                        $(obj).data('status', state);
+                        $().General_ShowNotification({message: 'Follow user successfully'});
+                        if (opts.onSuccess && typeof opts.onSuccess === 'function') {
+                            opts.onSuccess(data, obj);
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        if (opts.onError && typeof opts.onError === 'function') {
+                            opts.onError(obj, jqXHR.responseText);
+                        }
+                    },
+                    beforeSend: function (jqXHR, settings) {
+                        if (opts.beforeSend && typeof opts.beforeSend === 'function') {
+                            opts.beforeSend(obj);
+                        }
+                    },
+                    complete: function (jqXHR, textStatus) {
+                        if (opts.onComplete && typeof opts.onComplete === 'function') {
+                            opts.onComplete(obj);
+                        }
+                    }
+                });
+
+            });
+        });
+    };
+
+
+    //Follow/Unfollow a Article
+    $.fn.followArticle = function (options) {
+
+        var defaults = {
+            'onSuccess': function () {},
+            'onError': function () {},
+            'beforeSend': function () {},
+            'onComplete': function () {}
+        };
+        var opts = $.extend({}, defaults, options);
+
+        return this.each(function () {
+            var elem = $(this);
+            $(elem).click(function (e) {
+                e.preventDefault();
+
+                var guid = $(this).data('guid');
+                var status = $(this).data('status');
+                var obj = $(this);
+
+                if(typeof guid === 'undefined' || guid === '') {
+                    return false;
+                }
+                if(typeof status === 'undefined' || status === '') {
+                    return false;
+                }
+                
+                var state = (status === 'unfollow') ? 'follow' : 'unfollow';
+                var csrfToken = $('meta[name="csrf-token"]').attr("content");
+                $.ajax({
+                    type: 'POST',
+                    url: _appJsConfig.baseHttpPath + '/user/follow-article',
+                    dataType: 'json',
+                    data: {guid: guid, _csrf: csrfToken},
+                    success: function (data, textStatus, jqXHR) {
+                        $(obj).data('status', state);
+                        $().General_ShowNotification({message: 'Follow article successfully'});
+                        if (opts.onSuccess && typeof opts.onSuccess === 'function') {
+                            opts.onSuccess(data, obj);
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        if (opts.onError && typeof opts.onError === 'function') {
+                            opts.onError(obj, jqXHR.responseText);
+                        }
+                    },
+                    beforeSend: function (jqXHR, settings) {
+                        if (opts.beforeSend && typeof opts.beforeSend === 'function') {
+                            opts.beforeSend(obj);
+                        }
+                    },
+                    complete: function (jqXHR, textStatus) {
+                        if (opts.onComplete && typeof opts.onComplete === 'function') {
+                            opts.onComplete(obj);
+                        }
+                    }
+                });
+            });
+        });
+    };
+
+}(jQuery));
+(function ($) {
+
+    $.fn.loginModal = function (options) {
+
+        var defaults = {
+            class: '',
+            minWidth : '',
+            maxWidth: '',
+            referUrl: window.location.href,
+            onLoad: function () {}
+        };
+        var opts = $.extend({}, defaults, options);
+
+        return this.each(function () {
+            var elem = $(this);
+            $(elem).click(function (e) {
+                e.preventDefault();
+                var $modal;
+                $modal = document.createElement("div");
+                $modal.id = "forceLogin-Modal";
+                $modal.className = "modal fade" + opts.class;
+                $modal.style.minWidth = opts.minWidth + "px";
+                $modal.style.maxWidth = opts.maxWidth + "px";
+                $modal.tabIndex = -1;
+                $modal.setAttribute("role", "dialog");
+                $modal.setAttribute("aria-labelledby", "myModalLabel");
+                
+                document.body.appendChild($modal);
+
+                $('body').modalmanager('loading');
+                setTimeout(function () {
+                    $('#forceLogin-Modal').load(_appJsConfig.baseHttpPath + '/auth/login-modal?ref=' + escape(opts.referUrl), '', function () {
+                        $('#forceLogin-Modal').modal();
+                        if (opts.onLoad && typeof opts.onLoad === 'function') {
+                            opts.onLoad();
+                        }
+                    });
+                }, 500);
+            });
+        });  
+    };
+    
+    $.fn.validateLoginForm = function (options) {
+
+        var defaults = {};
+        var opts = $.extend({}, defaults, options);
+        return this.each(function () {
+            var elem = $(this);
+            $(elem).validate({
+                rules: {
+                    username: "required",
+                    password: {
+                        required: true,
+                        minlength: 6
+                    }
+                },
+                messages: {
+                    username: "Username cannot be blank.",
+                    password: {
+                        required: "Password cannot be blank.",
+                        minlength: "Your password must be at least 6 characters"
+                    }
+                }
+            });
+        });
+    };
+    
+    $.fn.validateSignupForm = function (options) {
+
+        var defaults = {};
+        var opts = $.extend({}, defaults, options);
+
+        return this.each(function () {
+            var elem = $(this);
+            $(elem).validate({
+                rules: {
+                    firstname: "required",
+                    lastname: "required",
+                    username: "required",
+                    captcha: "required",
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    password: {
+                        required: true,
+                        minlength: 6
+                    },
+                    verifypassword: {
+                        required: true,
+                        minlength: 5,
+                        equalTo: "#password"
+                    }
+                },
+                messages: {
+                    firstname: "First name cannot be blank.",
+                    lastname: "Last name cannot be blank.",
+                    username: "Username cannot be blank.",
+                    captcha: "Captcha cannot be blank.",
+                    email: "Email cannot be blank.",
+                    password: {
+                        required: "Password cannot be blank.",
+                        minlength: "Password should contain at least 6 characters."
+                    },
+                    verifypassword: {
+                        required: "Verify password cannot be blank.",
+                        minlength: "Verify Password should contain at least 6 characters.",
+                        equalTo: "Verify Password should exactly match Password"
+                    }
+                }
+            });
+        });
+    };
+    
+    $.fn.validateSocialSignupForm = function (options) {
+
+        var defaults = {};
+        var opts = $.extend({}, defaults, options);
+
+        return this.each(function () {
+            var elem = $(this);
+            $(elem).validate({
+                rules: {
+                    firstname: "required",
+                    lastname: "required",
+                    username: "required",
+                    terms: "required",
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    password: {
+                        required: true,
+                        minlength: 6
+                    },
+                    verifypassword: {
+                        required: true,
+                        minlength: 5,
+                        equalTo: "#password"
+                    }
+                },
+                errorElement: "span",
+                messages: {
+                    firstname: "First name cannot be blank.",
+                    lastname: "Last name cannot be blank.",
+                    username: "Username cannot be blank.",
+                    email: "Email cannot be blank.",
+                    terms: "",
+                    password: {
+                        required: "Password cannot be blank.",
+                        minlength: "Password should contain at least 6 characters."
+                    },
+                    verifypassword: {
+                        required: "Verify password cannot be blank.",
+                        minlength: "Verify Password should contain at least 6 characters.",
+                        equalTo: "Verify Password should exactly match Password"
+                    }
+                }
+            });
+        });
+    };
+}(jQuery));
+(function ($) {
+    
+    $.image = function (options) {
+        var defaults = {
+            media : {},
+            height: 500,
+            width: 500,
+            mediaOptions: {}
+        };
+
+        var opts = $.extend({}, defaults, options);
+        
+        var imageId = opts.media.id;
+        var path = opts.media.path;
+        var cloudName = opts.media.cloudName;
+        if(typeof cloudName === 'undefined' || cloudName === '') {
+            return;
+        }
+        
+        $.cloudinary.config({cloud_name:cloudName});
+        if(imageId === '' &&  path === '') {
+            return;
+        }
+        
+        var imageOptions = $.extend({},{height: opts.height, width: opts.width}, opts.mediaOptions);
+        var url = $.cloudinary.url(imageId, imageOptions);
+        
+        return url;
+    };
+    
+    $.video = function (options) {
+        var defaults = {
+            media : {},
+            width: 700,
+            height:400,
+            mediaOptions: {}
+        };
+
+        var opts = $.extend({}, defaults, options);
+        
+        var videoId = opts.media.videoId;
+        var path = opts.media.path;
+        var cloudName = opts.media.cloudName;
+        if(typeof cloudName === 'undefined' || cloudName === '') {
+            return;
+        }
+        
+        $.cloudinary.config({cloud_name:cloudName});
+        if(videoId === '' &&  path === '') {
+            return;
+        }
+        var videoOptions = $.extend({},{height: opts.height, width: opts.width}, opts.mediaOptions);
+        var url = $.cloudinary.video(videoId, videoOptions);
+        
+        return url;
+    };
+}(jQuery));
+(function ($) {
+
+    $.fn.SocialShare = function (options) {
+        var defaults = {
+            onLoad: function () {}
+        };
+        var opts = $.extend({}, defaults, options);
+
+        return this.each(function () {
+            var elem = $(this);
+            $(elem).click(function (e) {
+                var elem = $(this);
+                $('body').modalmanager('loading');
+                setTimeout(function () {
+                    $('#socialShare-Modal').modal();
+                    if (opts.onLoad && typeof opts.onLoad === 'function') {
+                        opts.onLoad(elem);
+                    }
+                }, 500);
+                return false;
+            });
+        });  
+    };
+}(jQuery));
+/**
+ * Yii JavaScript module.
+ *
+ * @link http://www.yiiframework.com/
+ * @copyright Copyright (c) 2008 Yii Software LLC
+ * @license http://www.yiiframework.com/license/
+ * @author Qiang Xue <qiang.xue@gmail.com>
+ * @since 2.0
+ */
+
+/**
+ * yii is the root module for all Yii JavaScript modules.
+ * It implements a mechanism of organizing JavaScript code in modules through the function "yii.initModule()".
+ *
+ * Each module should be named as "x.y.z", where "x" stands for the root module (for the Yii core code, this is "yii").
+ *
+ * A module may be structured as follows:
+ *
+ * ```javascript
+ * yii.sample = (function($) {
+ *     var pub = {
+ *         // whether this module is currently active. If false, init() will not be called for this module
+ *         // it will also not be called for all its child modules. If this property is undefined, it means true.
+ *         isActive: true,
+ *         init: function() {
+ *             // ... module initialization code go here ...
+ *         },
+ *
+ *         // ... other public functions and properties go here ...
+ *     };
+ *
+ *     // ... private functions and properties go here ...
+ *
+ *     return pub;
+ * })(jQuery);
+ * ```
+ *
+ * Using this structure, you can define public and private functions/properties for a module.
+ * Private functions/properties are only visible within the module, while public functions/properties
+ * may be accessed outside of the module. For example, you can access "yii.sample.isActive".
+ *
+ * You must call "yii.initModule()" once for the root module of all your modules.
+ */
+yii = (function ($) {
+    var pub = {
+        /**
+         * List of JS or CSS URLs that can be loaded multiple times via AJAX requests. Each script can be represented
+         * as either an absolute URL or a relative one.
+         */
+        reloadableScripts: [],
+        /**
+         * The selector for clickable elements that need to support confirmation and form submission.
+         */
+        clickableSelector: 'a, button, input[type="submit"], input[type="button"], input[type="reset"], input[type="image"]',
+        /**
+         * The selector for changeable elements that need to support confirmation and form submission.
+         */
+        changeableSelector: 'select, input, textarea',
+
+        /**
+         * @return string|undefined the CSRF parameter name. Undefined is returned if CSRF validation is not enabled.
+         */
+        getCsrfParam: function () {
+            return $('meta[name=csrf-param]').attr('content');
+        },
+
+        /**
+         * @return string|undefined the CSRF token. Undefined is returned if CSRF validation is not enabled.
+         */
+        getCsrfToken: function () {
+            return $('meta[name=csrf-token]').attr('content');
+        },
+
+        /**
+         * Sets the CSRF token in the meta elements.
+         * This method is provided so that you can update the CSRF token with the latest one you obtain from the server.
+         * @param name the CSRF token name
+         * @param value the CSRF token value
+         */
+        setCsrfToken: function (name, value) {
+            $('meta[name=csrf-param]').attr('content', name);
+            $('meta[name=csrf-token]').attr('content', value);
+        },
+
+        /**
+         * Updates all form CSRF input fields with the latest CSRF token.
+         * This method is provided to avoid cached forms containing outdated CSRF tokens.
+         */
+        refreshCsrfToken: function () {
+            var token = pub.getCsrfToken();
+            if (token) {
+                $('form input[name="' + pub.getCsrfParam() + '"]').val(token);
+            }
+        },
+
+        /**
+         * Displays a confirmation dialog.
+         * The default implementation simply displays a js confirmation dialog.
+         * You may override this by setting `yii.confirm`.
+         * @param message the confirmation message.
+         * @param ok a callback to be called when the user confirms the message
+         * @param cancel a callback to be called when the user cancels the confirmation
+         */
+        confirm: function (message, ok, cancel) {
+            if (confirm(message)) {
+                !ok || ok();
+            } else {
+                !cancel || cancel();
+            }
+        },
+
+        /**
+         * Handles the action triggered by user.
+         * This method recognizes the `data-method` attribute of the element. If the attribute exists,
+         * the method will submit the form containing this element. If there is no containing form, a form
+         * will be created and submitted using the method given by this attribute value (e.g. "post", "put").
+         * For hyperlinks, the form action will take the value of the "href" attribute of the link.
+         * For other elements, either the containing form action or the current page URL will be used
+         * as the form action URL.
+         *
+         * If the `data-method` attribute is not defined, the `href` attribute (if any) of the element
+         * will be assigned to `window.location`.
+         *
+         * Starting from version 2.0.3, the `data-params` attribute is also recognized when you specify
+         * `data-method`. The value of `data-params` should be a JSON representation of the data (name-value pairs)
+         * that should be submitted as hidden inputs. For example, you may use the following code to generate
+         * such a link:
+         *
+         * ```php
+         * use yii\helpers\Html;
+         * use yii\helpers\Json;
+         *
+         * echo Html::a('submit', ['site/foobar'], [
+         *     'data' => [
+         *         'method' => 'post',
+         *         'params' => [
+         *             'name1' => 'value1',
+         *             'name2' => 'value2',
+         *         ],
+         *     ],
+         * ];
+         * ```
+         *
+         * @param $e the jQuery representation of the element
+         */
+        handleAction: function ($e, event) {
+            var $form = $e.attr('data-form') ? $('#' + $e.attr('data-form')) : $e.closest('form'),
+                method = !$e.data('method') && $form ? $form.attr('method') : $e.data('method'),
+                action = $e.attr('href'),
+                params = $e.data('params'),
+                pjax = $e.data('pjax'),
+                pjaxPushState = !!$e.data('pjax-push-state'),
+                pjaxReplaceState = !!$e.data('pjax-replace-state'),
+                pjaxTimeout = $e.data('pjax-timeout'),
+                pjaxScrollTo = $e.data('pjax-scrollto'),
+                pjaxPushRedirect = $e.data('pjax-push-redirect'),
+                pjaxReplaceRedirect = $e.data('pjax-replace-redirect'),
+                pjaxSkipOuterContainers = $e.data('pjax-skip-outer-containers'),
+                pjaxContainer,
+                pjaxOptions = {};
+
+            if (pjax !== undefined && $.support.pjax) {
+                if ($e.data('pjax-container')) {
+                    pjaxContainer = $e.data('pjax-container');
+                } else {
+                    pjaxContainer = $e.closest('[data-pjax-container=""]');
+                }
+                // default to body if pjax container not found
+                if (!pjaxContainer.length) {
+                    pjaxContainer = $('body');
+                }
+                pjaxOptions = {
+                    container: pjaxContainer,
+                    push: pjaxPushState,
+                    replace: pjaxReplaceState,
+                    scrollTo: pjaxScrollTo,
+                    pushRedirect: pjaxPushRedirect,
+                    replaceRedirect: pjaxReplaceRedirect,
+                    pjaxSkipOuterContainers: pjaxSkipOuterContainers,
+                    timeout: pjaxTimeout,
+                    originalEvent: event,
+                    originalTarget: $e
+                }
+            }
+
+            if (method === undefined) {
+                if (action && action != '#') {
+                    if (pjax !== undefined && $.support.pjax) {
+                        $.pjax.click(event, pjaxOptions);
+                    } else {
+                        window.location = action;
+                    }
+                } else if ($e.is(':submit') && $form.length) {
+                    if (pjax !== undefined && $.support.pjax) {
+                        $form.on('submit',function(e){
+                            $.pjax.submit(e, pjaxOptions);
+                        })
+                    }
+                    $form.trigger('submit');
+                }
+                return;
+            }
+
+            var newForm = !$form.length;
+            if (newForm) {
+                if (!action || !action.match(/(^\/|:\/\/)/)) {
+                    action = window.location.href;
+                }
+                $form = $('<form/>', {method: method, action: action});
+                var target = $e.attr('target');
+                if (target) {
+                    $form.attr('target', target);
+                }
+                if (!method.match(/(get|post)/i)) {
+                    $form.append($('<input/>', {name: '_method', value: method, type: 'hidden'}));
+                    method = 'POST';
+                }
+                if (!method.match(/(get|head|options)/i)) {
+                    var csrfParam = pub.getCsrfParam();
+                    if (csrfParam) {
+                        $form.append($('<input/>', {name: csrfParam, value: pub.getCsrfToken(), type: 'hidden'}));
+                    }
+                }
+                $form.hide().appendTo('body');
+            }
+
+            var activeFormData = $form.data('yiiActiveForm');
+            if (activeFormData) {
+                // remember who triggers the form submission. This is used by yii.activeForm.js
+                activeFormData.submitObject = $e;
+            }
+
+            // temporarily add hidden inputs according to data-params
+            if (params && $.isPlainObject(params)) {
+                $.each(params, function (idx, obj) {
+                    $form.append($('<input/>').attr({name: idx, value: obj, type: 'hidden'}));
+                });
+            }
+
+            var oldMethod = $form.attr('method');
+            $form.attr('method', method);
+            var oldAction = null;
+            if (action && action != '#') {
+                oldAction = $form.attr('action');
+                $form.attr('action', action);
+            }
+            if (pjax !== undefined && $.support.pjax) {
+                $form.on('submit',function(e){
+                    $.pjax.submit(e, pjaxOptions);
+                })
+            }
+            $form.trigger('submit');
+            $.when($form.data('yiiSubmitFinalizePromise')).then(
+                function () {
+                    if (oldAction != null) {
+                        $form.attr('action', oldAction);
+                    }
+                    $form.attr('method', oldMethod);
+
+                    // remove the temporarily added hidden inputs
+                    if (params && $.isPlainObject(params)) {
+                        $.each(params, function (idx, obj) {
+                            $('input[name="' + idx + '"]', $form).remove();
+                        });
+                    }
+
+                    if (newForm) {
+                        $form.remove();
+                    }
+                }
+            );
+        },
+
+        getQueryParams: function (url) {
+            var pos = url.indexOf('?');
+            if (pos < 0) {
+                return {};
+            }
+
+            var pairs = url.substring(pos + 1).split('#')[0].split('&'),
+                params = {},
+                pair,
+                i;
+
+            for (i = 0; i < pairs.length; i++) {
+                pair = pairs[i].split('=');
+                var name = decodeURIComponent(pair[0]);
+                var value = decodeURIComponent(pair[1]);
+                if (name.length) {
+                    if (params[name] !== undefined) {
+                        if (!$.isArray(params[name])) {
+                            params[name] = [params[name]];
+                        }
+                        params[name].push(value || '');
+                    } else {
+                        params[name] = value || '';
+                    }
+                }
+            }
+            return params;
+        },
+
+        initModule: function (module) {
+            if (module.isActive === undefined || module.isActive) {
+                if ($.isFunction(module.init)) {
+                    module.init();
+                }
+                $.each(module, function () {
+                    if ($.isPlainObject(this)) {
+                        pub.initModule(this);
+                    }
+                });
+            }
+        },
+
+        init: function () {
+            initCsrfHandler();
+            initRedirectHandler();
+            initScriptFilter();
+            initDataMethods();
+        }
+    };
+
+    function initRedirectHandler() {
+        // handle AJAX redirection
+        $(document).ajaxComplete(function (event, xhr, settings) {
+            var url = xhr && xhr.getResponseHeader('X-Redirect');
+            if (url) {
+                window.location = url;
+            }
+        });
+    }
+
+    function initCsrfHandler() {
+        // automatically send CSRF token for all AJAX requests
+        $.ajaxPrefilter(function (options, originalOptions, xhr) {
+            if (!options.crossDomain && pub.getCsrfParam()) {
+                xhr.setRequestHeader('X-CSRF-Token', pub.getCsrfToken());
+            }
+        });
+        pub.refreshCsrfToken();
+    }
+
+    function initDataMethods() {
+        var handler = function (event) {
+            var $this = $(this),
+                method = $this.data('method'),
+                message = $this.data('confirm'),
+                form = $this.data('form');
+
+            if (method === undefined && message === undefined && form === undefined) {
+                return true;
+            }
+
+            if (message !== undefined) {
+                $.proxy(pub.confirm, this)(message, function () {
+                    pub.handleAction($this, event);
+                });
+            } else {
+                pub.handleAction($this, event);
+            }
+            event.stopImmediatePropagation();
+            return false;
+        };
+
+        // handle data-confirm and data-method for clickable and changeable elements
+        $(document).on('click.yii', pub.clickableSelector, handler)
+            .on('change.yii', pub.changeableSelector, handler);
+    }
+
+    function initScriptFilter() {
+        var hostInfo = location.protocol + '//' + location.host;
+
+        var loadedScripts = $('script[src]').map(function () {
+            return this.src.charAt(0) === '/' ? hostInfo + this.src : this.src;
+        }).toArray();
+
+        $.ajaxPrefilter('script', function (options, originalOptions, xhr) {
+            if (options.dataType == 'jsonp') {
+                return;
+            }
+
+            var url = options.url.charAt(0) === '/' ? hostInfo + options.url : options.url;
+            if ($.inArray(url, loadedScripts) === -1) {
+                loadedScripts.push(url);
+            } else {
+                var isReloadable = $.inArray(url, $.map(pub.reloadableScripts, function (script) {
+                        return script.charAt(0) === '/' ? hostInfo + script : script;
+                    })) !== -1;
+                if (!isReloadable) {
+                    xhr.abort();
+                }
+            }
+        });
+
+        $(document).ajaxComplete(function (event, xhr, settings) {
+            var styleSheets = [];
+            $('link[rel=stylesheet]').each(function () {
+                if ($.inArray(this.href, pub.reloadableScripts) !== -1) {
+                    return;
+                }
+                if ($.inArray(this.href, styleSheets) == -1) {
+                    styleSheets.push(this.href)
+                } else {
+                    $(this).remove();
+                }
+            })
+        });
+    }
+
+    return pub;
+})(jQuery);
+
+jQuery(document).ready(function () {
+    yii.initModule(yii);
+});
+
+
+/**
+ * Yii Captcha widget.
+ *
+ * This is the JavaScript widget used by the yii\captcha\Captcha widget.
+ *
+ * @link http://www.yiiframework.com/
+ * @copyright Copyright (c) 2008 Yii Software LLC
+ * @license http://www.yiiframework.com/license/
+ * @author Qiang Xue <qiang.xue@gmail.com>
+ * @since 2.0
+ */
+(function ($) {
+    $.fn.yiiCaptcha = function (method) {
+        if (methods[method]) {
+            return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
+        } else if (typeof method === 'object' || !method) {
+            return methods.init.apply(this, arguments);
+        } else {
+            $.error('Method ' + method + ' does not exist on jQuery.yiiCaptcha');
+            return false;
+        }
+    };
+
+    var defaults = {
+        refreshUrl: undefined,
+        hashKey: undefined
+    };
+
+    var methods = {
+        init: function (options) {
+            return this.each(function () {
+                var $e = $(this);
+                var settings = $.extend({}, defaults, options || {});
+                $e.data('yiiCaptcha', {
+                    settings: settings
+                });
+
+                $e.on('click.yiiCaptcha', function () {
+                    methods.refresh.apply($e);
+                    return false;
+                });
+
+            });
+        },
+
+        refresh: function () {
+            var $e = this,
+                settings = this.data('yiiCaptcha').settings;
+            $.ajax({
+                url: $e.data('yiiCaptcha').settings.refreshUrl,
+                dataType: 'json',
+                cache: false,
+                success: function (data) {
+                    $e.attr('src', data.url);
+                    $('body').data(settings.hashKey, [data.hash1, data.hash2]);
+                }
+            });
+        },
+
+        destroy: function () {
+            return this.each(function () {
+                $(window).unbind('.yiiCaptcha');
+                $(this).removeData('yiiCaptcha');
+            });
+        },
+
+        data: function () {
+            return this.data('yiiCaptcha');
+        }
+    };
+})(window.jQuery);
+
+
+(function ($) {
+
+    $.fn.uploadFile = function (options) {
+
+        var defaults = {
+            tabs: [],
+            onSuccess: function () {},
+            onError: function () {}
+        };
+
+        var opts = $.extend({}, defaults, options);
+
+        return this.each(function () {
+            var elem = $(this);
+            $(elem).click(function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                var obj = $(this);
+
+                //initialization code
+                $.loadScript("//api.filepicker.io/v2/filepicker.js", function () {
+                    
+                    var tabs = $.extend([], ['COMPUTER'], opts.tabs);
+
+                    //Set file picker api key
+                    filepicker.setKey(_appJsConfig.filepickerKey);
+
+                    filepicker.pick({
+                        mimetype: 'image/*',
+                        services: tabs
+                    },
+                    function (Blob) {
+                        var resultJson = {url: Blob.url, filename: Blob.filename, type: Blob.mimetype, size: Blob.size, mediaType: "image"};
+                        if (opts.onSuccess && typeof opts.onSuccess === 'function') {
+                            opts.onSuccess(resultJson, obj);
+                        }
+                    },
+                    function (FPError) {
+                        //  $().General_ShowErrorMessage({message: FPError.toString()});
+                    });
+                });
+            });
+        });
+    };
+
+    $.loadScript = function (url, callback) {
+
+        var script = document.createElement("script")
+        script.type = "text/javascript";
+
+        if (script.readyState) {  //IE
+            script.onreadystatechange = function () {
+                if (script.readyState == "loaded" ||
+                        script.readyState == "complete") {
+                    script.onreadystatechange = null;
+                    callback();
+                }
+            };
+        } else {  //Others
+            script.onload = function () {
+                callback();
+            };
+        }
+
+        script.src = url;
+        document.getElementsByTagName("head")[0].appendChild(script);
+    };
+
+}(jQuery));
+/*!
+ *
+ * MediaElement.js
+ * HTML5 <video> and <audio> shim and player
+ * http://mediaelementjs.com/
+ *
+ * Creates a JavaScript object that mimics HTML5 MediaElement API
+ * for browsers that don't understand HTML5 or can't play the provided codec
+ * Can play MP4 (H.264), Ogg, WebM, FLV, WMV, WMA, ACC, and MP3
+ *
+ * Copyright 2010-2014, John Dyer (http://j.hn)
+ * License: MIT
+ *
+ */
+var mejs=mejs||{};mejs.version="2.23.4",mejs.meIndex=0,mejs.plugins={silverlight:[{version:[3,0],types:["video/mp4","video/m4v","video/mov","video/wmv","audio/wma","audio/m4a","audio/mp3","audio/wav","audio/mpeg"]}],flash:[{version:[9,0,124],types:["video/mp4","video/m4v","video/mov","video/flv","video/rtmp","video/x-flv","audio/flv","audio/x-flv","audio/mp3","audio/m4a","audio/mp4","audio/mpeg","video/dailymotion","video/x-dailymotion","application/x-mpegURL","audio/ogg"]}],youtube:[{version:null,types:["video/youtube","video/x-youtube","audio/youtube","audio/x-youtube"]}],vimeo:[{version:null,types:["video/vimeo","video/x-vimeo"]}]},mejs.Utility={encodeUrl:function(a){return encodeURIComponent(a)},escapeHTML:function(a){return a.toString().split("&").join("&amp;").split("<").join("&lt;").split('"').join("&quot;")},absolutizeUrl:function(a){var b=document.createElement("div");return b.innerHTML='<a href="'+this.escapeHTML(a)+'">x</a>',b.firstChild.href},getScriptPath:function(a){for(var b,c,d,e,f,g,h=0,i="",j="",k=document.getElementsByTagName("script"),l=k.length,m=a.length;l>h;h++){for(e=k[h].src,c=e.lastIndexOf("/"),c>-1?(g=e.substring(c+1),f=e.substring(0,c+1)):(g=e,f=""),b=0;m>b;b++)if(j=a[b],d=g.indexOf(j),d>-1){i=f;break}if(""!==i)break}return i},calculateTimeFormat:function(a,b,c){0>a&&(a=0),"undefined"==typeof c&&(c=25);var d=b.timeFormat,e=d[0],f=d[1]==d[0],g=f?2:1,h=":",i=Math.floor(a/3600)%24,j=Math.floor(a/60)%60,k=Math.floor(a%60),l=Math.floor((a%1*c).toFixed(3)),m=[[l,"f"],[k,"s"],[j,"m"],[i,"h"]];d.length<g&&(h=d[g]);for(var n=!1,o=0,p=m.length;p>o;o++)if(-1!==d.indexOf(m[o][1]))n=!0;else if(n){for(var q=!1,r=o;p>r;r++)if(m[r][0]>0){q=!0;break}if(!q)break;f||(d=e+d),d=m[o][1]+h+d,f&&(d=m[o][1]+d),e=m[o][1]}b.currentTimeFormat=d},twoDigitsString:function(a){return 10>a?"0"+a:String(a)},secondsToTimeCode:function(a,b){if(0>a&&(a=0),"object"!=typeof b){var c="m:ss";c=arguments[1]?"hh:mm:ss":c,c=arguments[2]?c+":ff":c,b={currentTimeFormat:c,framesPerSecond:arguments[3]||25}}var d=b.framesPerSecond;"undefined"==typeof d&&(d=25);var c=b.currentTimeFormat,e=Math.floor(a/3600)%24,f=Math.floor(a/60)%60,g=Math.floor(a%60),h=Math.floor((a%1*d).toFixed(3));lis=[[h,"f"],[g,"s"],[f,"m"],[e,"h"]];var j=c;for(i=0,len=lis.length;i<len;i++)j=j.replace(lis[i][1]+lis[i][1],this.twoDigitsString(lis[i][0])),j=j.replace(lis[i][1],lis[i][0]);return j},timeCodeToSeconds:function(a,b,c,d){"undefined"==typeof c?c=!1:"undefined"==typeof d&&(d=25);var e=a.split(":"),f=parseInt(e[0],10),g=parseInt(e[1],10),h=parseInt(e[2],10),i=0,j=0;return c&&(i=parseInt(e[3])/d),j=3600*f+60*g+h+i},convertSMPTEtoSeconds:function(a){if("string"!=typeof a)return!1;a=a.replace(",",".");var b=0,c=-1!=a.indexOf(".")?a.split(".")[1].length:0,d=1;a=a.split(":").reverse();for(var e=0;e<a.length;e++)d=1,e>0&&(d=Math.pow(60,e)),b+=Number(a[e])*d;return Number(b.toFixed(c))},removeSwf:function(a){var b=document.getElementById(a);b&&/object|embed/i.test(b.nodeName)&&(mejs.MediaFeatures.isIE?(b.style.display="none",function(){4==b.readyState?mejs.Utility.removeObjectInIE(a):setTimeout(arguments.callee,10)}()):b.parentNode.removeChild(b))},removeObjectInIE:function(a){var b=document.getElementById(a);if(b){for(var c in b)"function"==typeof b[c]&&(b[c]=null);b.parentNode.removeChild(b)}},determineScheme:function(a){return a&&-1!=a.indexOf("://")?a.substr(0,a.indexOf("://")+3):"//"},debounce:function(a,b,c){var d;return function(){var e=this,f=arguments,g=function(){d=null,c||a.apply(e,f)},h=c&&!d;clearTimeout(d),d=setTimeout(g,b),h&&a.apply(e,f)}},isNodeAfter:function(a,b){return!!(a&&b&&"function"==typeof a.compareDocumentPosition&&a.compareDocumentPosition(b)&Node.DOCUMENT_POSITION_PRECEDING)}},mejs.PluginDetector={hasPluginVersion:function(a,b){var c=this.plugins[a];return b[1]=b[1]||0,b[2]=b[2]||0,c[0]>b[0]||c[0]==b[0]&&c[1]>b[1]||c[0]==b[0]&&c[1]==b[1]&&c[2]>=b[2]?!0:!1},nav:window.navigator,ua:window.navigator.userAgent.toLowerCase(),plugins:[],addPlugin:function(a,b,c,d,e){this.plugins[a]=this.detectPlugin(b,c,d,e)},detectPlugin:function(a,b,c,d){var e,f,g,h=[0,0,0];if("undefined"!=typeof this.nav.plugins&&"object"==typeof this.nav.plugins[a]){if(e=this.nav.plugins[a].description,e&&("undefined"==typeof this.nav.mimeTypes||!this.nav.mimeTypes[b]||this.nav.mimeTypes[b].enabledPlugin))for(h=e.replace(a,"").replace(/^\s+/,"").replace(/\sr/gi,".").split("."),f=0;f<h.length;f++)h[f]=parseInt(h[f].match(/\d+/),10)}else if("undefined"!=typeof window.ActiveXObject)try{g=new ActiveXObject(c),g&&(h=d(g))}catch(i){}return h}},mejs.PluginDetector.addPlugin("flash","Shockwave Flash","application/x-shockwave-flash","ShockwaveFlash.ShockwaveFlash",function(a){var b=[],c=a.GetVariable("$version");return c&&(c=c.split(" ")[1].split(","),b=[parseInt(c[0],10),parseInt(c[1],10),parseInt(c[2],10)]),b}),mejs.PluginDetector.addPlugin("silverlight","Silverlight Plug-In","application/x-silverlight-2","AgControl.AgControl",function(a){var b=[0,0,0,0],c=function(a,b,c,d){for(;a.isVersionSupported(b[0]+"."+b[1]+"."+b[2]+"."+b[3]);)b[c]+=d;b[c]-=d};return c(a,b,0,1),c(a,b,1,1),c(a,b,2,1e4),c(a,b,2,1e3),c(a,b,2,100),c(a,b,2,10),c(a,b,2,1),c(a,b,3,1),b}),mejs.MediaFeatures={init:function(){var a,b,c=this,d=document,e=mejs.PluginDetector.nav,f=mejs.PluginDetector.ua.toLowerCase(),g=["source","track","audio","video"];c.isiPad=null!==f.match(/ipad/i),c.isiPhone=null!==f.match(/iphone/i),c.isiOS=c.isiPhone||c.isiPad,c.isAndroid=null!==f.match(/android/i),c.isBustedAndroid=null!==f.match(/android 2\.[12]/),c.isBustedNativeHTTPS="https:"===location.protocol&&(null!==f.match(/android [12]\./)||null!==f.match(/macintosh.* version.* safari/)),c.isIE=-1!=e.appName.toLowerCase().indexOf("microsoft")||null!==e.appName.toLowerCase().match(/trident/gi),c.isChrome=null!==f.match(/chrome/gi),c.isChromium=null!==f.match(/chromium/gi),c.isFirefox=null!==f.match(/firefox/gi),c.isWebkit=null!==f.match(/webkit/gi),c.isGecko=null!==f.match(/gecko/gi)&&!c.isWebkit&&!c.isIE,c.isOpera=null!==f.match(/opera/gi),c.hasTouch="ontouchstart"in window,c.svgAsImg=!!document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image","1.1");for(a=0;a<g.length;a++)b=document.createElement(g[a]);c.supportsMediaTag="undefined"!=typeof b.canPlayType||c.isBustedAndroid;try{b.canPlayType("video/mp4")}catch(h){c.supportsMediaTag=!1}c.supportsPointerEvents=function(){var a,b=document.createElement("x"),c=document.documentElement,d=window.getComputedStyle;return"pointerEvents"in b.style?(b.style.pointerEvents="auto",b.style.pointerEvents="x",c.appendChild(b),a=d&&"auto"===d(b,"").pointerEvents,c.removeChild(b),!!a):!1}(),c.hasFirefoxPluginMovingProblem=!1,c.hasiOSFullScreen="undefined"!=typeof b.webkitEnterFullscreen,c.hasNativeFullscreen="undefined"!=typeof b.requestFullscreen,c.hasWebkitNativeFullScreen="undefined"!=typeof b.webkitRequestFullScreen,c.hasMozNativeFullScreen="undefined"!=typeof b.mozRequestFullScreen,c.hasMsNativeFullScreen="undefined"!=typeof b.msRequestFullscreen,c.hasTrueNativeFullScreen=c.hasWebkitNativeFullScreen||c.hasMozNativeFullScreen||c.hasMsNativeFullScreen,c.nativeFullScreenEnabled=c.hasTrueNativeFullScreen,c.hasMozNativeFullScreen?c.nativeFullScreenEnabled=document.mozFullScreenEnabled:c.hasMsNativeFullScreen&&(c.nativeFullScreenEnabled=document.msFullscreenEnabled),c.isChrome&&(c.hasiOSFullScreen=!1),c.hasTrueNativeFullScreen&&(c.fullScreenEventName="",c.hasWebkitNativeFullScreen?c.fullScreenEventName="webkitfullscreenchange":c.hasMozNativeFullScreen?c.fullScreenEventName="mozfullscreenchange":c.hasMsNativeFullScreen&&(c.fullScreenEventName="MSFullscreenChange"),c.isFullScreen=function(){return c.hasMozNativeFullScreen?d.mozFullScreen:c.hasWebkitNativeFullScreen?d.webkitIsFullScreen:c.hasMsNativeFullScreen?null!==d.msFullscreenElement:void 0},c.requestFullScreen=function(a){c.hasWebkitNativeFullScreen?a.webkitRequestFullScreen():c.hasMozNativeFullScreen?a.mozRequestFullScreen():c.hasMsNativeFullScreen&&a.msRequestFullscreen()},c.cancelFullScreen=function(){c.hasWebkitNativeFullScreen?document.webkitCancelFullScreen():c.hasMozNativeFullScreen?document.mozCancelFullScreen():c.hasMsNativeFullScreen&&document.msExitFullscreen()}),c.hasiOSFullScreen&&f.match(/mac os x 10_5/i)&&(c.hasNativeFullScreen=!1,c.hasiOSFullScreen=!1)}},mejs.MediaFeatures.init(),mejs.HtmlMediaElement={pluginType:"native",isFullScreen:!1,setCurrentTime:function(a){this.currentTime=a},setMuted:function(a){this.muted=a},setVolume:function(a){this.volume=a},stop:function(){this.pause()},setSrc:function(a){for(var b=this.getElementsByTagName("source");b.length>0;)this.removeChild(b[0]);if("string"==typeof a)this.src=a;else{var c,d;for(c=0;c<a.length;c++)if(d=a[c],this.canPlayType(d.type)){this.src=d.src;break}}},setVideoSize:function(a,b){this.width=a,this.height=b}},mejs.PluginMediaElement=function(a,b,c){this.id=a,this.pluginType=b,this.src=c,this.events={},this.attributes={}},mejs.PluginMediaElement.prototype={pluginElement:null,pluginType:"",isFullScreen:!1,playbackRate:-1,defaultPlaybackRate:-1,seekable:[],played:[],paused:!0,ended:!1,seeking:!1,duration:0,error:null,tagName:"",muted:!1,volume:1,currentTime:0,play:function(){null!=this.pluginApi&&("youtube"==this.pluginType||"vimeo"==this.pluginType?this.pluginApi.playVideo():this.pluginApi.playMedia(),this.paused=!1)},load:function(){null!=this.pluginApi&&("youtube"==this.pluginType||"vimeo"==this.pluginType||this.pluginApi.loadMedia(),this.paused=!1)},pause:function(){null!=this.pluginApi&&("youtube"==this.pluginType||"vimeo"==this.pluginType?1==this.pluginApi.getPlayerState()&&this.pluginApi.pauseVideo():this.pluginApi.pauseMedia(),this.paused=!0)},stop:function(){null!=this.pluginApi&&("youtube"==this.pluginType||"vimeo"==this.pluginType?this.pluginApi.stopVideo():this.pluginApi.stopMedia(),this.paused=!0)},canPlayType:function(a){var b,c,d,e=mejs.plugins[this.pluginType];for(b=0;b<e.length;b++)if(d=e[b],mejs.PluginDetector.hasPluginVersion(this.pluginType,d.version))for(c=0;c<d.types.length;c++)if(a==d.types[c])return"probably";return""},positionFullscreenButton:function(a,b,c){null!=this.pluginApi&&this.pluginApi.positionFullscreenButton&&this.pluginApi.positionFullscreenButton(Math.floor(a),Math.floor(b),c)},hideFullscreenButton:function(){null!=this.pluginApi&&this.pluginApi.hideFullscreenButton&&this.pluginApi.hideFullscreenButton()},setSrc:function(a){if("string"==typeof a)this.pluginApi.setSrc(mejs.Utility.absolutizeUrl(a)),this.src=mejs.Utility.absolutizeUrl(a);else{var b,c;for(b=0;b<a.length;b++)if(c=a[b],this.canPlayType(c.type)){this.pluginApi.setSrc(mejs.Utility.absolutizeUrl(c.src)),this.src=mejs.Utility.absolutizeUrl(c.src);break}}},setCurrentTime:function(a){null!=this.pluginApi&&("youtube"==this.pluginType||"vimeo"==this.pluginType?this.pluginApi.seekTo(a):this.pluginApi.setCurrentTime(a),this.currentTime=a)},setVolume:function(a){null!=this.pluginApi&&("youtube"==this.pluginType?this.pluginApi.setVolume(100*a):this.pluginApi.setVolume(a),this.volume=a)},setMuted:function(a){null!=this.pluginApi&&("youtube"==this.pluginType?(a?this.pluginApi.mute():this.pluginApi.unMute(),this.muted=a,this.dispatchEvent({type:"volumechange"})):this.pluginApi.setMuted(a),this.muted=a)},setVideoSize:function(a,b){this.pluginElement&&this.pluginElement.style&&(this.pluginElement.style.width=a+"px",this.pluginElement.style.height=b+"px"),null!=this.pluginApi&&this.pluginApi.setVideoSize&&this.pluginApi.setVideoSize(a,b)},setFullscreen:function(a){null!=this.pluginApi&&this.pluginApi.setFullscreen&&this.pluginApi.setFullscreen(a)},enterFullScreen:function(){null!=this.pluginApi&&this.pluginApi.setFullscreen&&this.setFullscreen(!0)},exitFullScreen:function(){null!=this.pluginApi&&this.pluginApi.setFullscreen&&this.setFullscreen(!1)},addEventListener:function(a,b,c){this.events[a]=this.events[a]||[],this.events[a].push(b)},removeEventListener:function(a,b){if(!a)return this.events={},!0;var c=this.events[a];if(!c)return!0;if(!b)return this.events[a]=[],!0;for(var d=0;d<c.length;d++)if(c[d]===b)return this.events[a].splice(d,1),!0;return!1},dispatchEvent:function(a){var b,c=this.events[a.type];if(c)for(b=0;b<c.length;b++)c[b].apply(this,[a])},hasAttribute:function(a){return a in this.attributes},removeAttribute:function(a){delete this.attributes[a]},getAttribute:function(a){return this.hasAttribute(a)?this.attributes[a]:null},setAttribute:function(a,b){this.attributes[a]=b},remove:function(){mejs.Utility.removeSwf(this.pluginElement.id)}},mejs.MediaElementDefaults={mode:"auto",plugins:["flash","silverlight","youtube","vimeo"],enablePluginDebug:!1,httpsBasicAuthSite:!1,type:"",pluginPath:mejs.Utility.getScriptPath(["mediaelement.js","mediaelement.min.js","mediaelement-and-player.js","mediaelement-and-player.min.js"]),flashName:"flashmediaelement.swf",flashStreamer:"",flashScriptAccess:"sameDomain",enablePluginSmoothing:!1,enablePseudoStreaming:!1,pseudoStreamingStartQueryParam:"start",silverlightName:"silverlightmediaelement.xap",defaultVideoWidth:480,defaultVideoHeight:270,pluginWidth:-1,pluginHeight:-1,pluginVars:[],timerRate:250,startVolume:.8,customError:"",success:function(){},error:function(){}},mejs.MediaElement=function(a,b){return mejs.HtmlMediaElementShim.create(a,b)},mejs.HtmlMediaElementShim={create:function(a,b){var c,d,e={},f="string"==typeof a?document.getElementById(a):a,g=f.tagName.toLowerCase(),h="audio"===g||"video"===g,i=h?f.getAttribute("src"):f.getAttribute("href"),j=f.getAttribute("poster"),k=f.getAttribute("autoplay"),l=f.getAttribute("preload"),m=f.getAttribute("controls");for(d in mejs.MediaElementDefaults)e[d]=mejs.MediaElementDefaults[d];for(d in b)e[d]=b[d];return i="undefined"==typeof i||null===i||""==i?null:i,j="undefined"==typeof j||null===j?"":j,l="undefined"==typeof l||null===l||"false"===l?"none":l,k=!("undefined"==typeof k||null===k||"false"===k),m=!("undefined"==typeof m||null===m||"false"===m),c=this.determinePlayback(f,e,mejs.MediaFeatures.supportsMediaTag,h,i),c.url=null!==c.url?mejs.Utility.absolutizeUrl(c.url):"",c.scheme=mejs.Utility.determineScheme(c.url),"native"==c.method?(mejs.MediaFeatures.isBustedAndroid&&(f.src=c.url,f.addEventListener("click",function(){f.play()},!1)),this.updateNative(c,e,k,l)):""!==c.method?this.createPlugin(c,e,j,k,l,m):(this.createErrorMessage(c,e,j),this)},determinePlayback:function(a,b,c,d,e){var f,g,h,i,j,k,l,m,n,o,p,q=[],r={method:"",url:"",htmlMediaElement:a,isVideo:"audio"!==a.tagName.toLowerCase(),scheme:""};if("undefined"!=typeof b.type&&""!==b.type)if("string"==typeof b.type)q.push({type:b.type,url:e});else for(f=0;f<b.type.length;f++)q.push({type:b.type[f],url:e});else if(null!==e)k=this.formatType(e,a.getAttribute("type")),q.push({type:k,url:e});else for(f=0;f<a.childNodes.length;f++)j=a.childNodes[f],1==j.nodeType&&"source"==j.tagName.toLowerCase()&&(e=j.getAttribute("src"),k=this.formatType(e,j.getAttribute("type")),p=j.getAttribute("media"),(!p||!window.matchMedia||window.matchMedia&&window.matchMedia(p).matches)&&q.push({type:k,url:e}));if(!d&&q.length>0&&null!==q[0].url&&this.getTypeFromFile(q[0].url).indexOf("audio")>-1&&(r.isVideo=!1),r.isVideo&&mejs.MediaFeatures.isBustedAndroid&&(a.canPlayType=function(a){return null!==a.match(/video\/(mp4|m4v)/gi)?"maybe":""}),r.isVideo&&mejs.MediaFeatures.isChromium&&(a.canPlayType=function(a){return null!==a.match(/video\/(webm|ogv|ogg)/gi)?"maybe":""}),c&&("auto"===b.mode||"auto_plugin"===b.mode||"native"===b.mode)&&(!mejs.MediaFeatures.isBustedNativeHTTPS||b.httpsBasicAuthSite!==!0)){for(d||(o=document.createElement(r.isVideo?"video":"audio"),a.parentNode.insertBefore(o,a),a.style.display="none",r.htmlMediaElement=a=o),f=0;f<q.length;f++)if("video/m3u8"==q[f].type||""!==a.canPlayType(q[f].type).replace(/no/,"")||""!==a.canPlayType(q[f].type.replace(/mp3/,"mpeg")).replace(/no/,"")||""!==a.canPlayType(q[f].type.replace(/m4a/,"mp4")).replace(/no/,"")){r.method="native",r.url=q[f].url;break}if("native"===r.method&&(null!==r.url&&(a.src=r.url),"auto_plugin"!==b.mode))return r}if("auto"===b.mode||"auto_plugin"===b.mode||"shim"===b.mode)for(f=0;f<q.length;f++)for(k=q[f].type,g=0;g<b.plugins.length;g++)for(l=b.plugins[g],m=mejs.plugins[l],h=0;h<m.length;h++)if(n=m[h],null==n.version||mejs.PluginDetector.hasPluginVersion(l,n.version))for(i=0;i<n.types.length;i++)if(k.toLowerCase()==n.types[i].toLowerCase())return r.method=l,r.url=q[f].url,r;return"auto_plugin"===b.mode&&"native"===r.method?r:(""===r.method&&q.length>0&&(r.url=q[0].url),r)},formatType:function(a,b){return a&&!b?this.getTypeFromFile(a):b&&~b.indexOf(";")?b.substr(0,b.indexOf(";")):b},getTypeFromFile:function(a){a=a.split("?")[0];var b=a.substring(a.lastIndexOf(".")+1).toLowerCase(),c=/(mp4|m4v|ogg|ogv|m3u8|webm|webmv|flv|wmv|mpeg|mov)/gi.test(b)?"video/":"audio/";return this.getTypeFromExtension(b,c)},getTypeFromExtension:function(a,b){switch(b=b||"",a){case"mp4":case"m4v":case"m4a":case"f4v":case"f4a":return b+"mp4";case"flv":return b+"x-flv";case"webm":case"webma":case"webmv":return b+"webm";case"ogg":case"oga":case"ogv":return b+"ogg";case"m3u8":return"application/x-mpegurl";case"ts":return b+"mp2t";default:return b+a}},createErrorMessage:function(a,b,c){var d=a.htmlMediaElement,e=document.createElement("div"),f=b.customError;e.className="me-cannotplay";try{e.style.width=d.width+"px",e.style.height=d.height+"px"}catch(g){}f||(f='<a href="'+a.url+'">',""!==c&&(f+='<img src="'+c+'" width="100%" height="100%" alt="" />'),f+="<span>"+mejs.i18n.t("mejs.download-file")+"</span></a>"),e.innerHTML=f,d.parentNode.insertBefore(e,d),d.style.display="none",b.error(d)},createPlugin:function(a,b,c,d,e,f){var g,h,i,j=a.htmlMediaElement,k=1,l=1,m="me_"+a.method+"_"+mejs.meIndex++,n=new mejs.PluginMediaElement(m,a.method,a.url),o=document.createElement("div");n.tagName=j.tagName;for(var p=0;p<j.attributes.length;p++){var q=j.attributes[p];q.specified&&n.setAttribute(q.name,q.value)}for(h=j.parentNode;null!==h&&null!=h.tagName&&"body"!==h.tagName.toLowerCase()&&null!=h.parentNode&&null!=h.parentNode.tagName&&null!=h.parentNode.constructor&&"ShadowRoot"===h.parentNode.constructor.name;){if("p"===h.parentNode.tagName.toLowerCase()){h.parentNode.parentNode.insertBefore(h,h.parentNode);break}h=h.parentNode}if(a.isVideo?(k=b.pluginWidth>0?b.pluginWidth:b.videoWidth>0?b.videoWidth:null!==j.getAttribute("width")?j.getAttribute("width"):b.defaultVideoWidth,l=b.pluginHeight>0?b.pluginHeight:b.videoHeight>0?b.videoHeight:null!==j.getAttribute("height")?j.getAttribute("height"):b.defaultVideoHeight,k=mejs.Utility.encodeUrl(k),l=mejs.Utility.encodeUrl(l)):b.enablePluginDebug&&(k=320,l=240),n.success=b.success,o.className="me-plugin",o.id=m+"_container",a.isVideo?j.parentNode.insertBefore(o,j):document.body.insertBefore(o,document.body.childNodes[0]),"flash"===a.method||"silverlight"===a.method){var r="audio/mp4"===j.getAttribute("type"),s=j.getElementsByTagName("source");if(s&&!r)for(var p=0,t=s.length;t>p;p++)"audio/mp4"===s[p].getAttribute("type")&&(r=!0);i=["id="+m,"isvideo="+(a.isVideo||r?"true":"false"),"autoplay="+(d?"true":"false"),"preload="+e,"width="+k,"startvolume="+b.startVolume,"timerrate="+b.timerRate,"flashstreamer="+b.flashStreamer,"height="+l,"pseudostreamstart="+b.pseudoStreamingStartQueryParam],null!==a.url&&("flash"==a.method?i.push("file="+mejs.Utility.encodeUrl(a.url)):i.push("file="+a.url)),b.enablePluginDebug&&i.push("debug=true"),b.enablePluginSmoothing&&i.push("smoothing=true"),b.enablePseudoStreaming&&i.push("pseudostreaming=true"),f&&i.push("controls=true"),b.pluginVars&&(i=i.concat(b.pluginVars)),window[m+"_init"]=function(){switch(n.pluginType){case"flash":n.pluginElement=n.pluginApi=document.getElementById(m);break;case"silverlight":n.pluginElement=document.getElementById(n.id),n.pluginApi=n.pluginElement.Content.MediaElementJS}null!=n.pluginApi&&n.success&&n.success(n,j)},window[m+"_event"]=function(a,b){var c,d,e;c={type:a,target:n};for(d in b)n[d]=b[d],c[d]=b[d];e=b.bufferedTime||0,c.target.buffered=c.buffered={start:function(a){return 0},end:function(a){return e},length:1},n.dispatchEvent(c)}}switch(a.method){case"silverlight":o.innerHTML='<object data="data:application/x-silverlight-2," type="application/x-silverlight-2" id="'+m+'" name="'+m+'" width="'+k+'" height="'+l+'" class="mejs-shim"><param name="initParams" value="'+i.join(",")+'" /><param name="windowless" value="true" /><param name="background" value="black" /><param name="minRuntimeVersion" value="3.0.0.0" /><param name="autoUpgrade" value="true" /><param name="source" value="'+b.pluginPath+b.silverlightName+'" /></object>';break;case"flash":mejs.MediaFeatures.isIE?(g=document.createElement("div"),o.appendChild(g),g.outerHTML='<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="//download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab" id="'+m+'" width="'+k+'" height="'+l+'" class="mejs-shim"><param name="movie" value="'+b.pluginPath+b.flashName+"?"+(new Date).getTime()+'" /><param name="flashvars" value="'+i.join("&amp;")+'" /><param name="quality" value="high" /><param name="bgcolor" value="#000000" /><param name="wmode" value="transparent" /><param name="allowScriptAccess" value="'+b.flashScriptAccess+'" /><param name="allowFullScreen" value="true" /><param name="scale" value="default" /></object>'):o.innerHTML='<embed id="'+m+'" name="'+m+'" play="true" loop="false" quality="high" bgcolor="#000000" wmode="transparent" allowScriptAccess="'+b.flashScriptAccess+'" allowFullScreen="true" type="application/x-shockwave-flash" pluginspage="//www.macromedia.com/go/getflashplayer" src="'+b.pluginPath+b.flashName+'" flashvars="'+i.join("&")+'" width="'+k+'" height="'+l+'" scale="default"class="mejs-shim"></embed>';break;case"youtube":var u;if(-1!=a.url.lastIndexOf("youtu.be"))u=a.url.substr(a.url.lastIndexOf("/")+1),-1!=u.indexOf("?")&&(u=u.substr(0,u.indexOf("?")));else{var v=a.url.match(/[?&]v=([^&#]+)|&|#|$/);v&&(u=v[1])}youtubeSettings={container:o,containerId:o.id,pluginMediaElement:n,pluginId:m,videoId:u,height:l,width:k,scheme:a.scheme,variables:b.youtubeIframeVars},window.postMessage?mejs.YouTubeApi.enqueueIframe(youtubeSettings):mejs.PluginDetector.hasPluginVersion("flash",[10,0,0])&&mejs.YouTubeApi.createFlash(youtubeSettings,b);break;case"vimeo":var w=m+"_player";if(n.vimeoid=a.url.substr(a.url.lastIndexOf("/")+1),o.innerHTML='<iframe src="'+a.scheme+"player.vimeo.com/video/"+n.vimeoid+"?api=1&portrait=0&byline=0&title=0&player_id="+w+'" width="'+k+'" height="'+l+'" frameborder="0" class="mejs-shim" id="'+w+'" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>',"function"==typeof $f){var x=$f(o.childNodes[0]),y=-1;x.addEvent("ready",function(){function a(a,b,c,d){var e={type:c,target:b};"timeupdate"==c&&(b.currentTime=e.currentTime=d.seconds,b.duration=e.duration=d.duration),b.dispatchEvent(e)}x.playVideo=function(){x.api("play")},x.stopVideo=function(){x.api("unload")},x.pauseVideo=function(){x.api("pause")},x.seekTo=function(a){x.api("seekTo",a)},x.setVolume=function(a){x.api("setVolume",a)},x.setMuted=function(a){a?(x.lastVolume=x.api("getVolume"),x.api("setVolume",0)):(x.api("setVolume",x.lastVolume),delete x.lastVolume)},x.getPlayerState=function(){return y},x.addEvent("play",function(){y=1,a(x,n,"play"),a(x,n,"playing")}),x.addEvent("pause",function(){y=2,a(x,n,"pause")}),x.addEvent("finish",function(){y=0,a(x,n,"ended")}),x.addEvent("playProgress",function(b){a(x,n,"timeupdate",b)}),x.addEvent("seek",function(b){y=3,a(x,n,"seeked",b)}),x.addEvent("loadProgress",function(b){y=3,a(x,n,"progress",b)}),n.pluginElement=o,n.pluginApi=x,n.success(n,n.pluginElement)})}else console.warn("You need to include froogaloop for vimeo to work")}return j.style.display="none",j.removeAttribute("autoplay"),n},updateNative:function(a,b,c,d){var e,f=a.htmlMediaElement;for(e in mejs.HtmlMediaElement)f[e]=mejs.HtmlMediaElement[e];return b.success(f,f),f}},mejs.YouTubeApi={isIframeStarted:!1,isIframeLoaded:!1,loadIframeApi:function(a){if(!this.isIframeStarted){var b=document.createElement("script");b.src=a.scheme+"www.youtube.com/player_api";var c=document.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c),this.isIframeStarted=!0}},iframeQueue:[],enqueueIframe:function(a){this.isLoaded?this.createIframe(a):(this.loadIframeApi(a),this.iframeQueue.push(a))},createIframe:function(a){var b=a.pluginMediaElement,c={controls:0,wmode:"transparent"},d=new YT.Player(a.containerId,{height:a.height,width:a.width,videoId:a.videoId,playerVars:mejs.$.extend({},c,a.variables),events:{onReady:function(c){d.setVideoSize=function(a,b){d.setSize(a,b)},a.pluginMediaElement.pluginApi=d,a.pluginMediaElement.pluginElement=document.getElementById(a.containerId),b.success(b,b.pluginElement),mejs.YouTubeApi.createEvent(d,b,"canplay"),setInterval(function(){mejs.YouTubeApi.createEvent(d,b,"timeupdate")},250),"undefined"!=typeof b.attributes.autoplay&&d.playVideo()},onStateChange:function(a){mejs.YouTubeApi.handleStateChange(a.data,d,b)}}})},createEvent:function(a,b,c){var d={type:c,target:b};if(a&&a.getDuration){b.currentTime=d.currentTime=a.getCurrentTime(),b.duration=d.duration=a.getDuration(),d.paused=b.paused,d.ended=b.ended,d.muted=a.isMuted(),d.volume=a.getVolume()/100,d.bytesTotal=a.getVideoBytesTotal(),d.bufferedBytes=a.getVideoBytesLoaded();var e=d.bufferedBytes/d.bytesTotal*d.duration;d.target.buffered=d.buffered={start:function(a){return 0},end:function(a){return e},length:1}}b.dispatchEvent(d)},iFrameReady:function(){for(this.isLoaded=!0,this.isIframeLoaded=!0;this.iframeQueue.length>0;){var a=this.iframeQueue.pop();this.createIframe(a)}},flashPlayers:{},createFlash:function(a){this.flashPlayers[a.pluginId]=a;var b,c=a.scheme+"www.youtube.com/apiplayer?enablejsapi=1&amp;playerapiid="+a.pluginId+"&amp;version=3&amp;autoplay=0&amp;controls=0&amp;modestbranding=1&loop=0";mejs.MediaFeatures.isIE?(b=document.createElement("div"),a.container.appendChild(b),b.outerHTML='<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="'+a.scheme+'download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab" id="'+a.pluginId+'" width="'+a.width+'" height="'+a.height+'" class="mejs-shim"><param name="movie" value="'+c+'" /><param name="wmode" value="transparent" /><param name="allowScriptAccess" value="'+options.flashScriptAccess+'" /><param name="allowFullScreen" value="true" /></object>'):a.container.innerHTML='<object type="application/x-shockwave-flash" id="'+a.pluginId+'" data="'+c+'" width="'+a.width+'" height="'+a.height+'" style="visibility: visible; " class="mejs-shim"><param name="allowScriptAccess" value="'+options.flashScriptAccess+'"><param name="wmode" value="transparent"></object>'},flashReady:function(a){var b=this.flashPlayers[a],c=document.getElementById(a),d=b.pluginMediaElement;d.pluginApi=d.pluginElement=c,b.success(d,d.pluginElement),c.cueVideoById(b.videoId);var e=b.containerId+"_callback";window[e]=function(a){mejs.YouTubeApi.handleStateChange(a,c,d)},c.addEventListener("onStateChange",e),setInterval(function(){mejs.YouTubeApi.createEvent(c,d,"timeupdate")},250),mejs.YouTubeApi.createEvent(c,d,"canplay")},handleStateChange:function(a,b,c){switch(a){case-1:c.paused=!0,c.ended=!0,mejs.YouTubeApi.createEvent(b,c,"loadedmetadata");break;case 0:c.paused=!1,c.ended=!0,mejs.YouTubeApi.createEvent(b,c,"ended");break;case 1:c.paused=!1,c.ended=!1,mejs.YouTubeApi.createEvent(b,c,"play"),mejs.YouTubeApi.createEvent(b,c,"playing");break;case 2:c.paused=!0,c.ended=!1,mejs.YouTubeApi.createEvent(b,c,"pause");break;case 3:mejs.YouTubeApi.createEvent(b,c,"progress");break;case 5:}}},window.onYouTubePlayerAPIReady=function(){mejs.YouTubeApi.iFrameReady()},window.onYouTubePlayerReady=function(a){mejs.YouTubeApi.flashReady(a)},window.mejs=mejs,window.MediaElement=mejs.MediaElement,function(a,b,c,d){var e={"default":"en",locale:{language:c.i18n&&c.i18n.locale.language||"",strings:c.i18n&&c.i18n.locale.strings||{}},pluralForms:[function(){return arguments[1]},function(){var a=arguments;return 1===a[0]?a[1]:a[2]},function(){var a=arguments;return[0,1].indexOf(a[0])>-1?a[1]:a[2]},function(){var a=arguments;return a[0]%10===1&&a[0]%100!==11?a[1]:0!==a[0]?a[2]:a[3]},function(){var a=arguments;return 1===a[0]||11===a[0]?a[1]:2===a[0]||12===a[0]?a[2]:a[0]>2&&a[0]<20?a[3]:a[4]},function(){return 1===args[0]?args[1]:0===args[0]||args[0]%100>0&&args[0]%100<20?args[2]:args[3]},function(){var a=arguments;return a[0]%10===1&&a[0]%100!==11?a[1]:a[0]%10>=2&&(a[0]%100<10||a[0]%100>=20)?a[2]:[3]},function(){var a=arguments;return a[0]%10===1&&a[0]%100!==11?a[1]:a[0]%10>=2&&a[0]%10<=4&&(a[0]%100<10||a[0]%100>=20)?a[2]:a[3]},function(){var a=arguments;return 1===a[0]?a[1]:a[0]>=2&&a[0]<=4?a[2]:a[3]},function(){var a=arguments;return 1===a[0]?a[1]:a[0]%10>=2&&a[0]%10<=4&&(a[0]%100<10||a[0]%100>=20)?a[2]:a[3]},function(){var a=arguments;return a[0]%100===1?a[2]:a[0]%100===2?a[3]:a[0]%100===3||a[0]%100===4?a[4]:a[1]},function(){var a=arguments;return 1===a[0]?a[1]:2===a[0]?a[2]:a[0]>2&&a[0]<7?a[3]:a[0]>6&&a[0]<11?a[4]:a[5]},function(){var a=arguments;return 0===a[0]?a[1]:1===a[0]?a[2]:2===a[0]?a[3]:a[0]%100>=3&&a[0]%100<=10?a[4]:a[0]%100>=11?a[5]:a[6]},function(){var a=arguments;return 1===a[0]?a[1]:0===a[0]||a[0]%100>1&&a[0]%100<11?a[2]:a[0]%100>10&&a[0]%100<20?a[3]:a[4]},function(){var a=arguments;return a[0]%10===1?a[1]:a[0]%10===2?a[2]:a[3]},function(){var a=arguments;return 11!==a[0]&&a[0]%10===1?a[1]:a[2]},function(){var a=arguments;return 1===a[0]?a[1]:a[0]%10>=2&&a[0]%10<=4&&(a[0]%100<10||a[0]%100>=20)?a[2]:a[3]},function(){var a=arguments;return 1===a[0]?a[1]:2===a[0]?a[2]:8!==a[0]&&11!==a[0]?a[3]:a[4]},function(){var a=arguments;return 0===a[0]?a[1]:a[2]},function(){var a=arguments;return 1===a[0]?a[1]:2===a[0]?a[2]:3===a[0]?a[3]:a[4]},function(){var a=arguments;return 0===a[0]?a[1]:1===a[0]?a[2]:a[3]}],getLanguage:function(){var a=e.locale.language||e["default"];return/^(x\-)?[a-z]{2,}(\-\w{2,})?(\-\w{2,})?$/.exec(a)?a:e["default"]},t:function(a,b){if("string"==typeof a&&a.length){var c,d,f=e.getLanguage(),g=function(a,b,c){return"object"!=typeof a||"number"!=typeof b||"number"!=typeof c?a:"string"==typeof a?a:e.pluralForms[c].apply(null,[b].concat(a))},h=function(a){var b={"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"};return a.replace(/[&<>"]/g,function(a){return b[a]})};return e.locale.strings&&e.locale.strings[f]&&(c=e.locale.strings[f][a],"number"==typeof b&&(d=e.locale.strings[f]["mejs.plural-form"],c=g.apply(null,[c,b,d]))),!c&&e.locale.strings&&e.locale.strings[e["default"]]&&(c=e.locale.strings[e["default"]][a],"number"==typeof b&&(d=e.locale.strings[e["default"]]["mejs.plural-form"],c=g.apply(null,[c,b,d]))),c=c||a,"number"==typeof b&&(c=c.replace("%1",b)),h(c)}return a}};"undefined"!=typeof mejsL10n&&(e.locale.language=mejsL10n.language),c.i18n=e}(document,window,mejs),function(a,b){"use strict";"undefined"!=typeof mejsL10n&&(a[mejsL10n.lang]=mejsL10n.strings)}(mejs.i18n.locale.strings),/*!
+ * This is a i18n.locale language object.
+ *
+ * English; This can serve as a template for other languages to translate
+ *
+ * @author
+ *   TBD
+ *   Sascha Greuel (Twitter: @SoftCreatR)
+ *
+ * @see
+ *   me-i18n.js
+ *
+ * @params
+ *  - exports - CommonJS, window ..
+ */
+function(a){"use strict";void 0===a.en&&(a.en={"mejs.plural-form":1,"mejs.download-file":"Download File","mejs.fullscreen-off":"Turn off Fullscreen","mejs.fullscreen-on":"Go Fullscreen","mejs.download-video":"Download Video","mejs.fullscreen":"Fullscreen","mejs.time-jump-forward":["Jump forward 1 second","Jump forward %1 seconds"],"mejs.play":"Play","mejs.pause":"Pause","mejs.close":"Close","mejs.time-slider":"Time Slider","mejs.time-help-text":"Use Left/Right Arrow keys to advance one second, Up/Down arrows to advance ten seconds.","mejs.time-skip-back":["Skip back 1 second","Skip back %1 seconds"],"mejs.captions-subtitles":"Captions/Subtitles","mejs.none":"None","mejs.mute-toggle":"Mute Toggle","mejs.volume-help-text":"Use Up/Down Arrow keys to increase or decrease volume.","mejs.unmute":"Unmute","mejs.mute":"Mute","mejs.volume-slider":"Volume Slider","mejs.video-player":"Video Player","mejs.audio-player":"Audio Player","mejs.ad-skip":"Skip ad","mejs.ad-skip-info":["Skip in 1 second","Skip in %1 seconds"],"mejs.source-chooser":"Source Chooser"})}(mejs.i18n.locale.strings),/*!
+ *
+ * MediaElementPlayer
+ * http://mediaelementjs.com/
+ *
+ * Creates a controller bar for HTML5 <video> add <audio> tags
+ * using jQuery and MediaElement.js (HTML5 Flash/Silverlight wrapper)
+ *
+ * Copyright 2010-2013, John Dyer (http://j.hn/)
+ * License: MIT
+ *
+ */
+"undefined"!=typeof jQuery?mejs.$=jQuery:"undefined"!=typeof Zepto?(mejs.$=Zepto,Zepto.fn.outerWidth=function(a){var b=$(this).width();return a&&(b+=parseInt($(this).css("margin-right"),10),b+=parseInt($(this).css("margin-left"),10)),b}):"undefined"!=typeof ender&&(mejs.$=ender),function(a){mejs.MepDefaults={poster:"",showPosterWhenEnded:!1,defaultVideoWidth:480,defaultVideoHeight:270,videoWidth:-1,videoHeight:-1,defaultAudioWidth:400,defaultAudioHeight:30,defaultSeekBackwardInterval:function(a){return.05*a.duration},defaultSeekForwardInterval:function(a){return.05*a.duration},setDimensions:!0,audioWidth:-1,audioHeight:-1,startVolume:.8,loop:!1,autoRewind:!0,enableAutosize:!0,timeFormat:"",alwaysShowHours:!1,showTimecodeFrameCount:!1,framesPerSecond:25,autosizeProgress:!0,alwaysShowControls:!1,hideVideoControlsOnLoad:!1,clickToPlayPause:!0,controlsTimeoutDefault:1500,controlsTimeoutMouseEnter:2500,controlsTimeoutMouseLeave:1e3,iPadUseNativeControls:!1,iPhoneUseNativeControls:!1,AndroidUseNativeControls:!1,features:["playpause","current","progress","duration","tracks","volume","fullscreen"],isVideo:!0,stretching:"auto",enableKeyboard:!0,pauseOtherPlayers:!0,keyActions:[{keys:[32,179],action:function(a,b,c,d){mejs.MediaFeatures.isFirefox||(b.paused||b.ended?b.play():b.pause())}},{keys:[38],action:function(a,b,c,d){a.container.find(".mejs-volume-slider").css("display","block"),a.isVideo&&(a.showControls(),a.startControlsTimer());var e=Math.min(b.volume+.1,1);b.setVolume(e)}},{keys:[40],action:function(a,b,c,d){a.container.find(".mejs-volume-slider").css("display","block"),a.isVideo&&(a.showControls(),a.startControlsTimer());var e=Math.max(b.volume-.1,0);b.setVolume(e)}},{keys:[37,227],action:function(a,b,c,d){if(!isNaN(b.duration)&&b.duration>0){a.isVideo&&(a.showControls(),a.startControlsTimer());var e=Math.max(b.currentTime-a.options.defaultSeekBackwardInterval(b),0);b.setCurrentTime(e)}}},{keys:[39,228],action:function(a,b,c,d){if(!isNaN(b.duration)&&b.duration>0){a.isVideo&&(a.showControls(),a.startControlsTimer());var e=Math.min(b.currentTime+a.options.defaultSeekForwardInterval(b),b.duration);b.setCurrentTime(e)}}},{keys:[70],action:function(a,b,c,d){"undefined"!=typeof a.enterFullScreen&&(a.isFullScreen?a.exitFullScreen():a.enterFullScreen())}},{keys:[77],action:function(a,b,c,d){a.container.find(".mejs-volume-slider").css("display","block"),a.isVideo&&(a.showControls(),a.startControlsTimer()),a.media.muted?a.setMuted(!1):a.setMuted(!0)}}]},mejs.mepIndex=0,mejs.players={},mejs.MediaElementPlayer=function(b,c){if(!(this instanceof mejs.MediaElementPlayer))return new mejs.MediaElementPlayer(b,c);var d=this;return d.$media=d.$node=a(b),d.node=d.media=d.$media[0],d.node?"undefined"!=typeof d.node.player?d.node.player:("undefined"==typeof c&&(c=d.$node.data("mejsoptions")),d.options=a.extend({},mejs.MepDefaults,c),d.options.timeFormat||(d.options.timeFormat="mm:ss",d.options.alwaysShowHours&&(d.options.timeFormat="hh:mm:ss"),d.options.showTimecodeFrameCount&&(d.options.timeFormat+=":ff")),mejs.Utility.calculateTimeFormat(0,d.options,d.options.framesPerSecond||25),d.id="mep_"+mejs.mepIndex++,mejs.players[d.id]=d,d.init(),d):void 0},mejs.MediaElementPlayer.prototype={hasFocus:!1,controlsAreVisible:!0,init:function(){var b=this,c=mejs.MediaFeatures,d=a.extend(!0,{},b.options,{success:function(a,c){b.meReady(a,c)},error:function(a){b.handleError(a)}}),e=b.media.tagName.toLowerCase();if(b.isDynamic="audio"!==e&&"video"!==e,b.isDynamic?b.isVideo=b.options.isVideo:b.isVideo="audio"!==e&&b.options.isVideo,c.isiPad&&b.options.iPadUseNativeControls||c.isiPhone&&b.options.iPhoneUseNativeControls)b.$media.attr("controls","controls"),c.isiPad&&null!==b.media.getAttribute("autoplay")&&b.play();else if(c.isAndroid&&b.options.AndroidUseNativeControls);else if(b.isVideo||!b.isVideo&&b.options.features.length){b.$media.removeAttr("controls");var f=b.isVideo?mejs.i18n.t("mejs.video-player"):mejs.i18n.t("mejs.audio-player");a('<span class="mejs-offscreen">'+f+"</span>").insertBefore(b.$media),b.container=a('<div id="'+b.id+'" class="mejs-container '+(mejs.MediaFeatures.svgAsImg?"svg":"no-svg")+'" tabindex="0" role="application" aria-label="'+f+'"><div class="mejs-inner"><div class="mejs-mediaelement"></div><div class="mejs-layers"></div><div class="mejs-controls"></div><div class="mejs-clear"></div></div></div>').addClass(b.$media[0].className).insertBefore(b.$media).focus(function(a){if(!b.controlsAreVisible&&!b.hasFocus&&b.controlsEnabled&&(b.showControls(!0),!b.hasMsNativeFullScreen)){var c=".mejs-playpause-button > button";mejs.Utility.isNodeAfter(a.relatedTarget,b.container[0])&&(c=".mejs-controls .mejs-button:last-child > button");var d=b.container.find(c);d.focus()}}),b.options.features.length||b.container.css("background","transparent").find(".mejs-controls").hide(),b.isVideo&&"fill"===b.options.stretching&&!b.container.parent("mejs-fill-container").length&&(b.outerContainer=b.$media.parent(),b.container.wrap('<div class="mejs-fill-container"/>')),b.container.addClass((c.isAndroid?"mejs-android ":"")+(c.isiOS?"mejs-ios ":"")+(c.isiPad?"mejs-ipad ":"")+(c.isiPhone?"mejs-iphone ":"")+(b.isVideo?"mejs-video ":"mejs-audio ")),b.container.find(".mejs-mediaelement").append(b.$media),b.node.player=b,b.controls=b.container.find(".mejs-controls"),b.layers=b.container.find(".mejs-layers");var g=b.isVideo?"video":"audio",h=g.substring(0,1).toUpperCase()+g.substring(1);b.options[g+"Width"]>0||b.options[g+"Width"].toString().indexOf("%")>-1?b.width=b.options[g+"Width"]:""!==b.media.style.width&&null!==b.media.style.width?b.width=b.media.style.width:null!==b.media.getAttribute("width")?b.width=b.$media.attr("width"):b.width=b.options["default"+h+"Width"],b.options[g+"Height"]>0||b.options[g+"Height"].toString().indexOf("%")>-1?b.height=b.options[g+"Height"]:""!==b.media.style.height&&null!==b.media.style.height?b.height=b.media.style.height:null!==b.$media[0].getAttribute("height")?b.height=b.$media.attr("height"):b.height=b.options["default"+h+"Height"],b.setPlayerSize(b.width,b.height),d.pluginWidth=b.width,d.pluginHeight=b.height}else b.isVideo||b.options.features.length||b.$media.hide();mejs.MediaElement(b.$media[0],d),"undefined"!=typeof b.container&&b.options.features.length&&b.controlsAreVisible&&b.container.trigger("controlsshown")},showControls:function(a){var b=this;a="undefined"==typeof a||a,b.controlsAreVisible||(a?(b.controls.removeClass("mejs-offscreen").stop(!0,!0).fadeIn(200,function(){b.controlsAreVisible=!0,b.container.trigger("controlsshown")}),b.container.find(".mejs-control").removeClass("mejs-offscreen").stop(!0,!0).fadeIn(200,function(){b.controlsAreVisible=!0})):(b.controls.removeClass("mejs-offscreen").css("display","block"),b.container.find(".mejs-control").removeClass("mejs-offscreen").css("display","block"),b.controlsAreVisible=!0,b.container.trigger("controlsshown")),b.setControlsSize())},hideControls:function(b){var c=this;b="undefined"==typeof b||b,!c.controlsAreVisible||c.options.alwaysShowControls||c.keyboardAction||c.media.paused||c.media.ended||(b?(c.controls.stop(!0,!0).fadeOut(200,function(){a(this).addClass("mejs-offscreen").css("display","block"),c.controlsAreVisible=!1,c.container.trigger("controlshidden")}),c.container.find(".mejs-control").stop(!0,!0).fadeOut(200,function(){a(this).addClass("mejs-offscreen").css("display","block")})):(c.controls.addClass("mejs-offscreen").css("display","block"),c.container.find(".mejs-control").addClass("mejs-offscreen").css("display","block"),c.controlsAreVisible=!1,c.container.trigger("controlshidden")))},controlsTimer:null,startControlsTimer:function(a){var b=this;a="undefined"!=typeof a?a:b.options.controlsTimeoutDefault,b.killControlsTimer("start"),b.controlsTimer=setTimeout(function(){b.hideControls(),b.killControlsTimer("hide")},a)},killControlsTimer:function(a){var b=this;null!==b.controlsTimer&&(clearTimeout(b.controlsTimer),delete b.controlsTimer,b.controlsTimer=null)},controlsEnabled:!0,disableControls:function(){var a=this;a.killControlsTimer(),a.hideControls(!1),this.controlsEnabled=!1},enableControls:function(){var a=this;a.showControls(!1),a.controlsEnabled=!0},meReady:function(b,c){var d,e,f=this,g=mejs.MediaFeatures,h=c.getAttribute("autoplay"),i=!("undefined"==typeof h||null===h||"false"===h);if(!f.created){if(f.created=!0,f.media=b,f.domNode=c,!(g.isAndroid&&f.options.AndroidUseNativeControls||g.isiPad&&f.options.iPadUseNativeControls||g.isiPhone&&f.options.iPhoneUseNativeControls)){if(!f.isVideo&&!f.options.features.length)return i&&"native"==b.pluginType&&f.play(),void(f.options.success&&("string"==typeof f.options.success?window[f.options.success](f.media,f.domNode,f):f.options.success(f.media,f.domNode,f)));f.buildposter(f,f.controls,f.layers,f.media),f.buildkeyboard(f,f.controls,f.layers,f.media),f.buildoverlays(f,f.controls,f.layers,f.media),f.findTracks();for(d in f.options.features)if(e=f.options.features[d],f["build"+e])try{f["build"+e](f,f.controls,f.layers,f.media)}catch(j){}f.container.trigger("controlsready"),f.setPlayerSize(f.width,f.height),f.setControlsSize(),f.isVideo&&(mejs.MediaFeatures.hasTouch&&!f.options.alwaysShowControls?f.$media.bind("touchstart",function(){f.controlsAreVisible?f.hideControls(!1):f.controlsEnabled&&f.showControls(!1)}):(f.clickToPlayPauseCallback=function(){if(f.options.clickToPlayPause){f.media.paused?f.play():f.pause();var a=f.$media.closest(".mejs-container").find(".mejs-overlay-button"),b=a.attr("aria-pressed");a.attr("aria-pressed",!b)}},f.media.addEventListener("click",f.clickToPlayPauseCallback,!1),f.container.bind("mouseenter",function(){f.controlsEnabled&&(f.options.alwaysShowControls||(f.killControlsTimer("enter"),f.showControls(),f.startControlsTimer(f.options.controlsTimeoutMouseEnter)))}).bind("mousemove",function(){f.controlsEnabled&&(f.controlsAreVisible||f.showControls(),f.options.alwaysShowControls||f.startControlsTimer(f.options.controlsTimeoutMouseEnter))}).bind("mouseleave",function(){f.controlsEnabled&&(f.media.paused||f.options.alwaysShowControls||f.startControlsTimer(f.options.controlsTimeoutMouseLeave))})),f.options.hideVideoControlsOnLoad&&f.hideControls(!1),i&&!f.options.alwaysShowControls&&f.hideControls(),f.options.enableAutosize&&f.media.addEventListener("loadedmetadata",function(a){f.options.videoHeight<=0&&null===f.domNode.getAttribute("height")&&!isNaN(a.target.videoHeight)&&(f.setPlayerSize(a.target.videoWidth,a.target.videoHeight),f.setControlsSize(),f.media.setVideoSize(a.target.videoWidth,a.target.videoHeight))},!1)),f.media.addEventListener("play",function(){var a;for(a in mejs.players){var b=mejs.players[a];b.id==f.id||!f.options.pauseOtherPlayers||b.paused||b.ended||b.pause(),b.hasFocus=!1}f.hasFocus=!0},!1),f.media.addEventListener("ended",function(b){if(f.options.autoRewind)try{f.media.setCurrentTime(0),window.setTimeout(function(){a(f.container).find(".mejs-overlay-loading").parent().hide()},20)}catch(c){}"youtube"===f.media.pluginType?f.media.stop():f.media.pause(),f.setProgressRail&&f.setProgressRail(),f.setCurrentRail&&f.setCurrentRail(),f.options.loop?f.play():!f.options.alwaysShowControls&&f.controlsEnabled&&f.showControls()},!1),f.media.addEventListener("loadedmetadata",function(){mejs.Utility.calculateTimeFormat(f.duration,f.options,f.options.framesPerSecond||25),f.updateDuration&&f.updateDuration(),f.updateCurrent&&f.updateCurrent(),f.isFullScreen||(f.setPlayerSize(f.width,f.height),f.setControlsSize())},!1);var k=null;f.media.addEventListener("timeupdate",function(){k!==this.duration&&(k=this.duration,mejs.Utility.calculateTimeFormat(k,f.options,f.options.framesPerSecond||25),f.updateDuration&&f.updateDuration(),f.updateCurrent&&f.updateCurrent(),f.setControlsSize())},!1),f.container.focusout(function(b){if(b.relatedTarget){var c=a(b.relatedTarget);f.keyboardAction&&0===c.parents(".mejs-container").length&&(f.keyboardAction=!1,f.isVideo&&!f.options.alwaysShowControls&&f.hideControls(!0))}}),setTimeout(function(){f.setPlayerSize(f.width,f.height),f.setControlsSize()},50),f.globalBind("resize",function(){f.isFullScreen||mejs.MediaFeatures.hasTrueNativeFullScreen&&document.webkitIsFullScreen||f.setPlayerSize(f.width,f.height),f.setControlsSize()}),"youtube"==f.media.pluginType&&(g.isiOS||g.isAndroid)&&(f.container.find(".mejs-overlay-play").hide(),f.container.find(".mejs-poster").hide())}i&&"native"==b.pluginType&&f.play(),f.options.success&&("string"==typeof f.options.success?window[f.options.success](f.media,f.domNode,f):f.options.success(f.media,f.domNode,f))}},handleError:function(a){var b=this;b.controls&&b.controls.hide(),b.options.error&&b.options.error(a)},setPlayerSize:function(a,b){var c=this;if(!c.options.setDimensions)return!1;switch("undefined"!=typeof a&&(c.width=a),"undefined"!=typeof b&&(c.height=b),c.options.stretching){case"fill":c.isVideo?this.setFillMode():this.setDimensions(c.width,c.height);break;case"responsive":this.setResponsiveMode();break;case"none":this.setDimensions(c.width,c.height);break;default:this.hasFluidMode()===!0?this.setResponsiveMode():this.setDimensions(c.width,c.height)}},hasFluidMode:function(){var a=this;return a.height.toString().indexOf("%")>0||"none"!==a.$node.css("max-width")&&"t.width"!==a.$node.css("max-width")||a.$node[0].currentStyle&&"100%"===a.$node[0].currentStyle.maxWidth},setResponsiveMode:function(){var b=this,c=function(){return b.isVideo?b.media.videoWidth&&b.media.videoWidth>0?b.media.videoWidth:null!==b.media.getAttribute("width")?b.media.getAttribute("width"):b.options.defaultVideoWidth:b.options.defaultAudioWidth}(),d=function(){return b.isVideo?b.media.videoHeight&&b.media.videoHeight>0?b.media.videoHeight:null!==b.media.getAttribute("height")?b.media.getAttribute("height"):b.options.defaultVideoHeight:b.options.defaultAudioHeight}(),e=b.container.parent().closest(":visible").width(),f=b.container.parent().closest(":visible").height(),g=b.isVideo||!b.options.autosizeProgress?parseInt(e*d/c,10):d;(isNaN(g)||0!==f&&g>f&&f>d)&&(g=f),b.container.parent().length>0&&"body"===b.container.parent()[0].tagName.toLowerCase()&&(e=a(window).width(),g=a(window).height()),g&&e&&(b.container.width(e).height(g),b.$media.add(b.container.find(".mejs-shim")).width("100%").height("100%"),b.isVideo&&b.media.setVideoSize&&b.media.setVideoSize(e,g),b.layers.children(".mejs-layer").width("100%").height("100%"))},setFillMode:function(){var a=this,b=a.outerContainer;b.width()||b.height(a.$media.width()),b.height()||b.height(a.$media.height());var c=b.width(),d=b.height();a.setDimensions("100%","100%"),a.container.find(".mejs-poster img").css("display","block"),targetElement=a.container.find("object, embed, iframe, video");var e=a.height,f=a.width,g=c,h=e*c/f,i=f*d/e,j=d,k=!(i>c),l=k?Math.floor(g):Math.floor(i),m=k?Math.floor(h):Math.floor(j);k?(targetElement.height(m).width(c),a.media.setVideoSize&&a.media.setVideoSize(c,m)):(targetElement.height(d).width(l),a.media.setVideoSize&&a.media.setVideoSize(l,d)),targetElement.css({"margin-left":Math.floor((c-l)/2),"margin-top":0})},setDimensions:function(a,b){var c=this;c.container.width(a).height(b),c.layers.children(".mejs-layer").width(a).height(b)},setControlsSize:function(){var b=this,c=0,d=0,e=b.controls.find(".mejs-time-rail"),f=b.controls.find(".mejs-time-total"),g=e.siblings(),h=g.last(),i=null,j=b.options&&!b.options.autosizeProgress;if(b.container.is(":visible")&&e.length&&e.is(":visible")){j&&(d=parseInt(e.css("width"),10)),0!==d&&d||(g.each(function(){var b=a(this);"absolute"!=b.css("position")&&b.is(":visible")&&(c+=a(this).outerWidth(!0))}),d=b.controls.width()-c-(e.outerWidth(!0)-e.width()));do j||e.width(d),f.width(d-(f.outerWidth(!0)-f.width())),"absolute"!=h.css("position")&&(i=h.length?h.position():null,d--);while(null!==i&&i.top.toFixed(2)>0&&d>0);b.container.trigger("controlsresize")}},buildposter:function(b,c,d,e){var f=this,g=a('<div class="mejs-poster mejs-layer"></div>').appendTo(d),h=b.$media.attr("poster");""!==b.options.poster&&(h=b.options.poster),h?f.setPoster(h):g.hide(),e.addEventListener("play",function(){g.hide()},!1),b.options.showPosterWhenEnded&&b.options.autoRewind&&e.addEventListener("ended",function(){g.show()},!1)},setPoster:function(b){var c=this,d=c.container.find(".mejs-poster"),e=d.find("img");0===e.length&&(e=a('<img width="100%" height="100%" alt="" />').appendTo(d)),e.attr("src",b),d.css({"background-image":"url("+b+")"})},buildoverlays:function(b,c,d,e){var f=this;if(b.isVideo){var g=a('<div class="mejs-overlay mejs-layer"><div class="mejs-overlay-loading"><span></span></div></div>').hide().appendTo(d),h=a('<div class="mejs-overlay mejs-layer"><div class="mejs-overlay-error"></div></div>').hide().appendTo(d),i=a('<div class="mejs-overlay mejs-layer mejs-overlay-play"><div class="mejs-overlay-button" role="button" aria-label="'+mejs.i18n.t("mejs.play")+'" aria-pressed="false"></div></div>').appendTo(d).bind("click",function(){if(f.options.clickToPlayPause){e.paused&&e.play();var b=a(this).find(".mejs-overlay-button"),c=b.attr("aria-pressed");b.attr("aria-pressed",!!c)}});e.addEventListener("play",function(){i.hide(),g.hide(),c.find(".mejs-time-buffering").hide(),h.hide()},!1),e.addEventListener("playing",function(){i.hide(),g.hide(),c.find(".mejs-time-buffering").hide(),h.hide()},!1),e.addEventListener("seeking",function(){g.show(),c.find(".mejs-time-buffering").show()},!1),e.addEventListener("seeked",function(){g.hide(),c.find(".mejs-time-buffering").hide()},!1),e.addEventListener("pause",function(){mejs.MediaFeatures.isiPhone||i.show()},!1),e.addEventListener("waiting",function(){g.show(),c.find(".mejs-time-buffering").show()},!1),e.addEventListener("loadeddata",function(){g.show(),c.find(".mejs-time-buffering").show(),mejs.MediaFeatures.isAndroid&&(e.canplayTimeout=window.setTimeout(function(){if(document.createEvent){var a=document.createEvent("HTMLEvents");return a.initEvent("canplay",!0,!0),e.dispatchEvent(a)}},300))},!1),e.addEventListener("canplay",function(){g.hide(),c.find(".mejs-time-buffering").hide(),clearTimeout(e.canplayTimeout)},!1),e.addEventListener("error",function(a){f.handleError(a),g.hide(),i.hide(),h.show(),h.find(".mejs-overlay-error").html("Error loading this resource")},!1),e.addEventListener("keydown",function(a){f.onkeydown(b,e,a)},!1)}},buildkeyboard:function(b,c,d,e){var f=this;f.container.keydown(function(){f.keyboardAction=!0}),f.globalBind("keydown",function(c){return b.hasFocus=0!==a(c.target).closest(".mejs-container").length&&a(c.target).closest(".mejs-container").attr("id")===b.$media.closest(".mejs-container").attr("id"),f.onkeydown(b,e,c)}),f.globalBind("click",function(c){b.hasFocus=0!==a(c.target).closest(".mejs-container").length})},onkeydown:function(a,b,c){if(a.hasFocus&&a.options.enableKeyboard)for(var d=0,e=a.options.keyActions.length;e>d;d++)for(var f=a.options.keyActions[d],g=0,h=f.keys.length;h>g;g++)if(c.keyCode==f.keys[g])return"function"==typeof c.preventDefault&&c.preventDefault(),f.action(a,b,c.keyCode,c),!1;return!0},findTracks:function(){var b=this,c=b.$media.find("track");b.tracks=[],c.each(function(c,d){d=a(d),b.tracks.push({srclang:d.attr("srclang")?d.attr("srclang").toLowerCase():"",src:d.attr("src"),kind:d.attr("kind"),label:d.attr("label")||"",entries:[],isLoaded:!1})})},changeSkin:function(a){this.container[0].className="mejs-container "+a,this.setPlayerSize(this.width,this.height),this.setControlsSize()},play:function(){this.load(),this.media.play()},pause:function(){try{this.media.pause()}catch(a){}},load:function(){this.isLoaded||this.media.load(),this.isLoaded=!0},setMuted:function(a){this.media.setMuted(a)},setCurrentTime:function(a){this.media.setCurrentTime(a)},getCurrentTime:function(){return this.media.currentTime},setVolume:function(a){this.media.setVolume(a)},getVolume:function(){return this.media.volume},setSrc:function(a){var b=this;if("youtube"===b.media.pluginType){var c;if("string"!=typeof a){var d,e;for(d=0;d<a.length;d++)if(e=a[d],this.canPlayType(e.type)){a=e.src;break}}if(-1!==a.lastIndexOf("youtu.be"))c=a.substr(a.lastIndexOf("/")+1),-1!==c.indexOf("?")&&(c=c.substr(0,c.indexOf("?")));else{var f=a.match(/[?&]v=([^&#]+)|&|#|$/);f&&(c=f[1])}null!==b.media.getAttribute("autoplay")?b.media.pluginApi.loadVideoById(c):b.media.pluginApi.cueVideoById(c)}else b.media.setSrc(a)},remove:function(){var a,b,c=this;c.container.prev(".mejs-offscreen").remove();for(a in c.options.features)if(b=c.options.features[a],c["clean"+b])try{c["clean"+b](c)}catch(d){}c.isDynamic?c.$node.insertBefore(c.container):(c.$media.prop("controls",!0),c.$node.clone().insertBefore(c.container).show(),c.$node.remove()),"native"!==c.media.pluginType&&c.media.remove(),delete mejs.players[c.id],"object"==typeof c.container&&c.container.remove(),c.globalUnbind(),delete c.node.player},rebuildtracks:function(){var a=this;a.findTracks(),a.buildtracks(a,a.controls,a.layers,a.media)},resetSize:function(){var a=this;setTimeout(function(){a.setPlayerSize(a.width,a.height),a.setControlsSize()},50)}},function(){function b(b,d){var e={d:[],w:[]};return a.each((b||"").split(" "),function(a,b){var f=b+"."+d;0===f.indexOf(".")?(e.d.push(f),e.w.push(f)):e[c.test(b)?"w":"d"].push(f)}),e.d=e.d.join(" "),e.w=e.w.join(" "),e}var c=/^((after|before)print|(before)?unload|hashchange|message|o(ff|n)line|page(hide|show)|popstate|resize|storage)\b/;mejs.MediaElementPlayer.prototype.globalBind=function(c,d,e){var f=this,g=f.node?f.node.ownerDocument:document;c=b(c,f.id),c.d&&a(g).bind(c.d,d,e),c.w&&a(window).bind(c.w,d,e)},mejs.MediaElementPlayer.prototype.globalUnbind=function(c,d){var e=this,f=e.node?e.node.ownerDocument:document;c=b(c,e.id),c.d&&a(f).unbind(c.d,d),c.w&&a(window).unbind(c.w,d)}}(),"undefined"!=typeof a&&(a.fn.mediaelementplayer=function(b){return b===!1?this.each(function(){var b=a(this).data("mediaelementplayer");b&&b.remove(),a(this).removeData("mediaelementplayer")}):this.each(function(){a(this).data("mediaelementplayer",new mejs.MediaElementPlayer(this,b))}),this},a(document).ready(function(){a(".mejs-player").mediaelementplayer()})),window.MediaElementPlayer=mejs.MediaElementPlayer}(mejs.$),function(a){a.extend(mejs.MepDefaults,{playText:"",pauseText:""}),a.extend(MediaElementPlayer.prototype,{buildplaypause:function(b,c,d,e){function f(a){"play"===a?(k.removeClass("mejs-play").addClass("mejs-pause"),l.attr({title:j,"aria-label":j})):(k.removeClass("mejs-pause").addClass("mejs-play"),l.attr({title:i,"aria-label":i}))}var g=this,h=g.options,i=h.playText?h.playText:mejs.i18n.t("mejs.play"),j=h.pauseText?h.pauseText:mejs.i18n.t("mejs.pause"),k=a('<div class="mejs-button mejs-playpause-button mejs-play" ><button type="button" aria-controls="'+g.id+'" title="'+i+'" aria-label="'+j+'"></button></div>').appendTo(c).click(function(a){return a.preventDefault(),e.paused?e.play():e.pause(),!1}),l=k.find("button");f("pse"),e.addEventListener("play",function(){f("play")},!1),e.addEventListener("playing",function(){f("play")},!1),e.addEventListener("pause",function(){f("pse")},!1),e.addEventListener("paused",function(){f("pse")},!1)}})}(mejs.$),function(a){a.extend(mejs.MepDefaults,{stopText:"Stop"}),a.extend(MediaElementPlayer.prototype,{buildstop:function(b,c,d,e){var f=this;a('<div class="mejs-button mejs-stop-button mejs-stop"><button type="button" aria-controls="'+f.id+'" title="'+f.options.stopText+'" aria-label="'+f.options.stopText+'"></button></div>').appendTo(c).click(function(){e.paused||e.pause(),e.currentTime>0&&(e.setCurrentTime(0),e.pause(),c.find(".mejs-time-current").width("0px"),c.find(".mejs-time-handle").css("left","0px"),c.find(".mejs-time-float-current").html(mejs.Utility.secondsToTimeCode(0,b.options)),c.find(".mejs-currenttime").html(mejs.Utility.secondsToTimeCode(0,b.options)),d.find(".mejs-poster").show())})}})}(mejs.$),function(a){a.extend(mejs.MepDefaults,{enableProgressTooltip:!0,progressHelpText:""}),a.extend(MediaElementPlayer.prototype,{buildprogress:function(b,c,d,e){var f=this,g=!1,h=!1,i=0,j=!1,k=b.options.autoRewind,l=(f.options.progressHelpText?f.options.progressHelpText:mejs.i18n.t("mejs.time-help-text"),b.options.enableProgressTooltip?'<span class="mejs-time-float"><span class="mejs-time-float-current">00:00</span><span class="mejs-time-float-corner"></span></span>':"");a('<div class="mejs-time-rail"><span  class="mejs-time-total mejs-time-slider"><span class="mejs-time-buffering"></span><span class="mejs-time-loaded"></span><span class="mejs-time-current"></span><span class="mejs-time-handle"></span>'+l+"</span></div>").appendTo(c),c.find(".mejs-time-buffering").hide(),f.total=c.find(".mejs-time-total"),f.loaded=c.find(".mejs-time-loaded"),f.current=c.find(".mejs-time-current"),f.handle=c.find(".mejs-time-handle"),f.timefloat=c.find(".mejs-time-float"),f.timefloatcurrent=c.find(".mejs-time-float-current"),f.slider=c.find(".mejs-time-slider");var m=function(a){var c,d=f.total.offset(),h=f.total.width(),i=0,j=0,k=0;c=a.originalEvent&&a.originalEvent.changedTouches?a.originalEvent.changedTouches[0].pageX:a.changedTouches?a.changedTouches[0].pageX:a.pageX,e.duration&&(c<d.left?c=d.left:c>h+d.left&&(c=h+d.left),k=c-d.left,i=k/h,j=.02>=i?0:i*e.duration,g&&j!==e.currentTime&&e.setCurrentTime(j),mejs.MediaFeatures.hasTouch||(f.timefloat.css("left",k),f.timefloatcurrent.html(mejs.Utility.secondsToTimeCode(j,b.options)),f.timefloat.show()))},n=function(a){var c=e.currentTime,d=mejs.i18n.t("mejs.time-slider"),g=mejs.Utility.secondsToTimeCode(c,b.options),h=e.duration;f.slider.attr({"aria-label":d,"aria-valuemin":0,"aria-valuemax":h,"aria-valuenow":c,"aria-valuetext":g,role:"slider",tabindex:0})},o=function(){var a=new Date;a-i>=1e3&&e.play()};f.slider.bind("focus",function(a){b.options.autoRewind=!1}),f.slider.bind("blur",function(a){b.options.autoRewind=k}),f.slider.bind("keydown",function(a){new Date-i>=1e3&&(j=e.paused);var c=a.keyCode,d=e.duration,f=e.currentTime,g=b.options.defaultSeekForwardInterval(e),h=b.options.defaultSeekBackwardInterval(e);switch(c){case 37:case 40:f-=h;break;case 39:case 38:f+=g;break;case 36:f=0;break;case 35:f=d;break;case 32:case 13:return void(e.paused?e.play():e.pause());default:return}return f=0>f?0:f>=d?d:Math.floor(f),i=new Date,j||e.pause(),f<e.duration&&!j&&setTimeout(o,1100),e.setCurrentTime(f),a.preventDefault(),a.stopPropagation(),!1}),f.total.bind("mousedown touchstart",function(a){(1===a.which||0===a.which)&&(g=!0,m(a),f.globalBind("mousemove.dur touchmove.dur",function(a){m(a)}),f.globalBind("mouseup.dur touchend.dur",function(a){g=!1,"undefined"!=typeof f.timefloat&&f.timefloat.hide(),f.globalUnbind(".dur")}))}).bind("mouseenter",function(a){h=!0,f.globalBind("mousemove.dur",function(a){m(a)}),"undefined"==typeof f.timefloat||mejs.MediaFeatures.hasTouch||f.timefloat.show()}).bind("mouseleave",function(a){h=!1,g||(f.globalUnbind(".dur"),"undefined"!=typeof f.timefloat&&f.timefloat.hide())}),e.addEventListener("progress",function(a){b.setProgressRail(a),b.setCurrentRail(a)},!1),e.addEventListener("timeupdate",function(a){b.setProgressRail(a),b.setCurrentRail(a),n(a)},!1),f.container.on("controlsresize",function(a){b.setProgressRail(a),b.setCurrentRail(a)})},setProgressRail:function(a){var b=this,c=void 0!==a?a.target:b.media,d=null;c&&c.buffered&&c.buffered.length>0&&c.buffered.end&&c.duration?d=c.buffered.end(c.buffered.length-1)/c.duration:c&&void 0!==c.bytesTotal&&c.bytesTotal>0&&void 0!==c.bufferedBytes?d=c.bufferedBytes/c.bytesTotal:a&&a.lengthComputable&&0!==a.total&&(d=a.loaded/a.total),null!==d&&(d=Math.min(1,Math.max(0,d)),b.loaded&&b.total&&b.loaded.width(b.total.width()*d))},setCurrentRail:function(){var a=this;if(void 0!==a.media.currentTime&&a.media.duration&&a.total&&a.handle){var b=Math.round(a.total.width()*a.media.currentTime/a.media.duration),c=b-Math.round(a.handle.outerWidth(!0)/2);a.current.width(b),a.handle.css("left",c)}}})}(mejs.$),function(a){a.extend(mejs.MepDefaults,{duration:-1,timeAndDurationSeparator:"<span> | </span>"}),a.extend(MediaElementPlayer.prototype,{buildcurrent:function(b,c,d,e){var f=this;a('<div class="mejs-time" role="timer" aria-live="off"><span class="mejs-currenttime">'+mejs.Utility.secondsToTimeCode(0,b.options)+"</span></div>").appendTo(c),f.currenttime=f.controls.find(".mejs-currenttime"),e.addEventListener("timeupdate",function(){f.controlsAreVisible&&b.updateCurrent()},!1)},buildduration:function(b,c,d,e){var f=this;c.children().last().find(".mejs-currenttime").length>0?a(f.options.timeAndDurationSeparator+'<span class="mejs-duration">'+mejs.Utility.secondsToTimeCode(f.options.duration,f.options)+"</span>").appendTo(c.find(".mejs-time")):(c.find(".mejs-currenttime").parent().addClass("mejs-currenttime-container"),a('<div class="mejs-time mejs-duration-container"><span class="mejs-duration">'+mejs.Utility.secondsToTimeCode(f.options.duration,f.options)+"</span></div>").appendTo(c)),f.durationD=f.controls.find(".mejs-duration"),e.addEventListener("timeupdate",function(){f.controlsAreVisible&&b.updateDuration()},!1)},updateCurrent:function(){var a=this,b=a.media.currentTime;isNaN(b)&&(b=0),a.currenttime&&a.currenttime.html(mejs.Utility.secondsToTimeCode(b,a.options))},updateDuration:function(){var a=this,b=a.media.duration;a.options.duration>0&&(b=a.options.duration),isNaN(b)&&(b=0),a.container.toggleClass("mejs-long-video",b>3600),a.durationD&&b>0&&a.durationD.html(mejs.Utility.secondsToTimeCode(b,a.options))}})}(mejs.$),function(a){a.extend(mejs.MepDefaults,{muteText:mejs.i18n.t("mejs.mute-toggle"),allyVolumeControlText:mejs.i18n.t("mejs.volume-help-text"),hideVolumeOnTouchDevices:!0,audioVolume:"horizontal",videoVolume:"vertical"}),a.extend(MediaElementPlayer.prototype,{buildvolume:function(b,c,d,e){if(!mejs.MediaFeatures.isAndroid&&!mejs.MediaFeatures.isiOS||!this.options.hideVolumeOnTouchDevices){var f=this,g=f.isVideo?f.options.videoVolume:f.options.audioVolume,h="horizontal"==g?a('<div class="mejs-button mejs-volume-button mejs-mute"><button type="button" aria-controls="'+f.id+'" title="'+f.options.muteText+'" aria-label="'+f.options.muteText+'"></button></div><a href="javascript:void(0);" class="mejs-horizontal-volume-slider"><span class="mejs-offscreen">'+f.options.allyVolumeControlText+'</span><div class="mejs-horizontal-volume-total"></div><div class="mejs-horizontal-volume-current"></div><div class="mejs-horizontal-volume-handle"></div></a>').appendTo(c):a('<div class="mejs-button mejs-volume-button mejs-mute"><button type="button" aria-controls="'+f.id+'" title="'+f.options.muteText+'" aria-label="'+f.options.muteText+'"></button><a href="javascript:void(0);" class="mejs-volume-slider"><span class="mejs-offscreen">'+f.options.allyVolumeControlText+'</span><div class="mejs-volume-total"></div><div class="mejs-volume-current"></div><div class="mejs-volume-handle"></div></a></div>').appendTo(c),i=f.container.find(".mejs-volume-slider, .mejs-horizontal-volume-slider"),j=f.container.find(".mejs-volume-total, .mejs-horizontal-volume-total"),k=f.container.find(".mejs-volume-current, .mejs-horizontal-volume-current"),l=f.container.find(".mejs-volume-handle, .mejs-horizontal-volume-handle"),m=function(a,b){if(!i.is(":visible")&&"undefined"==typeof b)return i.show(),m(a,!0),void i.hide();a=Math.max(0,a),a=Math.min(a,1),0===a?(h.removeClass("mejs-mute").addClass("mejs-unmute"),h.children("button").attr("title",mejs.i18n.t("mejs.unmute")).attr("aria-label",mejs.i18n.t("mejs.unmute"))):(h.removeClass("mejs-unmute").addClass("mejs-mute"),h.children("button").attr("title",mejs.i18n.t("mejs.mute")).attr("aria-label",mejs.i18n.t("mejs.mute")));var c=j.position();if("vertical"==g){var d=j.height(),e=d-d*a;l.css("top",Math.round(c.top+e-l.height()/2)),k.height(d-e),k.css("top",c.top+e)}else{var f=j.width(),n=f*a;l.css("left",Math.round(c.left+n-l.width()/2)),k.width(Math.round(n))}},n=function(a){var b=null,c=j.offset();if("vertical"===g){var d=j.height(),f=a.pageY-c.top;if(b=(d-f)/d,0===c.top||0===c.left)return}else{var h=j.width(),i=a.pageX-c.left;b=i/h;
+}b=Math.max(0,b),b=Math.min(b,1),m(b),0===b?e.setMuted(!0):e.setMuted(!1),e.setVolume(b)},o=!1,p=!1;h.hover(function(){i.show(),p=!0},function(){p=!1,o||"vertical"!=g||i.hide()});var q=function(a){var b=Math.floor(100*e.volume);i.attr({"aria-label":mejs.i18n.t("mejs.volume-slider"),"aria-valuemin":0,"aria-valuemax":100,"aria-valuenow":b,"aria-valuetext":b+"%",role:"slider",tabindex:0})};i.bind("mouseover",function(){p=!0}).bind("mousedown",function(a){return n(a),f.globalBind("mousemove.vol",function(a){n(a)}),f.globalBind("mouseup.vol",function(){o=!1,f.globalUnbind(".vol"),p||"vertical"!=g||i.hide()}),o=!0,!1}).bind("keydown",function(a){var b=a.keyCode,c=e.volume;switch(b){case 38:c=Math.min(c+.1,1);break;case 40:c=Math.max(0,c-.1);break;default:return!0}return o=!1,m(c),e.setVolume(c),!1}),h.find("button").click(function(){e.setMuted(!e.muted)}),h.find("button").bind("focus",function(){i.show()}),e.addEventListener("volumechange",function(a){o||(e.muted?(m(0),h.removeClass("mejs-mute").addClass("mejs-unmute")):(m(e.volume),h.removeClass("mejs-unmute").addClass("mejs-mute"))),q(a)},!1),0===b.options.startVolume&&e.setMuted(!0),"native"===e.pluginType&&e.setVolume(b.options.startVolume),f.container.on("controlsresize",function(){e.muted?(m(0),h.removeClass("mejs-mute").addClass("mejs-unmute")):(m(e.volume),h.removeClass("mejs-unmute").addClass("mejs-mute"))})}}})}(mejs.$),function(a){a.extend(mejs.MepDefaults,{usePluginFullScreen:!0,newWindowCallback:function(){return""},fullscreenText:""}),a.extend(MediaElementPlayer.prototype,{isFullScreen:!1,isNativeFullScreen:!1,isInIframe:!1,fullscreenMode:"",buildfullscreen:function(b,c,d,e){if(b.isVideo){b.isInIframe=window.location!=window.parent.location,e.addEventListener("loadstart",function(){b.detectFullscreenMode()});var f=this,g=null,h=f.options.fullscreenText?f.options.fullscreenText:mejs.i18n.t("mejs.fullscreen"),i=a('<div class="mejs-button mejs-fullscreen-button"><button type="button" aria-controls="'+f.id+'" title="'+h+'" aria-label="'+h+'"></button></div>').appendTo(c).on("click",function(){var a=mejs.MediaFeatures.hasTrueNativeFullScreen&&mejs.MediaFeatures.isFullScreen()||b.isFullScreen;a?b.exitFullScreen():b.enterFullScreen()}).on("mouseover",function(){if("plugin-hover"==f.fullscreenMode){null!==g&&(clearTimeout(g),delete g);var a=i.offset(),c=b.container.offset();e.positionFullscreenButton(a.left-c.left,a.top-c.top,!0)}}).on("mouseout",function(){"plugin-hover"==f.fullscreenMode&&(null!==g&&(clearTimeout(g),delete g),g=setTimeout(function(){e.hideFullscreenButton()},1500))});if(b.fullscreenBtn=i,f.globalBind("keydown",function(a){27==a.keyCode&&(mejs.MediaFeatures.hasTrueNativeFullScreen&&mejs.MediaFeatures.isFullScreen()||f.isFullScreen)&&b.exitFullScreen()}),f.normalHeight=0,f.normalWidth=0,mejs.MediaFeatures.hasTrueNativeFullScreen){var j=function(a){b.isFullScreen&&(mejs.MediaFeatures.isFullScreen()?(b.isNativeFullScreen=!0,b.setControlsSize()):(b.isNativeFullScreen=!1,b.exitFullScreen()))};b.globalBind(mejs.MediaFeatures.fullScreenEventName,j)}}},detectFullscreenMode:function(){var a=this,b="",c=mejs.MediaFeatures;return c.hasTrueNativeFullScreen&&"native"===a.media.pluginType?b="native-native":c.hasTrueNativeFullScreen&&"native"!==a.media.pluginType&&!c.hasFirefoxPluginMovingProblem?b="plugin-native":a.usePluginFullScreen?mejs.MediaFeatures.supportsPointerEvents?(b="plugin-click",a.createPluginClickThrough()):b="plugin-hover":b="fullwindow",a.fullscreenMode=b,b},isPluginClickThroughCreated:!1,createPluginClickThrough:function(){var b=this;if(!b.isPluginClickThroughCreated){var c,d,e=!1,f=function(){if(e){for(var a in g)g[a].hide();b.fullscreenBtn.css("pointer-events",""),b.controls.css("pointer-events",""),b.media.removeEventListener("click",b.clickToPlayPauseCallback),e=!1}},g={},h=["top","left","right","bottom"],i=function(){var a=fullscreenBtn.offset().left-b.container.offset().left,d=fullscreenBtn.offset().top-b.container.offset().top,e=fullscreenBtn.outerWidth(!0),f=fullscreenBtn.outerHeight(!0),h=b.container.width(),i=b.container.height();for(c in g)g[c].css({position:"absolute",top:0,left:0});g.top.width(h).height(d),g.left.width(a).height(f).css({top:d}),g.right.width(h-a-e).height(f).css({top:d,left:a+e}),g.bottom.width(h).height(i-f-d).css({top:d+f})};for(b.globalBind("resize",function(){i()}),c=0,d=h.length;d>c;c++)g[h[c]]=a('<div class="mejs-fullscreen-hover" />').appendTo(b.container).mouseover(f).hide();fullscreenBtn.on("mouseover",function(){if(!b.isFullScreen){var a=fullscreenBtn.offset(),d=player.container.offset();media.positionFullscreenButton(a.left-d.left,a.top-d.top,!1),b.fullscreenBtn.css("pointer-events","none"),b.controls.css("pointer-events","none"),b.media.addEventListener("click",b.clickToPlayPauseCallback);for(c in g)g[c].show();i(),e=!0}}),media.addEventListener("fullscreenchange",function(a){b.isFullScreen=!b.isFullScreen,b.isFullScreen?b.media.removeEventListener("click",b.clickToPlayPauseCallback):b.media.addEventListener("click",b.clickToPlayPauseCallback),f()}),b.globalBind("mousemove",function(a){if(e){var c=fullscreenBtn.offset();(a.pageY<c.top||a.pageY>c.top+fullscreenBtn.outerHeight(!0)||a.pageX<c.left||a.pageX>c.left+fullscreenBtn.outerWidth(!0))&&(fullscreenBtn.css("pointer-events",""),b.controls.css("pointer-events",""),e=!1)}}),b.isPluginClickThroughCreated=!0}},cleanfullscreen:function(a){a.exitFullScreen()},containerSizeTimeout:null,enterFullScreen:function(){var b=this;if(mejs.MediaFeatures.isiOS&&mejs.MediaFeatures.hasiOSFullScreen&&"function"==typeof b.media.webkitEnterFullscreen)return void b.media.webkitEnterFullscreen();a(document.documentElement).addClass("mejs-fullscreen"),b.normalHeight=b.container.height(),b.normalWidth=b.container.width(),"native-native"===b.fullscreenMode||"plugin-native"===b.fullscreenMode?(mejs.MediaFeatures.requestFullScreen(b.container[0]),b.isInIframe&&setTimeout(function d(){if(b.isNativeFullScreen){var c=.002,e=a(window).width(),f=screen.width,g=Math.abs(f-e),h=f*c;g>h?b.exitFullScreen():setTimeout(d,500)}},1e3)):"fullwindow"==b.fullscreeMode,b.container.addClass("mejs-container-fullscreen").width("100%").height("100%"),b.containerSizeTimeout=setTimeout(function(){b.container.css({width:"100%",height:"100%"}),b.setControlsSize()},500),"native"===b.media.pluginType?b.$media.width("100%").height("100%"):(b.container.find(".mejs-shim").width("100%").height("100%"),setTimeout(function(){var c=a(window),d=c.width(),e=c.height();b.media.setVideoSize(d,e)},500)),b.layers.children("div").width("100%").height("100%"),b.fullscreenBtn&&b.fullscreenBtn.removeClass("mejs-fullscreen").addClass("mejs-unfullscreen"),b.setControlsSize(),b.isFullScreen=!0;var c=Math.min(screen.width/b.width,screen.height/b.height);b.container.find(".mejs-captions-text").css("font-size",100*c+"%"),b.container.find(".mejs-captions-text").css("line-height","normal"),b.container.find(".mejs-captions-position").css("bottom","45px"),b.container.trigger("enteredfullscreen")},exitFullScreen:function(){var b=this;clearTimeout(b.containerSizeTimeout),mejs.MediaFeatures.hasTrueNativeFullScreen&&(mejs.MediaFeatures.isFullScreen()||b.isFullScreen)&&mejs.MediaFeatures.cancelFullScreen(),a(document.documentElement).removeClass("mejs-fullscreen"),b.container.removeClass("mejs-container-fullscreen").width(b.normalWidth).height(b.normalHeight),"native"===b.media.pluginType?b.$media.width(b.normalWidth).height(b.normalHeight):(b.container.find(".mejs-shim").width(b.normalWidth).height(b.normalHeight),b.media.setVideoSize(b.normalWidth,b.normalHeight)),b.layers.children("div").width(b.normalWidth).height(b.normalHeight),b.fullscreenBtn.removeClass("mejs-unfullscreen").addClass("mejs-fullscreen"),b.setControlsSize(),b.isFullScreen=!1,b.container.find(".mejs-captions-text").css("font-size",""),b.container.find(".mejs-captions-text").css("line-height",""),b.container.find(".mejs-captions-position").css("bottom",""),b.container.trigger("exitedfullscreen")}})}(mejs.$),function(a){a.extend(mejs.MepDefaults,{speeds:["2.00","1.50","1.25","1.00","0.75"],defaultSpeed:"1.00",speedChar:"x"}),a.extend(MediaElementPlayer.prototype,{buildspeed:function(b,c,d,e){var f=this;if("native"==f.media.pluginType){for(var g=null,h=null,i=null,j=null,k=[],l=!1,m=0,n=f.options.speeds.length;n>m;m++){var o=f.options.speeds[m];"string"==typeof o?(k.push({name:o+f.options.speedChar,value:o}),o===f.options.defaultSpeed&&(l=!0)):(k.push(o),o.value===f.options.defaultSpeed&&(l=!0))}l||k.push({name:f.options.defaultSpeed+f.options.speedChar,value:f.options.defaultSpeed}),k.sort(function(a,b){return parseFloat(b.value)-parseFloat(a.value)});var p=function(a){for(m=0,n=k.length;n>m;m++)if(k[m].value===a)return k[m].name},q='<div class="mejs-button mejs-speed-button"><button type="button">'+p(f.options.defaultSpeed)+'</button><div class="mejs-speed-selector"><ul>';for(m=0,il=k.length;m<il;m++)j=f.id+"-speed-"+k[m].value,q+='<li><input type="radio" name="speed" value="'+k[m].value+'" id="'+j+'" '+(k[m].value===f.options.defaultSpeed?" checked":"")+' /><label for="'+j+'" '+(k[m].value===f.options.defaultSpeed?' class="mejs-speed-selected"':"")+">"+k[m].name+"</label></li>";q+="</ul></div></div>",g=a(q).appendTo(c),h=g.find(".mejs-speed-selector"),i=f.options.defaultSpeed,e.addEventListener("loadedmetadata",function(a){i&&(e.playbackRate=parseFloat(i))},!0),h.on("click",'input[type="radio"]',function(){var b=a(this).attr("value");i=b,e.playbackRate=parseFloat(b),g.find("button").html(p(b)),g.find(".mejs-speed-selected").removeClass("mejs-speed-selected"),g.find('input[type="radio"]:checked').next().addClass("mejs-speed-selected")}),g.one("mouseenter focusin",function(){h.height(g.find(".mejs-speed-selector ul").outerHeight(!0)+g.find(".mejs-speed-translations").outerHeight(!0)).css("top",-1*h.height()+"px")})}}})}(mejs.$),function(a){a.extend(mejs.MepDefaults,{startLanguage:"",tracksText:"",tracksAriaLive:!1,hideCaptionsButtonWhenEmpty:!0,toggleCaptionsButtonWhenOnlyOne:!1,slidesSelector:""}),a.extend(MediaElementPlayer.prototype,{hasChapters:!1,cleartracks:function(a,b,c,d){a&&(a.captions&&a.captions.remove(),a.chapters&&a.chapters.remove(),a.captionsText&&a.captionsText.remove(),a.captionsButton&&a.captionsButton.remove())},buildtracks:function(b,c,d,e){if(0!==b.tracks.length){var f,g,h=this,i=h.options.tracksAriaLive?'role="log" aria-live="assertive" aria-atomic="false"':"",j=h.options.tracksText?h.options.tracksText:mejs.i18n.t("mejs.captions-subtitles");if(h.domNode.textTracks)for(f=h.domNode.textTracks.length-1;f>=0;f--)h.domNode.textTracks[f].mode="hidden";h.cleartracks(b,c,d,e),b.chapters=a('<div class="mejs-chapters mejs-layer"></div>').prependTo(d).hide(),b.captions=a('<div class="mejs-captions-layer mejs-layer"><div class="mejs-captions-position mejs-captions-position-hover" '+i+'><span class="mejs-captions-text"></span></div></div>').prependTo(d).hide(),b.captionsText=b.captions.find(".mejs-captions-text"),b.captionsButton=a('<div class="mejs-button mejs-captions-button"><button type="button" aria-controls="'+h.id+'" title="'+j+'" aria-label="'+j+'"></button><div class="mejs-captions-selector"><ul><li><input type="radio" name="'+b.id+'_captions" id="'+b.id+'_captions_none" value="none" checked="checked" /><label for="'+b.id+'_captions_none">'+mejs.i18n.t("mejs.none")+"</label></li></ul></div></div>").appendTo(c);var k=0;for(f=0;f<b.tracks.length;f++)g=b.tracks[f].kind,("subtitles"===g||"captions"===g)&&k++;for(h.options.toggleCaptionsButtonWhenOnlyOne&&1==k?b.captionsButton.on("click",function(){null===b.selectedTrack?lang=b.tracks[0].srclang:lang="none",b.setTrack(lang)}):(b.captionsButton.on("mouseenter focusin",function(){a(this).find(".mejs-captions-selector").removeClass("mejs-offscreen")}).on("click","input[type=radio]",function(){lang=this.value,b.setTrack(lang)}),b.captionsButton.on("mouseleave focusout",function(){a(this).find(".mejs-captions-selector").addClass("mejs-offscreen")})),b.options.alwaysShowControls?b.container.find(".mejs-captions-position").addClass("mejs-captions-position-hover"):b.container.bind("controlsshown",function(){b.container.find(".mejs-captions-position").addClass("mejs-captions-position-hover")}).bind("controlshidden",function(){e.paused||b.container.find(".mejs-captions-position").removeClass("mejs-captions-position-hover")}),b.trackToLoad=-1,b.selectedTrack=null,b.isLoadingTrack=!1,f=0;f<b.tracks.length;f++)g=b.tracks[f].kind,("subtitles"===g||"captions"===g)&&b.addTrackButton(b.tracks[f].srclang,b.tracks[f].label);b.loadNextTrack(),e.addEventListener("timeupdate",function(){b.displayCaptions()},!1),""!==b.options.slidesSelector&&(b.slidesContainer=a(b.options.slidesSelector),e.addEventListener("timeupdate",function(){b.displaySlides()},!1)),e.addEventListener("loadedmetadata",function(){b.displayChapters()},!1),b.container.hover(function(){b.hasChapters&&(b.chapters.removeClass("mejs-offscreen"),b.chapters.fadeIn(200).height(b.chapters.find(".mejs-chapter").outerHeight()))},function(){b.hasChapters&&!e.paused&&b.chapters.fadeOut(200,function(){a(this).addClass("mejs-offscreen"),a(this).css("display","block")})}),h.container.on("controlsresize",function(){h.adjustLanguageBox()}),null!==b.node.getAttribute("autoplay")&&b.chapters.addClass("mejs-offscreen")}},setTrack:function(a){var b,c=this;if("none"==a)c.selectedTrack=null,c.captionsButton.removeClass("mejs-captions-enabled");else for(b=0;b<c.tracks.length;b++)if(c.tracks[b].srclang==a){null===c.selectedTrack&&c.captionsButton.addClass("mejs-captions-enabled"),c.selectedTrack=c.tracks[b],c.captions.attr("lang",c.selectedTrack.srclang),c.displayCaptions();break}},loadNextTrack:function(){var a=this;a.trackToLoad++,a.trackToLoad<a.tracks.length?(a.isLoadingTrack=!0,a.loadTrack(a.trackToLoad)):(a.isLoadingTrack=!1,a.checkForTracks())},loadTrack:function(b){var c=this,d=c.tracks[b],e=function(){d.isLoaded=!0,c.enableTrackButton(d.srclang,d.label),c.loadNextTrack()};(void 0!==d.src||""!==d.src)&&a.ajax({url:d.src,dataType:"text",success:function(a){"string"==typeof a&&/<tt\s+xml/gi.exec(a)?d.entries=mejs.TrackFormatParser.dfxp.parse(a):d.entries=mejs.TrackFormatParser.webvtt.parse(a),e(),"chapters"==d.kind&&c.media.addEventListener("play",function(){c.media.duration>0&&c.displayChapters(d)},!1),"slides"==d.kind&&c.setupSlides(d)},error:function(){c.removeTrackButton(d.srclang),c.loadNextTrack()}})},enableTrackButton:function(b,c){var d=this;""===c&&(c=mejs.language.codes[b]||b),d.captionsButton.find("input[value="+b+"]").prop("disabled",!1).siblings("label").html(c),d.options.startLanguage==b&&a("#"+d.id+"_captions_"+b).prop("checked",!0).trigger("click"),d.adjustLanguageBox()},removeTrackButton:function(a){var b=this;b.captionsButton.find("input[value="+a+"]").closest("li").remove(),b.adjustLanguageBox()},addTrackButton:function(b,c){var d=this;""===c&&(c=mejs.language.codes[b]||b),d.captionsButton.find("ul").append(a('<li><input type="radio" name="'+d.id+'_captions" id="'+d.id+"_captions_"+b+'" value="'+b+'" disabled="disabled" /><label for="'+d.id+"_captions_"+b+'">'+c+" (loading)</label></li>")),d.adjustLanguageBox(),d.container.find(".mejs-captions-translations option[value="+b+"]").remove()},adjustLanguageBox:function(){var a=this;a.captionsButton.find(".mejs-captions-selector").height(a.captionsButton.find(".mejs-captions-selector ul").outerHeight(!0)+a.captionsButton.find(".mejs-captions-translations").outerHeight(!0))},checkForTracks:function(){var a=this,b=!1;if(a.options.hideCaptionsButtonWhenEmpty){for(var c=0;c<a.tracks.length;c++){var d=a.tracks[c].kind;if(("subtitles"===d||"captions"===d)&&a.tracks[c].isLoaded){b=!0;break}}b||(a.captionsButton.hide(),a.setControlsSize())}},displayCaptions:function(){if("undefined"!=typeof this.tracks){var a,b=this,c=b.selectedTrack;if(null!==c&&c.isLoaded){for(a=0;a<c.entries.times.length;a++)if(b.media.currentTime>=c.entries.times[a].start&&b.media.currentTime<=c.entries.times[a].stop)return b.captionsText.html(c.entries.text[a]).attr("class","mejs-captions-text "+(c.entries.times[a].identifier||"")),void b.captions.show().height(0);b.captions.hide()}else b.captions.hide()}},setupSlides:function(a){var b=this;b.slides=a,b.slides.entries.imgs=[b.slides.entries.text.length],b.showSlide(0)},showSlide:function(b){if("undefined"!=typeof this.tracks&&"undefined"!=typeof this.slidesContainer){var c=this,d=c.slides.entries.text[b],e=c.slides.entries.imgs[b];"undefined"==typeof e||"undefined"==typeof e.fadeIn?c.slides.entries.imgs[b]=e=a('<img src="'+d+'">').on("load",function(){e.appendTo(c.slidesContainer).hide().fadeIn().siblings(":visible").fadeOut()}):e.is(":visible")||e.is(":animated")||e.fadeIn().siblings(":visible").fadeOut()}},displaySlides:function(){if("undefined"!=typeof this.slides){var a,b=this,c=b.slides;for(a=0;a<c.entries.times.length;a++)if(b.media.currentTime>=c.entries.times[a].start&&b.media.currentTime<=c.entries.times[a].stop)return void b.showSlide(a)}},displayChapters:function(){var a,b=this;for(a=0;a<b.tracks.length;a++)if("chapters"==b.tracks[a].kind&&b.tracks[a].isLoaded){b.drawChapters(b.tracks[a]),b.hasChapters=!0;break}},drawChapters:function(b){var c,d,e=this,f=0,g=0;for(e.chapters.empty(),c=0;c<b.entries.times.length;c++)d=b.entries.times[c].stop-b.entries.times[c].start,f=Math.floor(d/e.media.duration*100),(f+g>100||c==b.entries.times.length-1&&100>f+g)&&(f=100-g),e.chapters.append(a('<div class="mejs-chapter" rel="'+b.entries.times[c].start+'" style="left: '+g.toString()+"%;width: "+f.toString()+'%;"><div class="mejs-chapter-block'+(c==b.entries.times.length-1?" mejs-chapter-block-last":"")+'"><span class="ch-title">'+b.entries.text[c]+'</span><span class="ch-time">'+mejs.Utility.secondsToTimeCode(b.entries.times[c].start,e.options)+"&ndash;"+mejs.Utility.secondsToTimeCode(b.entries.times[c].stop,e.options)+"</span></div></div>")),g+=f;e.chapters.find("div.mejs-chapter").click(function(){e.media.setCurrentTime(parseFloat(a(this).attr("rel"))),e.media.paused&&e.media.play()}),e.chapters.show()}}),mejs.language={codes:{af:"Afrikaans",sq:"Albanian",ar:"Arabic",be:"Belarusian",bg:"Bulgarian",ca:"Catalan",zh:"Chinese","zh-cn":"Chinese Simplified","zh-tw":"Chinese Traditional",hr:"Croatian",cs:"Czech",da:"Danish",nl:"Dutch",en:"English",et:"Estonian",fl:"Filipino",fi:"Finnish",fr:"French",gl:"Galician",de:"German",el:"Greek",ht:"Haitian Creole",iw:"Hebrew",hi:"Hindi",hu:"Hungarian",is:"Icelandic",id:"Indonesian",ga:"Irish",it:"Italian",ja:"Japanese",ko:"Korean",lv:"Latvian",lt:"Lithuanian",mk:"Macedonian",ms:"Malay",mt:"Maltese",no:"Norwegian",fa:"Persian",pl:"Polish",pt:"Portuguese",ro:"Romanian",ru:"Russian",sr:"Serbian",sk:"Slovak",sl:"Slovenian",es:"Spanish",sw:"Swahili",sv:"Swedish",tl:"Tagalog",th:"Thai",tr:"Turkish",uk:"Ukrainian",vi:"Vietnamese",cy:"Welsh",yi:"Yiddish"}},mejs.TrackFormatParser={webvtt:{pattern_timecode:/^((?:[0-9]{1,2}:)?[0-9]{2}:[0-9]{2}([,.][0-9]{1,3})?) --\> ((?:[0-9]{1,2}:)?[0-9]{2}:[0-9]{2}([,.][0-9]{3})?)(.*)$/,parse:function(b){for(var c,d,e,f=0,g=mejs.TrackFormatParser.split2(b,/\r?\n/),h={text:[],times:[]};f<g.length;f++){if(c=this.pattern_timecode.exec(g[f]),c&&f<g.length){for(f-1>=0&&""!==g[f-1]&&(e=g[f-1]),f++,d=g[f],f++;""!==g[f]&&f<g.length;)d=d+"\n"+g[f],f++;d=a.trim(d).replace(/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gi,"<a href='$1' target='_blank'>$1</a>"),h.text.push(d),h.times.push({identifier:e,start:0===mejs.Utility.convertSMPTEtoSeconds(c[1])?.2:mejs.Utility.convertSMPTEtoSeconds(c[1]),stop:mejs.Utility.convertSMPTEtoSeconds(c[3]),settings:c[5]})}e=""}return h}},dfxp:{parse:function(b){b=a(b).filter("tt");var c,d,e=0,f=b.children("div").eq(0),g=f.find("p"),h=b.find("#"+f.attr("style")),i={text:[],times:[]};if(h.length){var j=h.removeAttr("id").get(0).attributes;if(j.length)for(c={},e=0;e<j.length;e++)c[j[e].name.split(":")[1]]=j[e].value}for(e=0;e<g.length;e++){var k,l={start:null,stop:null,style:null};if(g.eq(e).attr("begin")&&(l.start=mejs.Utility.convertSMPTEtoSeconds(g.eq(e).attr("begin"))),!l.start&&g.eq(e-1).attr("end")&&(l.start=mejs.Utility.convertSMPTEtoSeconds(g.eq(e-1).attr("end"))),g.eq(e).attr("end")&&(l.stop=mejs.Utility.convertSMPTEtoSeconds(g.eq(e).attr("end"))),!l.stop&&g.eq(e+1).attr("begin")&&(l.stop=mejs.Utility.convertSMPTEtoSeconds(g.eq(e+1).attr("begin"))),c){k="";for(var m in c)k+=m+":"+c[m]+";"}k&&(l.style=k),0===l.start&&(l.start=.2),i.times.push(l),d=a.trim(g.eq(e).html()).replace(/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gi,"<a href='$1' target='_blank'>$1</a>"),i.text.push(d)}return i}},split2:function(a,b){return a.split(b)}},3!="x\n\ny".split(/\n/gi).length&&(mejs.TrackFormatParser.split2=function(a,b){var c,d=[],e="";for(c=0;c<a.length;c++)e+=a.substring(c,c+1),b.test(e)&&(d.push(e.replace(b,"")),e="");return d.push(e),d})}(mejs.$),function(a){a.extend(mejs.MepDefaults,{sourcechooserText:""}),a.extend(MediaElementPlayer.prototype,{buildsourcechooser:function(b,c,d,e){var f,g=this,h=g.options.sourcechooserText?g.options.sourcechooserText:mejs.i18n.t("mejs.source-chooser");b.sourcechooserButton=a('<div class="mejs-button mejs-sourcechooser-button"><button type="button" role="button" aria-haspopup="true" aria-owns="'+g.id+'" title="'+h+'" aria-label="'+h+'"></button><div class="mejs-sourcechooser-selector mejs-offscreen" role="menu" aria-expanded="false" aria-hidden="true"><ul></ul></div></div>').appendTo(c).hover(function(){clearTimeout(f),b.showSourcechooserSelector()},function(){a(this);f=setTimeout(function(){b.hideSourcechooserSelector()},500)}).on("keydown",function(c){var d=c.keyCode;switch(d){case 32:mejs.MediaFeatures.isFirefox||b.showSourcechooserSelector(),a(this).find(".mejs-sourcechooser-selector").find("input[type=radio]:checked").first().focus();break;case 13:b.showSourcechooserSelector(),a(this).find(".mejs-sourcechooser-selector").find("input[type=radio]:checked").first().focus();break;case 27:b.hideSourcechooserSelector(),a(this).find("button").focus();break;default:return!0}}).on("focusout",mejs.Utility.debounce(function(c){setTimeout(function(){var c=a(document.activeElement).closest(".mejs-sourcechooser-selector");c.length||b.hideSourcechooserSelector()},0)},100)).delegate("input[type=radio]","click",function(){a(this).attr("aria-selected",!0).attr("checked","checked"),a(this).closest(".mejs-sourcechooser-selector").find("input[type=radio]").not(this).attr("aria-selected","false").removeAttr("checked");var b=this.value;if(e.currentSrc!=b){var c=e.currentTime,d=e.paused;e.pause(),e.setSrc(b),e.addEventListener("loadedmetadata",function(a){e.currentTime=c},!0);var f=function(a){d||e.play(),e.removeEventListener("canplay",f,!0)};e.addEventListener("canplay",f,!0),e.load()}}).delegate("button","click",function(c){a(this).siblings(".mejs-sourcechooser-selector").hasClass("mejs-offscreen")?(b.showSourcechooserSelector(),a(this).siblings(".mejs-sourcechooser-selector").find("input[type=radio]:checked").first().focus()):b.hideSourcechooserSelector()});for(var i in this.node.children){var j=this.node.children[i];"SOURCE"!==j.nodeName||"probably"!=e.canPlayType(j.type)&&"maybe"!=e.canPlayType(j.type)||b.addSourceButton(j.src,j.title,j.type,e.src==j.src)}},addSourceButton:function(b,c,d,e){var f=this;(""===c||void 0==c)&&(c=b),d=d.split("/")[1],f.sourcechooserButton.find("ul").append(a('<li><input type="radio" name="'+f.id+'_sourcechooser" id="'+f.id+"_sourcechooser_"+c+d+'" role="menuitemradio" value="'+b+'" '+(e?'checked="checked"':"")+'aria-selected="'+e+'" /><label for="'+f.id+"_sourcechooser_"+c+d+'" aria-hidden="true">'+c+" ("+d+")</label></li>")),f.adjustSourcechooserBox()},adjustSourcechooserBox:function(){var a=this;a.sourcechooserButton.find(".mejs-sourcechooser-selector").height(a.sourcechooserButton.find(".mejs-sourcechooser-selector ul").outerHeight(!0))},hideSourcechooserSelector:function(){this.sourcechooserButton.find(".mejs-sourcechooser-selector").addClass("mejs-offscreen").attr("aria-expanded","false").attr("aria-hidden","true").find("input[type=radio]").attr("tabindex","-1")},showSourcechooserSelector:function(){this.sourcechooserButton.find(".mejs-sourcechooser-selector").removeClass("mejs-offscreen").attr("aria-expanded","true").attr("aria-hidden","false").find("input[type=radio]").attr("tabindex","0")}})}(mejs.$),function(a){a.extend(mejs.MepDefaults,{contextMenuItems:[{render:function(a){return"undefined"==typeof a.enterFullScreen?null:a.isFullScreen?mejs.i18n.t("mejs.fullscreen-off"):mejs.i18n.t("mejs.fullscreen-on")},click:function(a){a.isFullScreen?a.exitFullScreen():a.enterFullScreen()}},{render:function(a){return a.media.muted?mejs.i18n.t("mejs.unmute"):mejs.i18n.t("mejs.mute")},click:function(a){a.media.muted?a.setMuted(!1):a.setMuted(!0)}},{isSeparator:!0},{render:function(a){return mejs.i18n.t("mejs.download-video")},click:function(a){window.location.href=a.media.currentSrc}}]}),a.extend(MediaElementPlayer.prototype,{buildcontextmenu:function(b,c,d,e){b.contextMenu=a('<div class="mejs-contextmenu"></div>').appendTo(a("body")).hide(),b.container.bind("contextmenu",function(a){return b.isContextMenuEnabled?(a.preventDefault(),b.renderContextMenu(a.clientX-1,a.clientY-1),!1):void 0}),b.container.bind("click",function(){b.contextMenu.hide()}),b.contextMenu.bind("mouseleave",function(){b.startContextMenuTimer()})},cleancontextmenu:function(a){a.contextMenu.remove()},isContextMenuEnabled:!0,enableContextMenu:function(){this.isContextMenuEnabled=!0},disableContextMenu:function(){this.isContextMenuEnabled=!1},contextMenuTimeout:null,startContextMenuTimer:function(){var a=this;a.killContextMenuTimer(),a.contextMenuTimer=setTimeout(function(){a.hideContextMenu(),a.killContextMenuTimer()},750)},killContextMenuTimer:function(){var a=this.contextMenuTimer;null!=a&&(clearTimeout(a),delete a,a=null)},hideContextMenu:function(){this.contextMenu.hide()},renderContextMenu:function(b,c){for(var d=this,e="",f=d.options.contextMenuItems,g=0,h=f.length;h>g;g++)if(f[g].isSeparator)e+='<div class="mejs-contextmenu-separator"></div>';else{var i=f[g].render(d);null!=i&&(e+='<div class="mejs-contextmenu-item" data-itemindex="'+g+'" id="element-'+1e6*Math.random()+'">'+i+"</div>")}d.contextMenu.empty().append(a(e)).css({top:c,left:b}).show(),d.contextMenu.find(".mejs-contextmenu-item").each(function(){var b=a(this),c=parseInt(b.data("itemindex"),10),e=d.options.contextMenuItems[c];"undefined"!=typeof e.show&&e.show(b,d),b.click(function(){"undefined"!=typeof e.click&&e.click(d),d.contextMenu.hide()})}),setTimeout(function(){d.killControlsTimer("rev3")},100)}})}(mejs.$),function(a){a.extend(mejs.MepDefaults,{skipBackInterval:30,skipBackText:""}),a.extend(MediaElementPlayer.prototype,{buildskipback:function(b,c,d,e){var f=this,g=mejs.i18n.t("mejs.time-skip-back",f.options.skipBackInterval),h=f.options.skipBackText?f.options.skipBackText:g;a('<div class="mejs-button mejs-skip-back-button"><button type="button" aria-controls="'+f.id+'" title="'+h+'" aria-label="'+h+'">'+f.options.skipBackInterval+"</button></div>").appendTo(c).click(function(){e.setCurrentTime(Math.max(e.currentTime-f.options.skipBackInterval,0)),a(this).find("button").blur()})}})}(mejs.$),function(a){a.extend(mejs.MepDefaults,{postrollCloseText:""}),a.extend(MediaElementPlayer.prototype,{buildpostroll:function(b,c,d,e){var f=this,g=f.options.postrollCloseText?f.options.postrollCloseText:mejs.i18n.t("mejs.close"),h=f.container.find('link[rel="postroll"]').attr("href");"undefined"!=typeof h&&(b.postroll=a('<div class="mejs-postroll-layer mejs-layer"><a class="mejs-postroll-close" onclick="$(this).parent().hide();return false;">'+g+'</a><div class="mejs-postroll-layer-content"></div></div>').prependTo(d).hide(),f.media.addEventListener("ended",function(c){a.ajax({dataType:"html",url:h,success:function(a,b){d.find(".mejs-postroll-layer-content").html(a)}}),b.postroll.show()},!1))}})}(mejs.$),function(a){a.extend(mejs.MepDefaults,{markerColor:"#E9BC3D",markers:[],markerCallback:function(){}}),a.extend(MediaElementPlayer.prototype,{buildmarkers:function(a,b,c,d){var e=0,f=-1,g=-1,h=-1,i=-1;for(e=0;e<a.options.markers.length;++e)b.find(".mejs-time-total").append('<span class="mejs-time-marker"></span>');d.addEventListener("durationchange",function(c){a.setmarkers(b)}),d.addEventListener("timeupdate",function(b){for(f=Math.floor(d.currentTime),h>f?i>f&&(i=-1):h=f,e=0;e<a.options.markers.length;++e)g=Math.floor(a.options.markers[e]),f===g&&g!==i&&(a.options.markerCallback(d,d.currentTime),i=g)},!1)},setmarkers:function(b){var c,d=this,e=0;for(e=0;e<d.options.markers.length;++e)Math.floor(d.options.markers[e])<=d.media.duration&&Math.floor(d.options.markers[e])>=0&&(c=100*Math.floor(d.options.markers[e])/d.media.duration,a(b.find(".mejs-time-marker")[e]).css({width:"1px",left:c+"%",background:d.options.markerColor}))}})}(mejs.$);
 /*!
  * Tipped - A Complete Javascript Tooltip Solution - v4.6.0
  * (c) 2012-2017 Nick Stakenburg
@@ -27719,7 +33467,7 @@ var socialCardTemplate =
 '<div class="{{containerClass}}"> \
         <a  href="{{social.url}}"\
             target="_blank"\
-            class="swap card {{ social.source }} {{#if social.hasMedia}} withImage__content {{else }} without__image {{/if}} {{videoClass}}"\
+            class="swap card social {{ social.source }} {{#if social.hasMedia}} withImage__content {{else }} without__image {{/if}} {{videoClass}}"\
             id="Social{{socialId}}"\
             data-id="{{socialId}}"\
             data-position="{{position}}"\
