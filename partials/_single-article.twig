@@ -87,7 +87,7 @@
 
     {% set social     = article.social %}
     {% set mediaClass = (social.hasMedia == 'TRUE') ? 'withImage__content' : 'without__image' %}
-    {% set videoClass = (social.media['type'] == 'video') ? 'video' : '' %}
+{#     {% set videoClass = (social.media['type'] == 'video') ? 'video' : '' %}#}
     {% set hasArticleMediaClass = (social.hasMedia == 'TRUE') ? 'withImage__content': 'without__image' %}
 
     <div class="{{containerClass}}">
@@ -102,7 +102,7 @@
 
             <article class="">
                 {% if social.hasMedia == 'TRUE' %}  
-                    <figure class="{{ videoClass }}">
+                    <figure>
                         <div class="image-wrapper lazyload" data-original="{{social.media['path']}}" {% if social.media['path'] is not empty %} style="background-image:url('{{placeholder}}');"{%endif%}></div>
                     </figure>
                 {% endif %}

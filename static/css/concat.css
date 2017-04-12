@@ -7100,6 +7100,127 @@ time {
   color: #808285;
   font-size: 1.23077em; }
 
+.flex_col {
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  display: flex;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox; }
+
+.flex_row {
+  flex-direction: row;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  display: flex;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox; }
+
+.flex_between {
+  justify-content: space-between; }
+
+.flex-shrink0 {
+  -ms-flex-negative: 0;
+  -webkit-flex-shrink: 0;
+  flex-shrink: 0;
+  -moz-flex-shrink: 0; }
+
+.flex0 {
+  -webkit-flex: 0;
+  -ms-flex: 0;
+  flex: 0;
+  -moz-flex: 0; }
+
+.flex1 {
+  -webkit-flex: 1 0 0;
+  -ms-flex: 1 0 0;
+  flex: 1 0 0;
+  -moz-flex: 1 0 0; }
+
+.flex2 {
+  -webkit-flex: 2 0 0;
+  -ms-flex: 2 0 0;
+  flex: 2 0 0;
+  -moz-flex: 2 0 0; }
+
+.flex3 {
+  -webkit-flex: 3 0 0;
+  -ms-flex: 3 0 0;
+  flex: 3 0 0;
+  -moz-flex: 3 0 0; }
+
+.flex4 {
+  -webkit-flex: 4 0 0;
+  -ms-flex: 4 0 0;
+  flex: 4 0 0;
+  -moz-flex: 4 0 0; }
+
+.flex5 {
+  -webkit-flex: 5 0 0;
+  -ms-flex: 5 0 0;
+  flex: 5 0 0;
+  -moz-flex: 5 0 0; }
+
+.flex6 {
+  -webkit-flex: 6 0 0;
+  -ms-flex: 6 0 0;
+  flex: 6 0 0;
+  -moz-flex: 6 0 0; }
+
+.flex7 {
+  -webkit-flex: 7 0 0;
+  -ms-flex: 7 0 0;
+  flex: 7 0 0;
+  -moz-flex: 7 0 0; }
+
+.flex8 {
+  -webkit-flex: 8 0 0;
+  -ms-flex: 8 0 0;
+  flex: 8 0 0;
+  -moz-flex: 8 0 0; }
+
+.flex9 {
+  -webkit-flex: 9 0 0;
+  -ms-flex: 9 0 0;
+  flex: 9 0 0;
+  -moz-flex: 9 0 0; }
+
+.flex10 {
+  -webkit-flex: 10 0 0;
+  -ms-flex: 10 0 0;
+  flex: 10 0 0;
+  -moz-flex: 10 0 0; }
+
+.flex11 {
+  -webkit-flex: 11 0 0;
+  -ms-flex: 11 0 0;
+  flex: 11 0 0;
+  -moz-flex: 11 0 0; }
+
+.flex12 {
+  -webkit-flex: 12 0 0;
+  -ms-flex: 12 0 0;
+  flex: 12 0 0;
+  -moz-flex: 12 0 0; }
+
+.flex13 {
+  -webkit-flex: 13 0 0;
+  -ms-flex: 13 0 0;
+  flex: 13 0 0;
+  -moz-flex: 13 0 0; }
+
+.flex15 {
+  -webkit-flex: 15 0 0;
+  -ms-flex: 15 0 0;
+  flex: 15 0 0;
+  -moz-flex: 15 0 0; }
+
 .top-bar {
   background: #000;
   height: 30px;
@@ -8005,44 +8126,50 @@ a.card:hover {
     margin-top: -28px; }
   .card figure img {
     max-width: 100%; }
-  .card time {
-    display: block;
-    font-size: 0.84615em;
-    font-weight: 600;
-    color: #808285; }
-  .card .author {
-    font-size: 0.83077em;
-    font-weight: 900;
-    background-color: #231f20;
-    color: #fefefe;
-    display: inline-block;
-    padding: 3px;
-    text-transform: uppercase; }
-    .card .author.yellow {
-      background-color: #ffff00;
-      color: #1a1818; }
-  .card .article-icon {
-    background-size: cover;
-    display: inline-block;
-    width: 36px;
-    height: 36px;
-    margin-bottom: 17px; }
-  .card .category {
-    background-color: #231f20;
-    color: #fefefe;
-    font-weight: 900;
-    font-size: 0.92308em;
-    text-transform: uppercase;
-    padding: 4px 5px;
-    margin-bottom: 17px; }
-    @media screen and (max-width: 769px) {
-      .card .category {
-        padding: 9px 15px; } }
-  .card h2 {
-    margin-bottom: 1.07692em;
-    font-size: 1.53846em; }
-  .card .author {
-    margin-bottom: 1.60769em; }
+  .card .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; }
+    .card .content .category {
+      background-color: #231f20;
+      color: #fefefe;
+      font-weight: 900;
+      font-size: 0.92308em;
+      text-transform: uppercase;
+      padding: 4px 5px;
+      margin-bottom: 17px; }
+      @media screen and (max-width: 769px) {
+        .card .content .category {
+          padding: 9px 15px; } }
+    .card .content h2 {
+      margin-bottom: 1.07692em;
+      font-size: 1.53846em; }
+    .card .content > p.socialContent {
+      font-size: 1.53846em;
+      line-height: 26.0px; }
+    .card .content .author {
+      font-size: 0.83077em;
+      font-weight: 900;
+      background-color: #231f20;
+      color: #fefefe;
+      display: inline-block;
+      padding: 3px;
+      text-transform: uppercase;
+      margin-bottom: 1.60769em; }
+      .card .content .author.yellow {
+        background-color: #ffff00;
+        color: #1a1818; }
+    .card .content .article-icon {
+      background-size: cover;
+      display: inline-block;
+      width: 36px;
+      height: 36px;
+      margin-bottom: 12px; }
+    .card .content time {
+      display: block;
+      font-size: 0.84615em;
+      font-weight: 600;
+      color: #808285; }
   .card.social .category {
     display: none; }
   .card.facebook {
@@ -8229,20 +8356,22 @@ a.card:hover {
     margin-bottom: 26px; }
   .card-sm .card .other-content {
     margin-bottom: 5px; }
-  .card-sm .card article .content .category {
-    position: absolute;
-    top: 0;
-    right: 0;
-    background-color: #ffff00;
-    color: #1a1818; }
-  .card-sm .card article .content h2 {
-    margin-top: 5px;
-    margin-bottom: 9px; }
-  .card-sm .card article .content .share-icon {
-    display: none; }
-  .card-sm .card article .content p {
-    overflow: hidden;
-    font-weight: 500; }
+  .card-sm .card article .content {
+    display: block; }
+    .card-sm .card article .content .category {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background-color: #ffff00;
+      color: #1a1818; }
+    .card-sm .card article .content h2 {
+      margin-top: 5px;
+      margin-bottom: 9px; }
+    .card-sm .card article .content .share-icon {
+      display: none; }
+    .card-sm .card article .content p {
+      overflow: hidden;
+      font-weight: 500; }
   .card-sm .card.other {
     border-bottom: solid 5.6px #231f20;
     padding-left: 0;
@@ -8463,25 +8592,29 @@ a.card:hover {
     text-align: center;
     color: #fefefe;
     padding-top: 220px;
-    padding-left: 115px;
-    padding-right: 115px; }
+    padding-left: 40px;
+    padding-right: 40px; }
     @media screen and (max-width: 490px) {
       .card-md .card .content {
         padding: 80px 20px 35px 20px; } }
+    .card-md .card .content .article-icon {
+      order: 1;
+      margin: auto;
+      margin-bottom: 12px; }
     .card-md .card .content h2 {
+      order: 3;
       text-transform: uppercase;
       line-height: 28.0px;
-      height: 70px; }
+      height: 70px;
+      margin-bottom: 9px; }
       @media screen and (max-width: 620px) {
         .card-md .card .content h2 {
           line-height: 1.3em;
           font-size: 2.07692em; } }
     .card-md .card .content time {
+      order: 5;
       color: #fefefe; }
-    .card-md .card .content .author {
-      background-color: transparent;
-      color: #fefefe; }
-      .card-md .card .content .author:before {
+      .card-md .card .content time:before {
         content: '';
         width: 85px;
         height: 6px;
@@ -8490,7 +8623,13 @@ a.card:hover {
         display: block;
         margin-left: auto;
         margin-right: auto; }
+    .card-md .card .content .author {
+      order: 2;
+      background-color: transparent;
+      color: #fefefe;
+      margin-bottom: 0; }
     .card-md .card .content p {
+      order: 4;
       display: none; }
       @media screen and (max-width: 490px) {
         .card-md .card .content p {
@@ -8498,23 +8637,19 @@ a.card:hover {
   .card-md .card .share {
     display: none; }
   .card-md .card.social .content {
-    padding-top: 120px;
-    padding-left: 115px;
-    padding-right: 115px; }
+    padding-top: 180px; }
     .card-md .card.social .content > p {
+      height: 80px;
+      max-height: 80px;
       display: block; }
-  .card-md .card.twitter .content {
-    padding-top: 90px; }
-    .card-md .card.twitter .content time {
-      margin-bottom: 5px; }
-  .card-md .card.instagram .content {
-    padding-top: 82px; }
-    .card-md .card.instagram .content time {
-      margin-bottom: 5px; }
-  .card-md .card.youtube .content {
-    padding-top: 42px; }
-    .card-md .card.youtube .content time {
-      margin-bottom: 5px; }
+    .card-md .card.social .content .author {
+      margin-bottom: 12px; }
+  .card-md .card.twitter .content time {
+    margin-bottom: 5px; }
+  .card-md .card.instagram .content time {
+    margin-bottom: 5px; }
+  .card-md .card.youtube .content time {
+    margin-bottom: 5px; }
   .card-md .card.youtube figure > div {
     background-size: 650px 520px;
     background-position: -35px -65px; }
@@ -8522,10 +8657,8 @@ a.card:hover {
     top: 80%; }
   .card-md .card.vimeo figure.video:before {
     top: 80%; }
-  .card-md .card.vimeo .content {
-    padding-top: 42px; }
-    .card-md .card.vimeo .content time {
-      margin-bottom: 5px; }
+  .card-md .card.vimeo .content time {
+    margin-bottom: 5px; }
   .card-md .card.soundcloud figure {
     bottom: 87px; }
   .card-md .card.soundcloud .article-icon {
@@ -8569,6 +8702,7 @@ a.card:hover {
       position: absolute;
       top: 0; }
   .card-lg .card .content {
+    display: block;
     width: 1140px;
     margin: 0 auto;
     padding-top: 228px;
@@ -9809,6 +9943,7 @@ button.swiper-pagination-bullet {
         width: 100%;
         height: auto; }
     .featured-carousel-index2 .card .content {
+      display: block;
       padding: 0;
       position: absolute;
       top: 100px;
@@ -10445,8 +10580,7 @@ button.swiper-pagination-bullet {
         margin-bottom: 15px; } }
     .top-stories_index2 a.card article {
       width: 100%;
-      display: inline-block;
-      padding-bottom: 12px; }
+      display: inline-block; }
       @media screen and (max-width: 992px) {
         .top-stories_index2 a.card article {
           overflow: hidden; } }
@@ -10475,6 +10609,7 @@ button.swiper-pagination-bullet {
         .top-stories_index2 a.card article figure img {
           max-width: 100%; }
       .top-stories_index2 a.card article .content {
+        display: block;
         position: static;
         margin: 0; }
         .top-stories_index2 a.card article .content .category {
@@ -10514,7 +10649,9 @@ button.swiper-pagination-bullet {
         margin-top: .5em;
         color: black;
         max-width: 90%;
-        height: 40px; }
+        height: 40px;
+        margin-bottom: 0;
+        line-height: initial; }
         @media screen and (max-width: 992px) {
           .top-stories_index2 a.card.social .content > p {
             margin-top: .3em;

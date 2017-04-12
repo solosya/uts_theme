@@ -240,3 +240,51 @@ time{
     color: #808285;
     font-size: ((16px / $font-size-base) + $font-unit);
 }
+
+
+
+.flex_col {
+    -webkit-flex-direction:column;
+    -ms-flex-direction:column;
+    flex-direction:column;
+    -webkit-flex-direction:column;
+    -moz-flex-direction:column;
+    display:flex;
+    display:-webkit-flex;
+    display:-moz-flex;
+    display:-ms-flexbox;
+}
+.flex_row {
+    flex-direction:row;
+    -webkit-flex-direction:row;
+    -ms-flex-direction:row;
+    -webkit-flex-direction:row;
+    -moz-flex-direction:row;
+    display:flex;
+    display:-webkit-flex;
+    display:-moz-flex;
+    display:-ms-flexbox;
+}
+
+.flex_between{
+    justify-content: space-between;
+}
+
+.flex-shrink0{-ms-flex-negative:0;-webkit-flex-shrink:0;flex-shrink:0;-moz-flex-shrink:0;}
+.flex0{-webkit-flex:0;-ms-flex:0;flex:0;-moz-flex:0;}
+.flex1{-webkit-flex:1 0 0;-ms-flex:1 0 0;flex:1 0 0;-moz-flex:1 0 0;}
+.flex2{-webkit-flex:2 0 0;-ms-flex:2 0 0;flex:2 0 0;-moz-flex:2 0 0;}
+.flex3{-webkit-flex:3 0 0;-ms-flex:3 0 0;flex:3 0 0;-moz-flex:3 0 0;}
+.flex4{-webkit-flex:4 0 0;-ms-flex:4 0 0;flex:4 0 0;-moz-flex:4 0 0;}
+.flex5{-webkit-flex:5 0 0;-ms-flex:5 0 0;flex:5 0 0;-moz-flex:5 0 0;}
+.flex6{-webkit-flex:6 0 0;-ms-flex:6 0 0;flex:6 0 0;-moz-flex:6 0 0;}
+.flex7{-webkit-flex:7 0 0;-ms-flex:7 0 0;flex:7 0 0;-moz-flex:7 0 0;}
+.flex8{-webkit-flex:8 0 0;-ms-flex:8 0 0;flex:8 0 0;-moz-flex:8 0 0;}
+.flex9{-webkit-flex:9 0 0;-ms-flex:9 0 0;flex:9 0 0;-moz-flex:9 0 0;}
+.flex10{-webkit-flex:10 0 0;-ms-flex:10 0 0;flex:10 0 0;-moz-flex:10 0 0;}
+.flex11{-webkit-flex:11 0 0;-ms-flex:11 0 0;flex:11 0 0;-moz-flex:11 0 0;}
+.flex12{-webkit-flex:12 0 0;-ms-flex:12 0 0;flex:12 0 0;-moz-flex:12 0 0;}
+.flex13{-webkit-flex:13 0 0;-ms-flex:13 0 0;flex:13 0 0;-moz-flex:13 0 0;}
+.flex15{-webkit-flex:15 0 0;-ms-flex:15 0 0;flex:15 0 0;-moz-flex:15 0 0;}
+
+

@@ -53,20 +53,27 @@
             text-align: center;
             color: #fefefe;
             padding-top: 220px;
-            padding-left: 115px;
-            padding-right: 115px;
+            padding-left: 40px;
+            padding-right: 40px;
             // padding-bottom: 35px;
 
             @media screen and (max-width: $sm-mobile-break){
                 padding: 80px 20px 35px 20px;
             }
 
-
+            .article-icon {
+                order: 1;
+                margin: auto;
+                margin-bottom:12px;
+            }
 
             h2 {
+                order: 3;
                 text-transform: uppercase;
                 line-height: 28.0px;
                 height:70px;
+                margin-bottom:9px;
+
                 @media screen and (max-width: $mobile-break) {
                     line-height:1.3em;
                     font-size:  ((27px / $font-size-base) + $font-unit);
@@ -75,13 +82,9 @@
 
 
             time{
+                order: 5;
                 color: #fefefe;
-            }
-            
-            .author{
-                background-color: transparent;
-                color: #fefefe;
-            
+
                 &:before{
                     content: '';
                     width: 85px;
@@ -95,9 +98,17 @@
                 }
 
             }
+            
+            .author{
+                order: 2;
+                background-color: transparent;
+                color: #fefefe;
+                margin-bottom:0;
+            }
 
 
             p{
+                order: 4;
                 display: none;
                 @media screen and (max-width: $sm-mobile-break){
                     display: none;
@@ -113,12 +124,16 @@
         &.social {
             .content{
 
-                padding-top: 120px;
-                padding-left: 115px;
-                padding-right: 115px;
+                padding-top: 180px;
 
                 > p {
+                    height:80px;
+                    max-height:80px;
                     display:block;
+                }
+
+                .author {
+                    margin-bottom:12px;
                 }
             }
         }
@@ -128,7 +143,6 @@
 
 
             .content{
-                padding-top: 90px;
 
                 time{
                     margin-bottom: 5px;
@@ -139,7 +153,6 @@
         &.instagram{
 
             .content{
-                padding-top: 82px;
 
                 time{
                     margin-bottom: 5px;
@@ -149,7 +162,6 @@
 
         &.youtube{
             .content{
-                padding-top: 42px;
 
                 time{
                     margin-bottom: 5px;
@@ -181,7 +193,6 @@
             }
 
             .content{
-                padding-top: 42px;
 
                 time{
                     margin-bottom: 5px;
