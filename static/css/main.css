@@ -11580,7 +11580,7 @@ body.screen {
     -ms-transform: translate(-50%, -50%);
     /* IE 9 */
     transform: translate(-50%, -50%);
-    z-index: 100000; }
+    z-index: 1; }
   .page-hero .video-overlay .icons .icon {
     width: 60px;
     height: 60px;
@@ -11881,6 +11881,12 @@ body.screen {
       width: 39px;
       height: 39px;
       margin-left: 15px; }
+    .site-footer .footer-content .powered {
+      position: absolute;
+      top: 0;
+      right: 15px;
+      color: white;
+      font-size: 1em; }
   .site-footer .footer-signup {
     background-color: #ffff00;
     padding-top: 11px;

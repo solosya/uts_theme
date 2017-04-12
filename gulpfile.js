@@ -1,5 +1,6 @@
 var gulp = require ('gulp');
 var concat = require('gulp-concat');
+// var concat = require('gulp-concat-css');
 var uglify = require('gulp-uglify');
 var gp_rename = require("gulp-rename");
 var gutil = require('gulp-util');
@@ -28,7 +29,8 @@ gulp.task('minify-css', function () {
 gulp.task('concat', function () {
     return gulp.src([
         './static/css/main.css',
-        './assets/scripts/plugins/tipped-4.6.0-light/css/tipped/tipped.css'
+        './assets/scripts/plugins/tipped-4.6.0-light/css/tipped/tipped.css',
+        './assets/scripts/plugins/jquery.fancybox/source/jquery.fancybox.css'
     ]) // path to your file
     .pipe(concat('concat.css'))
     .pipe(gulp.dest('./static/css'));
