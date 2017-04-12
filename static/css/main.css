@@ -6905,6 +6905,12 @@ body.no_profile .profile_overlay {
 .menu-background {
   background: #1a1a1a; }
 
+a.fancybox-close {
+  z-index: 1 !important; }
+
+div.fancybox-title {
+  display: none !important; }
+
 .content-block.top {
   margin-bottom: 85px; }
 

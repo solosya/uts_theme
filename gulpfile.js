@@ -30,7 +30,8 @@ gulp.task('concat', function () {
     return gulp.src([
         './static/css/main.css',
         './assets/scripts/plugins/tipped-4.6.0-light/css/tipped/tipped.css',
-        './assets/scripts/plugins/jquery.fancybox/source/jquery.fancybox.css'
+        './assets/scripts/plugins/jquery.fancybox/source/jquery.fancybox.css',
+        './assets/scripts/sdk/media-player/mediaelementplayer.css'
     ]) // path to your file
     .pipe(concat('concat.css'))
     .pipe(gulp.dest('./static/css'));

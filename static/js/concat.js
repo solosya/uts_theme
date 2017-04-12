@@ -32135,7 +32135,7 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
 
                 if (source.trim() === 'youtube') {
                     if (videoId !== "" && typeof videoId !== "undefined") {
-                        url = "http://www.youtube.com/watch?v=" + videoId;
+                        url = "https://www.youtube.com/watch?v=" + videoId;
                     } else {
                         url = $(elem).data('url');
                     }
@@ -32160,9 +32160,9 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
                     videoId = videoId.toString().split("::")[0];
                     
                     if (playerID == '' || typeof playerID == "undefined") {playerID = 'default';}
-                    console.log(playerID);
+
                     if (videoId !== "" && typeof videoId !== "undefined") {
-                         url = "http://players.brightcove.net/"+accountID+"/"+playerID+"_default/index.html?videoId=" + videoId;
+                         url = "https://players.brightcove.net/"+accountID+"/"+playerID+"_default/index.html?videoId=" + videoId;
                     } else {
                         url = $(elem).data('url');
                     }

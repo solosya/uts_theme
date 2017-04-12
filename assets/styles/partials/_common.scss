@@ -10,6 +10,13 @@
     background: rgba(26, 26, 26, 1);
 }   
 
+a.fancybox-close {
+    z-index:1 !important;
+}
+
+div.fancybox-title {
+    display:none !important;
+}
 
 
 .content-block.top {
