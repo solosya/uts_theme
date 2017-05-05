@@ -8355,11 +8355,11 @@ a.card:hover {
     margin-bottom: 32.5px;
     height: 172px;
     position: relative; }
-    @media screen and (max-width: 769px) {
+    @media screen and (min-width: 768px) {
       .card-sm .card figure {
-        height: 472px;
+        height: 172px;
         margin-bottom: 15px; } }
-    @media screen and (max-width: 620px) {
+    @media screen and (max-width: 767px) {
       .card-sm .card figure {
         height: 372px; } }
   .card-sm .card article > .other-content:first-child {
