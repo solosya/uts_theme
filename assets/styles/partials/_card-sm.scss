@@ -22,8 +22,15 @@
             position: relative;
 
             @media screen and (max-width: $sm-break){
-                height:272px;
+                height:472px;
+                margin-bottom: 15px;
+
             }
+            @media screen and (max-width: $mobile-break){
+                height:372px;
+            }
+
+
 
         }
 
@@ -54,6 +61,11 @@
                 h2{
                     margin-top:5px;
                     margin-bottom: 9px;
+
+                    @media screen and (max-width: $sm-break){
+                        height:50px;
+                        line-height:1.3em;
+                    }
                 }
 
                 .share-icon{
@@ -103,11 +115,11 @@
                     margin-top:10px;
                     margin-bottom:20px;
                     height:32px;
-                    font-size:  ((19px / $font-size-base) + $font-unit);
+                    font-size:  rem(25);
                 }
 
                 @media screen and (max-width: $mobile-break){
-                    font-size:  ((25px / $font-size-base) + $font-unit);
+                    font-size:  rem(25);
                     height:60px;
                 }
             }
@@ -123,7 +135,10 @@
                 max-height:55px;
 
                 @media screen and (max-width: $mobile-break){
-                    font-size:  ((15px / $font-size-base) + $font-unit);
+                    font-size:  rem(15);
+                }
+                @media screen and (max-width: $sm-break){
+                    font-size:  rem(18);
                 }
             }
 

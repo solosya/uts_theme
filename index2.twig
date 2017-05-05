@@ -69,12 +69,12 @@
     <section class="top-stories_index2 container">
         <h2>TOP STORIES</h2>
         <div class="row">
-        {% for i in 0..2 %}
-            {% if articles[articleCount] %}
-                {{this.render('partials/_single-article.twig', {article: articles[articleCount], 'position': (articleCount+1), containerClass: 'col-sm-4'}) | raw}}
-                {% set articleCount = articleCount + 1 %}
-            {% endif %}
-        {% endfor %}
+            {% for i in 0..2 %}
+                {% if articles[articleCount] %}
+                    {{this.render('partials/_single-article.twig', {article: articles[articleCount], 'position': (articleCount+1), containerClass: 'col-sm-4'}) | raw}}
+                    {% set articleCount = articleCount + 1 %}
+                {% endif %}
+            {% endfor %}
         </div>
     </section><!--custom-pagination-->
 
@@ -157,7 +157,7 @@
         <a href="{{ sections['The Wire'].link }}"><h5 class="ser-h5">The Wire</h5></a>
         <section class="content-block ser">
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-12 col-md-4">
                     <a href="http://www.2ser.com/players" onClick="window.open(this.href, 'child', 'scrollbars,width=750,height=430'); return false">
                         <img src="{{networkData.templatePath}}/static/images/2SER_Desktop.jpg" alt="ALT">
                     </a>
@@ -165,7 +165,7 @@
                 
                 {% for i in 0..1 %}
                     {% if sections['The Wire'].feed.articles[i] %}        
-                        {{this.render('partials/_2ser-article.twig', {article: sections['The Wire'].feed.articles[i], 'position': (i+1), containerClass: 'col-sm-4'}) | raw}}
+                        {{this.render('partials/_2ser-article.twig', {article: sections['The Wire'].feed.articles[i], 'position': (i+1), containerClass: 'col-sm-6 col-md-4'}) | raw}}
                     {% endif %}                   
                 {% endfor %}
             </div><!--row-->
@@ -184,11 +184,16 @@
         {% endif %}
     </section><!--highlight-->
 
+
+
+
+
+
     <section class="content-block container">
         <div class="row">
             <div class="col-md-3 col-sm-12">
                 <aside class="right-border">
-                    <section class="top-stories-sidebar">
+                    <section class="row top-stories-sidebar">
                         <h2>MOST VIEWED</h2>
 
                         {% if popularArticles|length > 0 %}

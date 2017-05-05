@@ -21,6 +21,7 @@ h5.ser-h5 {
 
     img{
         max-width: 100%;
+        width:100%;
         @media screen and (max-width: $sm-break) {
             width: 100%;
             margin-bottom:25px;
@@ -63,64 +64,73 @@ h5.ser-h5 {
         article > .other-content:first-child {
                 margin-bottom: 26px;
         }
+        
+        article {
+            figure {
+                disply:none;
+            }
 
-        time {
-            font-family:"KeplerStd";
-            display:inline-block;
-            font-weight:300;
-            margin-top: 15px;
-            color: #808285;
+            .content {
+                display:block;
 
-            @media screen and (max-width: $sm-break) {
-                font-size:  ((20px / $font-size-base) + $font-unit);
+                time {
+                    font-family:"KeplerStd";
+                    display:inline-block !important;
+                    font-weight:300;
+                    margin-top: 15px;
+                    margin-bottom: 10px;
+                    color: #808285;
+
+                    @media screen and (max-width: $sm-break) {
+                        font-size:  ((20px / $font-size-base) + $font-unit);
+                    }
+                }
+
+
+                .other-content{
+                    margin-bottom: 5px;
+                }
+
+                .author {
+                    font-family:"KeplerStd";
+                    padding:0;
+                    margin-bottom:0;
+                    background:none;
+                    color:#808285;
+                    font-weight:300;
+                    text-transform: none;
+
+                    @media screen and (max-width: $sm-break) {
+                        margin-bottom:0;
+                        font-size:  ((20px / $font-size-base) + $font-unit);
+                    }
+                }
+
+
+                .category {
+                    display:none;
+                }
+
+                h2 {
+                    margin-top:5px;
+                    margin-bottom: 15px;
+                    line-height: 1.2em;
+                    height:55px;
+                    overflow:hidden;
+                    font-size:  ((22px / $font-size-base) + $font-unit);
+
+                    @media screen and (max-width: $sm-break){
+                        margin-top:0;
+                        // height:120px;
+                        height:auto;
+                        font-size:  ((34px / $font-size-base) + $font-unit);
+                    }
+                }
             }
         }
 
 
-        .other-content{
-            margin-bottom: 5px;
-        }
-
-        .author {
-            font-family:"KeplerStd";
-            padding:0;
-            margin-bottom:0;
-            background:none;
-            color:#808285;
-            font-weight:300;
-            text-transform: none;
-
-            @media screen and (max-width: $sm-break) {
-                margin-bottom:0;
-                font-size:  ((20px / $font-size-base) + $font-unit);
-            }
-        }
-
-        figure {
-            disply:none;
-        }
-
-        .category {
-            display:none;
-        }
-
-        h2 {
-            margin-top:5px;
-            margin-bottom: 15px;
-            line-height: 1.2em;
-            height:55px;
-            overflow:hidden;
-            font-size:  ((22px / $font-size-base) + $font-unit);
-
-            @media screen and (max-width: $sm-break){
-                margin-top:0;
-                // height:120px;
-                height:auto;
-                font-size:  ((34px / $font-size-base) + $font-unit);
-            }
-
-
-        }
+        
 
         .share-icon{
             display: none;

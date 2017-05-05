@@ -10,13 +10,13 @@
 {% set publishDate = _AppHelper.getDefaultTimezoneDateTime(article.publishDate) %}
 {% set articleTitle =  titleTruncateLength is defined ? article.title | truncate(titleTruncateLength) : article.title  %}
 
-<div class=""  >
-	<a href="{{article.url}}">
+<div class="col-sm-6 col-md-12">
+	<a class="card" href="{{article.url}}">
 	<article>
 	    <figure>
 	        <img src="{{articleImg}}">
 	    </figure>
-	    <h3>{{ articleTitle | raw }}</h3>
+	    <h2>{{ articleTitle | raw }}</h2>
 	    <time datetime="2016-11-16">{{_AppHelper.getDateTimeBasedOnTimezone(publishDate,'SHORT')}}</time>
 	</article>
 	</a>

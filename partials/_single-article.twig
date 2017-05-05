@@ -22,11 +22,24 @@
     {% set figureClass =  article.featuredMedia['type'] == 'video' ? 'video' : '' %}
 
     {% set publishDate = _AppHelper.getDefaultTimezoneDateTime(article.publishDate) %}
-    {% set articleTitle =  quotes.smarten(titleTruncateLength is defined ? article.title | truncate(titleTruncateLength) : article.title)  %}
+
+    {% set title = article.title %}
+    {% if article.titlePreview is defined and article.titlePreview != "" %}
+        {% set title = article.titlePreview %}
+    {% endif %}
+
+
+    {% set articleTitle =  quotes.smarten(title) %}
     {% set swap = swap is defined and swap == 'false' ? '' : 'swap'  %}
     {% set imageSuppress = imageSuppress is defined and imageSuppress == 'true' ? 'true' : 'false'  %}
-    {% set articleImg = _Media.getMediaUrl(article.featuredMedia,imgWidth, imgHeight, {'crop': 'fill', 'gravity': 'faces'} ) %}
+    
 
+    {% if article.previewMedia %}
+        {% set articleImg = _Media.getMediaUrl(article.previewMedia,imgWidth, imgHeight, {'crop': 'fill', 'gravity': 'faces'} ) %}
+    {% else %}
+        {% set articleImg = _Media.getMediaUrl(article.featuredMedia,imgWidth, imgHeight, {'crop': 'fill', 'gravity': 'faces'} ) %}
+    {% endif %}
+    
     <div class="{{containerClass}}">
         <a  href="{{article.url}}" 
             id="Article{{article.articleId}}"

@@ -1,11 +1,12 @@
 //Fonts
 $font-family-sans-serif:    "acumin-pro", Helvetica, Arial, sans-serif;
-$font-size-base:            13px;
+$font-size-base:            10px;
 $font-unit:                 0em; 
 $baseFontSize:				13px; /* ($baseFontSize * 1) + 0px; */
 $base-font-family: 			"Montserrat", Helvetica, Arial, sans-serif !default;
 $header-font-family: 		$base-font-family;
 $iconfont:					FontAwesome !default;
+$browser-context:           $font-size-base;
 
 $center:					center;
 
