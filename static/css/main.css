@@ -8384,6 +8384,7 @@ a.card:hover {
     .card-sm .card article .content .share-icon {
       display: none; }
     .card-sm .card article .content p {
+      font-size: 1.3rem;
       overflow: hidden;
       font-weight: 500; }
   .card-sm .card.other {
@@ -11202,6 +11203,7 @@ body.screen {
       padding-left: 0;
       margin: 0; } }
   .top-stories-sidebar > h2:first-child {
+    margin-left: 15px;
     margin-top: 0px;
     margin-bottom: 20px;
     font-size: 1.8em; }
