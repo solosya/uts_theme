@@ -21,6 +21,10 @@ div.fancybox-title {
 
 .content-block.top {
     margin-bottom:85px;
+    @media screen and (max-width: $mobile-break){
+        margin-bottom:35px;
+    }
+
 }
 
 .loadMoreArticles {
@@ -93,6 +97,9 @@ div.fancybox-title {
     @media screen and (max-width: $sm-break){
         width: 52px;
         height: 52px;
+    }
+    @media screen and (max-width: $mobile-break){
+        opacity:.6;
     }
 
 }
@@ -225,9 +232,7 @@ div.fancybox-title {
     }
 }
 
-.lead{
-    font-size: ((18px / $font-size-base) + $font-unit);
-    line-height: ((20px / $font-size-base) + $font-unit);
+.article-lead{
     font-weight: 900;
 }
 

@@ -6,12 +6,13 @@
     <header id="masthead" class="site-header container-fluid {{headerClass}} {{ pageClass }}">
         <div class="site-branding col-md-3 col-sm-2">
             <div class="logo pull-left">
-                    <a class="navbar-brand" href="{{networkData.defaultBlogUrl}}" rel="Home"  title="Home">
-                        <img id="main-logo" src="{{networkData.templatePath}}/static/images/central-news-logo-clear.png" alt="UTL Logo">
-{#                         <svg class="navbar-brand-name" role="img">
-                            <use xlink:href="#svgsymbol_central-news-header" />
-                        </svg>
- #}                    </a>
+                <a class="navbar-brand" href="{{networkData.defaultBlogUrl}}" rel="Home"  title="Home">
+                    <img id="main-logo" src="{{networkData.templatePath}}/static/images/central-news-logo-clear.png" class="main-logo" alt="UTL Logo">
+                </a>
+                <a class="navbar-brand" href="{{networkData.defaultBlogUrl}}" rel="Home" tabindex="-1" title="Home">
+                    <img src="{{networkData.templatePath}}/static/images/CN-logo.png" alt="logo" class="mobile-logo">
+                </a>
+
             </div>
         </div><!-- .site-branding -->
 

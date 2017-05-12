@@ -9,15 +9,18 @@
         margin-bottom: 30px;
         color:#fefefe;
         
-
         @media screen and (max-width: $sm-break){
             max-height:none;
         }
+        @media screen and (max-width: $sm-break){
+            min-height: auto;
+        }
+
 
         figure{
             margin-left: -12px;
             margin-right: -12px;
-            margin-bottom: 32.5px;
+            margin-bottom: 30px;
             height: 172px;
             position: relative;
 
@@ -29,7 +32,11 @@
             @media screen and (max-width: 767px){
                 height:372px;
             }
+            @media screen and (max-width: $mobile-break){
+                max-height: 175px;
+                // margin-bottom: 0;
 
+            }
 
 
         }
@@ -55,16 +62,25 @@
                     right: 0;
                     background-color: $brand-yellow;
                     color: #1a1818;
-
+                    
+                    @media screen and (max-width: $mobile-break){
+                        font-size:rem(8);
+                        padding:7px 8px;
+                    }
                 }
 
                 h2{
                     margin-top:5px;
                     margin-bottom: 9px;
+                    text-transform:uppercase;
 
-                    @media screen and (max-width: $sm-break){
-                        height:50px;
-                        line-height:1.3em;
+                    @media screen and (max-width: $mobile-break){
+                        height:auto;
+                        font-size: rem(18);
+                        max-height:65px;
+                        line-height:1.2em;
+                        margin-bottom: 0;
+
                     }
                 }
 
@@ -74,9 +90,10 @@
 
 
                 time {
-                    // @media screen and (max-width: $sm-break){
-                    //     font-size:  ((14px / $font-size-base) + $font-unit);
-                    // }
+                    @media screen and (max-width: $mobile-break){
+                        font-size:  rem(9);
+                        font-weight:600;
+                    }
                 }
 
                 p {
@@ -84,6 +101,19 @@
                     // max-height:110px;
                     overflow: hidden;
                     font-weight: 500;
+                    @media screen and (max-width: $mobile-break){
+                        height:auto;
+                        max-height:32px;
+                        font-size:  rem(13);
+                        line-height:1.2;
+                    }
+                }
+                .author {
+                    @media screen and (max-width: $mobile-break){
+                        font-size:  rem(8);
+                        margin-top:20px;
+                        padding:4px 9px;
+                    }
                 }
             }
         }
@@ -105,7 +135,9 @@
             @media screen and (max-width: $sm-break){
                 border-bottom: solid 8px #231f20;
             }
-
+            @media screen and (max-width: $mobile-break){
+                border:none;
+            }
 
 
             h2 {

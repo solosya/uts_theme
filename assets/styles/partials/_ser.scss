@@ -1,7 +1,7 @@
 h5.ser-h5 {
     @media screen and (max-width: $sm-break) {
         color: #464648;
-        font-size:  ((36px / $font-size-base) + $font-unit);
+        font-size:  rem(20);
     }
 }
 
@@ -14,10 +14,11 @@ h5.ser-h5 {
     border-bottom: solid 3px #d0d2d3;
     margin-bottom:80px;
 
-    // @media screen and (max-width: $sm-break) {
-    //     padding-top: 20px;
-    //     padding-bottom: 10px;
-    // }
+    @media screen and (max-width: $mobile-break) {
+        padding-top: 20px;
+        padding-bottom: 10px;
+        border-top:none;
+    }
 
     img{
         max-width: 100%;
@@ -43,23 +44,12 @@ h5.ser-h5 {
             max-height: none;
         }
 
-
-
-        p {
-            max-height:65px;
-            overflow: hidden;
-            font-weight: 500;
-            line-height: 1.6em;
-            color: #464648;
-
-            @media screen and (max-width: $sm-break) {
-                margin-top:20px;
-                height:170px;
-                max-height:170px;
-                line-height: 1.8em;
-                font-size:  ((19px / $font-size-base) + $font-unit);
-            }
+        @media screen and (max-width: $mobile-break) {
+            margin-bottom: 15px;
         }
+
+
+
 
         article > .other-content:first-child {
                 margin-bottom: 26px;
@@ -73,6 +63,62 @@ h5.ser-h5 {
             .content {
                 display:block;
 
+
+                .category {
+                    display:none;
+                }
+
+                h2 {
+                    margin-top:5px;
+                    margin-bottom: 15px;
+                    line-height: 1.2em;
+                    height:55px;
+                    overflow:hidden;
+                    font-size:  ((22px / $font-size-base) + $font-unit);
+
+                    @media screen and (max-width: $sm-break){
+                        margin-top:0;
+                        height:auto;
+                        font-size:  rem(34);
+                    }
+
+                    @media screen and (max-width: $mobile-break){
+                        margin-top:0;
+                        height:auto;
+                        font-size:  rem(20);
+                    }
+                }
+
+
+
+                p {
+                    max-height:65px;
+                    overflow: hidden;
+                    font-weight: 500;
+                    line-height: 1.6em;
+                    color: #464648;
+
+                    @media screen and (max-width: $sm-break) {
+                        margin-top:20px;
+                        height:170px;
+                        max-height:170px;
+                        line-height: 1.8em;
+                        font-size:  rem(19);
+                    }
+
+                    @media screen and (max-width: $mobile-break){
+                        font-size: rem(14);
+                        height:auto;
+                        max-height:100px;
+                        line-height:1.6;
+                    }
+
+
+                }
+
+
+
+
                 time {
                     font-family:"KeplerStd";
                     display:inline-block !important;
@@ -82,8 +128,14 @@ h5.ser-h5 {
                     color: #808285;
 
                     @media screen and (max-width: $sm-break) {
-                        font-size:  ((20px / $font-size-base) + $font-unit);
+                        font-size:  rem(20);
                     }
+
+                    @media screen and (max-width: $mobile-break) {
+                        font-size:  rem(12);
+                    }
+
+
                 }
 
 
@@ -102,30 +154,18 @@ h5.ser-h5 {
 
                     @media screen and (max-width: $sm-break) {
                         margin-bottom:0;
-                        font-size:  ((20px / $font-size-base) + $font-unit);
+                        font-size:  rem(20);
                     }
-                }
 
-
-                .category {
-                    display:none;
-                }
-
-                h2 {
-                    margin-top:5px;
-                    margin-bottom: 15px;
-                    line-height: 1.2em;
-                    height:55px;
-                    overflow:hidden;
-                    font-size:  ((22px / $font-size-base) + $font-unit);
-
-                    @media screen and (max-width: $sm-break){
-                        margin-top:0;
-                        // height:120px;
-                        height:auto;
-                        font-size:  ((34px / $font-size-base) + $font-unit);
+                    @media screen and (max-width: $mobile-break) {
+                        font-size:  rem(12);
                     }
+
+
                 }
+
+
+
             }
         }
 

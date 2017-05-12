@@ -75,6 +75,13 @@
                 }
             }
 
+
+            p {
+                > iframe {
+                    width:100%;
+                }
+            }
+
             a { 
                 color:#0099cc;
                 font-weight:600;

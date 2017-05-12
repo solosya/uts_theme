@@ -54,7 +54,7 @@ a.card:hover {
             background-color: #231f20;
             color: #fefefe;
             font-weight: 900;
-            font-size: ((12px / $font-size-base) + $font-unit); //12px
+            font-size: rem(12); //12px
             text-transform: uppercase;
             padding: 4px 5px;
             margin-bottom: 17px;
@@ -65,18 +65,18 @@ a.card:hover {
         }
 
         h2{
-            margin-bottom: ((14px / $font-size-base) + $font-unit); //14px
-            font-size: ((20px / $font-size-base) + $font-unit);
+            margin-bottom: rem(14);
+            font-size: rem(20);
         }
 
         > p.socialContent {
-            font-size: ((20px / $font-size-base) + $font-unit); //10.8px
+            font-size: rem(20); //10.8px
             line-height: 26.0px;
         }
 
         .author{
-            font-size: ((10.8px / $font-size-base) + $font-unit); //10.8px
-            font-weight: 900;
+            font-size: rem(11); //10.8px
+            font-weight: 700;
             background-color: #231f20;
             color: #fefefe;
             display: inline-block;
@@ -100,7 +100,7 @@ a.card:hover {
 
         time{
             display: block;
-            font-size: ((11px / $font-size-base) + $font-unit); //11px
+            font-size: rem(11);
             font-weight: 600;
             color: #808285;
         }

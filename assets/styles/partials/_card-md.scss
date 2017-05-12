@@ -7,8 +7,8 @@
         margin-bottom: 30px;
         color:#fefefe;
 
-        @media screen and (max-width: $sm-mobile-break){
-            height: 300px;
+        @media screen and (max-width: $mobile-break){
+            height: 210px;
         }
 
 
@@ -18,13 +18,6 @@
             height: 37px;
         }
 
-        .category{
-            position: absolute;
-            right: 0;
-            top: 0;
-            background-color: $brand-yellow;
-            color: #1a1818;
-        }
 
         figure{
             position: absolute;
@@ -57,9 +50,25 @@
             padding-right: 40px;
             // padding-bottom: 35px;
 
-            @media screen and (max-width: $sm-mobile-break){
-                padding: 180px 20px 35px 20px;
+            @media screen and (max-width: $mobile-break){
+                padding: 110px 20px 35px 20px;
             }
+
+            .category{
+                position: absolute;
+                right: 0;
+                top: 0;
+                background-color: $brand-yellow;
+                color: #1a1818;
+                @media screen and (max-width: $mobile-break){
+                    font-size: rem(8);
+                    font-weight:900;
+                    padding: 5px 8px;
+                }
+            }
+
+
+
 
             .article-icon {
                 order: 1;
@@ -71,37 +80,28 @@
                 order: 3;
                 text-transform: uppercase;
                 line-height: 28.0px;
-                height:70px;
+                height:auto;
+                max-height:70px;
                 margin-bottom:9px;
 
                 @media screen and (max-width: $mobile-break) {
                     line-height:1.3em;
-                    font-size:  ((27px / $font-size-base) + $font-unit);
-                }
-                @media screen and (max-width: $sm-mobile-break) {
-                    line-height:1.3em;
-                    font-size:  ((19px / $font-size-base) + $font-unit);
+                    font-size:  rem(18);
+                    max-height:50px;
+
                 }
             }
 
+            p {
+                order: 4;
+                display: none;
+                @media screen and (max-width: $sm-mobile-break){
+                    display: none;
+                }
+            }
 
             time{
                 display:none;
-                // order: 5;
-                // color: #fefefe;
-
-                // &:before{
-                //     content: '';
-                //     width: 85px;
-                //     height: 6px;
-                //     background-color: #fefefe;
-                //     // margin-top: 15px;
-                //     margin-bottom:5px;
-                //     display: block;
-                //     margin-left: auto;
-                //     margin-right: auto;
-                // }
-
             }
             
             .author{
@@ -109,16 +109,14 @@
                 background-color: transparent;
                 color: #fefefe;
                 margin-bottom:0;
-            }
-
-
-            p{
-                order: 4;
-                display: none;
-                @media screen and (max-width: $sm-mobile-break){
-                    display: none;
+                @media screen and (max-width: $mobile-break) {
+                    font-size: rem(9);
+                    font-weight:900;
                 }
+
             }
+
+
         }
 
         .share{
@@ -129,7 +127,7 @@
         &.social {
             .content{
 
-                padding-top: 180px;
+                padding-top: 110px;
 
                 > p {
                     height:80px;
