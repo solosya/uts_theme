@@ -142,6 +142,21 @@
             padding-left: 0;
             border: 0;
 
+            @media screen and (max-width: $sm-break) {
+                font-size: em(22);
+            }
+
+            @media screen and (max-width: $mobile-break) {
+                font-size: rem(22);
+            }
+
+            >p {
+                @media screen and (max-width: $mobile-break) {
+                    padding-left: 10px;
+                }
+            }
+
+
             &:before {
                 display:block;
                 position: relative;
@@ -152,6 +167,11 @@
                 background-image: url('../images/quote.svg');
                 content: ' ';
                 margin-top: 28px;
+
+                @media screen and (max-width: $mobile-break) {
+                    left: -25px;
+                }
+
             }
 
             &:after {
@@ -163,9 +183,7 @@
                 margin-bottom: 28px;
                 margin-top: 28px;
             }
-            @media screen and (max-width: $sm-break) {
-                font-size: em(22);
-            }
+
         }
 
     }

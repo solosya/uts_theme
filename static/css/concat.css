@@ -11951,6 +11951,15 @@ body.screen {
   font-family: "Montserrat", Helvetica, Arial, sans-serif;
   padding-left: 0;
   border: 0; }
+  @media screen and (max-width: 769px) {
+    .page-content article blockquote {
+      font-size: 2.2em; } }
+  @media screen and (max-width: 620px) {
+    .page-content article blockquote {
+      font-size: 2.2rem; } }
+  @media screen and (max-width: 620px) {
+    .page-content article blockquote > p {
+      padding-left: 10px; } }
   .page-content article blockquote:before {
     display: block;
     position: relative;
@@ -11961,6 +11970,9 @@ body.screen {
     background-image: url("../images/quote.svg");
     content: ' ';
     margin-top: 28px; }
+    @media screen and (max-width: 620px) {
+      .page-content article blockquote:before {
+        left: -25px; } }
   .page-content article blockquote:after {
     width: 62px;
     height: 5.6px;
@@ -11969,9 +11981,6 @@ body.screen {
     content: '';
     margin-bottom: 28px;
     margin-top: 28px; }
-  @media screen and (max-width: 769px) {
-    .page-content article blockquote {
-      font-size: 2.2em; } }
 
 .page-content .article-content-icons-wrapper {
   padding: 0; }
