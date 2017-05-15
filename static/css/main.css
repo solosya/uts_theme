@@ -10000,7 +10000,7 @@ button.swiper-pagination-bullet {
     @media screen and (max-width: 620px) {
       .banner-image:before {
         background: none;
-        background-color: rgba(0, 0, 0, 0.15); } }
+        background-color: rgba(0, 0, 0, 0.3); } }
 
 .featured-carousel-index2 {
   /* Auto Height */
@@ -10094,12 +10094,13 @@ button.swiper-pagination-bullet {
           .featured-carousel-index2 .card .content h2 {
             height: 110px; } }
       .featured-carousel-index2 .card .content time {
-        display: block;
+        display: inline-block;
         margin-left: 14px;
         color: #fefefe;
         font-size: 1.1rem; }
         @media screen and (max-width: 620px) {
           .featured-carousel-index2 .card .content time {
+            display: block;
             font-size: 0.8rem;
             margin-left: 0; } }
       .featured-carousel-index2 .card .content .author {
