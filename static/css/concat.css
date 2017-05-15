@@ -11374,8 +11374,8 @@ body.screen {
         .top-stories-sidebar a.card article {
           margin-left: 0;
           height: 53px;
-          border-bottom: none;
-          margin-bottom: 39px; } }
+          padding-bottom: 70px;
+          margin-bottom: 15px; } }
       .top-stories-sidebar a.card article figure {
         width: 50px;
         height: 46px;
