@@ -9996,12 +9996,12 @@ button.swiper-pagination-bullet {
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0000000', endColorstr='#00000000',GradientType=0 );
     /* IE6-9 */
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.15);
     z-index: 1; }
     @media screen and (max-width: 620px) {
       .banner-image:before {
         background: none;
-        background-color: rgba(0, 0, 0, 0.3); } }
+        background-color: rgba(0, 0, 0, 0.15); } }
 
 .featured-carousel-index2 {
   /* Auto Height */
@@ -12031,10 +12031,6 @@ body.screen {
     font-size: 3.2em;
     font-weight: 900;
     color: #1a1818; }
-  @media screen and (max-width: 769px) {
-    .related-posts .card-sm .card {
-      height: 610px;
-      max-height: 610px; } }
   .related-posts .card-sm .card h2 {
     font-size: 2em;
     line-height: 1.9em;
