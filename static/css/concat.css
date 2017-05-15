@@ -7326,8 +7326,7 @@ body.Screen .top-bar {
         .site-header .navbar-brand img.main-logo {
           display: none; } }
       .site-header .navbar-brand img.mobile-logo {
-        width: 48px;
-        height: 51px; }
+        width: 48px; }
         @media screen and (min-width: 620px) {
           .site-header .navbar-brand img.mobile-logo {
             display: none; } }
