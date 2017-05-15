@@ -6929,8 +6929,7 @@ div.fancybox-title {
   font-size: 1.6em;
   line-height: 40px;
   color: black;
-  float: none;
-  color: rgba(255, 255, 0, 0.6); }
+  float: none; }
 
 .hide {
   display: none !important; }
