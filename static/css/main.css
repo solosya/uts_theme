@@ -12034,26 +12034,11 @@ body.screen {
     @media screen and (max-width: 769px) {
       .related-posts > div {
         width: auto; } }
-  .related-posts h2 {
+  .related-posts > div > div > h2 {
     margin-bottom: 64px;
     font-size: 3.2em;
     font-weight: 900;
     color: #1a1818; }
-  .related-posts .card-sm .card h2 {
-    font-size: 2em;
-    line-height: 1.9em;
-    text-transform: uppercase;
-    height: 58px; }
-    @media screen and (max-width: 769px) {
-      .related-posts .card-sm .card h2 {
-        font-size: 3em;
-        height: 90px; } }
-  .related-posts .card-sm .card p {
-    line-height: 2.2em; }
-    @media screen and (max-width: 769px) {
-      .related-posts .card-sm .card p {
-        max-height: 70px;
-        height: 70px; } }
 
 .blog-page-hero {
   height: 658px;
