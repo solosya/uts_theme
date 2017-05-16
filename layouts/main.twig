@@ -165,7 +165,7 @@
 
 {% set pageClass = _Page.getBodyClass() %}
 
-<body class="{{ pageClass }} {{ blogName | lower }} {{ pageTypeClass }}">
+<body class="{{ pageClass }} {{ blogName | lower }} {{ pageTypeClass }} {{this.title | lower}}">
 
     {{ this.beginBody() }}
 
