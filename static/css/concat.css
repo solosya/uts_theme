@@ -8357,11 +8357,9 @@ a.card:hover {
   padding-right: 12px;
   margin-bottom: 30px;
   color: #fefefe; }
-  @media screen and (max-width: 769px) {
+  @media screen and (max-width: 620px) {
     .card-sm .card {
-      max-height: none; } }
-  @media screen and (max-width: 769px) {
-    .card-sm .card {
+      max-height: none;
       min-height: auto; } }
   .card-sm .card figure {
     margin-left: -12px;
@@ -8399,6 +8397,13 @@ a.card:hover {
       margin-top: 5px;
       margin-bottom: 9px;
       text-transform: uppercase; }
+      @media screen and (max-width: 769px) {
+        .card-sm .card article .content h2 {
+          height: auto;
+          font-size: 1.8rem;
+          max-height: 65px;
+          line-height: 1.2em;
+          margin-bottom: 0; } }
       @media screen and (max-width: 620px) {
         .card-sm .card article .content h2 {
           height: auto;
