@@ -29,6 +29,9 @@
         @media screen and (max-width: $mmd-break){
             padding-right: 15px;
         }
+        @media screen and (max-width: $sm-break){
+            margin-top: 30px;
+        }
         @media screen and (max-width: $mobile-break){
             font-size: rem(22);
             margin-bottom: 15px;
