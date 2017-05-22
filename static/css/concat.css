@@ -7325,7 +7325,8 @@ body.Screen .top-bar {
         .site-header .navbar-brand img.main-logo {
           display: none; } }
       .site-header .navbar-brand img.mobile-logo {
-        width: 48px; }
+        width: 48px;
+        height: 51px; }
         @media screen and (min-width: 620px) {
           .site-header .navbar-brand img.mobile-logo {
             display: none; } }
@@ -11157,11 +11158,13 @@ body.screen {
         font-size: 2.2rem;
         margin-bottom: 15px; } }
   .aap-news > p {
-    font-size: 1.1em !important;
+    font-size: 1.4rem !important;
     font-weight: 600;
     margin-bottom: 30px; }
     .aap-news > p img {
-      padding-left: 10px; }
+      padding-left: 5px;
+      position: relative;
+      top: -1px; }
   .aap-news .card {
     background-color: transparent; }
     .aap-news .card article {
