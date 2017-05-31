@@ -9,7 +9,7 @@ var UserArticlesController = (function ($) {
 UserArticlesController.Load = (function ($) {
 
     var attachEvents = function () {
-      
+        console.log('attaching events');
         /*
          * Load More Articles on My Post Page
          */
@@ -59,8 +59,11 @@ UserArticlesController.Load = (function ($) {
          */
 
         var totalPosts = parseInt($('div#userArticleContainer').data('total-count'));
-        
+        console.log(totalPosts);
+        console.log(_appJsConfig.articleOffset);
+
         if (totalPosts > _appJsConfig.articleOffset) {
+            console.log('adding waypoint');
             var waypoint = new Waypoint({
                 element: $('#LoadMoreArticles'),
                 offset: '80%',
@@ -68,13 +71,14 @@ UserArticlesController.Load = (function ($) {
                     if (direction == 'down') {
                         $.fn.Ajax_LoadMoreUserArticles({
                             onSuccess: function (data, textStatus, jqXHR) {
+                                console.log(data);
                                 if (data.userArticles.length > 0) {
 
                                     for (var i in data.userArticles) {
-                                        data.userArticles[i]['containerClass'] = 'col-third';
-                                        data.userArticles[i]['cardClass'] = 'card__news card--local';
+                                        console.log(i);
+                                        data.userArticles[i]['containerClass'] = 'col-sm-4 card-sm';
                                         
-                                        data.articles[i]['blogClass']= '';
+                                        data.userArticles[i]['blogClass']= '';
                                         if(data.userArticles[i].blog['id'] !== null) {
                                            data.userArticles[i]['blogClass']= 'card--blog_'+data.userArticles[i].blog['id'];
                                         } 

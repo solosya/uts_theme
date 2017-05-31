@@ -7,7 +7,7 @@
 }
 
 .userProfilePost_page {
-    margin:40px 0 50px;
+    margin:150px 0 50px;
     .row {
         margin-left:-15px;
         margin-right:-15px;
@@ -22,7 +22,7 @@
     }
 
     .sub-header {
-        margin-bottom:-1px;
+        margin-bottom:10px;
 
         @media #{$media-phone}, #{$media-iPhoneMedium}, #{$media-iPhoneLarge} {
             margin-bottom:0px;

@@ -126,7 +126,8 @@
 
                     <section class="aap-news">
 
-                        <a href ="{{ sections['Breaking News'].link }}"><h2>BREAKING NEWS</h2></a>
+                        <a href ="{{ sections['Breaking News'].link }}" class="hidden-xs"><h2>BREAKING NEWS</h2></a>
+                        <a href ="{{ sections['Breaking News'].link }}" class="hidden-sm hidden-md hidden-lg"><h2>BREAKING<br /> NEWS</h2></a>
                         <p>FROM <img src="{{networkData.templatePath}}/static/images/aap.jpg"></p>
 
                         {% for i in 0..4 %}

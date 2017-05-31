@@ -73,12 +73,14 @@
             </header>
 
             <div class="author-info col-sm-8 col-sm-offset-2">
-                <img src="{{ profileImg }}" alt="Author name">
+                <a href="{{_AppHelper.getUserProfileUrl(article.createdBy['username'])}}">
+                    <img src="{{ profileImg }}" alt="Author name">
+                </a>
                 <span class="name">{{article.createdBy['displayName']}}</span>
                 <p>{{ article.createdBy['bio'] }}</p>
                 
                 {% if _User.isGuest() %}
-                <a href="javascript:void(0)" class="btn btn-black follow forceLoginModal">Follow +</a>
+                <a href="javascript:void(0)" class="btn btn-black follow forceLoginModal">FOLLOW +</a>
                 {% else %}
                     <a href="javascript:void(0)" class="btn btn-black follow followUser" data-guid="{{article.createdBy['guid']}}" data-status="{{status}}">{{text}}</a>
                 {% endif%}

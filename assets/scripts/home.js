@@ -304,7 +304,7 @@ HomeController.Listing = (function ($) {
                     $(btnObj).html("Please wait...");
                 },
                 onComplete: function(jqXHR, textStatus) {
-                    $(btnObj).html("Load more");
+                    $(btnObj).html("LOAD MORE");
                 }
             });
         });

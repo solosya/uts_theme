@@ -5,10 +5,10 @@
         <div class="section__content">
             <div class="row">
                 {% if myArticles | length > 0  %}
-                    <div id="owl-thumbnails" class="owl-carousel">
+                    <div class="">
                         {% set i = 0 %}
                         {% for article in myArticles %}  
-                            {{this.render('//partials/_single-article.twig', {article: article, 'position': (i+1), containerClass: 'col-third', cardClass : 'card__news card--local', 'titleTruncateLength': 70}) | raw}}
+                            {{this.render('//partials/_single-article.twig', {article: article, 'position': (i+1), containerClass: 'col-sm-4 card-sm'}) | raw}}
                             {%  set i = i + 1 %}
                         {% endfor %}
                     </div>
