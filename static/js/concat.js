@@ -31995,16 +31995,17 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
             offset = opts.limit;
         }
         
-        $('.'+opts.containerClass).data('offset', (offset + opts.limit));
+        $('.' + opts.containerClass).data('offset', (offset + opts.limit));
         
-         var csrfToken = $('meta[name="csrf-token"]').attr("content");
-        
+        var csrfToken = $('meta[name="csrf-token"]').attr("content");
+        console.log({offset: offset, limit: opts.limit, search: opts.search, _csrf: csrfToken});
         $.ajax({
             type: 'POST',
             url: _appJsConfig.baseHttpPath + '/search/load-articles',
             dataType: 'JSON',
             data: {offset: offset, limit: opts.limit, search: opts.search, _csrf: csrfToken},
             success: function (data, textStatus, jqXHR) {
+                console.log(data);
                 if (opts.onSuccess && typeof opts.onSuccess === 'function') {
                     opts.onSuccess(data, textStatus, jqXHR);
                 }                
@@ -34120,7 +34121,7 @@ HomeController.Listing = (function ($) {
                     $(btnObj).html("Please wait...");
                 },
                 onComplete: function(jqXHR, textStatus) {
-                    $(btnObj).html("Load more");
+                    $(btnObj).html("LOAD MORE");
                 }
             });
         });
@@ -34418,7 +34419,7 @@ var UserArticlesController = (function ($) {
 UserArticlesController.Load = (function ($) {
 
     var attachEvents = function () {
-      
+        console.log('attaching events');
         /*
          * Load More Articles on My Post Page
          */
@@ -34468,8 +34469,11 @@ UserArticlesController.Load = (function ($) {
          */
 
         var totalPosts = parseInt($('div#userArticleContainer').data('total-count'));
-        
+        console.log(totalPosts);
+        console.log(_appJsConfig.articleOffset);
+
         if (totalPosts > _appJsConfig.articleOffset) {
+            console.log('adding waypoint');
             var waypoint = new Waypoint({
                 element: $('#LoadMoreArticles'),
                 offset: '80%',
@@ -34477,13 +34481,14 @@ UserArticlesController.Load = (function ($) {
                     if (direction == 'down') {
                         $.fn.Ajax_LoadMoreUserArticles({
                             onSuccess: function (data, textStatus, jqXHR) {
+                                console.log(data);
                                 if (data.userArticles.length > 0) {
 
                                     for (var i in data.userArticles) {
-                                        data.userArticles[i]['containerClass'] = 'col-third';
-                                        data.userArticles[i]['cardClass'] = 'card__news card--local';
+                                        console.log(i);
+                                        data.userArticles[i]['containerClass'] = 'col-sm-4 card-sm';
                                         
-                                        data.articles[i]['blogClass']= '';
+                                        data.userArticles[i]['blogClass']= '';
                                         if(data.userArticles[i].blog['id'] !== null) {
                                            data.userArticles[i]['blogClass']= 'card--blog_'+data.userArticles[i].blog['id'];
                                         } 
