@@ -7539,7 +7539,8 @@ body.Screen .top-bar {
           display: none; } }
       .site-header .navbar-brand img.mobile-logo {
         width: 48px;
-        height: 51px; }
+        height: 51px;
+        position: fixed; }
         @media screen and (min-width: 620px) {
           .site-header .navbar-brand img.mobile-logo {
             display: none; } }
@@ -7617,9 +7618,6 @@ body.Screen .top-bar {
     @media screen and (min-width: 620px) {
       .site-header.stick .navbar-brand {
         height: 70px; } }
-    @media screen and (max-width: 620px) {
-      .site-header.stick img {
-        display: none; } }
     .site-header.stick div.reportage {
       margin-top: 20px;
       height: 40px;
