@@ -110,7 +110,7 @@
                 </aside>
 
                 <div class="content col-sm-8">
-                    <p>{{ article.content | preg_replace('/^<p>/', '<p class="article-lead">') | raw }}</p>
+                    <p>{{ article.content | preg_replace('/^<p>/', '<p class="article-lead">') | _resizeImages({"width":740}) | raw }}</p>
                 </div>
 
             </div>
