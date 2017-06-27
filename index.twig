@@ -9,7 +9,7 @@
 
 {% set articleCount = 0 %}
 
-{% set popularArticles = _Article.getPopularArticles({ limit: 9, sortBy: 'VIEWS' }) %}
+{% set popularArticles = _Article.getPopularArticles({ limit: 9, sortBy: 'VIEWS', scope: 'network' }) %}
 
 
 {% set sections =  {
