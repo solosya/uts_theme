@@ -3,6 +3,9 @@
 {{this.registerJs("ArticleController.view();")}}
 {{this.registerJs("HomeController.blog();")}}
 
+{{this.registerLinkTag({rel:'amphtml', href:_AppHelper.getServerUrl(false)~'?amp=1'})}}
+
+
 {% set status = 'follow' %}
 {% set text = 'Follow +' %}
 {% set authorId = article.createdBy['id'] %}
