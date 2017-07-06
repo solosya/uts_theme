@@ -1,0 +1,36 @@
+body.channel.contact {
+	
+	.contact_details {
+		font-family: $font-family-sans-serif;
+		padding-top:230px;
+		padding-bottom:400px;
+		font-size: 18px;
+
+
+		&__org {
+			margin:0;
+			font-size: 20px;
+			font-weight:300;
+			letter-spacing: 0.8px;
+		}
+		&__head {
+			margin:0;
+			margin-bottom:40px;
+			font-size: 48px;
+			font-weight:600;
+			letter-spacing: 2px;
+		}
+
+		&__par {
+			&--lead {
+				font-weight: 600;
+				margin-bottom:30px;
+			}
+
+			> a {
+				font-weight:600;
+			}
+		}
+	}
+}
+

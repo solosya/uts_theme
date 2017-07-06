@@ -1,0 +1,52 @@
+.featured-carousel{
+    height: 650px;
+    margin-bottom: 130px;
+
+    @media screen and (max-width: $sm-break){
+        margin-bottom: 30px;
+    }
+
+
+
+
+    .swiper-container {
+        width: 100%;
+        height: 100%;
+    }
+
+    .swiper-slide {
+        background-position: center;
+        background-size: cover;
+    }
+
+    .hero-content{
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        color: #fefefe;
+        z-index: 20;
+
+        .caption{
+            position: absolute;
+            z-index: 20;
+            bottom: 100px;
+            width: 100%;
+
+            
+        }
+    }
+
+    .overlay{
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: rgba(35, 31, 32, 0.25);
+        z-index: 1;
+    }
+    .btn_overlay {
+        top:130px;
+        left:100px;
+    }
+}
