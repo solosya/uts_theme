@@ -60,6 +60,53 @@
 
         }
 
+        .author-inline{
+            text-align: center;
+            border-bottom: solid 1px #d0d2d3;
+            padding-bottom: 31.5px;
+            margin-bottom: 22.5px;
+
+
+            img{
+                display: inline;
+                margin: 0 auto 15px auto;
+                width: auto;
+                max-width: 100px;
+                height: auto;
+                max-height: 100px;
+
+            }
+            a{white-space:nowrap;}
+            .name{
+                background-color: #ffff00;
+                color: #1a1818;
+                font-weight: 900;
+                font-size: ((10.8px / $font-size-base) + $font-unit);
+                text-transform: uppercase;
+                padding: 4px 5px;
+                margin-bottom: 26px;
+                display: inline-block;
+                margin-right:10px;
+            }
+
+            p{
+                color: #595b5d;
+                font-size: ((14px / $font-size-base) + $font-unit);
+                margin-bottom: 21px;
+                font-weight:300;
+            }
+
+
+            .follow {
+                font-size: rem(14);
+                padding-top: 10px;
+                height:40px;
+                width:180px;
+            }
+
+        }
+
+
         .content{
             font-size: rem(18);
             line-height: rem(28);

@@ -12123,6 +12123,40 @@ body.screen {
     height: 40px;
     width: 180px; }
 
+.page-content article .author-inline {
+  text-align: center;
+  border-bottom: solid 1px #d0d2d3;
+  padding-bottom: 31.5px;
+  margin-bottom: 22.5px; }
+  .page-content article .author-inline img {
+    display: inline;
+    margin: 0 auto 15px auto;
+    width: auto;
+    max-width: 100px;
+    height: auto;
+    max-height: 100px; }
+  .page-content article .author-inline a {
+    white-space: nowrap; }
+  .page-content article .author-inline .name {
+    background-color: #ffff00;
+    color: #1a1818;
+    font-weight: 900;
+    font-size: 1.08em;
+    text-transform: uppercase;
+    padding: 4px 5px;
+    margin-bottom: 26px;
+    display: inline-block; }
+  .page-content article .author-inline p {
+    color: #595b5d;
+    font-size: 1.4em;
+    margin-bottom: 21px;
+    font-weight: 300; }
+  .page-content article .author-inline .follow {
+    font-size: 1.4rem;
+    padding-top: 10px;
+    height: 40px;
+    width: 180px; }
+
 .page-content article .content {
   font-size: 1.8rem;
   line-height: 2.8rem;

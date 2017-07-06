@@ -52,7 +52,13 @@
                     <span class="category">{{article.label}}</span>
                     <time datetime="2016-11-16">{{_AppHelper.getDateTimeBasedOnTimezone(publishDate,'d M Y')}}</time>
                     <h2>{{ articleTitle | raw }}</h2>
-                    <span class="author">{{ article.createdBy['displayName'] }}</span>
+                    <span class="author">
+                        {{ article.createdBy['displayName'] }}
+                        {% for coauthor in article.createdBy['coauthors'] %}
+                            &emsp;&emsp;&emsp;{{ coauthor['displayName'] }}
+                        {% endfor %}
+
+                    </span>
                     
                     {% if cardClass != 'instagram no-caption' %}  
                         <p>{{ article.excerpt | raw }}</p>

@@ -43,7 +43,12 @@
                 <div class="content">
                     <span class="category">{{article.label}}</span>
                     
-                    <span class="author">{{ article.createdBy['displayName'] }}</span> 
+                    <span class="author">
+                        {{ article.createdBy['displayName'] }}
+                        {% for coauthor in article.createdBy['coauthors'] %}
+                            &emsp;&emsp;&emsp;{{ coauthor['displayName'] }}
+                        {% endfor %}
+                    </span> 
 
                     <time datetime="2016-11-16"> - {{_AppHelper.getDateTimeBasedOnTimezone(publishDate,'d M Y')}}</time>
 

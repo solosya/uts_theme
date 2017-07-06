@@ -91,15 +91,15 @@
 
                 </div>
             {% else %}
-                <div class="author-info col-sm-8 col-sm-offset-2">
-                    <a style="white-space:nowrap;" href="{{_AppHelper.getUserProfileUrl(article.createdBy['username'])}}">
-                        <img src="{{ profileImg }}" alt="Author name" style="display:inline;">
+                <div class="author-inline col-sm-8 col-sm-offset-2">
+                    <a href="{{_AppHelper.getUserProfileUrl(article.createdBy['username'])}}">
+                        <img src="{{ profileImg }}" alt="Author name" >
                         <span class="name">{{article.createdBy['displayName']}}</span>
                     </a>
 
                 {% for coauthor in article['createdBy']['coauthors'] %}
-                        <a style="white-space:nowrap;" href="{{_AppHelper.getUserProfileUrl(coauthor['username'])}}">
-                            <img style="display:inline;" src="{{_Media.getMediaUrl(coauthor['media'], 100, 100, {radius: 'max', gravity: 'face', 'crop': 'thumb', type: 'user'}) }}" alt="Author name">
+                        <a href="{{_AppHelper.getUserProfileUrl(coauthor['username'])}}">
+                            <img src="{{_Media.getMediaUrl(coauthor['media'], 100, 100, {radius: 'max', gravity: 'face', 'crop': 'thumb', type: 'user'}) }}" alt="Author name">
                             <span class="name">{{coauthor['displayName']}}</span>
                         </a>
 
