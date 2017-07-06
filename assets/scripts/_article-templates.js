@@ -24,12 +24,7 @@ var systemCardTemplate =
                     <span class="category">{{label}}</span>\
                     <time datetime="2016-11-16">{{publishDate}}</time>\
                     <h2>{{{title}}}</h2>\
-                    <span class="author">\
-                        {{ createdBy.displayName }}\
-                        {{ #createdBy.coauthors }}\
-                            &emsp;&emsp;&emsp;{{ displayName }}\
-                        {{ /createdBy.coauthors }}\
-                    </span>\
+                    <span class="author">{{ createdBy.displayName }}</span>\
                     <p>{{{ excerpt }}}</p>\
             </div>\
         </article>'+

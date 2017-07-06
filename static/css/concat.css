@@ -12145,7 +12145,8 @@ body.screen {
     text-transform: uppercase;
     padding: 4px 5px;
     margin-bottom: 26px;
-    display: inline-block; }
+    display: inline-block;
+    margin-right: 10px; }
   .page-content article .author-inline p {
     color: #595b5d;
     font-size: 1.4em;
