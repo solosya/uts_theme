@@ -1,0 +1,270 @@
+body.Screen {
+    .site-header {
+        display:none;
+    }
+
+    .top-bar {
+        display:none;
+    }
+}
+
+.site-header{
+    padding-left: 42px;
+    padding-right: 42px;
+    position: absolute;
+    width: 100%;
+    margin-top: 27px;
+    z-index: 100;
+    height: 97.5px;
+
+    @media screen and (max-width: $sm-break){
+        padding-left: 23px;
+        padding-right: 23px;
+    }
+    @media screen and (max-width: $mobile-break){
+        margin-top: 23px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    &.channel-page {
+        background:$black;
+        margin-top: 0;
+    }
+
+    &.channel-page {
+        background:$black;
+        margin-top: 0;
+    }
+
+
+    &.user {
+        background:$black;
+        margin-top: 0;
+    }
+
+    &.auth {
+        background:$black;
+        margin-top: 0;
+    }
+
+
+    &.night-fall:before{
+        content: '';
+        background: rgba(35, 31, 32, 0.6);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 115px;
+        z-index: 1;
+    }
+
+    .site-branding{
+        width: auto;   
+        max-width: 485px;
+
+
+        // @media screen and (min-width: $menu-break) {
+        //     // max-width: 30%;
+        //     max-width: 485px;
+        // }
+        @media screen and (max-width: $mobile-break){
+            padding-left: 0;
+        }
+
+        // &::after {
+        //     color:white;
+        //     font-size: ((12px / $font-size-base) + $font-unit);
+        //     display:inline-block;
+        //     background:black;
+        //     padding:10px;
+
+        //     @media screen and (max-width: $sm-mobile-break) {
+        //         content: "sm-mobile-break 0 - 490px";
+        //     }
+        //     @media screen and (min-width: $sm-mobile-break) and (max-width: $mobile-break){
+        //         content: "mobile-break 491px - 620px";
+        //     }
+        //     @media screen and (min-width: $mobile-break) and (max-width: $sm-break){
+        //         content: "sm-break 621px - 769px";
+        //     }
+        //     @media screen and (min-width: $sm-break) and (max-width: $mmd-break){
+        //         content: "mmd-break 770px - 992px";
+        //     }
+        //     @media screen and (min-width: $mmd-break) and (max-width: $md-break){
+        //         content: "md-break 992px - 1200px";
+        //     }
+
+        // }
+    }
+
+    .navbar-brand{
+        
+        font-size: inherit;
+        padding: 0;
+        -webkit-transition-timing-function: ease-in;
+        transition-timing-function: ease-in;
+        -webkit-transition-duration: 0.5s;
+        transition-duration: 0.5s;
+        transition: height 0.5s ease;
+
+        img{
+            max-height: 100%;
+            height:80px;
+            width: auto;
+            display: inline-block;
+            float: left;
+            
+            &.main-logo {
+                @media screen and (max-width: $mobile-break) {
+                    display:none;
+                }
+            }
+            
+            &.mobile-logo {
+                width:48px;
+                height:51px;
+                position:fixed;
+                @media screen and (min-width: $mobile-break) {
+                    display:none;
+                }
+
+            }
+
+            &.small {
+                height:74px;
+            }
+        }
+        div.reportage {
+            margin-top:10px;
+            height:60px;
+            width:300px;
+            margin-left:95px;
+            background-size:contain;
+            background-image: url(../images/Desktopsite_3.svg);
+            background-repeat:no-repeat;
+            
+            @media screen and (max-width: $mobile-break) {
+                margin-left:5px;
+                height:60px;
+                width:180px;
+                background-image: url(../images/Mobilesite_3.svg);
+            }
+
+
+        }
+
+
+
+
+        .logo-name{
+            font-size: ((44px / $font-size-base) + $font-unit);
+            color: #fefefe;
+            font-weight: 900;
+            position: relative;
+            margin-top:5px;
+            margin-left: 19.5px;
+            margin-bottom: 10px;
+            float: left;
+            line-height: 1;
+            @extend %transition;
+
+            &:after{
+                content: '';
+                float: left;
+                background: #fefefe;
+                width: 52px;
+                height: 6px;
+                position: absolute;
+                left: 3px;
+                bottom: -5px;
+
+                @media screen and (max-width: $sm-mobile-break){
+                    width: 32px;
+                    height: 4px;
+                    left: 1px;
+                    bottom: -4px;
+                }
+            }
+
+            // @media screen and (max-width: $logo-break) and (min-width: $menu-break) {
+            //     display: none;
+            // }
+            @media screen and (max-width: $sm-mobile-break){
+                margin-left: 10px;
+                font-size: ((32px / $font-size-base) + $font-unit);
+            }
+        }
+
+        .logo-caption{
+            float: left;
+            font-size: ((11px / $font-size-base) + $font-unit);
+            font-weight: 700;
+            color: #fefefe;
+            margin-left: 19.5px;
+            text-transform: uppercase;
+            width: 40%;
+
+            // @media screen and (max-width: $logo-break) and (min-width: $menu-break) {
+            //     display: none;
+            // }
+
+            @media screen and (max-width: $mobile-break){
+                display: none;
+            }
+        }
+
+        @media screen and (max-width: $mobile-break){
+            height: 55px;
+            display: block;
+        }
+
+    }
+    &.stick{
+        position: fixed;
+        top: 0;
+        background-color: #231f20;
+        margin-top: 0;
+        height: 70px;
+
+        @media screen and (max-width: $mobile-break){
+            padding-top: 8px;
+        }
+        .logo-caption{
+            display: none;
+        }
+
+        .navbar-brand{
+            @media screen and (min-width: $mobile-break){
+                height: 70px;
+            }
+        }
+
+        // img{
+        //     @media screen and (max-width: $mobile-break) {
+        //         display:none;
+        //     }
+        // }
+
+
+
+        div.reportage {
+            margin-top:20px;
+            height:40px;
+            width:150px;
+            margin-left:85px;
+            background-size:contain;
+            background-image: url(../images/Desktopsite_4.svg);
+            background-repeat:no-repeat;
+        
+            @media screen and (max-width: $mobile-break) {
+                margin-top:15px;
+                margin-left:5px;
+                background-image: url(../images/Mobilesite_4.svg);
+            }
+
+
+        }
+    }
+}

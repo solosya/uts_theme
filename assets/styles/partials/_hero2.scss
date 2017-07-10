@@ -1,0 +1,162 @@
+.main-featured {
+    height: 693px;
+    margin-bottom:100px;
+
+
+    > div {
+        height:100%;
+    }
+
+    .feature-row {
+        padding-top:125px;
+    }
+
+    .feature {
+        position:relative;
+        height:100%;
+        padding-right:0;
+        
+        figure{
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          width: 100%;
+          z-index: 0;
+
+          img{
+            width: 100%;
+            height: auto;
+          }
+        }
+
+        .content{
+          position:absolute;
+          right:-400px;
+          width: 1140px;
+          // background:orange;
+          margin: 0 auto;
+          height:100%;
+          padding-top: 250px;
+          // position: relative;
+          z-index: 20;
+            
+          color:white;
+
+
+            h2{
+              font-size: ((40px / $font-size-base) + $font-unit);
+              width: 550px;
+              margin-bottom: 20px;
+              height:90px;
+              overflow:hidden;
+
+              @media screen and (max-width: $sm-mobile-break){
+                width: 100%;
+              }
+            }
+
+            time{
+              color: #fefefe;
+              font-size:  ((11px / $font-size-base) + $font-unit);
+            }
+
+            .author{
+              background-color: #ffff00;
+              color: #1a1818;
+            }
+
+            p{
+              font-size:  ((14px / $font-size-base) + $font-unit);
+              font-weight: 900;
+              margin-bottom: 29px;
+              width: 470px;
+              height: 60px;
+              // background:green;
+              overflow: hidden;
+
+              @media screen and (max-width: $sm-mobile-break){
+                width: 100%;
+              }
+            }
+
+            @media screen and (max-width: $md-break){
+                width: 970px;
+            }
+
+            @media screen and (max-width: $mmd-break){
+                width: 750px;
+            }
+            @media screen and (max-width: $sm-break){
+              width: 100%;
+              padding-left: 15px;
+              padding-right: 15px;
+              padding-top: 307px;
+            }
+        }
+    }
+
+
+    .overlay{
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: rgba(35, 31, 32, 0.25);
+        z-index: 1;
+    }
+    .btn_overlay {
+        top:130px;
+        left:100px;
+    }
+
+    .top-articles {
+        background: #221f20;
+        height:100%;
+
+        > div:not(:last-child) {
+            border-bottom: solid 2px white;
+            margin-bottom:30px;
+        }
+
+
+        h3 {
+            color:white;
+            margin-bottom:20px;
+        }
+
+
+        .card {
+            padding-bottom:15px;
+            background: $transparent;
+
+            figure {
+                height: 120px;
+                width: 120px;
+                margin-right:20px;
+                float:left;
+            }
+
+            .category {
+                display:none;
+            }
+            
+            .author {
+                background-color: #ffff00;
+                color: #1a1818;            
+            }
+
+            h2 {
+                color:white;
+                width:420px;
+                font-weight:500;
+            }
+
+            p {
+                display:none;
+            }
+        }
+
+
+    }
+}

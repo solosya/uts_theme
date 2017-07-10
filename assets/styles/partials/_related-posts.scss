@@ -1,0 +1,56 @@
+.related-posts{
+    margin-bottom: 133px;
+    
+	> div {
+		width:950px;
+        
+        @media screen and (max-width: $sm-break) {
+        	width:auto;
+        }
+
+
+	}
+
+    >div >div >h2 {
+		margin-bottom: 64px;
+		font-size: ((32px / $font-size-base) + $font-unit);
+		font-weight: 900;
+		color: #1a1818;
+    }
+	
+	.card-sm {
+		
+		// .card {
+		// 	@media screen and (max-width: $sm-break) {
+		// 		// height:610px;
+		// 		// max-height:610px;
+		// 	}
+		// }
+
+		// .card h2 {
+		// 	font-size: ((20px / $font-size-base) + $font-unit);
+		// 	line-height: ((19px / $font-size-base) + $font-unit);
+		// 	// font-weight: 900;
+		// 	text-transform: uppercase;
+		// 	height:58px;
+		// 	// color: #1a1818;
+	        
+	 //        @media screen and (max-width: $sm-break) {
+		// 		font-size: ((30px / $font-size-base) + $font-unit);
+		// 		height:90px;
+
+	 //        }
+		// }
+
+		// .card p {
+		// 	line-height: ((22px / $font-size-base) + $font-unit);
+	        
+	 //        @media screen and (max-width: $sm-break) {
+		// 		max-height:70px;
+		// 		height:70px;
+	 //        }
+
+
+		// }
+	}
+}

@@ -1,0 +1,230 @@
+html {
+        height:100%
+}
+
+body.screen {
+        height:100%;
+
+    .site-footer{
+        display:none;
+    }
+    .site-header {
+        display:none;
+    }
+    .top-bar {
+        display:none;
+    }
+}
+
+.screen-carousel {
+
+    height: 100%;
+
+    @media screen and (max-width: $sm-break){
+        margin-bottom: 30px;
+    }
+
+    .swiper-container {
+        width: 100%;
+        height: 100%;
+
+        .swiper-wrapper {
+            width: 100%;
+            height: 100%;
+        }
+
+    }
+
+    .swiper-slide {
+        background-position: center;
+        background-size: cover;
+    }
+
+    .hero-content {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        color: #fefefe;
+        z-index: 20;
+
+        .caption {
+            position: absolute;
+            z-index: 20;
+            bottom: 100px;
+            width: 100%;  
+        }
+    }
+
+    .overlay{
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: rgba(35, 31, 32, 0.25);
+        z-index: 1;
+    }
+    .btn_overlay {
+        top:130px;
+        left:100px;
+    }
+
+
+
+
+    .screen_logo {
+        position: absolute;
+        top: 50px;
+        left: 50px;
+        z-index: 20; 
+    }
+
+    .card{
+        position: relative;
+        color:#fefefe;
+
+        a:hover {
+            text-decoration:none;
+        }
+
+        figure{
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+            z-index: 0;
+        }
+
+
+        .content{
+            width: 100%;
+            margin: 0 auto;
+            position: absolute;
+            bottom:0;
+            padding:30px 30px 20px 30px;
+            height:274px;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 20;
+
+            > img {
+                width:112px;
+            }
+
+            h2{
+                font-size: rem(80);
+                height:90px;
+                margin-bottom: 5px;
+                overflow:hidden;
+                font-weight:700;
+                line-height: 70px;
+            }
+
+            time{
+                position:absolute;
+                right:20px;
+                top:40px;  
+                color: #fefefe;
+                font-size: rem(20);
+            }
+
+            .category {
+                display:none;
+            }
+
+            .author{
+                display:none;
+            }
+
+            p{
+                font-size: rem(25);
+                font-weight: 400;
+                height: 80px;
+                overflow: hidden;
+
+                @media screen and (max-width: $sm-mobile-break){
+                    width: 100%;
+                }
+            }
+
+            @media screen and (max-width: $md-break){
+                    width: 970px;
+            }
+
+            @media screen and (max-width: $mmd-break){
+                    width: 750px;
+            }
+            @media screen and (max-width: $sm-break){
+                width: 100%;
+                padding-left: 15px;
+                padding-right: 15px;
+                padding-top: 307px;
+            }
+        }
+    }
+
+    .container{
+        position: relative;
+
+        .custom-pagination {
+            color: #939597;
+            padding: 20px 28px;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 277px;
+            height: 340px;
+            background-color: #000000;
+            z-index: 10;
+
+            @media screen and (max-width: $sm-break){
+                display: none;
+            }
+            
+            h2.top-stories {
+                    margin:0 0 26px 0;
+                    color:white;
+                    font-size: rem(18);;
+            }
+
+            .pagination-item {
+
+                margin-bottom: 18px;
+                cursor: pointer;
+                time{
+                    font-size: rem(11);
+                }
+
+                &.active {
+                    color:#fefefe;
+                    time {
+                        color:#fefefe;
+                    }
+                    .slide-no {
+                        border-bottom: solid 4px #fefefe;
+                    }
+
+                }
+
+                .slide-no{
+                    display: block;
+                    position:relative;
+                    top:-4px;
+                    float: left;
+                    font-size: rem(26);
+                    border-bottom: solid 4px #939597;
+                    margin-right: 24px;
+                }
+
+                h2 {
+                    font-size: rem(16);
+                    margin-top: 5px;
+                    margin-bottom: 8px;
+                    font-weight: 700;
+                    line-height:1.3em;
+                    height:44px;
+                    overflow:hidden;
+                }
+            }
+        }
+    }
+}

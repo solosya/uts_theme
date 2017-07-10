@@ -1,0 +1,109 @@
+//Fonts
+$font-family-sans-serif:    "acumin-pro", Helvetica, Arial, sans-serif;
+$font-size-base:            10px;
+$font-unit:                 0em; 
+$baseFontSize:				13px; /* ($baseFontSize * 1) + 0px; */
+$base-font-family: 			"Montserrat", Helvetica, Arial, sans-serif !default;
+$header-font-family: 		$base-font-family;
+$iconfont:					FontAwesome !default;
+$browser-context:           $font-size-base;
+
+$center:					center;
+
+@function color($card_type) {
+  	@return map-get($cards, $card_type);
+}
+
+
+
+// Cards
+$cards: (
+	article:     		#fece0f,
+	facebook:    		#3d5c95,
+	google-plus: 		#f37b65,
+	instagram:   		#9f1e97,
+	linkedin:    		#0077b5,
+	twitter:     		#2eb1eb,
+	youtube:     		#e34336,
+    vimeo:       		#00b3ec,
+);
+
+
+
+
+
+$font-size-h1:              ((48px / $font-size-base) + $font-unit); //48px
+$font-size-h2:              ((26px / $font-size-base) + $font-unit); //26px
+$font-size-h3:              ((22px / $font-size-base) + $font-unit); //22px
+$font-size-h4:              ((20px / $font-size-base) + $font-unit); //20px
+$font-size-h5:              ((18px / $font-size-base) + $font-unit);
+$font-size-h6:              ceil(($font-size-base * 0.85)); // ~12px
+$headings-font-weight:      800;
+
+$gray-base:              #000 !default;
+$gray-darker:            lighten($gray-base, 13.5%) !default; // #222
+$gray-dark:              lighten($gray-base, 20%) !default;   // #333
+$gray:                   lighten($gray-base, 33.5%) !default; // #555
+$gray-light:             lighten($gray-base, 46.7%) !default; // #777
+$gray-lighter:           lighten($gray-base, 93.5%) !default; // #eee
+
+//$brand-primary:         darken(#428bca, 6.5%) !default; // #337ab7
+$brand-primary:         #ffff00;
+$brand-success:         #5cb85c !default;
+$brand-info:            #5bc0de !default;
+$brand-warning:         #f0ad4e !default;
+$brand-danger:          #d9534f !default;
+$brand-yellow:          #ffff00;
+
+//== Navbar
+$navbar-height:         97.5px;
+
+//Layout
+$section-margin-bottom: 115px;
+
+//Responsive break points
+$logo-break: 1580px;
+$menu-break: 1260px;
+$md-break: 1200px;
+$mmd-break: 992px;
+$sm-break: 769px;
+$mobile-break: 620px;
+$sm-mobile-break: 490px;
+
+
+$white:				#ffffff;
+$light-color:      	#f7f7f7;
+$dark-color:       	#212427;
+$black:             #000000;
+$blue:              #46a5fc;
+$transparent:		rgba(0,0,0,0);
+
+
+
+$gray-2-color:     	#efefef;
+$gray-3-color:     	#dfe0e1;
+$gray-4-color:     	#bfc3c3;
+$grey:				#808080;
+
+$border-color:     	#e0e0e0;
+$base-color:       	#4B4B4B;
+$header-color:     	#4B4B4B;
+$error-color:      	#e73d4a;
+$success-color:    	#17aa1c;
+$warning:           #fecd50;
+
+$selected-color:   	#212427;
+$hover-color:      	#303030;
+$visited-color:    	#121212;
+$link-color:       	#212427;
+$link-hover-color: 	#303030;
+
+$media-desktop: "screen and (max-width: 1194px)";
+$media-ipadLandscape: "screen and (min-width : 992px) and (max-width : 1024px)";
+$media-smallDevices: "screen and (min-width : 1025px) and (max-width : 1150px)";
+$media-ipadPortrait: "screen and (max-width :992px)";
+$media-phone: "screen and (min-width : 200px) and (max-width : 480px)";
+$media-iPhoneMedium: "screen and (min-width : 481px) and (max-width : 667px)";
+$media-iPhoneLarge: "screen and (min-width : 668px) and (max-width : 767px)";
+$media-iPad: "screen and (min-width : 768px) and (max-width : 992px)";
+

@@ -1,0 +1,68 @@
+.subscribe{
+    padding-left: 30px;
+
+
+    @media screen and (max-width: $mmd-break){
+        padding-left: 0;
+    }
+
+    .subscribe-group {
+    }
+
+    input{
+        vertical-align:top;
+
+        border: 2px solid #231f20;
+        border-radius: 0;
+        width: 80%;
+        display: inline-block;
+        height: 42px;
+        @media screen and (max-width: $md-break){
+            width: 75%;
+        }
+        @media screen and (max-width: $mmd-break){
+            width: 93.5%;
+        }
+        @media screen and (max-width: $sm-break){
+            border: 4px solid #231f20;
+            font-size: ((20px / $font-size-base) + $font-unit);
+            height:52px;
+            width: 85%;
+        }
+
+        @media screen and (max-width: $mobile-break) {
+            width: 80%;
+            opacity: .6;
+
+        }
+
+
+    }
+
+    h3 {
+        padding-top:7px;
+        border-top: dotted 1px #939597;
+
+        @media screen and (max-width: $sm-break){
+            margin:30px 0;
+            padding-top:20px;
+            font-size: rem(30);
+        }
+
+        @media screen and (max-width: $mobile-break) {
+            font-size: rem(20);
+            opacity:.6;
+            border:none;
+        }
+
+
+
+    }
+
+    .btn{
+        padding: 0;
+        border: 0;
+        position: relative;
+        left: -5px;
+    }
+}

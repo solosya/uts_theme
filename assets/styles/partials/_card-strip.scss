@@ -1,0 +1,360 @@
+.card-strip {
+    .card{
+        min-height: 178px;
+        max-height:178px;
+        overflow: hidden;
+        background-color: #e5e6e7;
+        padding-left: 12px;
+        padding-right: 12px;
+        margin-bottom: 30px;
+        color:#fefefe;
+        
+        @media screen and (max-width: $sm-break) {
+            min-height: 350px;
+            max-height:350px;
+        }
+
+
+
+        p {
+            max-height:65px;
+            overflow: hidden;
+            font-weight: 500;
+            line-height: 1.5em;
+            color: #464648;
+
+            @media screen and (max-width: $sm-break) {
+                margin-top:20px;
+                height:170px;
+                max-height:170px;
+                line-height: 1.8em;
+                font-size:  ((19px / $font-size-base) + $font-unit);
+            }
+        }
+
+        article > .other-content:first-child {
+                margin-bottom: 26px;
+        }
+
+        time {
+            font-family:"KeplerStd";
+            display:inline-block;
+            font-weight:300;
+            margin-top: 15px;
+            color: #808285;
+
+            @media screen and (max-width: $sm-break) {
+                font-size:  ((20px / $font-size-base) + $font-unit);
+            }
+        }
+
+
+        .other-content{
+            margin-bottom: 5px;
+        }
+
+        .author {
+            font-family:"KeplerStd";
+            padding:0;
+            background:none;
+            color:#808285;
+            font-weight:300;
+            text-transform: none;
+
+            @media screen and (max-width: $sm-break) {
+                margin-bottom:0;
+                font-size:  ((20px / $font-size-base) + $font-unit);
+            }
+        }
+
+        figure {
+            disply:none;
+        }
+
+        .category {
+            display:none;
+        }
+
+        h2 {
+            margin-top:5px;
+            margin-bottom: 9px;
+            line-height: 1.2em;
+            height:48px;
+            overflow:hidden;
+
+            @media screen and (max-width: $sm-break){
+                margin-top:0;
+                height:120px;
+                font-size:  ((34px / $font-size-base) + $font-unit);
+            }
+
+
+        }
+
+        .share-icon{
+            display: none;
+        }
+
+        &.other{
+            padding-left: 0;
+            padding-right: 0;
+            background-color: transparent;
+            color:black;
+
+            figure{
+                margin-left: 0;
+                margin-right: 0;
+            }
+
+            article > .content:first-child {
+                padding-top: 87px;
+            }
+        }
+
+        &.facebook{
+            color:black;
+
+            time{
+                margin-bottom: 5px;
+            }
+
+
+            figure{
+                border-bottom: 7.4px solid #FFF;
+                max-height: 172px;
+                overflow: hidden;
+            }
+
+            h2 {
+                display: none;
+            }
+
+            .article-icon {
+                background-image: url(../icons/facebook-blk.svg);
+            }
+
+            article > .content:nth-child(2) {
+                padding-top: 71px;
+                margin-top: 0;
+            }
+
+            article > .content{
+                margin-top: -50px;
+            }
+        }
+
+        &.twitter{
+            color:black;
+            background-color: $brand-yellow;
+
+            h2 {
+                display: none;
+            }
+
+            time{
+                margin-bottom: 5px;
+                color: #808285;
+            }
+
+            figure{
+                border-bottom: 7.4px solid #FFF;
+                max-height: 172px;
+                overflow: hidden;
+            }
+
+            .article-icon {
+                background-image: url(../icons/twitter-blk.svg);
+            }
+
+            article > .content:nth-child(2) {
+                padding-top: 71px;
+                margin-top: 0;
+            }
+
+            article > .content{
+                margin-top: -50px;
+
+                p{
+                    font-size: 16px;
+                    font-weight: bold;
+                    color: #1a1818;
+
+                    a{
+                        color: #0099cc;
+                    }
+                }
+            }
+
+        }
+
+
+        &.instagram{
+            background-color: #4a494a;
+
+            time{
+                margin-bottom: 5px;
+                color: #bdbebf;
+            }
+
+            figure{
+                border-bottom: 7.4px solid #FFF;
+                max-height: 172px;
+                overflow: hidden;
+            }
+
+            &.no-caption figure{
+                max-height: 280px;
+                height: 294px;
+            }
+
+            .article-icon {
+                background-image: url(../icons/instagram-blk.svg);
+            }
+
+            article > .content:first-child {
+                padding-top: 71px;
+                margin-top: 0;
+            }
+
+            article > .content{
+                margin-top: -50px;
+
+                p{
+                    font-size: 14px;
+                    font-weight: 500;
+                    color: #ffffff;
+
+                    a{
+                        color: #ffffff;
+                    }
+                }
+            }
+        }
+
+        &.youtube{
+            padding-left: 0;
+            padding-right: 0;
+            background-color: transparent;
+
+            figure{
+                border-bottom: 7.4px solid #FFF;
+                max-height: 172px;
+                overflow: hidden;
+
+                &:after{
+                    content: '';
+                    background-image: url(../icons/youtube-play.svg);
+                    width: 48px;
+                    height: 48px;
+                    position: relative;
+                    display: block;
+                    bottom: 105px;
+                    margin: 0 auto;
+                    background-size: cover;
+                }
+            }
+
+            .article-icon {
+                margin-left: 13px;
+                background-image: url(../icons/youtube-blk.svg);
+            }
+
+
+            article > .content:first-child {
+                padding-top: 71px;
+                margin-top: 0;
+            }
+
+            article > .content{
+                margin-top: -50px;
+            }
+        }
+
+        &.vimeo{
+            padding-left: 0;
+            padding-right: 0;
+            background-color: transparent;
+
+            figure{
+                border-bottom: 7.4px solid #FFF;
+                max-height: 172px;
+                overflow: hidden;
+
+                &:after{
+                    content: '';
+                    background-image: url(../icons/youtube-play.svg);
+                    width: 48px;
+                    height: 48px;
+                    position: relative;
+                    display: block;
+                    bottom: 105px;
+                    margin: 0 auto;
+                    background-size: cover;
+                }
+            }
+
+            .article-icon {
+                margin-left: 13px;
+                background-image: url(../icons/vimeo-blk.svg);
+            }
+
+
+            article > .content:first-child {
+                padding-top: 71px;
+                margin-top: 0;
+            }
+
+            article > .content{
+                margin-top: -50px;
+            }
+        }
+
+        &.soundcloud{
+            padding-left: 0;
+            padding-right: 0;
+            background-color: transparent;
+            color:black;
+
+        p {
+            max-height:75px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+
+            h2 {
+                display:none;
+            }
+
+            .author{
+                margin-bottom: 5px;
+            }
+
+
+            figure{
+                max-height: 172px;
+                margin-bottom: 0;
+                border: 0;
+            }
+
+            time{
+                margin-bottom: 5px;
+            }
+
+            .other-content{
+                height: 88.5px;
+                overflow: hidden;
+            }
+
+            .article-icon {
+                display: none;
+            }
+
+            h2{
+                margin-top: 5px;
+            }
+
+        }
+
+    }
+}

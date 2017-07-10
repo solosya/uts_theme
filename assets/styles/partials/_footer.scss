@@ -1,0 +1,112 @@
+.site-footer{
+    background-color: #000000;
+    color: #fefefe;
+
+    .footer-content{
+        padding-top: 54px;
+        padding-bottom: 47px;
+
+        a{
+            color: #fefefe;
+        }
+
+        ul{
+            list-style: none;
+            padding-left: 0;
+
+            li{
+                margin-bottom: 10px;
+            }
+        }
+        .navbar-brand{
+            padding: 0;
+            width: 100%;
+            img{
+                width: 100%;
+                max-width: 115px;
+                @media screen and (max-width: $sm-break){
+                    max-width: 60px;
+                }
+            }
+        }
+
+        .footer-links {
+            margin-top:35px;
+
+        }
+
+
+        .social-links{
+            margin-top: 148px;
+
+            @media screen and (max-width: $mobile-break){
+                margin-top: 0;
+                text-align: right;
+            }
+        }
+        
+        .social-links .icon{
+            display: inline-block;
+            width: 39px;
+            height: 39px;
+            margin-left: 15px;
+        }
+
+        .powered {
+            position: absolute;
+            top: 0;
+            right: 15px;
+            color: white;
+            font-size: 1em;
+        }
+
+    }
+
+    .footer-signup{
+        background-color: #ffff00;
+        padding-top: 11px;
+        padding-bottom: 13px;
+        height: 50px;
+        @media screen and (max-width: $sm-break){
+            height: auto;
+            text-align: center;
+        }
+        @media screen and (max-width: $mobile-break){
+            display: none;
+        }
+        .text-right{
+            @media screen and (max-width: $sm-break){
+                text-align: center;
+            }
+        }
+        p{
+            font-size:  ((18px / $font-size-base) + $font-unit);
+            font-weight: 700;
+            color: #1a1818;
+            margin-top: 4px;
+        }
+
+        .footer-subscribe{
+            input{
+                border: 0;
+                border-radius: 0;
+                width: 80%;
+                display: inline-block;
+                height: 32px;
+            }
+
+            .btn{
+                padding: 0;
+                border: 0;
+                position: relative;
+                left: -5px;
+                background-color: transparent;
+
+                .icon{
+                    width: 32px;
+                    height: 32px;
+                }
+            }
+        }
+    }
+}
