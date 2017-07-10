@@ -1,0 +1,34 @@
+.site-main {
+    .card-sm {
+        @include card-image-top(100%,172px);
+        .card.social {
+            .content {
+                .article-icon {
+                    margin-top : 12px;
+                }
+            }
+            figure{
+                margin-left: 0px;
+                margin-right: 0px;
+            }
+            h2 {
+            color: black;
+            } 
+            time {
+                font-size: rem(11);
+                font-weight:400;
+                margin-top: -8px;
+                margin-bottom: 21px;
+            }
+            
+        }
+    }
+    .card.instagram {
+        padding-left: 0;
+        padding-right: 0;
+        .content {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+    }
+}

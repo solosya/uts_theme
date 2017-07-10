@@ -1,3 +1,101 @@
+@mixin tintbefore($value:0.4) {
+	&:before {
+	  content: '';
+	  position: absolute;
+	  top: 0;
+	  bottom: 0;
+	  width: 100%;
+	  opacity: $value;
+	  background-color: #000;
+	  z-index: 1;
+	}
+}
+
+
+@mixin card-image-size($width, $height) {
+	width: $width;
+    height: $height;
+}
+
+@mixin card-image-full {
+	a.card {
+		> article {
+			> figure{
+				position: absolute;
+				left: 0;
+				top: 0;
+				height:100%;
+				width: 100%;
+			}
+		}
+	}
+}
+
+@mixin card-image-left($width, $height:100%) {
+	a.card {
+		> article {
+			> figure{
+				@include card-image-size($width, $height);
+				float: left;
+			}
+			> .content {
+				display:block;
+				width:auto;
+			}
+		}
+	}
+}
+
+
+@mixin card-image-right($width, $height:100%) {
+	a.card {
+		> article {
+			> figure{
+				@include card-image-size($width, $height);
+				float: right;
+			}
+			> .content {
+				display:block;
+				width:auto;
+			}
+		}
+	}
+}
+
+
+@mixin card-image-top($width, $height:100%) {
+	a.card {
+		> article {
+			> figure{
+				@include card-image-size($width, $height);
+				float: none;
+			}
+			> .content {
+				display:block;
+			}
+		}
+	}
+}
+
+@mixin card-image-bottom($width, $height:100%) {
+	a.card {
+		> article {
+
+			@include flexbox;
+			@include flex-direction(column);
+
+			> figure{
+				@include card-image-size($width, $height);
+				order:2;
+			}
+			> .content {
+				order:1;
+				display:block;
+			}
+		}
+	}
+}
+
 // Responsive sizes
 @mixin phone {
 	@media (max-width:$screen-phone) {

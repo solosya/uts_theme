@@ -135,14 +135,13 @@
                 <div class="content">
                     <span class="category">{{social.source}}</span>
                     <span class="article-icon"></span>
-                    <time datetime="2016-11-16">{{_AppHelper.getDateTimeBasedOnTimezone(social.publishDate,'d M Y')}}</time>
-                    <span class="author">{{ (social.source == _SocialFeed.getSocialArticleSourceIsTwitter()) ? '@' : ''}}{{ social.user['name'] | lower }}</span>
-                    
+                    <time datetime="2016-11-16">{{_AppHelper.getDateTimeBasedOnTimezone(social.publishDate,'d M Y')}}</time>         
                     {# {% if cardClass != 'instagram no-caption' %}   #}
-                    <p class="socialContent" id="updateSocial{{article.socialId}}" data-update="0">
+                    <h2 class="socialContent" id="updateSocial{{article.socialId}}" data-update="0">
                         {{ social.content | preg_replace('/(@.+?) /', '<span style="color:#0099cc">$1</span> ') 
-                                         | raw }}</p>
+                                         | raw }}</h2>
                     {# {% endif %} #}
+                    <span class="author">{{ (social.source == _SocialFeed.getSocialArticleSourceIsTwitter()) ? '@' : ''}}{{ social.user['name'] | lower }}</span>
 
                 </div>
             </article>
