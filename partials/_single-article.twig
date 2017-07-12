@@ -120,10 +120,16 @@
             data-article-text="{{Helper.htmlToText(social.content, -1) | raw | escape('html')}}">
 
             <article class="">
-                {% if social.hasMedia == 'TRUE' %}  
-                    <figure>
-                        <div class="image-wrapper lazyload" data-original="{{social.media['path']}}" {% if social.media['path'] is not empty %} style="background-image:url('{{placeholder}}');"{%endif%}></div>
-                    </figure>
+                {% if social.hasMedia == 'TRUE' %}
+                    {% if social.source == 'instagram' and social.content == '' and 'card-sm' in containerClass %}
+                        <figure class="fullcard">
+                            <div class="image-wrapper lazyload" data-original="{{social.media['path']}}" {% if social.media['path'] is not empty %} style="background-image:url('{{placeholder}}');"{%endif%}></div>
+                        </figure>
+                    {% else %}
+                        <figure>
+                            <div class="image-wrapper lazyload" data-original="{{social.media['path']}}" {% if social.media['path'] is not empty %} style="background-image:url('{{placeholder}}');"{%endif%}></div>
+                        </figure>
+                    {% endif %}
                 {% endif %}
 
                 {% if social.source == 'soundcloud' %}  

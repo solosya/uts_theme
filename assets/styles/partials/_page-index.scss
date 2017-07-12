@@ -22,13 +22,53 @@
             }
             
         }
-    }
-    .card.instagram {
-        padding-left: 0;
-        padding-right: 0;
-        .content {
-            padding-left: 15px;
-            padding-right: 15px;
+        .card.instagram {
+            padding-left: 0;
+            padding-right: 0;
+            .content {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+            h2 {
+                color: white;
+                display: inherit;
+                text-transform: none;
+                font-size: rem(14);
+                font-weight: 500;
+                line-height: 1.5;
+            } 
+            .fullcard {
+                max-height: 294px;
+                height: 294px;
+            }
+
         }
     }
+    .card-md {
+        @include card-image-full;
+        .card.social {
+            .content {
+                padding-top: 35%;
+                display: inherit; 
+            //     margin-left: -280px;
+            //     padding-top: 250px;
+            //     margin-left: 15px;
+            //     float: left;
+            //     align-items: left;
+            //     .article-icon {
+            //         margin: 0;
+            //     }
+                h2 {
+                    order: 2;
+                    display: inherit;
+                    text-transform: none;
+                    font-weight: 400;
+                } 
+            }
+        }
+        .card.instagram {
+
+        }
+    }
+    
 }

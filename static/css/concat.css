@@ -12657,12 +12657,38 @@ body.channel.about .staff {
   margin-top: -8px;
   margin-bottom: 21px; }
 
-.site-main .card.instagram {
+.site-main .card-sm .card.instagram {
   padding-left: 0;
   padding-right: 0; }
-  .site-main .card.instagram .content {
+  .site-main .card-sm .card.instagram .content {
     padding-left: 15px;
     padding-right: 15px; }
+  .site-main .card-sm .card.instagram h2 {
+    color: white;
+    display: inherit;
+    text-transform: none;
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 1.5; }
+  .site-main .card-sm .card.instagram .fullcard {
+    max-height: 294px;
+    height: 294px; }
+
+.site-main .card-md a.card > article > figure {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%; }
+
+.site-main .card-md .card.social .content {
+  padding-top: 35%;
+  display: inherit; }
+  .site-main .card-md .card.social .content h2 {
+    order: 2;
+    display: inherit;
+    text-transform: none;
+    font-weight: 400; }
 
 /*# sourceMappingURL=main.css.map */
 
