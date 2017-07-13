@@ -74,7 +74,7 @@
 
             .category{
                 margin-bottom: 17px;
-                display: inline-block;
+                display: none;
 
                 @media screen and (max-width: $mobile-break){
                     font-size: 8px;
