@@ -149,6 +149,13 @@
                 }
             }
         }
+        .card.vimeo {
+            .content {
+                @media screen and (max-width: $sm-break) {
+                    padding-top: 220px;
+                }
+            }
+        }
     }
     
 }
