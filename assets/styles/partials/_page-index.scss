@@ -39,7 +39,7 @@
                 font-weight: 500;
                 line-height: 1.5;
             } 
-            .with-content {
+            .without-content {
                 max-height: 294px;
                 height: 294px;
             }
@@ -67,7 +67,7 @@
                 font-weight: 500;
                 line-height: 1.5;
             } 
-            .with-content {
+            .without-content {
                 max-height: 294px;
                 height: 294px;
             }
@@ -80,6 +80,7 @@
         .card.twitter {
             .content{
                 h2{
+                    font-size: rem(14);
                     display: inherit;
                     text-transform: none;
                 }

@@ -11003,6 +11003,11 @@ button.swiper-pagination-bullet {
             .top-stories_index2 a.card article .content time {
               font-size: 0.9rem;
               opacity: .6; } }
+    @media screen and (max-width: 769px) {
+      .top-stories_index2 a.card.social {
+        background: #e5e6e7; }
+        .top-stories_index2 a.card.social figure {
+          height: auto; } }
     .top-stories_index2 a.card.social .content > p {
       font-size: 1.4em !important;
       font-weight: 700;
@@ -12668,7 +12673,7 @@ body.channel.about .staff {
     font-size: 1.4rem;
     font-weight: 500;
     line-height: 1.5; }
-  .site-main .card-sm .card.instagram .with-content {
+  .site-main .card-sm .card.instagram .without-content {
     max-height: 294px;
     height: 294px; }
 
@@ -12690,13 +12695,14 @@ body.channel.about .staff {
     font-size: 1.4rem;
     font-weight: 500;
     line-height: 1.5; }
-  .site-main .card-sm .card.facebook .with-content {
+  .site-main .card-sm .card.facebook .without-content {
     max-height: 294px;
     height: 294px; }
   .site-main .card-sm .card.facebook figure {
     display: inherit; }
 
 .site-main .card-sm .card.twitter .content h2 {
+  font-size: 1.4rem;
   display: inherit;
   text-transform: none; }
 

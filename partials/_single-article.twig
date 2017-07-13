@@ -107,7 +107,7 @@
     {% set social     = article.social %}
 {#     {% set videoClass = (social.media['type'] == 'video') ? 'video' : '' %}#}
     {% set hasArticleMediaClass = (social.hasMedia == 'TRUE') ? 'withImage__content': 'without__image' %}
-    {% set hasContent = (social.content == '') ? 'with-content': 'without-content' %}
+    {% set hasContent = (social.content == '') ? 'without-content': 'with-content' %}
     <div class="{{containerClass}}">
         <a  href="{{social.url}}"
             class="swap card social {{ social.source }}  {{hasArticleMediaClass}}" 

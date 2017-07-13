@@ -169,12 +169,13 @@
 
 
         &.social{ 
+            @media screen and (max-width: $sm-break) {
+                figure {
+                    height:auto;
+                }
 
-            figure {
-                // height:auto;
+                background: #e5e6e7;
             }
-
-            // background: #e5e6e7;
 
             .content {
 
