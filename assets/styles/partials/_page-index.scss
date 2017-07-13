@@ -3,6 +3,8 @@
         @include card-image-top(100%,172px);
         .card.social {
             .content {
+                padding-left: 12px;
+                padding-right: 12px;
                 .article-icon {
                     margin-top : 12px;
                 }
@@ -10,6 +12,8 @@
             figure{
                 margin-left: 0px;
                 margin-right: 0px;
+                padding-left: 0;
+                padding-right: 0;
             }
             h2 {
             color: black;
