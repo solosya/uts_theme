@@ -1,17 +1,30 @@
-var gulp = require ('gulp');
-var concat = require('gulp-concat');
-// var concat = require('gulp-concat-css');
-var uglify = require('gulp-uglify');
-var gp_rename = require("gulp-rename");
-var gutil = require('gulp-util');
-var sass = require('gulp-sass');
-var sourcemaps = require('gulp-sourcemaps');
-var minifyCss = require("gulp-minify-css");
+var gulp        = require('gulp');
+var concat      = require('gulp-concat');
+var uglify      = require('gulp-uglify');
+var gp_rename   = require("gulp-rename");
+var gutil       = require('gulp-util');
+var sass        = require('gulp-sass');
+var sourcemaps  = require('gulp-sourcemaps');
+var minifyCss   = require("gulp-minify-css");
+var hasher      = require('gulp-hasher');
+var buster      = require('gulp-cache-buster');
 var runSequence = require('run-sequence');
 
 
+
 gulp.task('styles', function(callback) {
-  runSequence('sass', 'concat', 'minify-css', callback);
+    runSequence('sass', 'concat', 'minify-css', 'cache', callback);
+});
+
+
+gulp.task('cache',  function() {
+  return gulp.src('layouts/main.twig')
+    .pipe(buster({
+      tokenRegExp: /\/(concat\.min\.css)/,
+      assetRoot: __dirname + '/static/css/',
+      hashes: hasher.hashes,
+    }))
+    .pipe(gulp.dest('layouts/'));
 });
 
 
@@ -19,10 +32,11 @@ gulp.task('styles', function(callback) {
 gulp.task('minify-css', function () {
     return gulp.src([
         './static/css/concat.css',
-    ]) // path to your file
+    ]) 
     .pipe(gp_rename({suffix: '.min'}))
     .pipe(minifyCss())
-    .pipe(gulp.dest('./static/css'));
+    .pipe(gulp.dest('./static/css'))
+    .pipe(hasher());
 });
 
 
@@ -32,7 +46,7 @@ gulp.task('concat', function () {
         './assets/scripts/plugins/tipped-4.6.0-light/css/tipped/tipped.css',
         './assets/scripts/plugins/jquery.fancybox/source/jquery.fancybox.css',
         './assets/scripts/sdk/media-player/mediaelementplayer.css'
-    ]) // path to your file
+    ]) 
     .pipe(concat('concat.css'))
     .pipe(gulp.dest('./static/css'));
 });
