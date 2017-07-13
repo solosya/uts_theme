@@ -134,8 +134,6 @@
             padding-left: 0;
             padding-right: 0;
 
-
-
             .content {
                 position: relative;
 
@@ -143,6 +141,7 @@
                     font-size: rem(16);
                     font-weight: bold;
                     color: #1a1818;
+                    max-height: 115px;
                 }
 
                 .article-icon {
@@ -154,6 +153,16 @@
                     color: #808285;
                 }
             }
+            &.without__image {
+                article {
+                    .content {
+                        h2 {
+                            max-height:185px;
+                        }
+                    }
+                }
+            }
+
         }
 
         &.instagram {
