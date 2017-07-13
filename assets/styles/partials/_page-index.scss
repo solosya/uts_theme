@@ -1,0 +1,161 @@
+.site-main {
+    .card-sm {
+        @include card-image-top(100%,172px);
+        .card.social {
+            .content {
+                .article-icon {
+                    margin-top : 12px;
+                }
+            }
+            figure{
+                margin-left: 0px;
+                margin-right: 0px;
+            }
+            h2 {
+            color: black;
+            } 
+            time {
+                font-size: rem(11);
+                font-weight:400;
+                margin-top: -8px;
+                margin-bottom: 21px;
+            }
+            
+        }
+        .card.instagram {
+            padding-left: 0;
+            padding-right: 0;
+            .content {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+            h2 {
+                color: white;
+                display: inherit;
+                text-transform: none;
+                font-size: rem(14);
+                font-weight: 500;
+                line-height: 1.5;
+            } 
+            .fullcard {
+                max-height: 294px;
+                height: 294px;
+            }
+
+        }
+        .card.facebook{
+            padding-left: 0;
+            padding-right: 0;
+            .content {
+                padding-left: 15px;
+                padding-right: 15px;
+                :nth-child(2) {
+                    margin-top: -45px;
+                    padding-top: 0;
+                }
+            }
+            .no-image {
+                margin-top: 150px;
+            }
+            h2 {
+                color: black;
+                display: inherit;
+                text-transform: none;
+                font-size: rem(14);
+                font-weight: 500;
+                line-height: 1.5;
+            } 
+            .fullcard {
+                max-height: 294px;
+                height: 294px;
+            }
+
+            figure {
+                display: inherit;
+            }
+
+        } 
+    }
+    .card-md {
+        @include card-image-full;
+        .card.social {
+            .content {
+                display: inherit; 
+                @media screen and (min-width: $sm-break) {
+                    padding-top: 35%;
+                }
+            //     margin-left: -280px;
+            //     padding-top: 250px;
+            //     margin-left: 15px;
+            //     float: left;
+            //     align-items: left;
+            //     .article-icon {
+            //         margin: 0;
+            //     }
+                h2 {
+                    order: 2;
+                    display: inherit;
+                    text-transform: none;
+                    font-weight: 400;
+                    @media screen and (max-width: $sm-break) {
+                        margin-top: -10px;
+                        font-size: rem(14);
+                        margin-bottom: 5px;
+                    }
+                } 
+            }
+        }
+        .card.instagram {
+
+        }
+    }
+    .card-lg {
+        .content{
+            @media screen and (min-width: $sm-break) {
+                padding-top: 325px;
+                padding-left: 10%;
+            }
+            .category {
+                display: none;
+            }
+            h2 {
+                font-weight: 400;
+                @media screen and (min-width: $sm-break) {
+                    font-size: rem(28);
+                    width: 468px;
+                }
+
+            }
+            time {
+                font-size: rem(11);
+                font-weight: 600;
+            }
+        }
+        .card.instagram{
+            .content{
+                @media screen and (max-width: $sm-break) {
+                    padding-top: 220px;
+                }
+                h2 {
+                    display: inherit;
+                    text-transform: none;
+                }
+            }
+        }
+        .card.youtube {
+            .content {
+                @media screen and (max-width: $sm-break) {
+                    padding-top: 220px;
+                }
+            }
+        }
+        .card.vimeo {
+            .content {
+                @media screen and (max-width: $sm-break) {
+                    padding-top: 220px;
+                }
+            }
+        }
+    }
+    
+}

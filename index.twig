@@ -94,7 +94,7 @@
 
 
 
-    <section class="content-block container">
+    <section class="content-block container site-main">
         <div class="row">
 
             <div class="col-md-9 col-sm-12">
@@ -210,14 +210,14 @@
 
 
 
-    <section class="highlight content-block">
+    <section class="highlight content-block site-main">
         {% if articles[articleCount] %}
             {{this.render('partials/_single-article.twig', {article: articles[articleCount], 'position': (articleCount+1), containerClass: 'card-lg'}) | raw}}
             {% set articleCount = articleCount + 1 %}
         {% endif %}
     </section><!--highlight-->
 
-    <section class="content-block container">
+    <section class="content-block container site-main">
         <div class="row">
             <div class="col-md-3 col-sm-12">
                 <aside class="right-border">
