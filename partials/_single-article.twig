@@ -107,10 +107,11 @@
     {% set social     = article.social %}
 {#     {% set videoClass = (social.media['type'] == 'video') ? 'video' : '' %}#}
     {% set hasArticleMediaClass = (social.hasMedia == 'TRUE') ? 'withImage__content': 'without__image' %}
-    {% set hasContent = (social.content == '') ? 'without-content': 'with-content' %}
+    {% set hasContent = (social.content == '') ? 'without__content': '' %}
+    
     <div class="{{containerClass}}">
         <a  href="{{social.url}}"
-            class="swap card social {{ social.source }}  {{hasArticleMediaClass}}" 
+            class="swap card social {{ social.source }}  {{hasArticleMediaClass}} {{hasContent}}" 
             id="Social{{article.socialId}}"
             data-id="{{article.socialId}}" 
             data-position="{{position}}" 
@@ -119,30 +120,22 @@
             data-article-text="{{Helper.htmlToText(social.content, -1) | raw | escape('html')}}">
 
             <article class="">
+
                 {% if social.hasMedia == 'TRUE' %}
-                        <figure class="{{hasContent}}">
-                            <div class="image-wrapper lazyload" data-original="{{social.media['path']}}" {% if social.media['path'] is not empty %} style="background-image:url('{{placeholder}}');"{%endif%}></div>
-                        </figure>
+                    <figure>
+                        <div class="image-wrapper lazyload" data-original="{{social.media['path']}}" {% if social.media['path'] is not empty %} style="background-image:url('{{placeholder}}');"{%endif%}></div>
+                    </figure>
                 {% endif %}
 
-                {% if social.source == 'soundcloud' %}  
-                    <div class="other-content">
-                        <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/289583160&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_artwork=false"></iframe>
-                    </div>
-                {% endif %}
-                {% if social.hasMedia == 'TRUE' %}
-                    <div class="content">
-                {% else %}
-                    <div class="content no-image">
-                {% endif %}    
+
+                <div class="content">
                     <span class="category">{{social.source}}</span>
                     <span class="article-icon"></span>
                     <time datetime="2016-11-16">{{_AppHelper.getDateTimeBasedOnTimezone(social.publishDate,'d M Y')}}</time>         
-                    {# {% if cardClass != 'instagram no-caption' %}   #}
                     <h2 class="socialContent is-truncated" id="updateSocial{{article.socialId}}" data-update="0">
                         {{ social.content | preg_replace('/(@.+?) /', '<span style="color:#0099cc">$1</span> ') 
                                          | raw }}</h2>
-                    {# {% endif %} #}
+
                     <span class="author">{{ (social.source == _SocialFeed.getSocialArticleSourceIsTwitter()) ? '@' : ''}}{{ social.user['name'] | lower }}</span>
 
                 </div>

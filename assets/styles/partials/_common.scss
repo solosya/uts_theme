@@ -1,3 +1,8 @@
+html {
+    font-size: $font-size-base;
+}
+
+
 // overrides for Tipped css for header menu tool tips
 .tpd-shift-stem-side { background:rgba(255,255,0,.8) !important;width:100% !important }
 .tpd-background-border-hack {background:rgba(255,255,0,.8) !important;border-radius:0 !important;}
