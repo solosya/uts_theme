@@ -20,7 +20,7 @@ gulp.task('styles', function(callback) {
 gulp.task('cache',  function() {
   return gulp.src('layouts/main.twig')
     .pipe(buster({
-      tokenRegExp: /\/(concat\.min\.css)/,
+      tokenRegExp: /\/(concat\.min\.css)\?v=[0-9a-z]+/,
       assetRoot: __dirname + '/static/css/',
       hashes: hasher.hashes,
     }))
