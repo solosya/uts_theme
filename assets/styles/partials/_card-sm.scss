@@ -247,6 +247,8 @@
             color:black;
             background-color: $brand-yellow;
             border-bottom: none;
+            padding-left: 0;
+            padding-right: 0;
 
             figure{
                 border-bottom: 7.4px solid #FFF;
@@ -422,7 +424,7 @@
 
 
             h2 {
-                display:none;
+                // display:none;
             }
 
             .author{
