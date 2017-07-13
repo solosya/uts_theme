@@ -8712,7 +8712,9 @@ a.card:hover {
   .card-sm .card.twitter {
     color: black;
     background-color: #ffff00;
-    border-bottom: none; }
+    border-bottom: none;
+    padding-left: 0;
+    padding-right: 0; }
     .card-sm .card.twitter figure {
       border-bottom: 7.4px solid #FFF;
       max-height: 172px;
@@ -8812,8 +8814,6 @@ a.card:hover {
       max-height: 75px;
       overflow: hidden;
       text-overflow: ellipsis; }
-    .card-sm .card.soundcloud h2 {
-      display: none; }
     .card-sm .card.soundcloud .author {
       margin-bottom: 5px; }
     .card-sm .card.soundcloud figure {
@@ -11005,8 +11005,6 @@ button.swiper-pagination-bullet {
               opacity: .6; } }
     .top-stories_index2 a.card.social {
       background: #e5e6e7; }
-      .top-stories_index2 a.card.social figure {
-        height: auto; }
       .top-stories_index2 a.card.social .content > p {
         font-size: 1.4em !important;
         font-weight: 700;
@@ -12648,9 +12646,7 @@ body.channel.about .staff {
 
 .site-main .card-sm .card.social figure {
   margin-left: 0px;
-  margin-right: 0px;
-  padding-left: 0;
-  padding-right: 0; }
+  margin-right: 0px; }
 
 .site-main .card-sm .card.social h2 {
   color: black; }
@@ -12674,7 +12670,7 @@ body.channel.about .staff {
     font-size: 1.4rem;
     font-weight: 500;
     line-height: 1.5; }
-  .site-main .card-sm .card.instagram .fullcard {
+  .site-main .card-sm .card.instagram .with-content {
     max-height: 294px;
     height: 294px; }
 
@@ -12696,11 +12692,15 @@ body.channel.about .staff {
     font-size: 1.4rem;
     font-weight: 500;
     line-height: 1.5; }
-  .site-main .card-sm .card.facebook .fullcard {
+  .site-main .card-sm .card.facebook .with-content {
     max-height: 294px;
     height: 294px; }
   .site-main .card-sm .card.facebook figure {
     display: inherit; }
+
+.site-main .card-sm .card.twitter .content h2 {
+  display: inherit;
+  text-transform: none; }
 
 .site-main .card-md a.card > article > figure {
   position: absolute;

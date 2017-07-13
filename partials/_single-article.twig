@@ -105,10 +105,9 @@
 {% else %}
 
     {% set social     = article.social %}
-    {% set mediaClass = (social.hasMedia == 'TRUE') ? 'withImage__content' : 'without__image' %}
 {#     {% set videoClass = (social.media['type'] == 'video') ? 'video' : '' %}#}
     {% set hasArticleMediaClass = (social.hasMedia == 'TRUE') ? 'withImage__content': 'without__image' %}
-
+    {% set hasContent = (social.content == '') ? 'with-content': 'without-content' %}
     <div class="{{containerClass}}">
         <a  href="{{social.url}}"
             class="swap card social {{ social.source }}  {{hasArticleMediaClass}}" 
@@ -121,15 +120,9 @@
 
             <article class="">
                 {% if social.hasMedia == 'TRUE' %}
-                    {% if social.source == 'instagram' and social.content == '' and 'card-sm' in containerClass %}
-                        <figure class="fullcard">
+                        <figure class="{{hasContent}}">
                             <div class="image-wrapper lazyload" data-original="{{social.media['path']}}" {% if social.media['path'] is not empty %} style="background-image:url('{{placeholder}}');"{%endif%}></div>
                         </figure>
-                    {% else %}
-                        <figure>
-                            <div class="image-wrapper lazyload" data-original="{{social.media['path']}}" {% if social.media['path'] is not empty %} style="background-image:url('{{placeholder}}');"{%endif%}></div>
-                        </figure>
-                    {% endif %}  
                 {% endif %}
 
                 {% if social.source == 'soundcloud' %}  

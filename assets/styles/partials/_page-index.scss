@@ -12,8 +12,6 @@
             figure{
                 margin-left: 0px;
                 margin-right: 0px;
-                padding-left: 0;
-                padding-right: 0;
             }
             h2 {
             color: black;
@@ -41,7 +39,7 @@
                 font-weight: 500;
                 line-height: 1.5;
             } 
-            .fullcard {
+            .with-content {
                 max-height: 294px;
                 height: 294px;
             }
@@ -69,7 +67,7 @@
                 font-weight: 500;
                 line-height: 1.5;
             } 
-            .fullcard {
+            .with-content {
                 max-height: 294px;
                 height: 294px;
             }
@@ -78,6 +76,14 @@
                 display: inherit;
             }
 
+        }
+        .card.twitter {
+            .content{
+                h2{
+                    display: inherit;
+                    text-transform: none;
+                }
+            }
         } 
     }
     .card-md {
