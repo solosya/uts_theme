@@ -8,6 +8,7 @@
 {% set articles = articlesArr.articles %}
 
 {% set articleCount = 0 %}
+{% set articleTest = 0 %}
 
 {% set popularArticles = _Article.getPopularArticles({ limit: 10, sortBy: 'VIEWS', scope: 'network' }) %}
 
@@ -71,7 +72,7 @@
         <div class="row">
             {% for i in 0..2 %}
                 {% if articles[articleCount] %}
-                    {{this.render('partials/_single-article.twig', {article: articles[0], 'position': (articleCount+1), containerClass: 'col-sm-4 card-topstories'}) | raw}}
+                    {{this.render('partials/_single-article.twig', {article: articles[articleCount], 'position': (articleCount+1), containerClass: 'col-sm-4 card-topstories'}) | raw}}
                     {% set articleCount = articleCount + 1 %}
                 {% endif %}
             {% endfor %}
