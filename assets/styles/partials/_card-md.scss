@@ -1,6 +1,9 @@
 .card-md{
 
-    .card{
+    a.card{
+        @include card-image-full;
+        @include card-image-tint;
+
         max-height:392px;
         height: 392px;
         overflow: hidden;
@@ -8,7 +11,7 @@
         color:#fefefe;
 
         @media screen and (max-width: $mobile-break){
-            height: 210px;
+            height: auto;
         }
 
 
@@ -19,26 +22,6 @@
         }
 
 
-        figure{
-            position: absolute;
-            z-index: 0;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-
-            &:after{
-                content: '';
-                opacity: 0.3;
-                background-color: #231f20;
-                width: 100%;
-                height: 100%;
-                position: absolute;
-                top: 0;
-            }
-
-        }
-        
 
         .content{
             position: relative;
@@ -48,10 +31,9 @@
             padding-top: 280px;
             padding-left: 40px;
             padding-right: 40px;
-            // padding-bottom: 35px;
 
             @media screen and (max-width: $mobile-break){
-                padding: 110px 20px 35px 20px;
+                padding: 180px 20px 10px 20px;
             }
 
             .category{
@@ -60,14 +42,12 @@
                 top: 0;
                 background-color: $brand-yellow;
                 color: #1a1818;
-                @media screen and (max-width: $mobile-break){
-                    font-size: rem(8);
-                    font-weight:900;
-                    padding: 5px 8px;
-                }
+                // @media screen and (max-width: $mobile-break){
+                //     font-size: rem(8);
+                //     font-weight:900;
+                //     padding: 5px 8px;
+                // }
             }
-
-
 
 
             .article-icon {
@@ -83,21 +63,22 @@
                 height:auto;
                 max-height:70px;
                 margin-bottom:9px;
+                margin-top:0;
 
-                @media screen and (max-width: $mobile-break) {
-                    line-height:1.3em;
-                    font-size:  rem(18);
-                    max-height:50px;
+                // @media screen and (max-width: $mobile-break) {
+                //     line-height:1.3em;
+                //     font-size:  rem(18);
+                //     max-height:50px;
 
-                }
+                // }
             }
 
             p {
                 order: 4;
                 display: none;
-                @media screen and (max-width: $sm-mobile-break){
-                    display: none;
-                }
+                // @media screen and (max-width: $sm-mobile-break){
+                //     display: none;
+                // }
             }
 
             time{
@@ -109,10 +90,10 @@
                 background-color: transparent;
                 color: #fefefe;
                 margin-bottom:0;
-                @media screen and (max-width: $mobile-break) {
-                    font-size: rem(9);
-                    font-weight:900;
-                }
+                // @media screen and (max-width: $mobile-break) {
+                //     font-size: rem(9);
+                //     font-weight:900;
+                // }
 
             }
 
@@ -124,15 +105,25 @@
         }
 
 
+        &.without__image {
+            background: rgba(34, 31, 32, .8);
+        }
+
         &.social {
             .content{
 
-                padding-top: 110px;
+                padding-top: 190px;
 
-                > p {
-                    height:80px;
+                @media screen and (max-width: $mobile-break) {
+                    padding-top: 120px;
+                }
+
+
+                > h2 {
+                    font-size: rem(20);
+                    height:60px;
                     max-height:80px;
-                    display:block;
+                    line-height:1.3;
                 }
 
                 .author {
@@ -143,10 +134,7 @@
 
 
         &.twitter{
-
-
             .content{
-
                 time{
                     margin-bottom: 5px;
                 }
@@ -154,32 +142,22 @@
         }
 
         &.instagram{
-
             .content{
-
                 time{
                     margin-bottom: 5px;
+                }
+            }
+            &.without__content {
+                .content{
+                    padding-top: 280px;
                 }
             }
         }
 
         &.youtube{
             .content{
-
                 time{
                     margin-bottom: 5px;
-                }
-            }
-            figure {
-                > div {
-                    background-size: 650px 520px;
-                    background-position: -35px -65px;
-                }
-
-                &.video {
-                    &:before{
-                        top: 80%;
-                    }
                 }
             }
 
@@ -187,14 +165,6 @@
 
         &.vimeo{
             
-            figure {
-                &.video {
-                    &:before{
-                        top: 80%;
-                    }
-                }
-            }
-
             .content{
 
                 time{
@@ -203,25 +173,25 @@
             }
         }
 
-        &.soundcloud{
-            figure{
-                bottom: 87px;
-            }
+        // &.soundcloud{
+        //     figure{
+        //         bottom: 87px;
+        //     }
 
-            .article-icon{
-                display: none;
-            }
+        //     .article-icon{
+        //         display: none;
+        //     }
 
-            .content{
-                padding-top: 83px;
-            }
+        //     .content{
+        //         padding-top: 83px;
+        //     }
 
-            .other-content{
-                position: absolute;
-                bottom: 0;
-                width: 100%;
-                height: 87px;
-            }
-        }
+        //     .other-content{
+        //         position: absolute;
+        //         bottom: 0;
+        //         width: 100%;
+        //         height: 87px;
+        //     }
+        // }
     }
 }

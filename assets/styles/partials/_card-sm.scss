@@ -1,7 +1,8 @@
 .card-sm {
-    @include card-image-top(100%,172px);
 
     a.card{
+        @include card-image-top(100%,172px);
+
         min-height: 392px;
         max-height:392px;
         overflow: hidden;
@@ -83,6 +84,9 @@
                 
                 .content {
                     margin-bottom: -20px;
+                    margin-top: -20px;
+                    padding:16px;
+                    padding-top:0;
 
                     > p {
                         color:black;

@@ -1,12 +1,15 @@
 .card-lg{
 
-    .card{
+    a.card{
+        @include card-image-full;
+        @include card-image-tint;
+
         height: 658px;
         overflow: hidden;
         margin-bottom: 30px;
         color: #fefefe;
 
-        @media screen and (max-width: $mobile-break){
+        @media screen and (max-width: $sm-break){
             height: 468px;
         }
 
@@ -21,41 +24,26 @@
 
 
         figure{
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 100%;
-            z-index: 0;
 
             &.video {
                 &:before{
-                    width:80px;
-                    height:80px;
-                    margin-left:-18px;
+                    top:180px;
+                    margin-left:-570px;
                     margin-top:-18px;
                 }
             }
 
-
-
-            &:after{
-                content: '';
-                opacity: 0.3;
-                background-color: #231f20;
-                width: 100%;
-                height: 100%;
-                position: absolute;
-                top: 0;
-            }
         }
 
         .content{
             display: block;
             width: 1140px;
             margin: 0 auto;
-            padding-top: 228px;
+            padding-top: 260px;
             position: relative;
             z-index: 20;
+
+
             @media screen and (max-width: $md-break){
                 width: 970px;
             }
@@ -68,16 +56,15 @@
               padding-right: 15px;
               padding-top: 120px;
             }
-            @media screen and (max-width: $mobile-break){
-              padding-top: 150px;
-            }
+            // @media screen and (max-width: $mobile-break){
+            //   padding-top: 150px;
+            // }
 
             .category{
                 margin-bottom: 17px;
-                display: none;
 
-                @media screen and (max-width: $mobile-break){
-                    font-size: 8px;
+                @media screen and (max-width: $sm-break){
+                    font-size: rem(10);
                     padding:5px 8px;
                 }
             }
@@ -87,9 +74,9 @@
                 margin-bottom: 8px;
                 color: #fefefe;
 
-                @media screen and (max-width: $mobile-break){
-                    font-size: 8px;
-                }
+                // @media screen and (max-width: $mobile-break){
+                //     font-size: 8px;
+                // }
 
             }
 
@@ -98,7 +85,7 @@
                 width: 770px;
                 margin-bottom: 25px;
                 margin-top: 0;
-                height:120px;
+                max-height:120px;
                 overflow:hidden;
 
                 @media screen and (max-width: $mmd-break) {
@@ -106,7 +93,7 @@
                 }
 
                 @media screen and (max-width: $sm-break) {
-                    line-height:1.5em;
+                    // line-height:1.5em;
                     width:auto;
                     height:150px;
                     margin-bottom: 10px;
@@ -115,7 +102,7 @@
                     width:auto;
                     height:auto;
                     max-height:85px;
-                    font-size: rem(18);
+                    font-size: rem(28);
                 }
             }
 
@@ -139,6 +126,7 @@
                 font-weight: 900;
                 margin-bottom: 29px;
                 width: 600px;
+                max-height:70px;
                 overflow:hidden;
 
                 @media screen and (max-width: $sm-break){
@@ -159,6 +147,27 @@
             }
         }
 
+        &.without__image {
+            background: rgba(34, 31, 32, .8);
+        }
+
+        &.social {
+            > article {
+                >.content { 
+                    h2 { 
+                        font-size: rem(28);
+                        font-weight:300;
+                        width:460px;
+                        line-height:1.5;
+                        height:200px;
+                        max-height:200px;
+                    }
+                }
+            }
+        }
+
+
+
         &.twitter{
             .content{
                 p{
@@ -173,6 +182,11 @@
                 p{
                     font-size: 28px;
                     font-weight: normal;
+                }
+            }
+            &.without__content {
+                .content {
+                    padding-top:460px;
                 }
             }
         }

@@ -2,14 +2,15 @@
 {% set networkData = _Network.getNetworkData() %}
 
 {{this.registerJs("HomeController.listing();")}}
-{% set limit = 15 %}
+{% set limit = 14 %}
 
 {% set articlesArr = _Blog.getBlogFeed({'limit': limit, 'offset': 0}) %}
 {% set articles = articlesArr.articles %}
 
 {% set articleCount = 0 %}
+{% set articleTest = 0 %}
 
-{% set popularArticles = _Article.getPopularArticles({ limit: 9, sortBy: 'VIEWS', scope: 'network' }) %}
+{% set popularArticles = _Article.getPopularArticles({ limit: 10, sortBy: 'VIEWS', scope: 'network' }) %}
 
 
 {% set sections =  {
@@ -30,7 +31,7 @@
         {% if blog.title | lower == key | lower %}
             {% set sections = sections | merge({
                 (key) : {
-                    'feed': _Blog.getBlogFeed({'limit': 4, 'offset': 0, 'blogid':blog.guid}),
+                    'feed': _Blog.getBlogFeed({'limit': 5, 'offset': 0, 'blogid':blog.guid}),
                     'link' : blog.link
                     }
                 }) %}
@@ -47,76 +48,66 @@
 
     <!--placeholder temp -->
     {% if articles|length > 0 %}
-
-    <section class="featured-carousel">
+    {% set articleImg = _Media.getMediaUrl(articles[0].featuredMedia,imgWidth, imgHeight, {'crop': 'fill', 'gravity': 'faces'} ) %}
+    <div class="banner-image image-wrapper tintGradient" style="background-image:url('{{articleImg}}');"></div>
+    <section class="featured-carousel-index2 container">
         <!-- Swiper -->
-        <div id="index-swiper" class="swiper-container clearfix">
-            <div class="swiper-wrapper">
+        <div id="index-swiper" class="swiper-container clearfix ">
+            <div class="swiper-wrapper ">
 
                     {% if articles[0] %}                                                                
-                        {{this.render('partials/_single-article.twig', {article: articles[0], position: (1), containerClass: 'swiper-slide'}) | raw}}
+                        {{this.render('partials/_single-article.twig', {article: articles[0], position: (1), containerClass: 'swiper-slide', imageSuppress: 'true'}) | raw}}
                         {% set articleCount = articleCount + 1 %}
                     {% endif %}
 
             </div>
-            <!-- Add Pagination -->
-            <div class="container">
-                 <section class="aap-news top-stories_index2">
-                    <h2>TOP STORIES</h2>
-                    {% if articles[1] %}
-                        {{this.render('partials/_single-article.twig', {article: articles[1], position: (2), containerClass: 'slide-1 pagination-item active'}) | raw}}
-                        {% set articleCount = articleCount + 1 %}
-                    {% endif %}
-    
-                    {% if articles[2] %}
-                        {{this.render('partials/_single-article.twig', {article: articles[2], position: (3), containerClass: 'slide-1 pagination-item'}) | raw}}
-                        {% set articleCount = articleCount + 1 %}
-                    {% endif %}
-
-                    {% if articles[3] %}
-                        {{this.render('partials/_single-article.twig', {article: articles[3], position: (4), containerClass: 'slide-1 pagination-item'}) | raw}}
-                        {% set articleCount = articleCount + 1 %}
-                    {% endif %}
-
-                    {% if articles[4] %}
-                        {{this.render('partials/_single-article.twig', {article: articles[4], position: (5), containerClass: 'slide-1 pagination-item'}) | raw}}
-                        {% set articleCount = articleCount + 1 %}
-                    {% endif %}
-                </section><!--custom-pagination-->
-            </div><!--container-->
-
-            <!-- Add Pagination -->
-            <div class="swiper-pagination swiper-pagination-white"></div>
-
         </div>
     </section><!--featured-carousel-->
     {% endif %}
 
 
 
-    <section class="content-block container site-main">
+    <section class="top-stories_index2 container">
+        <h2>TOP STORIES</h2>
         <div class="row">
+            {% for i in 0..2 %}
+                {% if articles[articleCount] %}
+                    {{this.render('partials/_single-article.twig', {article: articles[articleTest], 'position': (articleCount+1), containerClass: 'col-sm-4 card-topstories'}) | raw}}
+                    {% set articleCount = articleCount + 1 %}
+                {% endif %}
+            {% endfor %}
+        </div>
+    </section><!--custom-pagination-->
 
+
+
+
+    <section class="content-block container top site-main">
+        <div class="row">
             <div class="col-md-9 col-sm-12">
                 <div class="row">
                     {% if articles[articleCount] %}
-                        {{this.render('partials/_single-article.twig', {article: articles[articleCount], 'position': (articleCount+1), containerClass: 'col-sm-8 card-md'}) | raw}}
+                        {{this.render('partials/_single-article.twig', {article: articles[articleTest], 'position': (articleCount+1), containerClass: 'col-sm-8 card-md'}) | raw}}
                         {% set articleCount = articleCount + 1 %}
                     {% endif %}
                     {% if articles[articleCount] %}
-                        {{this.render('partials/_single-article.twig', {article: articles[articleCount], 'position': (articleCount+1), containerClass: 'col-sm-4 card-sm'}) | raw}}
+                        {{this.render('partials/_single-article.twig', {article: articles[articleTest], 'position': (articleCount+1), containerClass: 'col-sm-4 card-sm'}) | raw}}
                         {% set articleCount = articleCount + 1 %}
                     {% endif %}
                     {% if articles[articleCount] %}
-                        {{this.render('partials/_single-article.twig', {article: articles[articleCount], 'position': (articleCount+1), containerClass: 'col-sm-4 card-sm'}) | raw}}
+                        {{this.render('partials/_single-article.twig', {article: articles[articleTest], 'position': (articleCount+1), containerClass: 'col-sm-4 card-sm'}) | raw}}
                         {% set articleCount = articleCount + 1 %}
                     {% endif %}
                     {% if articles[articleCount] %}
-                        {{this.render('partials/_single-article.twig', {article: articles[articleCount], 'position': (articleCount+1), containerClass: 'col-sm-8 card-md'}) | raw}}
+                        {{this.render('partials/_single-article.twig', {article: articles[articleTest], 'position': (articleCount+1), containerClass: 'col-sm-8 card-md'}) | raw}}
                         {% set articleCount = articleCount + 1 %}
                     {% endif %}
+
                 </div><!--row-->
             </div>
+
+
+
 
             <div class="col-md-3 col-sm-12">
                 <aside class="left-border">
@@ -125,14 +116,17 @@
                     {% if sections['Breaking News'].feed.articles|length > 0 %}
 
                     <section class="aap-news">
-
+                        
                         <a href ="{{ sections['Breaking News'].link }}" class="hidden-xs"><h2>BREAKING NEWS</h2></a>
                         <a href ="{{ sections['Breaking News'].link }}" class="hidden-sm hidden-md hidden-lg"><h2>BREAKING<br /> NEWS</h2></a>
+
+
+                        {# <a href ="{{ sections['Breaking News'].link }}"><h2>BREAKING NEWS</h2></a> #}
                         <p>FROM <img src="{{networkData.templatePath}}/static/images/aap.jpg"></p>
 
                         {% for i in 0..4 %}
                             {% if sections['Breaking News'].feed.articles[i] %}
-                                {{this.render('partials/_single-article.twig', {article: sections['Breaking News'].feed.articles[i]}) | raw}}
+                                {{this.render('partials/_single-article.twig', {article: sections['Breaking News'].feed.articles[i], containerClass: 'col-sm-6 col-md-12'}) | raw}}
                             {% endif %}
                         {% endfor %}
 
@@ -141,40 +135,32 @@
                     {% endif %}
 
                     <section class="subscribe">
+                        
                         <h3>Get Central News direct to your inbox</h3>
                             <label for="header-search" class="assistive-text sr-only">Search</label>
                             <div class="input-group subscribe-group">
                                 
                             <!-- Begin MailChimp Signup Form -->
-                            <link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
-                            <style type="text/css">
-                                #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
-                                /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
-                                   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
-                            </style>
                             <div id="mc_embed_signup">
                             <form action="//centralnews.us15.list-manage.com/subscribe/post?u=f951467ba4375a98673dddecd&amp;id=effe44468e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
                                 <div id="mc_embed_signup_scroll">
                                 
                                 <input type="email" value="" name="EMAIL" class="field form-control" id="mce-EMAIL" placeholder="email address" required>
                                 <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-                                <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_f951467ba4375a98673dddecd_effe44468e" tabindex="-1" value=""></div>
-                                <div class="clear">
-                                    {# <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"> #}
-                                            <button class="btn btn-default" type="submit" id="mc-embedded-subscribe">
-                                        <span class="icon-submit icon"></span>
-                                    </button>
-
+                                <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                                    <input type="text" name="b_f951467ba4375a98673dddecd_effe44468e" tabindex="-1" value="">
                                 </div>
+                                    {# <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"> #}
+                                <button class="btn btn-default" type="submit" id="mc-embedded-subscribe">
+                                    <span class="icon-submit icon"></span>
+                                </button>
+
                                 </div>
                             </form>
                             </div>
 
                             <!--End mc_embed_signup-->
 
-
-                            </div>
-                        {# </form> #}
                     </section>
                 </aside>
             </div>
@@ -190,7 +176,7 @@
         <a href="{{ sections['The Wire'].link }}"><h5 class="ser-h5">THE WIRE</h5></a>
         <section class="content-block ser">
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-12 col-md-4">
                     <a href="http://www.2ser.com/players" onClick="window.open(this.href, 'child', 'scrollbars,width=750,height=430'); return false">
                         <img src="{{networkData.templatePath}}/static/images/2SER_Desktop.jpg" alt="ALT">
                     </a>
@@ -198,7 +184,7 @@
                 
                 {% for i in 0..1 %}
                     {% if sections['The Wire'].feed.articles[i] %}        
-                        {{this.render('partials/_2ser-article.twig', {article: sections['The Wire'].feed.articles[i], 'position': (i+1), containerClass: 'col-sm-4'}) | raw}}
+                        {{this.render('partials/_2ser-article.twig', {article: sections['The Wire'].feed.articles[i], 'position': (i+1), containerClass: 'col-sm-6 col-md-4'}) | raw}}
                     {% endif %}                   
                 {% endfor %}
             </div><!--row-->
@@ -210,18 +196,23 @@
 
 
 
-    <section class="highlight content-block site-main">
+    <section class="highlight content-block">
         {% if articles[articleCount] %}
-            {{this.render('partials/_single-article.twig', {article: articles[articleCount], 'position': (articleCount+1), containerClass: 'card-lg'}) | raw}}
+            {{this.render('partials/_single-article.twig', {article: articles[articleTest], 'position': (articleCount+1), containerClass: 'card-lg'}) | raw}}
             {% set articleCount = articleCount + 1 %}
         {% endif %}
     </section><!--highlight-->
+
+
+
+
+
 
     <section class="content-block container site-main">
         <div class="row">
             <div class="col-md-3 col-sm-12">
                 <aside class="right-border">
-                    <section class="top-stories-sidebar">
+                    <section class="row top-stories-sidebar">
                         <h2>MOST VIEWED</h2>
 
                         {% if popularArticles|length > 0 %}
@@ -265,7 +256,7 @@
         </div>
 
         <div class="row">
-            <div class="col-sm-9 col-sm-offset-3 section__content">
+            <div class="col-sm-12 col-md-9 col-md-offset-3 section__content">
                 <div class="row">
                     <div class="ajaxArticles clearfix " 
                     data-offset="{{limit}}" 

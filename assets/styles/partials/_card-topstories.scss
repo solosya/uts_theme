@@ -1,19 +1,15 @@
 .card-topstories {
-    @include card-image-left(80px,80px);
 
 
     a.card {
+        @include card-image-left(80px,80px);
+
         height:auto;
         font-size: 13px;
         font-weight: 500;
         color: #1a1818;
         height:80px;
         background:none;
-        // padding-bottom: 15px;
-        
-        // &:before {
-        //     background:none;
-        // }
 
         @media screen and (max-width: $sm-break-down){
             margin-bottom:8px;
@@ -124,30 +120,14 @@
 
 
         &.social{ 
-            // @media screen and (max-width: $sm-break) {
-            //     figure {
-            //         height:auto;
-            //     }
 
-            //     background: #e5e6e7;
-            // }
 
             .content {
                 padding:0;
 
                 > h2 {
-                    // font-size: rem(14);
-                    // font-weight: 700;
-                    // margin-top: .5em;
-                    // color:black;
                     max-width: 90%;
                     height:50px;
-                    // margin-bottom:0;
-                    // line-height: initial;
-                    // @media screen and (max-width: $mmd-break){
-                    //     margin-top: .3em;
-                    //     height:60px;
-                    // }
                 }
 
                 .category {
@@ -181,26 +161,10 @@
                 }
 
                 &.withImage__content {
-                    figure{
-                        margin:0;
-                        width:auto;
-                        position: absolute;
-                        z-index: 0;
-                        top: 0;
-                        bottom: 0;
-                        left: 0;
-                        right: 0;
+                    @include card-image-full;
+                    @include card-image-tint;
 
-                        &:after{
-                            content: '';
-                            opacity: 0.3;
-                            background-color: #231f20;
-                            width: 100%;
-                            height: 100%;
-                            position: absolute;
-                            top: 0;
-                        }
-                    }
+
                     .content {
                         position:relative;
                         z-index:1;
@@ -218,10 +182,8 @@
                             color:white;
                             padding-top: 5px;
                         }
-
                     }
                 }
-
             }
 
 
@@ -249,26 +211,9 @@
                 }
 
                 &.withImage__content {
-                    figure{
-                        margin:0;
-                        width:auto;
-                        position: absolute;
-                        z-index: 0;
-                        top: 0;
-                        bottom: 0;
-                        left: 0;
-                        right: 0;
+                    @include card-image-full;
+                    @include card-image-tint;
 
-                        &:after{
-                            content: '';
-                            opacity: 0.3;
-                            background-color: #231f20;
-                            width: 100%;
-                            height: 100%;
-                            position: absolute;
-                            top: 0;
-                        }
-                    }
                     .content {
                         position:relative;
                         z-index:1;
@@ -326,7 +271,6 @@
 
 
                 &.without__image {
-
                     .content {
                         position:relative;
                         z-index:1;
@@ -344,26 +288,9 @@
                 }
 
                 &.withImage__content {
-                    figure{
-                        margin:0;
-                        width:auto;
-                        position: absolute;
-                        z-index: 0;
-                        top: 0;
-                        bottom: 0;
-                        left: 0;
-                        right: 0;
+                    @include card-image-full;
+                    @include card-image-tint;
 
-                        &:after{
-                            content: '';
-                            opacity: 0.3;
-                            background-color: #231f20;
-                            width: 100%;
-                            height: 100%;
-                            position: absolute;
-                            top: 0;
-                        }
-                    }
                     .content {
                         position:relative;
                         z-index:1;
@@ -382,35 +309,15 @@
                         > p {
                             color:white;
                         }
-
                     }
                 }
-
             }
 
             &.instagram {
 
-                figure{
-                    margin:0;
-                    width:auto;
-                    position: absolute;
-                    z-index: 0;
-                    top: 0;
-                    bottom: 0;
-                    left: 0;
-                    right: 0;
+                @include card-image-full;
+                @include card-image-tint;
 
-                    &:after{
-                        content: '';
-                        opacity: 0.3;
-                        background-color: #231f20;
-                        width: 100%;
-                        height: 100%;
-                        position: absolute;
-                        top: 0;
-                    }
-
-                }
 
                 .content {
                     position:relative;
