@@ -161,6 +161,10 @@
                         line-height:1.5;
                         height:200px;
                         max-height:200px;
+                        @media screen and (max-width: $mobile-break) {
+                            width:auto;
+                        }
+
                     }
                 }
             }

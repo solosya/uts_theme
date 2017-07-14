@@ -9133,6 +9133,9 @@ a.card {
     line-height: 1.5;
     height: 200px;
     max-height: 200px; }
+    @media screen and (max-width: 620px) {
+      .card-lg a.card.social > article > .content h2 {
+        width: auto; } }
   .card-lg a.card.twitter .content p {
     font-size: 28px;
     font-weight: normal; }
