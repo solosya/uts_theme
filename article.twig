@@ -19,22 +19,68 @@
 {% set imgWidth = 1000 %}
 {% set imgHeight = 400 %}
 
-{% set articleImg = _Media.getMediaUrl(article.media[0],imgWidth, imgHeight, {'crop': 'fill', 'gravity': 'faces'} ) %}
+
+{% set articleImg = false %}
+{% if article.media|length > 0 %}
+    {% set articleImg      = _Media.getMediaUrl(article.media[0],imgWidth, imgHeight, {'crop': 'fill', 'gravity': 'faces'} ) %}
+    {% set articleImgSmall = _Media.getMediaUrl(article.media[0],500,      500,       {'crop': 'fill', 'gravity': 'faces'} ) %}
+    {# {% set articleImgSmall = "https://d3pbdxdl8c65wb.cloudfront.net/cloudinary/2017/Jul/16/AuOCehWl4RGN9EGaiyDM.jpg" %} #}
+{% endif %}
+
+
+
 {% set profileImg = _Media.getMediaUrl(article.createdBy['media'], 100, 100, {radius: 'max', gravity: 'face', 'crop': 'thumb', type: 'user'}) %}
+
 
 
 
     <section class="page-hero">
         <div itemprop="image" itemscope itemtype="https://schema.org/ImageObject" 
-             class="image-wrapper news__slide slide lazyload-remove" 
+             class="image-wrapper lazyload-remove" 
              data-thumbnail="{{article.media[0].path}}" 
-             data-original="{{article.media[0].path}}" 
-             style="background-image: url({{articleImg}})">
+             data-original="{{article.media[0].path}}">
 
             <meta itemprop="url" content="{{article.media[0].path}}">
             <meta itemprop="height" content="{{article.media[0].height}}">
             <meta itemprop="width" content="{{article.media[0].width}}">
-            {% if article.media[0].type == 'video' %} 
+            
+
+            {% if articleImg %} 
+                <figure class="featured">
+                    <picture>
+                        <source media="(max-width: 620px)" srcset="{{articleImgSmall}}">
+                        <img src="{{articleImg}}" class="img-responsive">
+                    </picture>
+
+                     {% if article.media[0].type == 'video' %} 
+                         {% set mediaUrl = "" %}
+                         {% if article.media[0].media.isSystemVideo == 'TRUE'%}
+                             {% set mediaUrl = _Media.getMediaVideoUrl(article.media[0].media, 0, 0,{resource_type: 'video', format: 'mp4'})  %}
+                         {% endif %}
+                         <a href="javascript:void(0)" 
+                             itemprop="video" 
+                             class="video-overlay video-player" 
+                             data-source="{{article.media[0].source}}" 
+                             data-video-id="{{article.media[0].videoId}}" 
+                             data-url="{{mediaUrl}}" 
+                             data-poster="{{article.media[0].path}}" 
+                             data-caption="{{article.title | raw}}">
+                            <div class="icons">
+                                <div class="icon"><i class="fa fa-play"></i></div>
+                            </div>
+                         </a>
+                     {% endif %}
+{#                      <figcaption>
+                         <p>{{article.media[0].caption}}</p>
+                     </figcaption>
+ #}                 </figure>
+             {% endif %}
+
+
+
+
+
+{#             {% if article.media[0].type == 'video' %} 
                 {% set mediaUrl = "" %}
                 {% if article.media[0].isSystemVideo == 'TRUE'%}
                     {% set mediaUrl = _article.media[0].getMediaVideoUrl(media, 0, 0,{resource_type: 'video', format: 'mp4'})  %}
@@ -53,13 +99,9 @@
                        <div class="icon"><i class="fa fa-play"></i></div>
                    </div>
                 </a>
-          
-       {#         {% if article.media[0].caption | length %}
-                    <div class="news__slide-caption">{{article.media[0].caption | raw}}</div>
-               {% endif %} #}                                    
             {% endif %}
-        </div>
-        {# <div class="image-wrapper" style="background-image: url({{ articleImg }});"> #}
+ #}        </div>
+
             
         <span class="category">{{ article.label}}</span>
    </section><!--page-hero-->

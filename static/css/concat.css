@@ -11796,6 +11796,23 @@ body.screen {
   @media screen and (max-width: 769px) {
     .page-hero {
       margin-bottom: 40px; } }
+  .page-hero figure.featured {
+    height: 100%; }
+    .page-hero figure.featured _:-ms-lang(x) {
+      overflow: hidden !important; }
+    .page-hero figure.featured :root img {
+      height: auto;
+      width: auto;
+      max-width: none; }
+    .page-hero figure.featured _:-ms-lang(x), .page-hero figure.featured img {
+      height: auto !important;
+      width: auto !important;
+      min-width: 100% !important;
+      max-width: none !important; }
+    .page-hero figure.featured img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; }
   .page-hero .image-wrapper {
     width: 100%;
     height: 100%;

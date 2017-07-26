@@ -12,6 +12,37 @@
         margin-bottom:40px;
     }
     
+    figure.featured { 
+        height:100%;
+
+         // IE10+ HACK
+         _:-ms-lang(x) {
+            overflow:hidden !important;
+
+         }
+        // IE9 HACK
+         :root img {
+             height:auto;
+             width:auto;
+             max-width:none;
+         }  
+
+         // IE10+ HACK
+         _:-ms-lang(x), img {
+             height:auto !important;
+             width:auto !important;
+             min-width:100% !important;
+             max-width:none !important;
+         } 
+
+
+        img {
+            width:100%;
+            height:100%;
+            object-fit: cover;
+        }
+
+    }
 
     .image-wrapper{
         width: 100%;
