@@ -48,21 +48,21 @@
 
     <!--placeholder temp -->
     {% if articles|length > 0 %}
-    {% set articleImg = _Media.getMediaUrl(articles[0].featuredMedia,imgWidth, imgHeight, {'crop': 'fill', 'gravity': 'faces'} ) %}
-    <div class="banner-image image-wrapper tintGradient" style="background-image:url('{{articleImg}}');"></div>
-    <section class="featured-carousel-index2 container">
-        <!-- Swiper -->
-        <div id="index-swiper" class="swiper-container clearfix ">
-            <div class="swiper-wrapper ">
+        {% set articleImg = _Media.getMediaUrl(articles[0].featuredMedia,1400, 567, {'crop': 'fill', 'gravity': 'faces'} ) %}
+        <div class="banner-image image-wrapper tintGradient" style="background-image:url('{{articleImg}}');"></div>
+        <section class="featured-carousel-index2 container">
+            <!-- Swiper -->
+            <div id="index-swiper" class="swiper-container clearfix ">
+                <div class="swiper-wrapper ">
 
-                    {% if articles[0] %}                                                                
-                        {{this.render('partials/_single-article.twig', {article: articles[0], position: (1), containerClass: 'swiper-slide', imageSuppress: 'true'}) | raw}}
-                        {% set articleCount = articleCount + 1 %}
-                    {% endif %}
+                        {% if articles[0] %}                                                                
+                            {{this.render('partials/_single-article.twig', {article: articles[0], position: (1), containerClass: 'swiper-slide', imageSuppress: 'true'}) | raw}}
+                            {% set articleCount = articleCount + 1 %}
+                        {% endif %}
 
+                </div>
             </div>
-        </div>
-    </section><!--featured-carousel-->
+        </section><!--featured-carousel-->
     {% endif %}
 
 
