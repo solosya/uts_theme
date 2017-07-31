@@ -31781,6 +31781,7 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
 
 }(jQuery));
     $.fn.Ajax_LoadBlogArticles = function(options){
+        
         var defaults = {
             'limit': 20,
             'containerClass': 'ajaxArticles',
@@ -33486,10 +33487,10 @@ var socialCardTemplate =
                 <div class="content">\
                     <span class="category">{{social.source}}</span>\
                     <span class="article-icon"></span>\
-                    <time datetime="2016-11-16">{{social.publishDate}}</time>\
+                    <time datetime="{{social.publishDate}}">{{social.publishDate}}</time>\
+                    <h2 class="socialContent" id="updateSocial{{article.socialId}}" data-update="0">\
+                        {{ social.content }}</h2>\
                     <span class="author">{{ social.user.name }}</span>\
-                    <p class="socialContent" id="updateSocial{{article.socialId}}" data-update="0">\
-                        {{ social.content }}</p>\
                 </div>\
             </article>\
             {{#if userHasBlogAccess}}\
