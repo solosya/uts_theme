@@ -1,5 +1,5 @@
 {% set headerClass = '' %}
-{% if pageClass | split(' ')[0] != 'article' and blog.type == 'channel' %}
+{% if pageClass | split(' ')[0] != 'article' and (blog.type == 'channel' or blog.type == 'section') %}
     {% set headerClass = 'channel-page' %}
 {% endif %}
 
