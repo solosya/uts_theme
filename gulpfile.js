@@ -46,8 +46,10 @@ gulp.task('concat', function () {
         './assets/scripts/plugins/tipped-4.6.0-light/css/tipped/tipped.css',
         './assets/scripts/plugins/jquery.fancybox/source/jquery.fancybox.css',
         './assets/scripts/sdk/media-player/mediaelementplayer.css'
-    ]) 
+    ])
+    .pipe(sourcemaps.init())
     .pipe(concat('concat.css'))
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('./static/css'));
 });
 
@@ -56,11 +58,9 @@ gulp.task('sass', function() {
     return gulp.src([
             './assets/styles/main.scss',
         ])
-	    .pipe(sourcemaps.init())
     	.pipe(sass({includePaths: [
             './assets/styles/partials', 
         ]}).on('error', sass.logError))
-    	.pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('./static/css'));
 });
 

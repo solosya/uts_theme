@@ -9,7 +9,6 @@ var UserArticlesController = (function ($) {
 UserArticlesController.Load = (function ($) {
 
     var attachEvents = function () {
-        console.log('attaching events');
         /*
          * Load More Articles on My Post Page
          */
@@ -59,11 +58,9 @@ UserArticlesController.Load = (function ($) {
          */
 
         var totalPosts = parseInt($('div#userArticleContainer').data('total-count'));
-        console.log(totalPosts);
-        console.log(_appJsConfig.articleOffset);
 
         if (totalPosts > _appJsConfig.articleOffset) {
-            console.log('adding waypoint');
+
             var waypoint = new Waypoint({
                 element: $('#LoadMoreArticles'),
                 offset: '80%',

@@ -11813,6 +11813,16 @@ body.screen {
       width: 100%;
       height: 100%;
       object-fit: cover; }
+    .page-hero figure.featured figcaption {
+      width: 100%;
+      font-size: 0.75rem;
+      color: #808285;
+      text-align: right;
+      padding-right: 15px;
+      font-style: italic;
+      font-family: "Montserrat", Helvetica, Arial, sans-serif;
+      margin-top: 10px;
+      margin-bottom: 30px; }
   .page-hero .image-wrapper {
     width: 100%;
     height: 100%;
@@ -11822,12 +11832,12 @@ body.screen {
     background-color: #000;
     color: #FFF;
     font-weight: 900;
-    font-size: 0.92308em;
+    font-size: 0.75rem;
     text-transform: uppercase;
-    padding: 10px;
+    padding: 4px 12px;
     margin-bottom: 17px;
     position: relative;
-    top: -10px; }
+    top: -12px; }
   .page-hero div {
     position: relative; }
     .page-hero div:before {
@@ -12461,5 +12471,3 @@ body.channel.about .staff {
       body.channel.about .staff__photo > figcaption > a {
         font-size: 11px;
         font-weight: 600; }
-
-/*# sourceMappingURL=main.css.map */
