@@ -7,7 +7,7 @@
     {% set articleImg = _Media.getMediaUrl(article.featuredMedia,imgWidth, imgHeight, {'crop': 'fill', 'gravity': 'faces'} ) %}
 {% endif %}
 {% set placeholder = 'https://placeholdit.imgix.net/~text?txtsize=33&txt=Loading&w='~imgWidth~'&h='~imgHeight~'' %}
-{% set publishDate = _AppHelper.getDefaultTimezoneDateTime(article.publishDate) %}
+{% set publishDate = _AppHelper.getDefaultTimezoneDateTime(article.publishedDate) %}
 {% set articleTitle =  titleTruncateLength is defined ? article.title | truncate(titleTruncateLength) : article.title  %}
 
 <div class="col-sm-6 col-md-12">
@@ -16,7 +16,7 @@
 	    <figure>
 	        <img src="{{articleImg}}">
 	    </figure>
-	    <h2>{{ articleTitle | raw }}</h2>
+	    <h2 data-category="{{article.label}}">{{ articleTitle | raw }}</h2>
 	    <time datetime="2016-11-16">{{_AppHelper.getDateTimeBasedOnTimezone(publishDate,'SHORT')}}</time>
 	</article>
 	</a>
