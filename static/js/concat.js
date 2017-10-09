@@ -34253,6 +34253,7 @@ $('document').ready(function() {
 
 
     $(".sb-custom-menu > ul > li").hover(function (e) {
+        console.log('hovering');
         if ($(window).width() > sbCustomMenuBreakPoint) {
             $(this).children("ul").stop(true, false).slideToggle(275);
             $(this).toggleClass('now-active');
@@ -34260,12 +34261,12 @@ $('document').ready(function() {
         }
     });
 
-    $("li.menu-item-search").bind("mouseenter focus mouseleave",function () {
-        if ($(window).width() > sbCustomMenuBreakPoint) {
-            $("input#header-search").focus();
-            return false;
-        }
-    });
+    // $("li.menu-item-search").bind("mouseenter focus mouseleave",function () {
+    //     if ($(window).width() > sbCustomMenuBreakPoint) {
+    //         $("input#header-search").focus();
+    //         return false;
+    //     }
+    // });
 
     $('#profile').on('click', function(e) {
         $('#header__menu').toggleClass('Profile_Open');
@@ -34420,7 +34421,6 @@ var UserArticlesController = (function ($) {
 UserArticlesController.Load = (function ($) {
 
     var attachEvents = function () {
-        console.log('attaching events');
         /*
          * Load More Articles on My Post Page
          */
@@ -34470,11 +34470,9 @@ UserArticlesController.Load = (function ($) {
          */
 
         var totalPosts = parseInt($('div#userArticleContainer').data('total-count'));
-        console.log(totalPosts);
-        console.log(_appJsConfig.articleOffset);
 
         if (totalPosts > _appJsConfig.articleOffset) {
-            console.log('adding waypoint');
+
             var waypoint = new Waypoint({
                 element: $('#LoadMoreArticles'),
                 offset: '80%',
