@@ -21,7 +21,7 @@
             <div class="col-sm-12 col-md-6">
                 {{this.render('layouts/partials/messages.twig') | raw }}
                 <form id="contactForm" class="form-horizontal form-contact" action="{{_AppHelper.getContactFormUrl()}}" method="post" autoComplete="off">
-                     <input type="hidden" name="_csrf" value="{{_AppHelper.getCsrfToken()}}" />
+                    <input type="hidden" name="_csrf" value="{{_AppHelper.getCsrfToken()}}" />
                     <div class="controls-full">
                         <div class="form-group field-contactform-name required">
                             <input type="text" id="contactform-name" class="form-control" name="name" placeholder="Name">

@@ -33,6 +33,13 @@
 	}
 }
 
+.site-header {
+	&.page-contact-us {
+		background-color: black;
+		margin-top: 0px;
+	}
+}
+
 .form-contact {
 
 	.controls-full {
