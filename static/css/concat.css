@@ -12416,74 +12416,74 @@ body.search #masthead {
   font-size: 0.875rem;
   font-weight: bold; }
 
-body.channel.about .page_section, body.section.about .page_section {
+body.channel.about .page_section {
   padding-bottom: 200px; }
 
-body.channel.about .about_details, body.section.about .about_details {
+body.channel.about .about_details {
   font-family: "acumin-pro", Helvetica, Arial, sans-serif;
   padding-top: 230px;
   padding-bottom: 80px;
   font-size: 18px;
   font-weight: 300; }
-  body.channel.about .about_details__org, body.section.about .about_details__org {
+  body.channel.about .about_details__org {
     margin: 0;
     font-size: 20px;
     font-weight: 300;
     letter-spacing: 0.8px; }
-  body.channel.about .about_details__head, body.section.about .about_details__head {
+  body.channel.about .about_details__head {
     margin: 0;
     margin-bottom: 40px;
     font-size: 48px;
     font-weight: 600;
     letter-spacing: 2px; }
-  body.channel.about .about_details__par--lead, body.section.about .about_details__par--lead {
+  body.channel.about .about_details__par--lead {
     font-weight: 600;
     margin-bottom: 30px; }
-  body.channel.about .about_details__par > a, body.section.about .about_details__par > a {
+  body.channel.about .about_details__par > a {
     font-weight: 600; }
 
-body.channel.about .staff, body.section.about .staff {
+body.channel.about .staff {
   font-family: "acumin-pro", Helvetica, Arial, sans-serif;
   font-size: 18px; }
-  body.channel.about .staff > .row, body.section.about .staff > .row {
+  body.channel.about .staff > .row {
     margin-bottom: 100px; }
-  body.channel.about .staff__img, body.section.about .staff__img {
+  body.channel.about .staff__img {
     margin: 0 auto 10px auto; }
-  body.channel.about .staff__head, body.section.about .staff__head {
+  body.channel.about .staff__head {
     font-size: 26px;
     padding-bottom: 7px;
     margin-bottom: 60px;
     border-bottom: 1px solid #d1d2d4; }
-  body.channel.about .staff__title, body.section.about .staff__title {
+  body.channel.about .staff__title {
     font-size: 22px;
     font-weight: 300;
     padding-bottom: 7px;
     border-bottom: 1px solid #d1d2d4;
     margin-bottom: 30px; }
     @media screen and (max-width: 992px) {
-      body.channel.about .staff__title, body.section.about .staff__title {
+      body.channel.about .staff__title {
         text-align: center; } }
-    body.channel.about .staff__title > span, body.section.about .staff__title > span {
+    body.channel.about .staff__title > span {
       display: inline-block;
       margin-left: 20px;
       font-weight: 600; }
-  body.channel.about .staff__par--lead, body.section.about .staff__par--lead {
+  body.channel.about .staff__par--lead {
     font-weight: 600; }
-  body.channel.about .staff__photo, body.section.about .staff__photo {
+  body.channel.about .staff__photo {
     height: 210px;
     width: 210px;
     text-align: center; }
     @media screen and (max-width: 992px) {
-      body.channel.about .staff__photo, body.section.about .staff__photo {
+      body.channel.about .staff__photo {
         margin: auto;
         margin-bottom: 50px; } }
-    body.channel.about .staff__photo > figcaption, body.section.about .staff__photo > figcaption {
+    body.channel.about .staff__photo > figcaption {
       display: inline-block;
       margin: auto;
       padding: 2px 7px;
       background: yellow;
       font-style: normal; }
-      body.channel.about .staff__photo > figcaption > a, body.section.about .staff__photo > figcaption > a {
+      body.channel.about .staff__photo > figcaption > a {
         font-size: 11px;
         font-weight: 600; }
 
