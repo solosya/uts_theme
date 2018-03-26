@@ -11452,6 +11452,7 @@ body.screen {
       .top-stories-sidebar a.card article time {
         position: absolute;
         bottom: 10px;
+        left: 65px;
         font-size: 11px;
         font-weight: 600;
         color: #6c6e71; }
