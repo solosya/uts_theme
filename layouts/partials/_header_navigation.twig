@@ -3,6 +3,8 @@
     {% set headerClass = 'channel-page' %}
 {% endif %}
 
+{% set menuItems = _Menu.get({'menuType': 'header'}) %}
+
     <header id="masthead" class="site-header container-fluid {{headerClass}} {{ pageClass }}">
         <div class="site-branding col-md-3 col-sm-2">
             <div class="logo pull-left">
@@ -19,26 +21,25 @@
         <nav class="sb-custom-menu">
 
             <ul id="menu-primary-menu" class="menu">
-                {% set menuItems = blog.blogHeaderMenu %}
 
-                    {% for parentItem in menuItems %}
+                {% for parentItem in menuItems %}
 
-                        {% set activeClass = (parentItem.link == _AppHelper.getServerUrl()) ? 'active' : ''%}
-                        {% set externalClass = (parentItem.isExternal) ? 'external-link' : '' %}
-                        <li class="menu-item">
-                            
-                            <a  href="{{parentItem.link |raw}}"
-                                title="{{parentItem.short_description}}"
-                                data-tipped-options="position: 'bottom'"
-                                class="{{activeClass}} {{externalClass}} tool_tipped" 
-                                {% if parentItem.target != "" %} target="{{parentItem.target}}"{% endif %}>
-                                {{ ((parentItem.blogTitle is empty) ? 
-                                        ( (parentItem.pageTitle is empty) ? parentItem.label : parentItem.pageTitle ) 
-                                    : parentItem.blogTitle )}}
-                            </a>
-                        </li>
+                    {% set activeClass = (parentItem.link == _AppHelper.getServerUrl()) ? 'active' : ''%}
+                    {% set externalClass = (parentItem.isExternal) ? 'external-link' : '' %}
+                    <li class="menu-item">
+                        
+                        <a  href="{{parentItem.link |raw}}"
+                            title="{{parentItem.short_description}}"
+                            data-tipped-options="position: 'bottom'"
+                            class="{{activeClass}} {{externalClass}} tool_tipped" 
+                            {% if parentItem.target != "" %} target="{{parentItem.target}}"{% endif %}>
+                            {{ ((parentItem.blogTitle is empty) ? 
+                                    ( (parentItem.pageTitle is empty) ? parentItem.label : parentItem.pageTitle ) 
+                                : parentItem.blogTitle )}}
+                        </a>
+                    </li>
 
-                    {% endfor %}
+                {% endfor %}
 
                 <li id="menu-item-search" class="menu-item menu-item-search">
                     <a href="#" class="search-icon"><span class="icon-search icon"></span><span class="sr-only">Expand search</span></a>
