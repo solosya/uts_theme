@@ -31855,7 +31855,7 @@ var extend = function(child, parent) { for (var key in parent) { if (hasProp.cal
             $(elem).on('click', function(e){
                 e.preventDefault();
 
-                var articleId = parseInt($(elem).data('id'));
+                var articleId = $(elem).data('id');
                 var position = parseInt($(elem).data('position'));
                 var existingStatus = $(elem).data('status');
                 var isSocial = $(elem).data('social');
@@ -33976,10 +33976,10 @@ HomeController.Listing = (function ($) {
 
                     //get positions
                     var sourcePosition      = sourceObj.data('position');
-                    var sourcePostId        = parseInt(sourceObj.data('id'));
+                    var sourcePostId        = sourceObj.data('id');
                     var sourceIsSocial      = parseInt(sourceObj.data('social'));
                     var destinationPosition = destObject.data('position');
-                    var destinationPostId   = parseInt(destObject.data('id'));
+                    var destinationPostId   = destObject.data('id');
                     var destinationIsSocial = parseInt(destObject.data('social'));
 
 

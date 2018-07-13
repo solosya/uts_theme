@@ -158,10 +158,10 @@ HomeController.Listing = (function ($) {
 
                     //get positions
                     var sourcePosition      = sourceObj.data('position');
-                    var sourcePostId        = parseInt(sourceObj.data('id'));
+                    var sourcePostId        = sourceObj.data('id');
                     var sourceIsSocial      = parseInt(sourceObj.data('social'));
                     var destinationPosition = destObject.data('position');
-                    var destinationPostId   = parseInt(destObject.data('id'));
+                    var destinationPostId   = destObject.data('id');
                     var destinationIsSocial = parseInt(destObject.data('social'));
 
 

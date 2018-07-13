@@ -128,37 +128,28 @@
     {% endif %}
     </style>
 
-    {% if blogData.settings['GoogleAnalyticsID'] is  defined  and  blogData.settings['GoogleAnalyticsID'] is not empty %}
-        <!-- Google Analytics -->
+
+
+    {% set googleAnalyitcsId = ''%}
+    {% if networkData.thirdPartyIntegrations['googleAnalytics']['id'] is defined and  networkData.thirdPartyIntegrations['googleAnalytics']['id'] is not empty  %}
+        {% set googleAnalyitcsId = networkData.thirdPartyIntegrations['googleAnalytics']['id'] %}
+    {% endif %}
+
+    {% if googleAnalyitcsId is defined and googleAnalyitcsId is not empty%}
+        <!-- Google Analytics u -->
         <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-        ga('create', '{{blogData.settings['GoogleAnalyticsID']}}', 'auto');
+        ga('create', '{{googleAnalyitcsId}}', 'auto');
         ga('send', 'pageview');
         </script>
         <!-- End Google Analytics -->
     {% endif %}
-    
-    {% set blogList = _Blog.getBlogList() %}
 
-    {% if blogList | length > 0 %}
-        <style type="text/css">
-            {% for blog in blogList %}
-                {% if blog.featuredColor is not empty %}
-                    {% set blogClass = 'card--blog_'~blog.id %}
-                    .card.{{blogClass | lower}} .title-section span {
-                        color: {{blog.featuredColor}} !important;
-                    }
-                    .card.{{blogClass | lower}} .caption_bottom .author_name {
-                        color: {{blog.featuredColor}} !important;
-                    }
-                {% endif %}
-            {% endfor%}
-        </style>
-    {% endif %}
+    
 
     {{ this.head() }}
 </head>
