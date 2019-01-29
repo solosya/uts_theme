@@ -52,6 +52,10 @@
             font-family: $base-font-family;
             margin-top: 10px;
             margin-bottom: 30px;
+            @media screen and (max-width: 767px){
+                margin-top: 18px;
+                text-align: center;
+            }
         }
     }
 
