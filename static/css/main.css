@@ -11947,6 +11947,10 @@ body.screen {
     max-width: 100px;
     height: auto;
     max-height: 100px; }
+    @media screen and (max-width: 767px) {
+      .page-content article .author-info img {
+        max-width: 70px;
+        max-height: 70px; } }
   .page-content article .author-info .name {
     background-color: #ffff00;
     color: #1a1818;

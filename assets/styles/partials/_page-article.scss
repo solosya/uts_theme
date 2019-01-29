@@ -29,6 +29,11 @@
                 max-width: 100px;
                 height: auto;
                 max-height: 100px;
+                @media screen and (max-width: 767px){
+                    max-width: 70px;
+                    max-height: 70px;
+
+                }
 
             }
 
