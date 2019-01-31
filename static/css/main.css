@@ -11983,6 +11983,9 @@ body.screen {
   border-bottom: solid 1px #d0d2d3;
   padding-bottom: 31.5px;
   margin-bottom: 22.5px; }
+  @media screen and (max-width: 767px) {
+    .page-content article .author-inline {
+      padding-bottom: 0; } }
   .page-content article .author-inline img {
     display: inline;
     margin: 0 auto 15px auto;
