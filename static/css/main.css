@@ -11949,8 +11949,9 @@ body.screen {
     max-height: 100px; }
     @media screen and (max-width: 767px) {
       .page-content article .author-info img {
-        max-width: 70px;
-        max-height: 70px; } }
+        max-width: 35px;
+        max-height: 35px;
+        float: left; } }
   .page-content article .author-info .name {
     background-color: #ffff00;
     color: #1a1818;
@@ -11960,6 +11961,12 @@ body.screen {
     padding: 4px 5px;
     margin-bottom: 26px;
     display: inline-block; }
+    @media screen and (max-width: 767px) {
+      .page-content article .author-info .name {
+        display: block;
+        width: fit-content;
+        float: left;
+        margin: 5px 15px; } }
   .page-content article .author-info p {
     color: #595b5d;
     font-size: 0.875em;
@@ -11983,6 +11990,11 @@ body.screen {
     max-width: 100px;
     height: auto;
     max-height: 100px; }
+    @media screen and (max-width: 767px) {
+      .page-content article .author-inline img {
+        max-width: 35px;
+        max-height: 35px;
+        float: left; } }
   .page-content article .author-inline a {
     white-space: nowrap; }
   .page-content article .author-inline .name {
@@ -11998,10 +12010,9 @@ body.screen {
     @media screen and (max-width: 767px) {
       .page-content article .author-inline .name {
         display: block;
-        margin-right: auto;
-        margin-left: auto;
         width: fit-content;
-        text-align: center; } }
+        float: left;
+        margin: 5px 15px; } }
   .page-content article .author-inline p {
     color: #595b5d;
     font-size: 0.875em;

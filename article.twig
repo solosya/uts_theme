@@ -124,7 +124,7 @@
                     <a href="{{_AppHelper.getUserProfileUrl(article.createdBy['username'])}}">
                         <img src="{{ profileImg }}" alt="Author name">
                     </a>
-                    <span class="name">{{article.createdBy['displayName']}}</span>
+                    <span class="name">{{article.createdBy['displayName']}}</span><hr style="width:100%;margin:1px 0;border:none;" class="visible-xs-block" />
                     <p>{{ article.createdBy['bio'] }}</p>
                     
                     {% if not _User.isGuest() %}
@@ -136,13 +136,13 @@
                 <div class="author-inline col-sm-8 col-sm-offset-2">
                     <a href="{{_AppHelper.getUserProfileUrl(article.createdBy['username'])}}">
                         <img src="{{ profileImg }}" alt="Author name" >
-                        <span class="name">{{article.createdBy['displayName']}}</span>
+                        <span class="name">{{article.createdBy['displayName']}}</span><hr style="width:100%;margin:1px 0;border:none;" class="visible-xs-block" />
                     </a>
 
                 {% for coauthor in article['createdBy']['coauthors'] %}
                         <a href="{{_AppHelper.getUserProfileUrl(coauthor['username'])}}">
                             <img src="{{_Media.getMediaUrl(coauthor['media'], 100, 100, {radius: 'max', gravity: 'face', 'crop': 'thumb', type: 'user'}) }}" alt="Author name">
-                            <span class="name">{{coauthor['displayName']}}</span>
+                            <span class="name">{{coauthor['displayName']}}</span><hr style="width:100%;margin:1px 0;border:none;" class="visible-xs-block" />
                         </a>
 
                 {% endfor %}
