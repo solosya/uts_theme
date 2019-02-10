@@ -3,7 +3,10 @@
 
 {% if article.articleId > 0 %}
     {% set articleImg = '' %}
-    {% if article.featuredMedia | length > 0 %}
+    {% if imageSize is defined %}
+        {% set imgWidth = (imageSize.width is defined) ? imageSize.width : 1280  %}
+        {% set imgHeight = (imageSize.height is defined) ? imageSize.height : 720 %}
+    {% elseif article.featuredMedia | length > 0 %}
         {% set imgWidth = 1280 %}
         {% set imgHeight = 720 %}
         {% if 'card-sm' in containerClass %}
