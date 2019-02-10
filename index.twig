@@ -91,7 +91,7 @@
                                 article: articles[articleCount], 
                                 'position': (articleCount+1), 
                                 containerClass: 'col-sm-8 card-md',
-                                imageSize: {width:330, height:250}
+                                imageSize: {width:660, height:500}
                         }) | raw}}
                         {% set articleCount = articleCount + 1 %}
                     {% endif %}
@@ -100,7 +100,7 @@
                             article: articles[articleCount], 
                             'position': (articleCount+1), 
                             containerClass: 'col-sm-4 card-sm',
-                            imageSize: {width:300, height:170}
+                            imageSize: {width:600, height:340}
                         }) | raw}}
                         {% set articleCount = articleCount + 1 %}
                     {% endif %}
@@ -109,7 +109,7 @@
                             article: articles[articleCount], 
                             'position': (articleCount+1), 
                             containerClass: 'col-sm-4 card-sm',
-                            imageSize: {width:300, height:170}
+                            imageSize: {width:600, height:340}
                         }) | raw}}
                         {% set articleCount = articleCount + 1 %}
                     {% endif %}
@@ -118,7 +118,7 @@
                             article: articles[articleCount], 
                             'position': (articleCount+1), 
                             containerClass: 'col-sm-4 card-sm',
-                            imageSize: {width:300, height:170}
+                            imageSize: {width:600, height:340}
                         }) | raw}}
                         {% set articleCount = articleCount + 1 %}
                     {% endif %}
@@ -253,29 +253,16 @@
                             article: articles[articleCount], 
                             'position': (articleCount+1), 
                             containerClass: 'col-sm-4 card-sm',
-                            imageSize: {width:300, height:170}
-                        }) | raw}}
-                        {% set articleCount = articleCount + 1 %}
-                    {% endif %}
-                    {% if articles[articleCount] %}
-                        {{this.render('partials/_single-article.twig', {article: articles[articleCount], 'position': (articleCount+1), containerClass: 'col-sm-8 card-md'}) | raw}}
-                        {% set articleCount = articleCount + 1 %}
-                    {% endif %}
-                    {% if articles[articleCount] %}
-                        {{this.render('partials/_single-article.twig', {
-                            article: articles[articleCount], 
-                            'position': (articleCount+1), 
-                            containerClass: 'col-sm-4 card-sm',
-                            imageSize: {width:300, height:170}
+                            imageSize: {width:600, height:340}
                         }) | raw}}
                         {% set articleCount = articleCount + 1 %}
                     {% endif %}
                     {% if articles[articleCount] %}
                         {{this.render('partials/_single-article.twig', {
-                            article: articles[articleCount], 
-                            'position': (articleCount+1), 
-                            containerClass: 'col-sm-4 card-sm',
-                            imageSize: {width:300, height:170}
+                                article: articles[articleCount], 
+                                'position': (articleCount+1), 
+                                containerClass: 'col-sm-8 card-md',
+                                imageSize: {width:660, height:500}
                         }) | raw}}
                         {% set articleCount = articleCount + 1 %}
                     {% endif %}
@@ -284,7 +271,25 @@
                             article: articles[articleCount], 
                             'position': (articleCount+1), 
                             containerClass: 'col-sm-4 card-sm',
-                            imageSize: {width:300, height:170}
+                            imageSize: {width:600, height:340}
+                        }) | raw}}
+                        {% set articleCount = articleCount + 1 %}
+                    {% endif %}
+                    {% if articles[articleCount] %}
+                        {{this.render('partials/_single-article.twig', {
+                            article: articles[articleCount], 
+                            'position': (articleCount+1), 
+                            containerClass: 'col-sm-4 card-sm',
+                            imageSize: {width:600, height:340}
+                        }) | raw}}
+                        {% set articleCount = articleCount + 1 %}
+                    {% endif %}
+                    {% if articles[articleCount] %}
+                        {{this.render('partials/_single-article.twig', {
+                            article: articles[articleCount], 
+                            'position': (articleCount+1), 
+                            containerClass: 'col-sm-4 card-sm',
+                            imageSize: {width:600, height:340}
                         }) | raw}}
                         {% set articleCount = articleCount + 1 %}
                     {% endif %}
