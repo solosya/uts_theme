@@ -54,7 +54,7 @@
 <div class="article {{ article.media|length <= 0 ? 'no_image' : '' }}">
     <div class="article__headerSection">
         {% if article.media|length %}
-            <amp-carousel width="1280" height="600" layout="responsive" type="slides" autoplay="" loop="">
+            <amp-carousel width="1280" height="720" layout="responsive" type="slides" autoplay="" loop="">
                 {% for media in article.media %}
                     {% if media.type == 'video' %} 
                         {% set mediaUrl = "" %}
