@@ -34,13 +34,13 @@
         {% set i = 1 %}
         {% for media in article.media %}
         {% if media.type != 'video' %}
-            {% set medUrl = _Media.getMediaUrl(media,1094, 515, {'crop': 'fill', 'gravity': 'faces:auto'} ) %}
+            {% set medUrl = _Media.getMediaUrl(media,1094, 615, {'crop': 'fill', 'gravity': 'faces:auto'} ) %}
 
         "image": {
             "@type": "ImageObject",
             "url": "{{medUrl}}",
             "width": 1094,
-            "height": 515
+            "height": 615
         }
         {% if article.media | length > i %}
         ,
@@ -77,7 +77,8 @@
                         {% endif %}                   
                     {% else %}
                         <figure>
-                            <amp-img src="{{media.path}}" class="" layout="fill"></amp-img>
+                            {% set medUrl = _Media.getMediaUrl(media,1094, 615, {'crop': 'fill', 'gravity': 'faces:auto'} ) %}
+                            <amp-img src="{{medUrl}}" class="" layout="fill"></amp-img>
                         </figure>
                     {% endif %}
                 {% endfor %}
