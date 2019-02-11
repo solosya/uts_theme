@@ -59,9 +59,9 @@
                     {% if media.type == 'video' %} 
                         {% set mediaUrl = "" %}
                         {% if media.isSystemVideo == 'TRUE'%}
-                            {% set mediaUrl = media.video_path  %}
+                            {% set mediaUrl = _Media.getMediaUrl(media,1094, 615, {'crop': 'fill', 'gravity': 'faces:auto'} )  %}
                             <div class="video-player">
-                                <amp-video id="myVideo" controls width="1280" height="550" layout="responsive" src="{{mediaUrl}}"></amp-video>
+                                <amp-video id="myVideo" controls width="1280" height="720" layout="responsive" src="{{mediaUrl}}"></amp-video>
 
                                 <div id="myOverlay" class="click-to-play-overlay">
                                     <div class="play-icon" role="button" tabindex="0" on="tap:myOverlay.hide, myVideo.play"></div>
@@ -72,7 +72,7 @@
                             {% if media.source == 'youtube' %}
                                 <amp-youtube data-videoid="{{media.videoId}}" layout="responsive" width="480" height="270"></amp-youtube>
                             {% else %}
-                                <amp-vimeo data-videoid="{{media.videoId}}" layout="responsive" width="500" height="281"></amp-vimeo>
+                                <amp-vimeo data-videoid="{{media.videoId}}" layout="responsive" width="500" height="240"></amp-vimeo>
                             {% endif %}
                         {% endif %}                   
                     {% else %}
