@@ -33,12 +33,14 @@
         ,
         {% set i = 1 %}
         {% for media in article.media %}
-        {% if media.type != 'video' %} 
+        {% if media.type != 'video' %}
+            {% set medUrl = _Media.getMediaUrl(media,1094, 515, {'crop': 'fill', 'gravity': 'faces:auto'} ) %}
+
         "image": {
             "@type": "ImageObject",
-            "url": "{{media.path}}",
-            "width": {{media.width}},
-            "height": {{media.height}}
+            "url": "{{medUrl}}",
+            "width": 1094,
+            "height": 515
         }
         {% if article.media | length > i %}
         ,
