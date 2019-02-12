@@ -245,7 +245,7 @@ th {
 
 html {
   font-size: 10px;
-  -webkit-tap-highlight-color: transparent; }
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
 
 body {
   font-family: "acumin-pro", Helvetica, Arial, sans-serif;
@@ -2366,16 +2366,20 @@ select[multiple].input-lg {
     margin-right: 0;
     border-radius: 4px; }
   .nav-tabs-justified > .active > a, .nav-tabs.nav-justified > .active > a,
-  .nav-tabs-justified > .active > a:hover, .nav-tabs.nav-justified > .active > a:hover,
-  .nav-tabs-justified > .active > a:focus, .nav-tabs.nav-justified > .active > a:focus {
+  .nav-tabs-justified > .active > a:hover,
+  .nav-tabs.nav-justified > .active > a:hover,
+  .nav-tabs-justified > .active > a:focus,
+  .nav-tabs.nav-justified > .active > a:focus {
     border: 1px solid #ddd; }
   @media (min-width: 768px) {
     .nav-tabs-justified > li > a, .nav-tabs.nav-justified > li > a {
       border-bottom: 1px solid #ddd;
       border-radius: 4px 4px 0 0; }
     .nav-tabs-justified > .active > a, .nav-tabs.nav-justified > .active > a,
-    .nav-tabs-justified > .active > a:hover, .nav-tabs.nav-justified > .active > a:hover,
-    .nav-tabs-justified > .active > a:focus, .nav-tabs.nav-justified > .active > a:focus {
+    .nav-tabs-justified > .active > a:hover,
+    .nav-tabs.nav-justified > .active > a:hover,
+    .nav-tabs-justified > .active > a:focus,
+    .nav-tabs.nav-justified > .active > a:focus {
       border-bottom-color: #fff; } }
 
 .tab-content > .tab-pane {
@@ -2455,14 +2459,18 @@ select[multiple].input-lg {
       max-height: 200px; } }
 
 .container > .navbar-header, .login-page .container > .navbar-header, .profile__container > .navbar-header,
-.container > .navbar-collapse, .login-page .container > .navbar-collapse, .profile__container > .navbar-collapse,
+.container > .navbar-collapse,
+.login-page .container > .navbar-collapse,
+.profile__container > .navbar-collapse,
 .container-fluid > .navbar-header,
 .container-fluid > .navbar-collapse {
   margin-right: -15px;
   margin-left: -15px; }
   @media (min-width: 768px) {
     .container > .navbar-header, .login-page .container > .navbar-header, .profile__container > .navbar-header,
-    .container > .navbar-collapse, .login-page .container > .navbar-collapse, .profile__container > .navbar-collapse,
+    .container > .navbar-collapse,
+    .login-page .container > .navbar-collapse,
+    .profile__container > .navbar-collapse,
     .container-fluid > .navbar-header,
     .container-fluid > .navbar-collapse {
       margin-right: 0;
@@ -3155,7 +3163,7 @@ tbody.collapse.in {
     display: none !important; } }
 
 .bootbox .modal-dialog .modal-content {
-  box-shadow: 0 0px 0px 0px transparent; }
+  box-shadow: 0 0px 0px 0px rgba(0, 0, 0, 0); }
   .bootbox .modal-dialog .modal-content .modal-header {
     background-color: #212427; }
     .bootbox .modal-dialog .modal-content .modal-header h4 {
@@ -3183,7 +3191,7 @@ tbody.collapse.in {
     border-top: 1px solid #dfe0e1;
     padding: 15px;
     text-align: right;
-    background-color: transparent !important; }
+    background-color: rgba(0, 0, 0, 0) !important; }
     .bootbox .modal-dialog .modal-content .modal-footer .btn-primary {
       background: #8a9292 none repeat scroll 0 0 !important;
       border-color: #8a9292 !important;
@@ -7919,7 +7927,8 @@ ul.menu > li > ul.sub-menu.breaking-news-menu > li > ul.sub-sub-menu > li {
     padding: 25px; }
   .search-sub-menu form {
     position: initial; }
-  .search-sub-menu input.field, .search-sub-menu input.field:focus {
+  .search-sub-menu input.field,
+  .search-sub-menu input.field:focus {
     width: 100%;
     padding: 0;
     background: none;
@@ -9497,7 +9506,7 @@ a.card {
       margin-bottom: 20px; }
     .main-featured .top-articles .card {
       padding-bottom: 15px;
-      background: transparent; }
+      background: rgba(0, 0, 0, 0); }
       .main-featured .top-articles .card figure {
         height: 120px;
         width: 120px;
@@ -10008,51 +10017,51 @@ button.swiper-pagination-bullet {
   z-index: 10; }
 
 .swiper-container-3d .swiper-slide-shadow-left {
-  background-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0.5)), to(transparent));
+  background-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0)));
   /* Safari 4+, Chrome */
-  background-image: -webkit-linear-gradient(right, rgba(0, 0, 0, 0.5), transparent);
+  background-image: -webkit-linear-gradient(right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
   /* Chrome 10+, Safari 5.1+, iOS 5+ */
-  background-image: -moz-linear-gradient(right, rgba(0, 0, 0, 0.5), transparent);
+  background-image: -moz-linear-gradient(right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
   /* Firefox 3.6-15 */
-  background-image: -o-linear-gradient(right, rgba(0, 0, 0, 0.5), transparent);
+  background-image: -o-linear-gradient(right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
   /* Opera 11.10-12.00 */
-  background-image: linear-gradient(to left, rgba(0, 0, 0, 0.5), transparent);
+  background-image: linear-gradient(to left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
   /* Firefox 16+, IE10, Opera 12.50+ */ }
 
 .swiper-container-3d .swiper-slide-shadow-right {
-  background-image: -webkit-gradient(linear, right top, left top, from(rgba(0, 0, 0, 0.5)), to(transparent));
+  background-image: -webkit-gradient(linear, right top, left top, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0)));
   /* Safari 4+, Chrome */
-  background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.5), transparent);
+  background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
   /* Chrome 10+, Safari 5.1+, iOS 5+ */
-  background-image: -moz-linear-gradient(left, rgba(0, 0, 0, 0.5), transparent);
+  background-image: -moz-linear-gradient(left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
   /* Firefox 3.6-15 */
-  background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0.5), transparent);
+  background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
   /* Opera 11.10-12.00 */
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), transparent);
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
   /* Firefox 16+, IE10, Opera 12.50+ */ }
 
 .swiper-container-3d .swiper-slide-shadow-top {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(transparent));
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0)));
   /* Safari 4+, Chrome */
-  background-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.5), transparent);
+  background-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
   /* Chrome 10+, Safari 5.1+, iOS 5+ */
-  background-image: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0.5), transparent);
+  background-image: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
   /* Firefox 3.6-15 */
-  background-image: -o-linear-gradient(bottom, rgba(0, 0, 0, 0.5), transparent);
+  background-image: -o-linear-gradient(bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
   /* Opera 11.10-12.00 */
-  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
   /* Firefox 16+, IE10, Opera 12.50+ */ }
 
 .swiper-container-3d .swiper-slide-shadow-bottom {
-  background-image: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0.5)), to(transparent));
+  background-image: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0)));
   /* Safari 4+, Chrome */
-  background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.5), transparent);
+  background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
   /* Chrome 10+, Safari 5.1+, iOS 5+ */
-  background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0.5), transparent);
+  background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
   /* Firefox 3.6-15 */
-  background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0.5), transparent);
+  background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
   /* Opera 11.10-12.00 */
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent);
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
   /* Firefox 16+, IE10, Opera 12.50+ */ }
 
 /* Coverflow */
@@ -10274,11 +10283,11 @@ button.swiper-pagination-bullet {
     bottom: 0;
     width: 100%;
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0.69+0,0.31+37,0+100 */
-    background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.69) 0%, rgba(0, 0, 0, 0.31) 37%, transparent 100%);
+    background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.69) 0%, rgba(0, 0, 0, 0.31) 37%, rgba(0, 0, 0, 0) 100%);
     /* FF3.6-15 */
-    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.69) 0%, rgba(0, 0, 0, 0.31) 37%, transparent 100%);
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.69) 0%, rgba(0, 0, 0, 0.31) 37%, rgba(0, 0, 0, 0) 100%);
     /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.69) 0%, rgba(0, 0, 0, 0.31) 37%, transparent 100%);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.69) 0%, rgba(0, 0, 0, 0.31) 37%, rgba(0, 0, 0, 0) 100%);
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b0000000', endColorstr='#00000000',GradientType=0 );
     /* IE6-9 */
@@ -10756,48 +10765,48 @@ button.swiper-pagination-bullet {
     pointer-events: none;
     z-index: 10; }
   .featured-carousel-index2 .swiper-container-3d .swiper-slide-shadow-left {
-    background-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0.5)), to(transparent));
+    background-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0)));
     /* Safari 4+, Chrome */
-    background-image: -webkit-linear-gradient(right, rgba(0, 0, 0, 0.5), transparent);
+    background-image: -webkit-linear-gradient(right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
     /* Chrome 10+, Safari 5.1+, iOS 5+ */
-    background-image: -moz-linear-gradient(right, rgba(0, 0, 0, 0.5), transparent);
+    background-image: -moz-linear-gradient(right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
     /* Firefox 3.6-15 */
-    background-image: -o-linear-gradient(right, rgba(0, 0, 0, 0.5), transparent);
+    background-image: -o-linear-gradient(right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
     /* Opera 11.10-12.00 */
-    background-image: linear-gradient(to left, rgba(0, 0, 0, 0.5), transparent);
+    background-image: linear-gradient(to left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
     /* Firefox 16+, IE10, Opera 12.50+ */ }
   .featured-carousel-index2 .swiper-container-3d .swiper-slide-shadow-right {
-    background-image: -webkit-gradient(linear, right top, left top, from(rgba(0, 0, 0, 0.5)), to(transparent));
+    background-image: -webkit-gradient(linear, right top, left top, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0)));
     /* Safari 4+, Chrome */
-    background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.5), transparent);
+    background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
     /* Chrome 10+, Safari 5.1+, iOS 5+ */
-    background-image: -moz-linear-gradient(left, rgba(0, 0, 0, 0.5), transparent);
+    background-image: -moz-linear-gradient(left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
     /* Firefox 3.6-15 */
-    background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0.5), transparent);
+    background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
     /* Opera 11.10-12.00 */
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), transparent);
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
     /* Firefox 16+, IE10, Opera 12.50+ */ }
   .featured-carousel-index2 .swiper-container-3d .swiper-slide-shadow-top {
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(transparent));
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0)));
     /* Safari 4+, Chrome */
-    background-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.5), transparent);
+    background-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
     /* Chrome 10+, Safari 5.1+, iOS 5+ */
-    background-image: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0.5), transparent);
+    background-image: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
     /* Firefox 3.6-15 */
-    background-image: -o-linear-gradient(bottom, rgba(0, 0, 0, 0.5), transparent);
+    background-image: -o-linear-gradient(bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
     /* Opera 11.10-12.00 */
-    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
     /* Firefox 16+, IE10, Opera 12.50+ */ }
   .featured-carousel-index2 .swiper-container-3d .swiper-slide-shadow-bottom {
-    background-image: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0.5)), to(transparent));
+    background-image: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0)));
     /* Safari 4+, Chrome */
-    background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.5), transparent);
+    background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
     /* Chrome 10+, Safari 5.1+, iOS 5+ */
-    background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0.5), transparent);
+    background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
     /* Firefox 3.6-15 */
-    background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0.5), transparent);
+    background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
     /* Opera 11.10-12.00 */
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent);
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
     /* Firefox 16+, IE10, Opera 12.50+ */ }
   .featured-carousel-index2 .swiper-container-coverflow .swiper-wrapper,
   .featured-carousel-index2 .swiper-container-flip .swiper-wrapper {
@@ -11854,11 +11863,11 @@ body.screen {
       right: 0;
       width: 100%;
       /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0.65+0,0+65 */
-      background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.65) 0%, transparent 65%, transparent 100%);
+      background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0) 65%, rgba(0, 0, 0, 0) 100%);
       /* FF3.6-15 */
-      background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.65) 0%, transparent 65%, transparent 100%);
+      background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0) 65%, rgba(0, 0, 0, 0) 100%);
       /* Chrome10-25,Safari5.1-6 */
-      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.65) 0%, transparent 65%, transparent 100%);
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0) 65%, rgba(0, 0, 0, 0) 100%);
       /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
       filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=0 );
       /* IE6-9 */
