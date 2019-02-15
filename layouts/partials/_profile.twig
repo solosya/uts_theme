@@ -1,3 +1,7 @@
+
+{% set date = date() %}
+
+
 {% if not _User.isGuest() %}
 
     {% set user = _User.getUser() %}
@@ -36,14 +40,14 @@
 
       <div class="menu">
           <ul>
-              <li><a href="{{networkData.defaultBlogUrl}}/about-us">About</a></li>
+              <li><p style="color:#d0d2d3">{{_AppHelper.getDateTimeBasedOnTimezone(date.date,'l d F, Y')}}</p></li>
               {# <li><a href="{{networkData.defaultBlogUrl}}/@contact">Contact</a></li> #}
           </ul>
       </div><!--menu-->
-      <div class="social-links">
-          <a href="https://www.facebook.com/centralnews.com.au/" target="_blank" class="icon facebook"><span class="sr-only">Facebook</span></a>
+      <div class="social-links" style="height:20px;">
+          {# <a href="https://www.facebook.com/centralnews.com.au/" target="_blank" class="icon facebook"><span class="sr-only">Facebook</span></a>
           <a href="https://twitter.com/centralnewsuts" target="_blank" class="icon twitter"><span class="sr-only">Twitter</span></a>
-          <a href="https://www.instagram.com/centralnewsuts/" target="_blank" class="icon instagram"><span class="sr-only">Instagram</span></a>
+          <a href="https://www.instagram.com/centralnewsuts/" target="_blank" class="icon instagram"><span class="sr-only">Instagram</span></a> #}
         </div>
       </div>
 
@@ -54,14 +58,14 @@
 
         <div class="menu">
             <ul>
-                <li><a href="{{networkData.defaultBlogUrl}}/about-us">About</a></li>
+                <li><p style="color:#d0d2d3">{{_AppHelper.getDateTimeBasedOnTimezone(date.date,'l d F, Y')}}</p></li>
                {#  <li><a href="{{networkData.defaultBlogUrl}}/@contact">Contact</a></li> #}
             </ul>
         </div><!--menu-->
-        <div class="social-links">
-            <a href="https://www.facebook.com/centralnews.com.au/" target="_blank" class="icon facebook"><span class="sr-only">Facebook</span></a>
+        <div class="social-links" style="height:20px;">
+            {# <a href="https://www.facebook.com/centralnews.com.au/" target="_blank" class="icon facebook"><span class="sr-only">Facebook</span></a>
             <a href="https://twitter.com/centralnewsuts" target="_blank" class="icon twitter"><span class="sr-only">Twitter</span></a>
-            <a href="https://www.instagram.com/centralnewsuts/" target="_blank" class="icon instagram"><span class="sr-only">Instagram</span></a>
+            <a href="https://www.instagram.com/centralnewsuts/" target="_blank" class="icon instagram"><span class="sr-only">Instagram</span></a> #}
           </div>
         </div>
 {% endif %}      

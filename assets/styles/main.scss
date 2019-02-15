@@ -24,6 +24,9 @@
 
 // CARDS
 @import "card";
+@import "card-feat";
+@import "card-feat-mini";
+@import "card-full";
 @import "card-sm";
 @import "card-topstories";
 @import "card-md";
@@ -55,7 +58,10 @@
 //Pages
 @import "page-contact";
 @import "page-about";
-// @import "page-index";
+@import "page-index";
+
+//utilities
+@import "trumps";
 
 
 

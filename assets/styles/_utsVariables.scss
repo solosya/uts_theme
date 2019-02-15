@@ -66,8 +66,8 @@ $logo-break: 1580px;
 $menu-break: 1260px;
 $md-break: 1200px;
 $mmd-break: 992px;
-$sm-break: 769px;
-$sm-break-down: 768px;
+$sm-break: 768px;
+$sm-break-down: 767px;
 $mobile-break: 620px;
 $sm-mobile-break: 490px;
 
@@ -107,4 +107,9 @@ $media-phone: "screen and (min-width : 200px) and (max-width : 480px)";
 $media-iPhoneMedium: "screen and (min-width : 481px) and (max-width : 667px)";
 $media-iPhoneLarge: "screen and (min-width : 668px) and (max-width : 767px)";
 $media-iPad: "screen and (min-width : 768px) and (max-width : 992px)";
+$desktop: "screen and (min-width : 992px)";
+$tablet: "screen and (min-width : 768px) and (max-width : 991px)";
+$tablet-up: "screen and (min-width : 768px)";
+$tablet-down: "screen and (max-width : 991px)";
+$mobile: "screen and (max-width : 767px)";
 

@@ -16,6 +16,8 @@ body.Screen {
     margin-top: 27px;
     z-index: 100;
     height: 97.5px;
+    background-color: black;
+    margin-top: 0px;
 
     @media screen and (max-width: $sm-break){
         padding-left: 23px;
@@ -27,27 +29,8 @@ body.Screen {
         padding-right: 15px;
     }
 
-    &.channel-page {
-        background:$black;
-        margin-top: 0;
-    }
-
-    &.page {
-        background:$black;
-        margin-top: 0;
-    }
-
-
-    &.user {
-        background:$black;
-        margin-top: 0;
-    }
-
-    &.auth {
-        background:$black;
-        margin-top: 0;
-    }
-
+    background:$black;
+    margin-top: 0;
 
     &.night-fall:before{
         content: '';
