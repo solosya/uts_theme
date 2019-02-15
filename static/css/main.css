@@ -9122,7 +9122,7 @@ a.card {
     .card-full a.card .content {
       display: block;
       margin: 0 auto;
-      padding: 230px 35px 35px 35px;
+      padding: 230px 630px 35px 35px;
       position: relative;
       z-index: 20; } }
     @media screen and (min-width: 992px) and (max-width: 1200px) {
@@ -9151,7 +9151,7 @@ a.card {
         color: #fefefe; }
       .card-full a.card .content p {
         font-size: 1rem;
-        font-weight: 900;
+        font-weight: 600;
         color: #fefefe; }
     .card-full a.card.without__image {
       background: rgba(34, 31, 32, 0.8); }
@@ -9197,7 +9197,7 @@ a.card {
     .card-full-tablet a.card .content {
       display: block;
       margin: 0 auto;
-      padding: 230px 35px 35px 35px;
+      padding: 230px 630px 35px 35px;
       position: relative;
       z-index: 20; } }
     @media screen and (min-width: 768px) and (max-width: 991px) and (max-width: 1200px) {
@@ -9226,7 +9226,7 @@ a.card {
         color: #fefefe; }
       .card-full-tablet a.card .content p {
         font-size: 1rem;
-        font-weight: 900;
+        font-weight: 600;
         color: #fefefe; }
     .card-full-tablet a.card.without__image {
       background: rgba(34, 31, 32, 0.8); }
@@ -9292,7 +9292,7 @@ a.card {
     .card-full-mobile a.card .content {
       display: block;
       margin: 0 auto;
-      padding: 230px 35px 35px 35px;
+      padding: 230px 630px 35px 35px;
       position: relative;
       z-index: 20; } }
     @media screen and (max-width: 767px) and (max-width: 1200px) {
@@ -9321,7 +9321,7 @@ a.card {
         color: #fefefe; }
       .card-full-mobile a.card .content p {
         font-size: 1rem;
-        font-weight: 900;
+        font-weight: 600;
         color: #fefefe; }
     .card-full-mobile a.card.without__image {
       background: rgba(34, 31, 32, 0.8); }
