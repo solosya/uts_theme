@@ -139,14 +139,14 @@
 
                     <section class="aap-news">
                         
-                        <a href ="{{ sections['Take Your Pick'].link }}"><h2>TAKE YOUR PICK</h2></a>
+                        <a href ="{{ sections['Take Your Pick'].link }}" class="col-sm-12 u-margin-bottom-20"><h2>TAKE YOUR PICK</h2></a>
                         {% for i in 0..5 %}
                             {% if sections['Take Your Pick'].feed.articles[i] %}
                                 {{this.render('partials/_single-article.twig', {article: sections['Take Your Pick'].feed.articles[i], containerClass: 'col-sm-6 col-md-12'}) | raw}}
                             {% endif %}
                         {% endfor %}
 
-                        <a href="{{ sections['Take Your Pick'].link }}" class="viewmore">VIEW MORE</a>
+                        {# <a href="{{ sections['Take Your Pick'].link }}" class="viewmore">VIEW MORE</a> #}
                     </section>
                     {% endif %}
                 </aside>
@@ -186,8 +186,7 @@
 
                         <section class="row top-stories-sidebar">
                             
-                            <h2 class="hidden-xs">BREAKING NEWS</h2>
-                            <h2 class="visible-xs-block">BREAKING<br /> NEWS</h2>
+                            <h2 class="hidden-xs u-no-margin-bottom">BREAKING NEWS</h2>
                             <h2>FROM <img src="{{networkData.templatePath}}/static/images/aap.jpg"></h2>
 
                             {% for i in 0..8 %}

@@ -7202,6 +7202,12 @@ div.fancybox-title {
   width: 20px;
   height: 20px; }
 
+.icon-search-yel {
+  background-image: url(../icons/search-yellow.svg);
+  width: 36px;
+  height: 28px;
+  margin-top: 2px; }
+
 .icon-submit {
   background-image: url(../icons/arrow-btn.svg);
   width: 42px;
@@ -8595,7 +8601,7 @@ a.card {
       display: block;
       width: 730px;
       margin: 0 auto;
-      padding: 220px 35px 35px 35px;
+      padding: 220px 150px 35px 35px;
       position: relative;
       z-index: 20; } }
     @media screen and (min-width: 992px) and (max-width: 1200px) {
@@ -8612,7 +8618,7 @@ a.card {
         display: none; }
       .card-feat a.card .content h2 {
         width: auto;
-        font-size: 3rem;
+        font-size: 2.5rem;
         margin-bottom: 25px;
         margin-top: 0;
         max-height: 120px;
@@ -8679,7 +8685,7 @@ a.card {
       display: block;
       width: 730px;
       margin: 0 auto;
-      padding: 220px 35px 35px 35px;
+      padding: 220px 150px 35px 35px;
       position: relative;
       z-index: 20; } }
     @media screen and (min-width: 768px) and (max-width: 991px) and (max-width: 1200px) {
@@ -8696,7 +8702,7 @@ a.card {
         display: none; }
       .card-feat-tablet a.card .content h2 {
         width: auto;
-        font-size: 3rem;
+        font-size: 2.5rem;
         margin-bottom: 25px;
         margin-top: 0;
         max-height: 120px;
@@ -8781,7 +8787,7 @@ a.card {
       display: block;
       width: 730px;
       margin: 0 auto;
-      padding: 220px 35px 35px 35px;
+      padding: 220px 150px 35px 35px;
       position: relative;
       z-index: 20; } }
     @media screen and (max-width: 767px) and (max-width: 1200px) {
@@ -8798,7 +8804,7 @@ a.card {
         display: none; }
       .card-feat-mobile a.card .content h2 {
         width: auto;
-        font-size: 3rem;
+        font-size: 2.5rem;
         margin-bottom: 25px;
         margin-top: 0;
         max-height: 120px;
@@ -13413,7 +13419,7 @@ div[class*='col-sm'].clearfixed {
 .u-margin-bottom-25 {
   margin-bottom: 25px; }
 
-.u-margin-bottom-25 {
+.u-margin-bottom-20 {
   margin-bottom: 20px; }
 
 .u-margin-bottom-15 {
@@ -13427,6 +13433,9 @@ div[class*='col-sm'].clearfixed {
 
 .u-no-margin-bottom {
   margin-bottom: 0 !important; }
+
+.u-no-margins {
+  margin: 0; }
 
 @media screen and (max-width: 767px) {
   .u-mobile-float-left {
