@@ -31,7 +31,7 @@
         {% if blog.title | lower == key | lower %}
             {% set sections = sections | merge({
                 (key) : {
-                    'feed': _Blog.getBlogFeed({'limit': 10, 'offset': 0, 'blogid':blog.guid}),
+                    'feed': _Blog.getBlogFeed({'limit': 9, 'offset': 0, 'blogid':blog.guid}),
                     'link' : blog.link
                     }
                 }) %}
@@ -190,7 +190,7 @@
                             <h2 class="visible-xs-block">BREAKING<br /> NEWS</h2>
                             <h2>FROM <img src="{{networkData.templatePath}}/static/images/aap.jpg"></h2>
 
-                            {% for i in 0..9 %}
+                            {% for i in 0..8 %}
                                 {% if sections['Breaking News'].feed.articles[i] %}
                                     {{this.render('partials/_sidebar-article.twig', {article: sections['Breaking News'].feed.articles[i], containerClass: 'col-sm-6 col-md-12'}) | raw}}
                                 {% endif %}

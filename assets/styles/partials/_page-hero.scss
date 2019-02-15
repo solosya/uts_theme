@@ -2,14 +2,16 @@
     height: 520px;
     text-align: center;
     margin-bottom:115px;
-    // margin-top: 98px;
+    margin-top: 135px;
     
-    @media screen and (max-width: $mmd-break){
+    @media #{$tablet}{
         margin-bottom:93px;
+        height: 400px;
     }
 
-    @media screen and (max-width: $sm-break) {
+    @media #{$mobile} {
         margin-bottom:40px;
+        height: 220px;
     }
     
     figure.featured { 
@@ -50,7 +52,7 @@
             padding-right:15px;
             font-style: italic;
             font-family: $base-font-family;
-            margin-top: 10px;
+            margin-top: 20px;
             margin-bottom: 30px;
             @media screen and (max-width: 767px){
                 margin-top: 18px;
