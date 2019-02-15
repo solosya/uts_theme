@@ -12160,21 +12160,21 @@ body.screen {
   @media screen and (max-width: 620px) {
     .top-stories-sidebar {
       padding-left: 0; } }
-  .top-stories-sidebar > h2:first-child {
+  .top-stories-sidebar > h2 {
     margin-left: 15px;
     margin-top: 0px;
     margin-bottom: 20px;
     font-size: 1.125rem; }
     @media screen and (max-width: 992px) {
-      .top-stories-sidebar > h2:first-child {
+      .top-stories-sidebar > h2 {
         width: 100%;
         padding-left: 15px; } }
     @media screen and (max-width: 768px) {
-      .top-stories-sidebar > h2:first-child {
+      .top-stories-sidebar > h2 {
         font-size: 1.875rem;
         margin-bottom: 30px; } }
     @media screen and (max-width: 620px) {
-      .top-stories-sidebar > h2:first-child {
+      .top-stories-sidebar > h2 {
         font-size: 1.375rem;
         margin-left: 0; } }
   .top-stories-sidebar a.card {
@@ -12263,8 +12263,7 @@ body.screen {
   .top-stories-sidebar a {
     font-size: 13px;
     font-weight: 500;
-    color: #1a1818;
-    text-decoration: underline; }
+    color: #1a1818; }
 
 .subscribe {
   padding-left: 30px; }

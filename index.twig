@@ -31,7 +31,7 @@
         {% if blog.title | lower == key | lower %}
             {% set sections = sections | merge({
                 (key) : {
-                    'feed': _Blog.getBlogFeed({'limit': 6, 'offset': 0, 'blogid':blog.guid}),
+                    'feed': _Blog.getBlogFeed({'limit': 10, 'offset': 0, 'blogid':blog.guid}),
                     'link' : blog.link
                     }
                 }) %}
@@ -139,7 +139,7 @@
 
                     <section class="aap-news">
                         
-                        <a href ="{{ sections['Breaking News'].link }}"><h2>TAKE YOUR PICK</h2></a>
+                        <a href ="{{ sections['Take Your Pick'].link }}"><h2>TAKE YOUR PICK</h2></a>
                         {% for i in 0..5 %}
                             {% if sections['Take Your Pick'].feed.articles[i] %}
                                 {{this.render('partials/_single-article.twig', {article: sections['Take Your Pick'].feed.articles[i], containerClass: 'col-sm-6 col-md-12'}) | raw}}
@@ -186,14 +186,11 @@
 
                         <section class="row top-stories-sidebar">
                             
-                            <a href ="{{ sections['Breaking News'].link }}" class="hidden-xs"><h2>BREAKING NEWS</h2></a>
-                            <a href ="{{ sections['Breaking News'].link }}" class="hidden-sm hidden-md hidden-lg"><h2>BREAKING<br /> NEWS</h2></a>
+                            <h2 class="hidden-xs">BREAKING NEWS</h2>
+                            <h2 class="visible-xs-block">BREAKING<br /> NEWS</h2>
+                            <h2>FROM <img src="{{networkData.templatePath}}/static/images/aap.jpg"></h2>
 
-
-                            {# <a href ="{{ sections['Breaking News'].link }}"><h2>BREAKING NEWS</h2></a> #}
-                            <a>FROM <img src="{{networkData.templatePath}}/static/images/aap.jpg"></a>
-
-                            {% for i in 0..5 %}
+                            {% for i in 0..9 %}
                                 {% if sections['Breaking News'].feed.articles[i] %}
                                     {{this.render('partials/_sidebar-article.twig', {article: sections['Breaking News'].feed.articles[i], containerClass: 'col-sm-6 col-md-12'}) | raw}}
                                 {% endif %}
