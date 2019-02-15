@@ -35,8 +35,16 @@
 
                 <div class="col-sm-2 hidden-xxs footer-links">
                     <ul>
+                        {% set x = 0 %}
                     {% for menu in footermenu %}
+                        {% set x = x + 1 %}
                         <li><a href="{{menu.link}}">{{menu.blogTitle}}</a></li>
+                        {% if x == 2 or x == 5 or x == 8  or x == 12 %}
+                                </ul>
+                            </div>
+                            <div class="col-sm-2 hidden-xxs footer-links">
+                                <ul>
+                        {% endif %}    
                     {% endfor %}
                     </ul>
                 </div><!--col-sm-2-->
