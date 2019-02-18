@@ -7511,7 +7511,7 @@ body.Screen .top-bar {
       padding-right: 23px; } }
   @media screen and (max-width: 620px) {
     .site-header {
-      margin-top: 23px;
+      margin-top: 0;
       padding-left: 15px;
       padding-right: 15px; } }
   .site-header.night-fall:before {
@@ -8850,8 +8850,8 @@ a.card {
         padding: 5px 8px; }
       .card-feat-mobile a.card .content h2 {
         margin-bottom: 10px;
-        height: auto;
-        max-height: 85px;
+        height: 65px;
+        max-height: 65px;
         font-size: 1.75rem; }
       .card-feat-mobile a.card .content .author {
         font-size: 0.5rem;
