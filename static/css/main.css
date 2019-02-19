@@ -7616,7 +7616,7 @@ body.Screen .top-bar {
   .site-header.stick {
     position: fixed;
     top: 0;
-    background-color: #231f20;
+    background-color: #000;
     margin-top: 0;
     height: 70px; }
     @media screen and (max-width: 620px) {
