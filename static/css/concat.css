@@ -13104,6 +13104,9 @@ body.search #masthead {
             max-width: 60px; } }
     .site-footer .footer-content .footer-links {
       margin-top: 35px; }
+      @media screen and (max-width: 767px) {
+        .site-footer .footer-content .footer-links {
+          margin-top: 0; } }
     .site-footer .footer-content .social-links {
       margin-top: 148px; }
       @media screen and (max-width: 620px) {
