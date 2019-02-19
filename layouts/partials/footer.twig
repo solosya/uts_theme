@@ -36,9 +36,17 @@
                 <div class="col-sm-2 hidden-xxs footer-links">
                     <ul>
                         {% set x = 0 %}
-                    {% for menu in footermenu %}
+                    {% for parentItem in footermenu %}
                         {% set x = x + 1 %}
-                        <li><a href="{{menu.link}}">{{menu.blogTitle}}</a></li>
+                        <a href="{{parentItem.link |raw}}" {% if parentItem.target != "" %}target="{{parentItem.target}}"{% endif %}>
+                                {% if parentItem.label != "" %}
+                                    {{parentItem.label | upper}}
+                                {% elseif parentItem.blogTitle != "" %}
+                                    {{parentItem.blogTitle | upper}}
+                                {% elseif parentItem.pageTitle != "" %}
+                                    {{parentItem.pageTitle | upper}}
+                                {% endif %}
+                            </a>
                         {% if x == 3 or x == 6 or x == 9  or x == 12 %}
                                 </ul>
                             </div>
@@ -46,7 +54,7 @@
                                 <ul>
                         {% endif %}    
                     {% endfor %}
-                        <li><a href="{{networkData.defaultBlogUrl}}/about-us">About Us</a></li>
+                        {# <li><a href="{{networkData.defaultBlogUrl}}/about-us">About Us</a></li> #}
                     </ul>
                 </div><!--col-sm-2-->
 
