@@ -38,7 +38,7 @@
                         {% set x = 0 %}
                     {% for parentItem in footermenu %}
                         {% set x = x + 1 %}
-                        <a href="{{parentItem.link |raw}}" {% if parentItem.target != "" %}target="{{parentItem.target}}"{% endif %}>
+                        <li><a href="{{parentItem.link |raw}}" {% if parentItem.target != "" %}target="{{parentItem.target}}"{% endif %}>
                                 {% if parentItem.label != "" %}
                                     {{parentItem.label | upper}}
                                 {% elseif parentItem.blogTitle != "" %}
@@ -46,7 +46,7 @@
                                 {% elseif parentItem.pageTitle != "" %}
                                     {{parentItem.pageTitle | upper}}
                                 {% endif %}
-                            </a>
+                            </a></li>
                         {% if x == 3 or x == 6 or x == 9  or x == 12 %}
                                 </ul>
                             </div>
