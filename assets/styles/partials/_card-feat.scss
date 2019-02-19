@@ -139,8 +139,9 @@
         @include card-feat-base;
         a.card{
             .content{
-                h2{
-                    
+                padding: 190px 150px 35px 35px;
+                p{
+                    display: block;
                 
                 }                
             }
