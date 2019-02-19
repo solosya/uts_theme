@@ -40,11 +40,11 @@
                         {% set x = x + 1 %}
                         <li><a href="{{parentItem.link |raw}}" {% if parentItem.target != "" %}target="{{parentItem.target}}"{% endif %}>
                                 {% if parentItem.label != "" %}
-                                    {{parentItem.label | upper}}
+                                    {{parentItem.label}}
                                 {% elseif parentItem.blogTitle != "" %}
-                                    {{parentItem.blogTitle | upper}}
+                                    {{parentItem.blogTitle}}
                                 {% elseif parentItem.pageTitle != "" %}
-                                    {{parentItem.pageTitle | upper}}
+                                    {{parentItem.pageTitle}}
                                 {% endif %}
                             </a></li>
                         {% if x == 3 or x == 6 or x == 9  or x == 12 %}
