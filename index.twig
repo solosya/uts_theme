@@ -182,20 +182,20 @@
                     
                     
 
-                    {% if sections['Breaking News'].feed.articles|length > 0 %}
+                    {% if popularArticles|length > 0 %}
 
                         <section class="row top-stories-sidebar">
                             
-                            <h2 class="u-no-margin-bottom">BREAKING NEWS</h2>
-                            <h2>FROM <img src="{{networkData.templatePath}}/static/images/aap.jpg"></h2>
+                            <h2 class="">Popular Articles</h2>
+                            {# <h2>FROM <img src="{{networkData.templatePath}}/static/images/aap.jpg"></h2> #}
 
                             {% for i in 0..8 %}
-                                {% if sections['Breaking News'].feed.articles[i] %}
-                                    {{this.render('partials/_sidebar-article.twig', {article: sections['Breaking News'].feed.articles[i], containerClass: 'col-sm-6 col-md-12'}) | raw}}
+                                {% if popularArticles[i] %}
+                                    {{this.render('partials/_sidebar-article.twig', {article: popularArticles[i], containerClass: 'col-sm-6 col-md-12'}) | raw}}
                                 {% endif %}
                             {% endfor %}
 
-                            <a href="{{ sections['Breaking News'].link }}" class="viewmore col-sm-12">VIEW MORE</a>
+                            {# <a href="{{ sections['Breaking News'].link }}" class="viewmore col-sm-12">VIEW MORE</a> #}
                         </section>
                     {% endif %}
                 </aside>
