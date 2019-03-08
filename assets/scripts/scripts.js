@@ -124,6 +124,23 @@ $('document').ready(function() {
     });
 
 
+    $("#owl-gallery-image").owlCarousel({
+        items: 1,
+        // thumbs: true,
+        // thumbsPrerendered: true,
+        // URLhashListener:true,
+        // startPosition: 'URLHash',
+        // pagination: true,
+        dots: false,
+        nav: true,
+        navText: [
+            "",
+            ""
+        ]
+    });   
+
+
+
 	// var swiper = new Swiper('#index-swiper', {
  //        spaceBetween: 30,
  //        effect: 'fade',
