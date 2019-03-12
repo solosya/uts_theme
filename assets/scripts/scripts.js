@@ -126,11 +126,6 @@ $('document').ready(function() {
 
     $("#owl-gallery-image").owlCarousel({
         items: 1,
-        // thumbs: true,
-        // thumbsPrerendered: true,
-        // URLhashListener:true,
-        // startPosition: 'URLHash',
-        // pagination: true,
         dots: false,
         nav: true,
         navText: [
@@ -138,25 +133,5 @@ $('document').ready(function() {
             ""
         ]
     });   
-
-
-
-	// var swiper = new Swiper('#index-swiper', {
- //        spaceBetween: 30,
- //        effect: 'fade',
- //        pagination: '.swiper-pagination',
- //        paginationClickable: true,
- //    });
-
-    // $(".pagination-item").click(function(){
-    //     var elem = $(this);
-    //     var slideToSlide = elem.data("slide");
-    //     elem.siblings().each(function(i,e) {
-    //         $(e).removeClass('active');
-    //     });
-
-    //     elem.addClass('active');
-    //     swiper.slideTo(slideToSlide);
-    // });
 
 });
