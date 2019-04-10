@@ -155,7 +155,7 @@
 
 
 
-<body class="{{ pageClass }} {{ blogName | lower }} {{ pageTypeClass }}{% if pageClass != 'article' %} {{this.title | lower}} @qq{% endif %}" data-network="{{networkData['id']}}">
+<body class="{{ pageClass }} {{ blogName | lower }} {{ pageTypeClass }}{% if 'article' not in pageClass %} {{this.title | lower}}{% endif %}" data-network="{{networkData['id']}}">
 
     {{ this.beginBody() }}
 
