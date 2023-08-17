@@ -78,11 +78,12 @@
 
 
             {% if article['createdBy']['coauthors'] is empty %}
-                <div class="author-info col-sm-8 col-sm-offset-2">
-                    <a href="{{_AppHelper.getUserProfileUrl(article.createdBy['username'])}}">
-                        <img src="{{ profileImg }}" alt="Author name">
+                <div class="author-info col-sm-8 col-sm-offset-2" itemprop="author" itemscope itemtype="https://schema.org/ImageObject">
+                     <meta itemprop="image" content="{{profileImg}}" />
+                    <a itemprop="url" href="{{_AppHelper.getUserProfileUrl(article.createdBy['username'])}}">
+                        <img itemprop="image" src="{{ profileImg }}" alt="Author name">
                     </a>
-                    <span class="name">{{article.createdBy['displayName']}}</span><hr style="width:100%;margin:1px 0;border:none;" class="visible-xs-block" />
+                    <span itemprop="name" class="name">{{article.createdBy['displayName']}}</span><hr style="width:100%;margin:1px 0;border:none;" class="visible-xs-block" />
                     <p>{{ article.createdBy['bio'] }}</p>
                     
                     {% if not _User.isGuest() %}
@@ -109,23 +110,23 @@
 
 
 
-            <div class="article-content-icons-wrapper col-sm-12">
+            <div class="article-content-icons-wrapper col-sm-12" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
                 <aside class="col-sm-2">
                    <ul class="social-link-sidebar">
                         <li>
-                            <a href="http://www.facebook.com/sharer/sharer.php?u={{article.url}}&title={{ article.title|url_encode }}" target="_blank">
+                            <a itemprop="url" href="http://www.facebook.com/sharer/sharer.php?u={{article.url}}&title={{ article.title|url_encode }}" target="_blank">
                                 <span class="sr-only">Facebook</span>
                                 <span class="facebook-blk icon"></span>
                             </a>
                         </li>
                         <li>
-                            <a href="http://twitter.com/intent/tweet?status={{ article.title|url_encode }}%20{{article.url}}" target="_blank">
+                            <a itemprop="url" href="http://twitter.com/intent/tweet?status={{ article.title|url_encode }}%20{{article.url}}" target="_blank">
                                 <span class="sr-only">Twitter</span>
                                 <span class="twitter-blk icon"></span>
                             </a>
                         </li>
                         <li>
-                            <a href="mailto:?subject={{ article.title|url_encode }}&body={{ article.title|url_encode }}%0D%0A%3C{{article.url|url_encode}}%3E">{# %3Cimg%3E{{ articleImg|url_encode }}%3C%2Fimg%3E%0D%0A{{ article.content|url_encode }}"> #}
+                            <a itemprop="url" href="mailto:?subject={{ article.title|url_encode }}&body={{ article.title|url_encode }}%0D%0A%3C{{article.url|url_encode}}%3E">{# %3Cimg%3E{{ articleImg|url_encode }}%3C%2Fimg%3E%0D%0A{{ article.content|url_encode }}"> #}
                                 <span class="sr-only">Mail</span>
                                 <span class="mail-blk icon"></span>
                             </a>
