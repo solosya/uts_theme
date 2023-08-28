@@ -97,12 +97,13 @@
 
 
             {% if article['createdBy']['coauthors'] is empty %}
-                <div class="author-info col-sm-8 col-sm-offset-2">
+                <div class="author-info col-sm-8 col-sm-offset-2" itemscope itemprop="author" itemtype="https://schema.org/Person">
+                    <meta itemprop="name" content="{{article.createdBy['displayName']}}">
                      
-                    <a itemprop="name" href="{{_AppHelper.getUserProfileUrl(article.createdBy['username'])}}">
+                    <a itemprop="url" href="{{_AppHelper.getUserProfileUrl(article.createdBy['username'])}}">
                         <img src="{{ profileImg }}" alt="Author name">
                     </a>
-                    <span itemprop="name" class="name">{{article.createdBy['displayName']}}</span><hr style="width:100%;margin:1px 0;border:none;" class="visible-xs-block" />
+                    <span class="name">{{article.createdBy['displayName']}}</span><hr style="width:100%;margin:1px 0;border:none;" class="visible-xs-block" />
                     <p>{{ article.createdBy['bio'] }}</p>
                     
                     {% if not _User.isGuest() %}
